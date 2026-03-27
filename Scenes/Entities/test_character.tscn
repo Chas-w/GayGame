@@ -1,0 +1,20 @@
+[gd_scene format=3 uid="uid://bvyepupqfa2a5"]
+
+[ext_resource type="Texture2D" uid="uid://cfe2ibldh5cu0" path="res://Sprites/Tiger Head.png" id="1_6v4q6"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_v15kr"]
+radius = 95.084175
+
+[node name="Test Character" type="Node2D" unique_id=894114366]
+
+[node name="Head Static" type="StaticBody2D" parent="." unique_id=1525237653]
+position = Vector2(570, 234)
+
+[node name="Head Sprite" type="Sprite2D" parent="Head Static" unique_id=1626971584]
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("1_6v4q6")
+
+[node name="Head Collision" type="CollisionShape2D" parent="Head Static" unique_id=18411080]
+position = Vector2(6, 8)
+shape = SubResource("CircleShape2D_v15kr")
+debug_color = Color(0.89970016, 0.0001782763, 0.7666211, 0.41960785)

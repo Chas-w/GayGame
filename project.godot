@@ -12,7 +12,16 @@ config_version=5
 
 config/name="Gay Game"
 config/features=PackedStringArray("4.6", "Forward Plus")
-config/icon="res://icon.svg"
+config/icon="res://Sprites/icon.svg"
+
+[file_customization]
+
+folder_colors={
+"res://Scenes/": "teal",
+"res://Scenes/Entities/": "green",
+"res://Scripts/": "pink",
+"res://Sprites/": "gray"
+}
 
 [physics]
 
@@ -21,3 +30,4 @@ config/icon="res://icon.svg"
 [rendering]
 
 rendering_device/driver.windows="d3d12"
+environment/defaults/default_clear_color=Color(0, 0, 0, 1)

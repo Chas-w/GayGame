@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://cl2ommjrxhmjy"]
+
+[ext_resource type="PackedScene" uid="uid://bvyepupqfa2a5" path="res://Scenes/Entities/test_character.tscn" id="1_lci7e"]
+
+[node name="Prototype Scene" type="Node" unique_id=1434948975]
+
+[node name="Test Character" parent="." unique_id=894114366 instance=ExtResource("1_lci7e")]
