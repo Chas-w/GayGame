@@ -106,7 +106,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.569524, 1.1543801, 0)
 collision_layer = 2
 collision_mask = 2
 script = ExtResource("7_gymyn")
-move_force = 50.0
+move_force = 20.0
 
 [node name="Sprite3D" type="Sprite3D" parent="LeftArm/LeftHand" unique_id=284128447]
 transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0.016189218, 0, 0)
@@ -169,7 +169,7 @@ collision_layer = 2
 collision_mask = 2
 script = ExtResource("7_gymyn")
 is_camera_left = true
-move_force = 50.0
+move_force = 20.0
 
 [node name="Sprite3D" type="Sprite3D" parent="RightArm/RightHand" unique_id=528996529]
 transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0.016189218, 0, 0)

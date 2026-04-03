@@ -10,6 +10,7 @@ const JUMP_VELOCITY = 4.5
 @onready var pivot = $CameraOrigin
 @onready var left_hand = $LeftArm/LeftHand
 @onready var right_hand = $RightArm/RightHand
+@onready var torso = $Torso
 
 #Posing Variables
 var is_posing = false
@@ -18,6 +19,8 @@ var rigid_array : Array[RigidBody3D]
 func _ready() -> void:
 	#Set up array
 	rigid_array = [$LeftArm/LeftUpperArm, $LeftArm/LeftLowerArm, $LeftArm/LeftHand, $RightArm/RightUpperArm, $RightArm/RightLowerArm, $RightArm/RightHand]
+	left_hand.torso = torso
+	right_hand.torso = torso
 	
 	#Should not start posing
 	_toggle_posing(false)
