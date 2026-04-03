@@ -1,5 +1,8 @@
 extends RigidBody3D
 
+@export var is_camera_left : bool
+var is_posing
+@onready var playerScript = $"../.."
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
