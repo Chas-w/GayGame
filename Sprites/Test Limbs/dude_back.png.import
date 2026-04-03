@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c2yoctxl8xjo6"
-path.s3tc="res://.godot/imported/test_right_lower_arm.png-d03a047c01ba4d23e9e27ede848301bf.s3tc.ctex"
+uid="uid://bp032wrrd1moy"
+path.s3tc="res://.godot/imported/dude_back.png-dc19e18a33697b8407eec144a6927aac.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://Sprites/Test Limbs/test_right_lower_arm.png"
-dest_files=["res://.godot/imported/test_right_lower_arm.png-d03a047c01ba4d23e9e27ede848301bf.s3tc.ctex"]
+source_file="res://Sprites/Test Limbs/dude_back.png"
+dest_files=["res://.godot/imported/dude_back.png-dc19e18a33697b8407eec144a6927aac.s3tc.ctex"]
 
 [params]
 
