@@ -21,7 +21,9 @@ func _ready() -> void:
 	#Set up array
 	rigid_array = [$LeftArm/LeftUpperArm, $LeftArm/LeftLowerArm, $LeftArm/LeftHand, $RightArm/RightUpperArm, $RightArm/RightLowerArm, $RightArm/RightHand]
 	left_hand.torso = torso
+	left_hand.camera = camera
 	right_hand.torso = torso
+	right_hand.camera = camera
 	
 	#Should not start posing
 	_toggle_posing(false)

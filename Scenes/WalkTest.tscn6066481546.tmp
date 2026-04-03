@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://bkrs1xwjpw4ry"]
 
-[ext_resource type="PackedScene" uid="uid://2ctcen10182n" path="res://Scenes/Prefabs/player.tscn" id="1_nps61"]
+[ext_resource type="PackedScene" uid="uid://2ctcen10182n" path="res://Scenes/player.tscn" id="1_nps61"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_4ixrs"]
 
@@ -15,7 +15,6 @@ transform = Transform3D(1, 0, 0, 0, 0.5201602, 0.8540687, 0, -0.8540687, 0.52016
 [node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=1836412771]
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D" unique_id=403922258]
-transform = Transform3D(7.675, 0, 0, 0, 7.675, 0, 0, 0, 7.675, 0, 0, 0)
 mesh = SubResource("PlaneMesh_4ixrs")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" unique_id=1626122535]

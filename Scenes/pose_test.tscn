@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://dom3ekf4c4827" path="res://Sprites/Test Limbs/test_left_upper_arm.png" id="2_ebyfu"]
 [ext_resource type="Texture2D" uid="uid://dd1xr8gkcp17u" path="res://Sprites/Test Limbs/test_left_lower_arm.png" id="3_wtoy5"]
 [ext_resource type="Texture2D" uid="uid://cpj47rrh4klq0" path="res://Sprites/Test Limbs/test_left_hand.png" id="4_5sbbb"]
-[ext_resource type="Script" uid="uid://ct4u4mmgug3uu" path="res://Scenes/hand.gd" id="4_ebyfu"]
+[ext_resource type="Script" uid="uid://ct4u4mmgug3uu" path="res://Scripts/hand.gd" id="4_ebyfu"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_vgbbk"]
 radius = 34.909912
