@@ -11,6 +11,7 @@ const JUMP_VELOCITY = 4.5
 @onready var left_hand = $LeftArm/LeftHand
 @onready var right_hand = $RightArm/RightHand
 @onready var torso = $Torso
+@onready var camera = $CameraOrigin/SpringArm3D/Camera3D
 
 #Posing Variables
 var is_posing = false
@@ -28,8 +29,8 @@ func _ready() -> void:
 func _input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion and !is_posing:
 		rotate_y(deg_to_rad(-event.relative.x * sens))
-		pivot.rotate_x(deg_to_rad(-event.relative.y * sens))
-		pivot.rotation.x = clamp(pivot.rotation.x, deg_to_rad(-90), deg_to_rad(45))
+		#pivot.rotate_x(deg_to_rad(-event.relative.y * sens))
+		#pivot.rotation.x = clamp(pivot.rotation.x, deg_to_rad(-90), deg_to_rad(45))
 
 func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("quit"):
