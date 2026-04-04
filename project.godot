@@ -15,6 +15,13 @@ run/main_scene="uid://ccbulw3xgkn8g"
 config/features=PackedStringArray("4.6", "Forward Plus")
 config/icon="res://Sprites/icon.svg"
 
+[display]
+
+window/size/viewport_width=640
+window/size/viewport_height=480
+window/stretch/mode="viewport"
+window/stretch/aspect="keep_height"
+
 [file_customization]
 
 folder_colors={
@@ -72,5 +79,7 @@ click={
 
 [rendering]
 
+textures/canvas_textures/default_texture_filter=0
 rendering_device/driver.windows="d3d12"
+shading/overrides/force_vertex_shading=true
 environment/defaults/default_clear_color=Color(0, 0, 0, 1)
