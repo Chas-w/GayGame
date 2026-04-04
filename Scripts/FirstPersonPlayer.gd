@@ -3,7 +3,7 @@ extends CharacterBody3D
 #Attributes
 @export_range(0, 5) var speed : float
 @export_range(0, 0.015) var sensitivity : float
-@export var viewport_container: SubViewportContainer
+@export var viewport_container: Control
 @export var player_body : Node3D
 
 #References

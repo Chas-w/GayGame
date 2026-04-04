@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://btmd7iktmjprf"]
 
 [ext_resource type="PackedScene" uid="uid://cmm4fihaitqwg" path="res://Scenes/Prefabs/first_person_player.tscn" id="1_6fa7s"]
+[ext_resource type="Texture2D" uid="uid://do84xx10kl7vd" path="res://Sprites/tarot_blank.png" id="2_67bln"]
 [ext_resource type="PackedScene" uid="uid://sje0wiy4cy47" path="res://Scenes/pose_minigame.tscn" id="2_yj1tl"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_w1nrw"]
@@ -45,8 +46,8 @@ mesh = SubResource("PlaneMesh_w1nrw")
 shape = SubResource("ConvexPolygonShape3D_w1nrw")
 
 [node name="FirstPersonPlayer" parent="." unique_id=1002929390 node_paths=PackedStringArray("viewport_container", "player_body") instance=ExtResource("1_6fa7s")]
-viewport_container = NodePath("../SubViewportContainer")
-player_body = NodePath("../SubViewportContainer/SubViewport/PoseMinigame")
+viewport_container = NodePath("../Control")
+player_body = NodePath("../Control/SubViewportContainer/SubViewport/PoseMinigame")
 
 [node name="Dancer" type="CharacterBody3D" parent="." unique_id=1924646717]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 0, 0)
@@ -59,17 +60,34 @@ shape = SubResource("CapsuleShape3D_6fa7s")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 mesh = SubResource("CapsuleMesh_6fa7s")
 
-[node name="SubViewportContainer" type="SubViewportContainer" parent="." unique_id=1564013751]
-offset_left = 816.0
-offset_top = 300.0
-offset_right = 1328.0
-offset_bottom = 812.0
+[node name="Control" type="Control" parent="." unique_id=27517313]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="TextureRect" type="TextureRect" parent="Control" unique_id=2047419744]
+layout_mode = 0
+offset_left = 851.99994
+offset_top = 274.0
+offset_right = 1067.0
+offset_bottom = 580.0
+scale = Vector2(1.1339188, 1.1339188)
+texture = ExtResource("2_67bln")
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="Control" unique_id=1564013751]
+layout_mode = 0
+offset_left = 804.0
+offset_top = 286.0
+offset_right = 1316.0
+offset_bottom = 798.0
 scale = Vector2(0.6498914, 0.6746824)
 stretch = true
 
-[node name="SubViewport" type="SubViewport" parent="SubViewportContainer" unique_id=1798097478]
+[node name="SubViewport" type="SubViewport" parent="Control/SubViewportContainer" unique_id=1798097478]
+transparent_bg = true
 handle_input_locally = false
 render_target_update_mode = 4
 
-[node name="PoseMinigame" parent="SubViewportContainer/SubViewport" unique_id=1264105626 instance=ExtResource("2_yj1tl")]
+[node name="PoseMinigame" parent="Control/SubViewportContainer/SubViewport" unique_id=1264105626 instance=ExtResource("2_yj1tl")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.045574, 0, 0)

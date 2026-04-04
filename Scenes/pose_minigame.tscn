@@ -15,6 +15,10 @@
 [sub_resource type="BoxShape3D" id="BoxShape3D_c5q8o"]
 size = Vector3(7.51001, 41.54547, 1.5704346)
 
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_6mtrr"]
+height = 1.1630859
+radius = 1.9526367
+
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_phcke"]
 radius = 0.083496094
 height = 0.59198
@@ -40,9 +44,17 @@ collision_mask = 4
 transform = Transform3D(1, 0, 0, 0, 0.13, 0, 0, 0, 0.13, -0.0072021484, 2.6403344, 0.002683714)
 shape = SubResource("BoxShape3D_c5q8o")
 
-[node name="AnimalHead" type="Sprite3D" parent="." unique_id=1365249110]
+[node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=1102196873]
 transform = Transform3D(0.125, 0, 0, 0, 0.125, 0, 0, 0, 0.125, -0.0054454803, 2.9490223, 0)
+collision_layer = 2
+collision_mask = 2
+
+[node name="AnimalHead" type="Sprite3D" parent="StaticBody3D" unique_id=1365249110]
 texture = ExtResource("2_6mtrr")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" unique_id=372307351]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, -0.045410156)
+shape = SubResource("CylinderShape3D_6mtrr")
 
 [node name="Torso" type="StaticBody3D" parent="." unique_id=2078509295]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.025494337, 2.219493, 0.011657715)
@@ -52,7 +64,7 @@ transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0, 0)
 texture = ExtResource("3_4a7pm")
 
 [node name="LeftArm" type="Node3D" parent="." unique_id=2090084593]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.04521823, 0.20506668, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.04521823, 0.20506668, 0.02092272)
 
 [node name="LeftShoulder" type="HingeJoint3D" parent="LeftArm" unique_id=1493516885]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.2824915, 2.3278394, 0)
@@ -113,7 +125,7 @@ transform = Transform3D(0.9776293, -0.21033525, 0, 0.21033525, 0.9776293, 0, 0, 
 shape = SubResource("CapsuleShape3D_v1gxi")
 
 [node name="RightArm" type="Node3D" parent="." unique_id=165493319]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.90865064, 0.20506668, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.90865064, 0.20506668, 0.02092272)
 
 [node name="RightShoulder" type="HingeJoint3D" parent="RightArm" unique_id=489847932]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.6088464, 2.3278394, 0)

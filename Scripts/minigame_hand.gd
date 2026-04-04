@@ -28,6 +28,10 @@ func _input(event: InputEvent) -> void:
 			elif event.is_released():
 				is_mouse_down = false
 
+func _process(delta: float) -> void:
+	if !is_posing and is_mouse_down:
+		is_mouse_down = false
+
 func _physics_process(delta: float) -> void:
 	if is_posing and is_mouse_down:
 		_handle_mouse_anchors()
