@@ -5,6 +5,7 @@ extends Node3D
 @export var sprite : Sprite3D
 @export var rotation_positions : Array[Vector3]
 @export var current_rotation : int
+@export var mirror_joint : Node3D
 var can_rotate : bool
 
 # Called when the node enters the scene tree for the first time.
@@ -18,6 +19,10 @@ func _process(delta: float) -> void:
 	else:
 		hit_rotation()
 
+func random_rotate() -> void:
+	current_rotation = randi_range(0, rotation_positions.size()-1)
+	rotation_degrees = rotation_positions[current_rotation]
+
 func hit_rotation() -> void:
 	if !can_rotate :
 		return
@@ -26,11 +31,13 @@ func hit_rotation() -> void:
 		if current_rotation >= rotation_positions.size() :
 			current_rotation = rotation_positions.size() - 1
 		rotation_degrees = rotation_positions[current_rotation]
+		mirror_joint.rotation_degrees = rotation_positions[current_rotation] + Vector3(0,0, 180)
 	if Input.is_action_just_pressed("down"):
 		current_rotation -= 1
 		if current_rotation <= 0 :
 			current_rotation = 0
 		rotation_degrees = rotation_positions[current_rotation]
+		mirror_joint.rotation_degrees = rotation_positions[current_rotation] + Vector3(0,0, 180)
 
 func handle_rotation(delta : float) -> void:
 	if !can_rotate :
