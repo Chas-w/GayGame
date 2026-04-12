@@ -1,8 +1,8 @@
 [gd_scene format=3 uid="uid://btmd7iktmjprf"]
 
-[ext_resource type="PackedScene" uid="uid://cmm4fihaitqwg" path="res://Scenes/Prefabs/first_person_player.tscn" id="1_6fa7s"]
+[ext_resource type="PackedScene" uid="uid://cmm4fihaitqwg" path="res://Scenes/Deprecated/Prefabs/first_person_player.tscn" id="1_6fa7s"]
 [ext_resource type="Texture2D" uid="uid://do84xx10kl7vd" path="res://Sprites/tarot_blank.png" id="2_67bln"]
-[ext_resource type="PackedScene" uid="uid://sje0wiy4cy47" path="res://Scenes/pose_minigame.tscn" id="2_yj1tl"]
+[ext_resource type="PackedScene" uid="uid://sje0wiy4cy47" path="res://Scenes/Deprecated/pose_minigame.tscn" id="2_yj1tl"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_w1nrw"]
 sky_top_color = Color(8.663535e-07, 0.4772331, 0.7165361, 1)

@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://bkrs1xwjpw4ry"]
 
-[ext_resource type="PackedScene" uid="uid://2ctcen10182n" path="res://Scenes/Prefabs/player.tscn" id="1_nps61"]
+[ext_resource type="PackedScene" uid="uid://2ctcen10182n" path="res://Scenes/Deprecated/Prefabs/player.tscn" id="1_nps61"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_4ixrs"]
 

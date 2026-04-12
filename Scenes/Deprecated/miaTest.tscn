@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://omd8pqhpjfjp"]
 
-[ext_resource type="Script" uid="uid://cilbhwwy3bwa3" path="res://Scenes/camera_test_bounce.gd" id="1_ees5g"]
+[ext_resource type="Script" uid="uid://cilbhwwy3bwa3" path="res://Scripts/camera_test_bounce.gd" id="1_ees5g"]
 [ext_resource type="Texture2D" uid="uid://m66qde282cjn" path="res://Sprites/Baby Karl Head.png" id="1_p0itb"]
 [ext_resource type="Texture2D" uid="uid://bt1v53gfl8khv" path="res://Sprites/Test Limbs/dude_front.png" id="2_o8spi"]
 [ext_resource type="Shader" uid="uid://dcfdm75m1xklp" path="res://Shaders/ps1_post_process.gdshader" id="4_twvv7"]
