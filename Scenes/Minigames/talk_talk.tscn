@@ -1,0 +1,343 @@
+[gd_scene format=3 uid="uid://p1gehh6ysjcc"]
+
+[ext_resource type="Script" uid="uid://d23wof41h6b5e" path="res://Scripts/Minigames/talk_talk.gd" id="1_8a8lt"]
+
+[sub_resource type="Gradient" id="Gradient_awhtk"]
+offsets = PackedFloat32Array(0.47936085)
+colors = PackedColorArray(0.23921569, 0.3019608, 0.3019608, 0.4745098)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_8a8lt"]
+gradient = SubResource("Gradient_awhtk")
+
+[node name="Talk Talk" type="Node" unique_id=271996376]
+script = ExtResource("1_8a8lt")
+
+[node name="Alphabet" type="Control" parent="." unique_id=1849902221]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 73.0
+offset_top = 365.0
+offset_right = -579.0
+offset_bottom = -33.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="A" type="Button" parent="Alphabet" unique_id=1362302329]
+layout_mode = 0
+offset_left = 42.0
+offset_top = 20.0
+offset_right = 82.0
+offset_bottom = 67.0
+button_mask = 0
+text = "A"
+
+[node name="B" type="Button" parent="Alphabet" unique_id=727706]
+layout_mode = 0
+offset_left = 82.0
+offset_top = 20.0
+offset_right = 122.0
+offset_bottom = 67.0
+button_mask = 0
+text = "B"
+
+[node name="C" type="Button" parent="Alphabet" unique_id=1352247375]
+layout_mode = 0
+offset_left = 122.0
+offset_top = 20.0
+offset_right = 162.0
+offset_bottom = 67.0
+button_mask = 0
+text = "C"
+
+[node name="D" type="Button" parent="Alphabet" unique_id=663010199]
+layout_mode = 0
+offset_left = 162.0
+offset_top = 20.0
+offset_right = 202.0
+offset_bottom = 67.0
+button_mask = 0
+text = "D"
+
+[node name="E" type="Button" parent="Alphabet" unique_id=1363230494]
+layout_mode = 0
+offset_left = 202.0
+offset_top = 20.0
+offset_right = 242.0
+offset_bottom = 67.0
+button_mask = 0
+text = "E"
+
+[node name="F" type="Button" parent="Alphabet" unique_id=531327143]
+layout_mode = 0
+offset_left = 242.0
+offset_top = 20.0
+offset_right = 282.0
+offset_bottom = 67.0
+button_mask = 0
+text = "F"
+
+[node name="G" type="Button" parent="Alphabet" unique_id=419471123]
+layout_mode = 0
+offset_left = 282.0
+offset_top = 20.0
+offset_right = 322.0
+offset_bottom = 67.0
+button_mask = 0
+text = "G"
+
+[node name="H" type="Button" parent="Alphabet" unique_id=910317360]
+layout_mode = 0
+offset_left = 42.0
+offset_top = 67.0
+offset_right = 82.0
+offset_bottom = 114.0
+button_mask = 0
+text = "H"
+
+[node name="I" type="Button" parent="Alphabet" unique_id=1080295245]
+layout_mode = 0
+offset_left = 82.0
+offset_top = 67.0
+offset_right = 122.0
+offset_bottom = 114.0
+button_mask = 0
+text = "I"
+
+[node name="J" type="Button" parent="Alphabet" unique_id=203752501]
+layout_mode = 0
+offset_left = 122.0
+offset_top = 67.0
+offset_right = 162.0
+offset_bottom = 114.0
+button_mask = 0
+text = "J"
+
+[node name="K" type="Button" parent="Alphabet" unique_id=770669484]
+layout_mode = 0
+offset_left = 162.0
+offset_top = 67.0
+offset_right = 202.0
+offset_bottom = 114.0
+button_mask = 0
+text = "K"
+
+[node name="L" type="Button" parent="Alphabet" unique_id=274039643]
+layout_mode = 0
+offset_left = 202.0
+offset_top = 67.0
+offset_right = 242.0
+offset_bottom = 114.0
+button_mask = 0
+text = "L"
+
+[node name="M" type="Button" parent="Alphabet" unique_id=1833411217]
+layout_mode = 0
+offset_left = 242.0
+offset_top = 67.0
+offset_right = 282.0
+offset_bottom = 114.0
+button_mask = 0
+text = "M"
+
+[node name="N" type="Button" parent="Alphabet" unique_id=278935727]
+layout_mode = 0
+offset_left = 282.0
+offset_top = 67.0
+offset_right = 322.0
+offset_bottom = 114.0
+button_mask = 0
+text = "N"
+
+[node name="O" type="Button" parent="Alphabet" unique_id=627090868]
+layout_mode = 0
+offset_left = 42.0
+offset_top = 114.0
+offset_right = 82.0
+offset_bottom = 161.0
+button_mask = 0
+text = "O"
+
+[node name="P" type="Button" parent="Alphabet" unique_id=611828357]
+layout_mode = 0
+offset_left = 82.0
+offset_top = 114.0
+offset_right = 122.0
+offset_bottom = 161.0
+button_mask = 0
+text = "P"
+
+[node name="Q" type="Button" parent="Alphabet" unique_id=1539451573]
+layout_mode = 0
+offset_left = 122.0
+offset_top = 114.0
+offset_right = 162.0
+offset_bottom = 161.0
+button_mask = 0
+text = "Q"
+
+[node name="R" type="Button" parent="Alphabet" unique_id=1828233330]
+layout_mode = 0
+offset_left = 162.0
+offset_top = 114.0
+offset_right = 202.0
+offset_bottom = 161.0
+button_mask = 0
+text = "R"
+
+[node name="S" type="Button" parent="Alphabet" unique_id=381563922]
+layout_mode = 0
+offset_left = 202.0
+offset_top = 114.0
+offset_right = 242.0
+offset_bottom = 161.0
+button_mask = 0
+text = "S"
+
+[node name="T" type="Button" parent="Alphabet" unique_id=2064602899]
+layout_mode = 0
+offset_left = 242.0
+offset_top = 114.0
+offset_right = 282.0
+offset_bottom = 161.0
+button_mask = 0
+text = "T"
+
+[node name="U" type="Button" parent="Alphabet" unique_id=818561471]
+layout_mode = 0
+offset_left = 282.0
+offset_top = 114.0
+offset_right = 322.0
+offset_bottom = 161.0
+button_mask = 0
+text = "U"
+
+[node name="V" type="Button" parent="Alphabet" unique_id=1879328274]
+layout_mode = 0
+offset_left = 42.0
+offset_top = 161.0
+offset_right = 82.0
+offset_bottom = 208.0
+button_mask = 0
+text = "V"
+
+[node name="W" type="Button" parent="Alphabet" unique_id=96060775]
+layout_mode = 0
+offset_left = 82.0
+offset_top = 161.0
+offset_right = 122.0
+offset_bottom = 208.0
+button_mask = 0
+text = "W"
+
+[node name="X" type="Button" parent="Alphabet" unique_id=1905525477]
+layout_mode = 0
+offset_left = 122.0
+offset_top = 161.0
+offset_right = 162.0
+offset_bottom = 208.0
+button_mask = 0
+text = "X"
+
+[node name="Y" type="Button" parent="Alphabet" unique_id=259324724]
+layout_mode = 0
+offset_left = 162.0
+offset_top = 161.0
+offset_right = 202.0
+offset_bottom = 208.0
+button_mask = 0
+text = "Y"
+
+[node name="Z" type="Button" parent="Alphabet" unique_id=749068061]
+layout_mode = 0
+offset_left = 202.0
+offset_top = 161.0
+offset_right = 242.0
+offset_bottom = 208.0
+button_mask = 0
+text = "Z"
+
+[node name="Space" type="Button" parent="Alphabet" unique_id=677932411]
+layout_mode = 0
+offset_left = 347.0
+offset_top = 80.0
+offset_right = 450.0
+offset_bottom = 127.0
+button_mask = 0
+text = "SPACE"
+
+[node name="Enter" type="Button" parent="Alphabet" unique_id=572726291]
+layout_mode = 0
+offset_left = 345.0
+offset_top = 23.0
+offset_right = 450.0
+offset_bottom = 70.0
+button_mask = 0
+text = "ENTER"
+
+[node name="Our Dialogue" type="Control" parent="." unique_id=608725131]
+layout_mode = 3
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -525.0
+offset_top = 40.0
+offset_right = -25.0
+offset_bottom = 290.0
+grow_horizontal = 0
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="Our Dialogue" unique_id=1941619600]
+layout_mode = 0
+offset_right = 500.0
+offset_bottom = 250.0
+texture = SubResource("GradientTexture2D_8a8lt")
+
+[node name="Spoken Text" type="RichTextLabel" parent="Our Dialogue" unique_id=542030987]
+z_index = 9
+layout_mode = 0
+offset_left = 25.0
+offset_top = 29.0
+offset_right = 475.0
+offset_bottom = 229.0
+
+[node name="Target Text" type="RichTextLabel" parent="Our Dialogue" unique_id=313637387]
+layout_mode = 0
+offset_left = 25.0
+offset_top = 29.0
+offset_right = 475.0
+offset_bottom = 229.0
+theme_override_colors/default_color = Color(0.62605184, 0, 0.22267023, 1)
+text = "Target Text"
+
+[node name="Their Dialogue" type="Control" parent="." unique_id=778171923]
+layout_mode = 3
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -1094.0
+offset_top = -293.0
+offset_right = -594.0
+offset_bottom = -193.0
+grow_horizontal = 0
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="Their Dialogue" unique_id=58775901]
+layout_mode = 0
+offset_right = 500.0
+offset_bottom = 100.0
+texture = SubResource("GradientTexture2D_8a8lt")
+
+[node name="Target Text" type="RichTextLabel" parent="Their Dialogue" unique_id=660719038]
+layout_mode = 0
+offset_left = 25.0
+offset_top = 29.0
+offset_right = 475.0
+offset_bottom = 79.0
+theme_override_colors/default_color = Color(1, 1, 1, 1)
+text = "Come here often? "
