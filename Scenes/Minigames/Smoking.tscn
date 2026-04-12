@@ -1,3 +1,50 @@
 [gd_scene format=3 uid="uid://cyyoa3yevs6h7"]
 
+[ext_resource type="Texture2D" uid="uid://cljy2dl3y27we" path="res://Sprites/pngtree-horizontal-cigarette-isolated-on-a-white-background-stream-png-image_10264306.png" id="1_1e5bn"]
+[ext_resource type="Texture2D" uid="uid://beh5lrkxar14a" path="res://Sprites/red-matches-stick-png.webp" id="1_hmse8"]
+[ext_resource type="Script" uid="uid://bd4grouh2bdi1" path="res://Scenes/Minigames/hand_pivot.gd" id="3_6bwpo"]
+[ext_resource type="Texture2D" uid="uid://cpj47rrh4klq0" path="res://Sprites/Test Limbs/test_left_hand.png" id="3_mm1qo"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_mx4py"]
+sky_top_color = Color(0.74401283, 0.05503863, 0.6730958, 1)
+sky_horizon_color = Color(0.54445183, 0.40917033, 0.56444776, 1)
+ground_bottom_color = Color(0.05185035, 0.1996986, 0.20275101, 1)
+ground_horizon_color = Color(0.54445183, 0.40917033, 0.56444776, 1)
+
+[sub_resource type="Sky" id="Sky_hmse8"]
+sky_material = SubResource("ProceduralSkyMaterial_mx4py")
+
+[sub_resource type="Environment" id="Environment_1e5bn"]
+background_mode = 2
+sky = SubResource("Sky_hmse8")
+tonemap_mode = 2
+glow_enabled = true
+
 [node name="Smoking" type="Node3D" unique_id=1640339376]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1030732219]
+transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 0, 0, 0)
+shadow_enabled = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1115965885]
+environment = SubResource("Environment_1e5bn")
+
+[node name="Camera3D" type="Camera3D" parent="." unique_id=499747129]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 5)
+
+[node name="Cigarette" type="Sprite3D" parent="." unique_id=1254910678]
+transform = Transform3D(0.88625306, -0.28910723, 0.36190116, 0.31012887, 0.9506945, 0, -0.3440575, 0.112236015, 0.93221647, 2.447208, 2.8317766, 0)
+texture = ExtResource("1_1e5bn")
+
+[node name="Match" type="Sprite3D" parent="." unique_id=1552189400]
+transform = Transform3D(0.33, 0, 0, 0, 0.33, 0, 0, 0, 0.33, 0, 0, 0)
+texture = ExtResource("1_hmse8")
+
+[node name="HandPivot" type="Node3D" parent="." unique_id=842347663]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+script = ExtResource("3_6bwpo")
+rotation_speed = 2.0
+
+[node name="Sprite3D" type="Sprite3D" parent="HandPivot" unique_id=487627045]
+transform = Transform3D(-1, -8.742278e-08, 0, 8.742278e-08, -1, 0, 0, 0, 1, -2.18683, 0, 0)
+texture = ExtResource("3_mm1qo")
