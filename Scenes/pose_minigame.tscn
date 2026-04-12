@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://sje0wiy4cy47"]
 
-[ext_resource type="Script" uid="uid://buov7dhp3rnal" path="res://Scenes/Prefabs/pose_minigame.gd" id="1_6mtrr"]
+[ext_resource type="Script" uid="uid://buov7dhp3rnal" path="res://Scripts/pose_minigame.gd" id="1_6mtrr"]
 [ext_resource type="Script" uid="uid://bfb4stspko1qp" path="res://Scripts/camera_3d.gd" id="1_47lgu"]
 [ext_resource type="Texture2D" uid="uid://cfe2ibldh5cu0" path="res://Sprites/Tiger Head.png" id="2_6mtrr"]
 [ext_resource type="Texture2D" uid="uid://bqk3a55a5ubqx" path="res://Sprites/Test Limbs/test_torso.png" id="3_4a7pm"]
