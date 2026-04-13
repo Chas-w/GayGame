@@ -15,10 +15,18 @@ run/main_scene="uid://ccbulw3xgkn8g"
 config/features=PackedStringArray("4.6", "Forward Plus")
 config/icon="res://Sprites/icon.svg"
 
+[autoload]
+
+Shaker="*uid://dpk87m0wcxk1p"
+
 [display]
 
 window/stretch/mode="viewport"
 window/stretch/aspect="keep_height"
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/shaker/plugin.cfg")
 
 [file_customization]
 

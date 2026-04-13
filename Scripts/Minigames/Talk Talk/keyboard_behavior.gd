@@ -9,8 +9,7 @@ extends Label
 
 var hover_position 
 
-var frequency := .0075
-var amplitude := PI * 0.05
+
 
 func _ready():
 	hover_position = Vector2(global_position.x + 6, global_position.y + 12)	
@@ -19,5 +18,4 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	rotation = cos(Time.get_ticks_msec() * frequency) * amplitude
 	pass

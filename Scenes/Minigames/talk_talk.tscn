@@ -1,10 +1,31 @@
 [gd_scene format=3 uid="uid://p1gehh6ysjcc"]
 
 [ext_resource type="Script" uid="uid://d23wof41h6b5e" path="res://Scripts/Minigames/Talk Talk/talk_talk.gd" id="1_8a8lt"]
+[ext_resource type="Script" uid="uid://cxaq381wv2opn" path="res://addons/shaker/src/Vector2/shaker_component2D.gd" id="2_3grd8"]
 [ext_resource type="Script" uid="uid://d0odpgvkpq1m8" path="res://Scripts/Minigames/Talk Talk/keyboard_behavior.gd" id="2_drjjf"]
+[ext_resource type="Script" uid="uid://btlgiu1u2udpp" path="res://addons/shaker/data/Vector2/BaseShakerType2D.gd" id="3_805yl"]
 [ext_resource type="Texture2D" uid="uid://c17bxwh7gv5td" path="res://Sprites/icon.svg" id="3_mmnq6"]
+[ext_resource type="Script" uid="uid://v747qlihfe4c" path="res://addons/shaker/data/Vector2/ShakerTypeRandom2D.gd" id="5_3grd8"]
+[ext_resource type="Script" uid="uid://b030nrylr0l1k" path="res://addons/shaker/data/Single/ShakerTypeRandom1D.gd" id="5_8fy3v"]
+[ext_resource type="Script" uid="uid://takx842anhng" path="res://addons/shaker/data/Single/BaseShakerType1D.gd" id="5_m5on1"]
+[ext_resource type="Script" uid="uid://dqhbyyst210br" path="res://addons/shaker/data/Vector2/ShakerPreset2D.gd" id="6_qmucq"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8a8lt"]
+
+[sub_resource type="Resource" id="Resource_2k1d2"]
+script = ExtResource("5_3grd8")
+metadata/_custom_type_script = "uid://v747qlihfe4c"
+
+[sub_resource type="Resource" id="Resource_805yl"]
+script = ExtResource("5_8fy3v")
+amplitude = 0.01
+metadata/_custom_type_script = "uid://b030nrylr0l1k"
+
+[sub_resource type="Resource" id="Resource_5h87t"]
+script = ExtResource("6_qmucq")
+PositionShake = Array[ExtResource("3_805yl")]([SubResource("Resource_2k1d2")])
+RotationShake = Array[ExtResource("5_m5on1")]([SubResource("Resource_805yl")])
+metadata/_custom_type_script = "uid://dqhbyyst210br"
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_drjjf"]
 
@@ -90,138 +111,215 @@ offset_bottom = -33.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="A" type="Label" parent="Alphabet" unique_id=474437341 node_paths=PackedStringArray("right_key", "left_key", "above_key", "below_key") groups=["keyboard_button"]]
-layout_mode = 0
-offset_left = 42.0
-offset_top = 20.0
-offset_right = 62.0
-offset_bottom = 45.0
+[node name="A Key" type="Node2D" parent="Alphabet" unique_id=2607972]
+position = Vector2(47.2792, 32.010147)
+rotation = -0.0014413856
+
+[node name="A" type="Label" parent="Alphabet/A Key" unique_id=474437341 node_paths=PackedStringArray("right_key", "left_key", "above_key", "below_key") groups=["keyboard_button"]]
+offset_left = -0.026786804
+offset_top = -12.751984
+offset_right = 19.973213
+offset_bottom = 12.248016
 text = "a"
 script = ExtResource("2_drjjf")
-right_key = NodePath("../B")
-left_key = NodePath("../Enter")
-above_key = NodePath("../V")
-below_key = NodePath("../H")
+right_key = NodePath("../../B Key/B")
+left_key = NodePath("../../Enter")
+above_key = NodePath("../../V")
+below_key = NodePath("../../H")
 
-[node name="A Area" type="Area2D" parent="Alphabet/A" unique_id=205902846]
+[node name="A Area" type="Area2D" parent="Alphabet/A Key/A" unique_id=205902846]
 position = Vector2(6, 12)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Alphabet/A/A Area" unique_id=1488888873]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Alphabet/A Key/A/A Area" unique_id=1488888873]
 shape = SubResource("RectangleShape2D_8a8lt")
 
-[node name="B" type="Label" parent="Alphabet" unique_id=1040573756 node_paths=PackedStringArray("right_key", "left_key", "above_key", "below_key") groups=["keyboard_button"]]
-layout_mode = 0
-offset_left = 82.0
-offset_top = 20.0
-offset_right = 102.0
-offset_bottom = 45.0
+[node name="ShakerComponent" type="Node2D" parent="Alphabet/A Key" unique_id=1012124822]
+script = ExtResource("2_3grd8")
+is_playing = true
+AutoPlay = true
+intensity = 0.528
+shakerPreset = SubResource("Resource_5h87t")
+metadata/_custom_type_script = "uid://cxaq381wv2opn"
+
+[node name="B Key" type="Node2D" parent="Alphabet" unique_id=365334749]
+position = Vector2(89.31484, 32.75919)
+rotation = 0.001886528
+
+[node name="B" type="Label" parent="Alphabet/B Key" unique_id=1040573756 node_paths=PackedStringArray("right_key", "left_key", "above_key", "below_key") groups=["keyboard_button"]]
+offset_left = -7.0324707
+offset_top = -12.982452
+offset_right = 12.967529
+offset_bottom = 12.017548
 text = "b"
 script = ExtResource("2_drjjf")
-right_key = NodePath("../C")
-left_key = NodePath("../A")
-above_key = NodePath("../W")
-below_key = NodePath("../I")
+right_key = NodePath("../../C Key/C")
+left_key = NodePath("../../A Key/A")
+above_key = NodePath("../../W")
+below_key = NodePath("../../I")
 
-[node name="B Area" type="Area2D" parent="Alphabet/B" unique_id=1992708896]
+[node name="B Area" type="Area2D" parent="Alphabet/B Key/B" unique_id=1992708896]
 position = Vector2(6, 12)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Alphabet/B/B Area" unique_id=1923168210]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Alphabet/B Key/B/B Area" unique_id=1923168210]
 shape = SubResource("RectangleShape2D_drjjf")
 
-[node name="C" type="Label" parent="Alphabet" unique_id=1519661429 node_paths=PackedStringArray("right_key", "left_key", "above_key", "below_key") groups=["keyboard_button"]]
-layout_mode = 0
-offset_left = 122.0
-offset_top = 20.0
-offset_right = 142.0
-offset_bottom = 45.0
+[node name="ShakerComponent" type="Node2D" parent="Alphabet/B Key" unique_id=1138536350]
+script = ExtResource("2_3grd8")
+is_playing = true
+AutoPlay = true
+intensity = 0.655
+shakerPreset = SubResource("Resource_5h87t")
+metadata/_custom_type_script = "uid://cxaq381wv2opn"
+
+[node name="C Key" type="Node2D" parent="Alphabet" unique_id=1889633830]
+position = Vector2(129.62053, 32.60778)
+rotation = -0.0017461786
+
+[node name="C" type="Label" parent="Alphabet/C Key" unique_id=1519661429 node_paths=PackedStringArray("right_key", "left_key", "above_key", "below_key") groups=["keyboard_button"]]
+offset_left = -7.032486
+offset_top = -12.982452
+offset_right = 12.967514
+offset_bottom = 12.017548
 text = "c"
 script = ExtResource("2_drjjf")
-right_key = NodePath("../D")
-left_key = NodePath("../B")
-above_key = NodePath("../X")
-below_key = NodePath("../J")
+right_key = NodePath("../../D Key/D")
+left_key = NodePath("../../B Key/B")
+above_key = NodePath("../../X")
+below_key = NodePath("../../J")
 
-[node name="C Area" type="Area2D" parent="Alphabet/C" unique_id=2028581835]
+[node name="C Area" type="Area2D" parent="Alphabet/C Key/C" unique_id=2028581835]
 position = Vector2(6, 12)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Alphabet/C/C Area" unique_id=1136899834]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Alphabet/C Key/C/C Area" unique_id=1136899834]
 shape = SubResource("RectangleShape2D_mmnq6")
 
-[node name="D" type="Label" parent="Alphabet" unique_id=236820562 node_paths=PackedStringArray("right_key", "left_key", "above_key", "below_key") groups=["keyboard_button"]]
-layout_mode = 0
-offset_left = 162.0
-offset_top = 20.0
-offset_right = 182.0
-offset_bottom = 45.0
+[node name="ShakerComponent" type="Node2D" parent="Alphabet/C Key" unique_id=1817440821]
+script = ExtResource("2_3grd8")
+is_playing = true
+AutoPlay = true
+intensity = 0.622
+shakerPreset = SubResource("Resource_5h87t")
+metadata/_custom_type_script = "uid://cxaq381wv2opn"
+
+[node name="D Key" type="Node2D" parent="Alphabet" unique_id=346094441]
+position = Vector2(169.19702, 33.076042)
+rotation = 0.009318844
+
+[node name="D" type="Label" parent="Alphabet/D Key" unique_id=236820562 node_paths=PackedStringArray("right_key", "left_key", "above_key", "below_key") groups=["keyboard_button"]]
+offset_left = -7.304367
+offset_top = -12.62262
+offset_right = 12.695633
+offset_bottom = 12.37738
 text = "d"
 script = ExtResource("2_drjjf")
-right_key = NodePath("../E")
-left_key = NodePath("../C")
-above_key = NodePath("../Y")
-below_key = NodePath("../K")
+right_key = NodePath("../../E Key/E")
+left_key = NodePath("../../C Key/C")
+above_key = NodePath("../../Y")
+below_key = NodePath("../../K")
 
-[node name="D Area" type="Area2D" parent="Alphabet/D" unique_id=59754194]
+[node name="D Area" type="Area2D" parent="Alphabet/D Key/D" unique_id=59754194]
 position = Vector2(6, 12)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Alphabet/D/D Area" unique_id=1643875532]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Alphabet/D Key/D/D Area" unique_id=1643875532]
 shape = SubResource("RectangleShape2D_tlccp")
 
-[node name="E" type="Label" parent="Alphabet" unique_id=196773283 node_paths=PackedStringArray("right_key", "left_key", "above_key", "below_key") groups=["keyboard_button"]]
-layout_mode = 0
-offset_left = 202.0
-offset_top = 20.0
-offset_right = 222.0
-offset_bottom = 45.0
+[node name="ShakerComponent" type="Node2D" parent="Alphabet/D Key" unique_id=1678110061]
+script = ExtResource("2_3grd8")
+is_playing = true
+AutoPlay = true
+intensity = 0.533
+shakerPreset = SubResource("Resource_5h87t")
+metadata/_custom_type_script = "uid://cxaq381wv2opn"
+
+[node name="E Key" type="Node2D" parent="Alphabet" unique_id=1514602059]
+position = Vector2(208.9385, 31.89429)
+rotation = -0.0036884963
+
+[node name="E" type="Label" parent="Alphabet/E Key" unique_id=196773283 node_paths=PackedStringArray("right_key", "left_key", "above_key", "below_key") groups=["keyboard_button"]]
+offset_left = -7.0720215
+offset_top = -12.323242
+offset_right = 12.9279785
+offset_bottom = 12.676758
 text = "e"
 script = ExtResource("2_drjjf")
-right_key = NodePath("../F")
-left_key = NodePath("../D")
-above_key = NodePath("../Z")
-below_key = NodePath("../L")
+right_key = NodePath("../../F Key/F")
+left_key = NodePath("../../D Key/D")
+above_key = NodePath("../../Z")
+below_key = NodePath("../../L")
 
-[node name="E Area" type="Area2D" parent="Alphabet/E" unique_id=712701184]
+[node name="E Area" type="Area2D" parent="Alphabet/E Key/E" unique_id=712701184]
 position = Vector2(6, 12)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Alphabet/E/E Area" unique_id=603361791]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Alphabet/E Key/E/E Area" unique_id=603361791]
 shape = SubResource("RectangleShape2D_abaqv")
 
-[node name="F" type="Label" parent="Alphabet" unique_id=975616371 node_paths=PackedStringArray("right_key", "left_key", "above_key", "below_key") groups=["keyboard_button"]]
-layout_mode = 0
-offset_left = 242.0
-offset_top = 20.0
-offset_right = 262.0
-offset_bottom = 45.0
+[node name="ShakerComponent" type="Node2D" parent="Alphabet/E Key" unique_id=331183149]
+script = ExtResource("2_3grd8")
+is_playing = true
+AutoPlay = true
+intensity = 0.589
+shakerPreset = SubResource("Resource_5h87t")
+metadata/_custom_type_script = "uid://cxaq381wv2opn"
+
+[node name="F Key" type="Node2D" parent="Alphabet" unique_id=1688415399]
+position = Vector2(249.50258, 33.340466)
+rotation = -0.004653575
+
+[node name="F" type="Label" parent="Alphabet/F Key" unique_id=975616371 node_paths=PackedStringArray("right_key", "left_key", "above_key", "below_key") groups=["keyboard_button"]]
+offset_left = -7.0324707
+offset_top = -12.982483
+offset_right = 12.967529
+offset_bottom = 12.017517
 text = "f"
 script = ExtResource("2_drjjf")
-right_key = NodePath("../G")
-left_key = NodePath("../E")
-above_key = NodePath("../T")
-below_key = NodePath("../M")
+right_key = NodePath("../../G Key/G")
+left_key = NodePath("../../E Key/E")
+above_key = NodePath("../../T")
+below_key = NodePath("../../M")
 
-[node name="F Area" type="Area2D" parent="Alphabet/F" unique_id=694887292]
+[node name="F Area" type="Area2D" parent="Alphabet/F Key/F" unique_id=694887292]
 position = Vector2(6, 12)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Alphabet/F/F Area" unique_id=900906903]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Alphabet/F Key/F/F Area" unique_id=900906903]
 shape = SubResource("RectangleShape2D_8fy3v")
 
-[node name="G" type="Label" parent="Alphabet" unique_id=1226520333 node_paths=PackedStringArray("right_key", "left_key", "above_key", "below_key") groups=["keyboard_button"]]
-layout_mode = 0
-offset_left = 282.0
-offset_top = 20.0
-offset_right = 302.0
-offset_bottom = 45.0
+[node name="ShakerComponent" type="Node2D" parent="Alphabet/F Key" unique_id=1369238767]
+script = ExtResource("2_3grd8")
+is_playing = true
+AutoPlay = true
+intensity = 0.628
+shakerPreset = SubResource("Resource_5h87t")
+metadata/_custom_type_script = "uid://cxaq381wv2opn"
+
+[node name="G Key" type="Node2D" parent="Alphabet" unique_id=278082038]
+position = Vector2(289.52695, 32.664852)
+rotation = -0.0025205647
+
+[node name="G" type="Label" parent="Alphabet/G Key" unique_id=1226520333 node_paths=PackedStringArray("right_key", "left_key", "above_key", "below_key") groups=["keyboard_button"]]
+offset_left = -7.0324707
+offset_top = -12.982483
+offset_right = 12.967529
+offset_bottom = 12.017517
 text = "g"
 script = ExtResource("2_drjjf")
-right_key = NodePath("../Enter")
-left_key = NodePath("../F")
-above_key = NodePath("../U")
-below_key = NodePath("../N")
+right_key = NodePath("../../Enter")
+left_key = NodePath("../../F Key/F")
+above_key = NodePath("../../U")
+below_key = NodePath("../../N")
 
-[node name="G Area" type="Area2D" parent="Alphabet/G" unique_id=1091251808]
+[node name="G Area" type="Area2D" parent="Alphabet/G Key/G" unique_id=1091251808]
 position = Vector2(6, 12)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Alphabet/G/G Area" unique_id=63863182]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Alphabet/G Key/G/G Area" unique_id=63863182]
 shape = SubResource("RectangleShape2D_akg56")
+
+[node name="ShakerComponent" type="Node2D" parent="Alphabet/G Key" unique_id=643673828]
+script = ExtResource("2_3grd8")
+is_playing = true
+AutoPlay = true
+intensity = 0.628
+shakerPreset = SubResource("Resource_5h87t")
+metadata/_custom_type_script = "uid://cxaq381wv2opn"
 
 [node name="H" type="Label" parent="Alphabet" unique_id=1455466320 node_paths=PackedStringArray("right_key", "left_key", "above_key", "below_key") groups=["keyboard_button"]]
 layout_mode = 0
@@ -233,7 +331,7 @@ text = "h"
 script = ExtResource("2_drjjf")
 right_key = NodePath("../I")
 left_key = NodePath("../Enter")
-above_key = NodePath("../A")
+above_key = NodePath("../A Key/A")
 below_key = NodePath("../O")
 
 [node name="H Area" type="Area2D" parent="Alphabet/H" unique_id=534118057]
@@ -252,7 +350,7 @@ text = "i"
 script = ExtResource("2_drjjf")
 right_key = NodePath("../J")
 left_key = NodePath("../H")
-above_key = NodePath("../G")
+above_key = NodePath("../G Key/G")
 below_key = NodePath("../P")
 
 [node name="I Area" type="Area2D" parent="Alphabet/I" unique_id=1031657570]
@@ -271,7 +369,7 @@ text = "j"
 script = ExtResource("2_drjjf")
 right_key = NodePath("../K")
 left_key = NodePath("../I")
-above_key = NodePath("../C")
+above_key = NodePath("../C Key/C")
 below_key = NodePath("../Q")
 
 [node name="J Area" type="Area2D" parent="Alphabet/J" unique_id=376017173]
@@ -290,7 +388,7 @@ text = "k"
 script = ExtResource("2_drjjf")
 right_key = NodePath("../L")
 left_key = NodePath("../J")
-above_key = NodePath("../D")
+above_key = NodePath("../D Key/D")
 below_key = NodePath("../R")
 
 [node name="K Area" type="Area2D" parent="Alphabet/K" unique_id=1964812177]
@@ -309,7 +407,7 @@ text = "l"
 script = ExtResource("2_drjjf")
 right_key = NodePath("../M")
 left_key = NodePath("../K")
-above_key = NodePath("../E")
+above_key = NodePath("../E Key/E")
 below_key = NodePath("../S")
 
 [node name="L Area" type="Area2D" parent="Alphabet/L" unique_id=650734201]
@@ -328,7 +426,7 @@ text = "m"
 script = ExtResource("2_drjjf")
 right_key = NodePath("../N")
 left_key = NodePath("../L")
-above_key = NodePath("../F")
+above_key = NodePath("../F Key/F")
 below_key = NodePath("../T")
 
 [node name="M Area" type="Area2D" parent="Alphabet/M" unique_id=1874134089]
@@ -347,7 +445,7 @@ text = "n"
 script = ExtResource("2_drjjf")
 right_key = NodePath("../Space")
 left_key = NodePath("../M")
-above_key = NodePath("../G")
+above_key = NodePath("../G Key/G")
 below_key = NodePath("../U")
 
 [node name="N Area" type="Area2D" parent="Alphabet/N" unique_id=1690580566]
@@ -462,7 +560,7 @@ script = ExtResource("2_drjjf")
 right_key = NodePath("../U")
 left_key = NodePath("../S")
 above_key = NodePath("../M")
-below_key = NodePath("../F")
+below_key = NodePath("../F Key/F")
 
 [node name="T Area" type="Area2D" parent="Alphabet/T" unique_id=866056177]
 position = Vector2(6, 12)
@@ -481,7 +579,7 @@ script = ExtResource("2_drjjf")
 right_key = NodePath("../Space")
 left_key = NodePath("../T")
 above_key = NodePath("../N")
-below_key = NodePath("../G")
+below_key = NodePath("../G Key/G")
 
 [node name="U Area" type="Area2D" parent="Alphabet/U" unique_id=658169615]
 position = Vector2(6, 12)
@@ -500,7 +598,7 @@ script = ExtResource("2_drjjf")
 right_key = NodePath("../W")
 left_key = NodePath("../Space")
 above_key = NodePath("../O")
-below_key = NodePath("../A")
+below_key = NodePath("../A Key/A")
 
 [node name="V Area" type="Area2D" parent="Alphabet/V" unique_id=117392679]
 position = Vector2(6, 12)
@@ -519,7 +617,7 @@ script = ExtResource("2_drjjf")
 right_key = NodePath("../X")
 left_key = NodePath("../V")
 above_key = NodePath("../P")
-below_key = NodePath("../B")
+below_key = NodePath("../B Key/B")
 
 [node name="W Area" type="Area2D" parent="Alphabet/W" unique_id=192838532]
 position = Vector2(6, 12)
@@ -538,7 +636,7 @@ script = ExtResource("2_drjjf")
 right_key = NodePath("../Y")
 left_key = NodePath("../W")
 above_key = NodePath("../Q")
-below_key = NodePath("../C")
+below_key = NodePath("../C Key/C")
 
 [node name="X Area" type="Area2D" parent="Alphabet/X" unique_id=188505308]
 position = Vector2(6, 12)
@@ -557,7 +655,7 @@ script = ExtResource("2_drjjf")
 right_key = NodePath("../Z")
 left_key = NodePath("../X")
 above_key = NodePath("../R")
-below_key = NodePath("../D")
+below_key = NodePath("../D Key/D")
 
 [node name="Y Area" type="Area2D" parent="Alphabet/Y" unique_id=2058046099]
 position = Vector2(6, 12)
@@ -576,7 +674,7 @@ script = ExtResource("2_drjjf")
 right_key = NodePath("../V")
 left_key = NodePath("../Y")
 above_key = NodePath("../S")
-below_key = NodePath("../E")
+below_key = NodePath("../E Key/E")
 
 [node name="Z Area" type="Area2D" parent="Alphabet/Z" unique_id=342881368]
 position = Vector2(6, 12)
@@ -613,8 +711,8 @@ offset_right = 420.0
 offset_bottom = 53.0
 text = "ENTER"
 script = ExtResource("2_drjjf")
-right_key = NodePath("../A")
-left_key = NodePath("../G")
+right_key = NodePath("../A Key/A")
+left_key = NodePath("../G Key/G")
 above_key = NodePath("../Space")
 below_key = NodePath("../Space")
 enter = true
