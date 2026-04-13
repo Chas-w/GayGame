@@ -1,6 +1,66 @@
 [gd_scene format=3 uid="uid://p1gehh6ysjcc"]
 
-[ext_resource type="Script" uid="uid://d23wof41h6b5e" path="res://Scripts/Minigames/talk_talk.gd" id="1_8a8lt"]
+[ext_resource type="Script" uid="uid://d23wof41h6b5e" path="res://Scripts/Minigames/Talk Talk/talk_talk.gd" id="1_8a8lt"]
+[ext_resource type="Script" uid="uid://d0odpgvkpq1m8" path="res://Scripts/Minigames/Talk Talk/keyboard_behavior.gd" id="2_drjjf"]
+[ext_resource type="Texture2D" uid="uid://c17bxwh7gv5td" path="res://Sprites/icon.svg" id="3_mmnq6"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8a8lt"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_drjjf"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mmnq6"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tlccp"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_abaqv"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8fy3v"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_akg56"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3grd8"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_805yl"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_m5on1"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qmucq"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2k1d2"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5h87t"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_j6pnm"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_x5dlj"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_s5ngh"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3t6vq"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ujip1"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_p5uou"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_g536v"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tj5r3"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_eot5s"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ijtk2"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ocvjk"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_s0gn8"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_r31j2"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jnu2a"]
+size = Vector2(56, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_iay7r"]
+size = Vector2(57, 20)
 
 [sub_resource type="Gradient" id="Gradient_awhtk"]
 offsets = PackedFloat32Array(0.47936085)
@@ -9,8 +69,14 @@ colors = PackedColorArray(0.23921569, 0.3019608, 0.3019608, 0.4745098)
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_8a8lt"]
 gradient = SubResource("Gradient_awhtk")
 
-[node name="Talk Talk" type="Node" unique_id=271996376]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qndfn"]
+
+[node name="Talk Talk" type="Node" unique_id=271996376 node_paths=PackedStringArray("player", "target_text", "spoken_text", "their_text")]
 script = ExtResource("1_8a8lt")
+player = [NodePath("Player 1 Highlight")]
+target_text = NodePath("Our Dialogue/Target Text")
+spoken_text = NodePath("Our Dialogue/Spoken Text")
+their_text = NodePath("Their Dialogue/Their Text")
 
 [node name="Alphabet" type="Control" parent="." unique_id=1849902221]
 layout_mode = 3
@@ -24,257 +90,541 @@ offset_bottom = -33.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="A" type="Button" parent="Alphabet" unique_id=1362302329]
+[node name="A" type="Label" parent="Alphabet" unique_id=474437341 node_paths=PackedStringArray("right_key", "left_key", "above_key", "below_key") groups=["keyboard_button"]]
 layout_mode = 0
 offset_left = 42.0
 offset_top = 20.0
-offset_right = 82.0
-offset_bottom = 67.0
-button_mask = 0
-text = "A"
+offset_right = 62.0
+offset_bottom = 45.0
+text = "a"
+script = ExtResource("2_drjjf")
+right_key = NodePath("../B")
+left_key = NodePath("../Enter")
+above_key = NodePath("../V")
+below_key = NodePath("../H")
 
-[node name="B" type="Button" parent="Alphabet" unique_id=727706]
+[node name="A Area" type="Area2D" parent="Alphabet/A" unique_id=205902846]
+position = Vector2(6, 12)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Alphabet/A/A Area" unique_id=1488888873]
+shape = SubResource("RectangleShape2D_8a8lt")
+
+[node name="B" type="Label" parent="Alphabet" unique_id=1040573756 node_paths=PackedStringArray("right_key", "left_key", "above_key", "below_key") groups=["keyboard_button"]]
 layout_mode = 0
 offset_left = 82.0
 offset_top = 20.0
-offset_right = 122.0
-offset_bottom = 67.0
-button_mask = 0
-text = "B"
+offset_right = 102.0
+offset_bottom = 45.0
+text = "b"
+script = ExtResource("2_drjjf")
+right_key = NodePath("../C")
+left_key = NodePath("../A")
+above_key = NodePath("../W")
+below_key = NodePath("../I")
 
-[node name="C" type="Button" parent="Alphabet" unique_id=1352247375]
+[node name="B Area" type="Area2D" parent="Alphabet/B" unique_id=1992708896]
+position = Vector2(6, 12)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Alphabet/B/B Area" unique_id=1923168210]
+shape = SubResource("RectangleShape2D_drjjf")
+
+[node name="C" type="Label" parent="Alphabet" unique_id=1519661429 node_paths=PackedStringArray("right_key", "left_key", "above_key", "below_key") groups=["keyboard_button"]]
 layout_mode = 0
 offset_left = 122.0
 offset_top = 20.0
-offset_right = 162.0
-offset_bottom = 67.0
-button_mask = 0
-text = "C"
+offset_right = 142.0
+offset_bottom = 45.0
+text = "c"
+script = ExtResource("2_drjjf")
+right_key = NodePath("../D")
+left_key = NodePath("../B")
+above_key = NodePath("../X")
+below_key = NodePath("../J")
 
-[node name="D" type="Button" parent="Alphabet" unique_id=663010199]
+[node name="C Area" type="Area2D" parent="Alphabet/C" unique_id=2028581835]
+position = Vector2(6, 12)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Alphabet/C/C Area" unique_id=1136899834]
+shape = SubResource("RectangleShape2D_mmnq6")
+
+[node name="D" type="Label" parent="Alphabet" unique_id=236820562 node_paths=PackedStringArray("right_key", "left_key", "above_key", "below_key") groups=["keyboard_button"]]
 layout_mode = 0
 offset_left = 162.0
 offset_top = 20.0
-offset_right = 202.0
-offset_bottom = 67.0
-button_mask = 0
-text = "D"
+offset_right = 182.0
+offset_bottom = 45.0
+text = "d"
+script = ExtResource("2_drjjf")
+right_key = NodePath("../E")
+left_key = NodePath("../C")
+above_key = NodePath("../Y")
+below_key = NodePath("../K")
 
-[node name="E" type="Button" parent="Alphabet" unique_id=1363230494]
+[node name="D Area" type="Area2D" parent="Alphabet/D" unique_id=59754194]
+position = Vector2(6, 12)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Alphabet/D/D Area" unique_id=1643875532]
+shape = SubResource("RectangleShape2D_tlccp")
+
+[node name="E" type="Label" parent="Alphabet" unique_id=196773283 node_paths=PackedStringArray("right_key", "left_key", "above_key", "below_key") groups=["keyboard_button"]]
 layout_mode = 0
 offset_left = 202.0
 offset_top = 20.0
-offset_right = 242.0
-offset_bottom = 67.0
-button_mask = 0
-text = "E"
+offset_right = 222.0
+offset_bottom = 45.0
+text = "e"
+script = ExtResource("2_drjjf")
+right_key = NodePath("../F")
+left_key = NodePath("../D")
+above_key = NodePath("../Z")
+below_key = NodePath("../L")
 
-[node name="F" type="Button" parent="Alphabet" unique_id=531327143]
+[node name="E Area" type="Area2D" parent="Alphabet/E" unique_id=712701184]
+position = Vector2(6, 12)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Alphabet/E/E Area" unique_id=603361791]
+shape = SubResource("RectangleShape2D_abaqv")
+
+[node name="F" type="Label" parent="Alphabet" unique_id=975616371 node_paths=PackedStringArray("right_key", "left_key", "above_key", "below_key") groups=["keyboard_button"]]
 layout_mode = 0
 offset_left = 242.0
 offset_top = 20.0
-offset_right = 282.0
-offset_bottom = 67.0
-button_mask = 0
-text = "F"
+offset_right = 262.0
+offset_bottom = 45.0
+text = "f"
+script = ExtResource("2_drjjf")
+right_key = NodePath("../G")
+left_key = NodePath("../E")
+above_key = NodePath("../T")
+below_key = NodePath("../M")
 
-[node name="G" type="Button" parent="Alphabet" unique_id=419471123]
+[node name="F Area" type="Area2D" parent="Alphabet/F" unique_id=694887292]
+position = Vector2(6, 12)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Alphabet/F/F Area" unique_id=900906903]
+shape = SubResource("RectangleShape2D_8fy3v")
+
+[node name="G" type="Label" parent="Alphabet" unique_id=1226520333 node_paths=PackedStringArray("right_key", "left_key", "above_key", "below_key") groups=["keyboard_button"]]
 layout_mode = 0
 offset_left = 282.0
 offset_top = 20.0
-offset_right = 322.0
-offset_bottom = 67.0
-button_mask = 0
-text = "G"
+offset_right = 302.0
+offset_bottom = 45.0
+text = "g"
+script = ExtResource("2_drjjf")
+right_key = NodePath("../Enter")
+left_key = NodePath("../F")
+above_key = NodePath("../U")
+below_key = NodePath("../N")
 
-[node name="H" type="Button" parent="Alphabet" unique_id=910317360]
+[node name="G Area" type="Area2D" parent="Alphabet/G" unique_id=1091251808]
+position = Vector2(6, 12)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Alphabet/G/G Area" unique_id=63863182]
+shape = SubResource("RectangleShape2D_akg56")
+
+[node name="H" type="Label" parent="Alphabet" unique_id=1455466320 node_paths=PackedStringArray("right_key", "left_key", "above_key", "below_key") groups=["keyboard_button"]]
 layout_mode = 0
 offset_left = 42.0
 offset_top = 67.0
-offset_right = 82.0
-offset_bottom = 114.0
-button_mask = 0
-text = "H"
+offset_right = 62.0
+offset_bottom = 92.0
+text = "h"
+script = ExtResource("2_drjjf")
+right_key = NodePath("../I")
+left_key = NodePath("../Enter")
+above_key = NodePath("../A")
+below_key = NodePath("../O")
 
-[node name="I" type="Button" parent="Alphabet" unique_id=1080295245]
+[node name="H Area" type="Area2D" parent="Alphabet/H" unique_id=534118057]
+position = Vector2(6, 12)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Alphabet/H/H Area" unique_id=1399203515]
+shape = SubResource("RectangleShape2D_3grd8")
+
+[node name="I" type="Label" parent="Alphabet" unique_id=767279997 node_paths=PackedStringArray("right_key", "left_key", "above_key", "below_key") groups=["keyboard_button"]]
 layout_mode = 0
 offset_left = 82.0
 offset_top = 67.0
-offset_right = 122.0
-offset_bottom = 114.0
-button_mask = 0
-text = "I"
+offset_right = 102.0
+offset_bottom = 92.0
+text = "i"
+script = ExtResource("2_drjjf")
+right_key = NodePath("../J")
+left_key = NodePath("../H")
+above_key = NodePath("../G")
+below_key = NodePath("../P")
 
-[node name="J" type="Button" parent="Alphabet" unique_id=203752501]
+[node name="I Area" type="Area2D" parent="Alphabet/I" unique_id=1031657570]
+position = Vector2(6, 12)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Alphabet/I/I Area" unique_id=1651908965]
+shape = SubResource("RectangleShape2D_805yl")
+
+[node name="J" type="Label" parent="Alphabet" unique_id=1575771765 node_paths=PackedStringArray("right_key", "left_key", "above_key", "below_key") groups=["keyboard_button"]]
 layout_mode = 0
 offset_left = 122.0
 offset_top = 67.0
-offset_right = 162.0
-offset_bottom = 114.0
-button_mask = 0
-text = "J"
+offset_right = 142.0
+offset_bottom = 92.0
+text = "j"
+script = ExtResource("2_drjjf")
+right_key = NodePath("../K")
+left_key = NodePath("../I")
+above_key = NodePath("../C")
+below_key = NodePath("../Q")
 
-[node name="K" type="Button" parent="Alphabet" unique_id=770669484]
+[node name="J Area" type="Area2D" parent="Alphabet/J" unique_id=376017173]
+position = Vector2(6, 12)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Alphabet/J/J Area" unique_id=976171967]
+shape = SubResource("RectangleShape2D_m5on1")
+
+[node name="K" type="Label" parent="Alphabet" unique_id=1930095357 node_paths=PackedStringArray("right_key", "left_key", "above_key", "below_key") groups=["keyboard_button"]]
 layout_mode = 0
 offset_left = 162.0
 offset_top = 67.0
-offset_right = 202.0
-offset_bottom = 114.0
-button_mask = 0
-text = "K"
+offset_right = 182.0
+offset_bottom = 92.0
+text = "k"
+script = ExtResource("2_drjjf")
+right_key = NodePath("../L")
+left_key = NodePath("../J")
+above_key = NodePath("../D")
+below_key = NodePath("../R")
 
-[node name="L" type="Button" parent="Alphabet" unique_id=274039643]
+[node name="K Area" type="Area2D" parent="Alphabet/K" unique_id=1964812177]
+position = Vector2(6, 12)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Alphabet/K/K Area" unique_id=1971280594]
+shape = SubResource("RectangleShape2D_qmucq")
+
+[node name="L" type="Label" parent="Alphabet" unique_id=1371965439 node_paths=PackedStringArray("right_key", "left_key", "above_key", "below_key") groups=["keyboard_button"]]
 layout_mode = 0
 offset_left = 202.0
 offset_top = 67.0
-offset_right = 242.0
-offset_bottom = 114.0
-button_mask = 0
-text = "L"
+offset_right = 222.0
+offset_bottom = 92.0
+text = "l"
+script = ExtResource("2_drjjf")
+right_key = NodePath("../M")
+left_key = NodePath("../K")
+above_key = NodePath("../E")
+below_key = NodePath("../S")
 
-[node name="M" type="Button" parent="Alphabet" unique_id=1833411217]
+[node name="L Area" type="Area2D" parent="Alphabet/L" unique_id=650734201]
+position = Vector2(6, 12)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Alphabet/L/L Area" unique_id=652048553]
+shape = SubResource("RectangleShape2D_2k1d2")
+
+[node name="M" type="Label" parent="Alphabet" unique_id=781597370 node_paths=PackedStringArray("right_key", "left_key", "above_key", "below_key") groups=["keyboard_button"]]
 layout_mode = 0
 offset_left = 242.0
 offset_top = 67.0
-offset_right = 282.0
-offset_bottom = 114.0
-button_mask = 0
-text = "M"
+offset_right = 262.0
+offset_bottom = 92.0
+text = "m"
+script = ExtResource("2_drjjf")
+right_key = NodePath("../N")
+left_key = NodePath("../L")
+above_key = NodePath("../F")
+below_key = NodePath("../T")
 
-[node name="N" type="Button" parent="Alphabet" unique_id=278935727]
+[node name="M Area" type="Area2D" parent="Alphabet/M" unique_id=1874134089]
+position = Vector2(6, 12)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Alphabet/M/M Area" unique_id=1169983800]
+shape = SubResource("RectangleShape2D_5h87t")
+
+[node name="N" type="Label" parent="Alphabet" unique_id=2090318004 node_paths=PackedStringArray("right_key", "left_key", "above_key", "below_key") groups=["keyboard_button"]]
 layout_mode = 0
 offset_left = 282.0
 offset_top = 67.0
-offset_right = 322.0
-offset_bottom = 114.0
-button_mask = 0
-text = "N"
+offset_right = 302.0
+offset_bottom = 92.0
+text = "n"
+script = ExtResource("2_drjjf")
+right_key = NodePath("../Space")
+left_key = NodePath("../M")
+above_key = NodePath("../G")
+below_key = NodePath("../U")
 
-[node name="O" type="Button" parent="Alphabet" unique_id=627090868]
+[node name="N Area" type="Area2D" parent="Alphabet/N" unique_id=1690580566]
+position = Vector2(6, 12)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Alphabet/N/N Area" unique_id=494677741]
+shape = SubResource("RectangleShape2D_j6pnm")
+
+[node name="O" type="Label" parent="Alphabet" unique_id=272311313 node_paths=PackedStringArray("right_key", "left_key", "above_key", "below_key") groups=["keyboard_button"]]
 layout_mode = 0
 offset_left = 42.0
 offset_top = 114.0
-offset_right = 82.0
-offset_bottom = 161.0
-button_mask = 0
-text = "O"
+offset_right = 62.0
+offset_bottom = 139.0
+text = "o"
+script = ExtResource("2_drjjf")
+right_key = NodePath("../P")
+left_key = NodePath("../Space")
+above_key = NodePath("../H")
+below_key = NodePath("../V")
 
-[node name="P" type="Button" parent="Alphabet" unique_id=611828357]
+[node name="O Area" type="Area2D" parent="Alphabet/O" unique_id=544492095]
+position = Vector2(6, 12)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Alphabet/O/O Area" unique_id=706781902]
+shape = SubResource("RectangleShape2D_x5dlj")
+
+[node name="P" type="Label" parent="Alphabet" unique_id=979200892 node_paths=PackedStringArray("right_key", "left_key", "above_key", "below_key") groups=["keyboard_button"]]
 layout_mode = 0
 offset_left = 82.0
 offset_top = 114.0
-offset_right = 122.0
-offset_bottom = 161.0
-button_mask = 0
-text = "P"
+offset_right = 102.0
+offset_bottom = 139.0
+text = "p"
+script = ExtResource("2_drjjf")
+right_key = NodePath("../Q")
+left_key = NodePath("../O")
+above_key = NodePath("../I")
+below_key = NodePath("../W")
 
-[node name="Q" type="Button" parent="Alphabet" unique_id=1539451573]
+[node name="P Area" type="Area2D" parent="Alphabet/P" unique_id=957687240]
+position = Vector2(6, 12)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Alphabet/P/P Area" unique_id=2058978087]
+shape = SubResource("RectangleShape2D_s5ngh")
+
+[node name="Q" type="Label" parent="Alphabet" unique_id=329345782 node_paths=PackedStringArray("right_key", "left_key", "above_key", "below_key") groups=["keyboard_button"]]
 layout_mode = 0
 offset_left = 122.0
 offset_top = 114.0
-offset_right = 162.0
-offset_bottom = 161.0
-button_mask = 0
-text = "Q"
+offset_right = 142.0
+offset_bottom = 139.0
+text = "q"
+script = ExtResource("2_drjjf")
+right_key = NodePath("../R")
+left_key = NodePath("../P")
+above_key = NodePath("../J")
+below_key = NodePath("../X")
 
-[node name="R" type="Button" parent="Alphabet" unique_id=1828233330]
+[node name="Q Area" type="Area2D" parent="Alphabet/Q" unique_id=18995180]
+position = Vector2(6, 12)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Alphabet/Q/Q Area" unique_id=1700895198]
+shape = SubResource("RectangleShape2D_3t6vq")
+
+[node name="R" type="Label" parent="Alphabet" unique_id=1342664312 node_paths=PackedStringArray("right_key", "left_key", "above_key", "below_key") groups=["keyboard_button"]]
 layout_mode = 0
 offset_left = 162.0
 offset_top = 114.0
-offset_right = 202.0
-offset_bottom = 161.0
-button_mask = 0
-text = "R"
+offset_right = 182.0
+offset_bottom = 139.0
+text = "r"
+script = ExtResource("2_drjjf")
+right_key = NodePath("../S")
+left_key = NodePath("../Q")
+above_key = NodePath("../K")
+below_key = NodePath("../Y")
 
-[node name="S" type="Button" parent="Alphabet" unique_id=381563922]
+[node name="R Area" type="Area2D" parent="Alphabet/R" unique_id=573172892]
+position = Vector2(6, 12)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Alphabet/R/R Area" unique_id=1630385973]
+shape = SubResource("RectangleShape2D_ujip1")
+
+[node name="S" type="Label" parent="Alphabet" unique_id=1544441398 node_paths=PackedStringArray("right_key", "left_key", "above_key", "below_key") groups=["keyboard_button"]]
 layout_mode = 0
 offset_left = 202.0
 offset_top = 114.0
-offset_right = 242.0
-offset_bottom = 161.0
-button_mask = 0
-text = "S"
+offset_right = 222.0
+offset_bottom = 139.0
+text = "s"
+script = ExtResource("2_drjjf")
+right_key = NodePath("../T")
+left_key = NodePath("../R")
+above_key = NodePath("../L")
+below_key = NodePath("../Z")
 
-[node name="T" type="Button" parent="Alphabet" unique_id=2064602899]
+[node name="S Area" type="Area2D" parent="Alphabet/S" unique_id=1701826227]
+position = Vector2(6, 12)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Alphabet/S/S Area" unique_id=1097473497]
+shape = SubResource("RectangleShape2D_p5uou")
+
+[node name="T" type="Label" parent="Alphabet" unique_id=779884594 node_paths=PackedStringArray("right_key", "left_key", "above_key", "below_key") groups=["keyboard_button"]]
 layout_mode = 0
 offset_left = 242.0
 offset_top = 114.0
-offset_right = 282.0
-offset_bottom = 161.0
-button_mask = 0
-text = "T"
+offset_right = 262.0
+offset_bottom = 139.0
+text = "t"
+script = ExtResource("2_drjjf")
+right_key = NodePath("../U")
+left_key = NodePath("../S")
+above_key = NodePath("../M")
+below_key = NodePath("../F")
 
-[node name="U" type="Button" parent="Alphabet" unique_id=818561471]
+[node name="T Area" type="Area2D" parent="Alphabet/T" unique_id=866056177]
+position = Vector2(6, 12)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Alphabet/T/T Area" unique_id=1101301338]
+shape = SubResource("RectangleShape2D_g536v")
+
+[node name="U" type="Label" parent="Alphabet" unique_id=901235220 node_paths=PackedStringArray("right_key", "left_key", "above_key", "below_key") groups=["keyboard_button"]]
 layout_mode = 0
 offset_left = 282.0
 offset_top = 114.0
-offset_right = 322.0
-offset_bottom = 161.0
-button_mask = 0
-text = "U"
+offset_right = 302.0
+offset_bottom = 139.0
+text = "u"
+script = ExtResource("2_drjjf")
+right_key = NodePath("../Space")
+left_key = NodePath("../T")
+above_key = NodePath("../N")
+below_key = NodePath("../G")
 
-[node name="V" type="Button" parent="Alphabet" unique_id=1879328274]
+[node name="U Area" type="Area2D" parent="Alphabet/U" unique_id=658169615]
+position = Vector2(6, 12)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Alphabet/U/U Area" unique_id=1309863993]
+shape = SubResource("RectangleShape2D_tj5r3")
+
+[node name="V" type="Label" parent="Alphabet" unique_id=1624270824 node_paths=PackedStringArray("right_key", "left_key", "above_key", "below_key") groups=["keyboard_button"]]
 layout_mode = 0
 offset_left = 42.0
 offset_top = 161.0
-offset_right = 82.0
-offset_bottom = 208.0
-button_mask = 0
-text = "V"
+offset_right = 62.0
+offset_bottom = 186.0
+text = "v"
+script = ExtResource("2_drjjf")
+right_key = NodePath("../W")
+left_key = NodePath("../Space")
+above_key = NodePath("../O")
+below_key = NodePath("../A")
 
-[node name="W" type="Button" parent="Alphabet" unique_id=96060775]
+[node name="V Area" type="Area2D" parent="Alphabet/V" unique_id=117392679]
+position = Vector2(6, 12)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Alphabet/V/V Area" unique_id=1950075111]
+shape = SubResource("RectangleShape2D_eot5s")
+
+[node name="W" type="Label" parent="Alphabet" unique_id=839802203 node_paths=PackedStringArray("right_key", "left_key", "above_key", "below_key") groups=["keyboard_button"]]
 layout_mode = 0
 offset_left = 82.0
 offset_top = 161.0
-offset_right = 122.0
-offset_bottom = 208.0
-button_mask = 0
-text = "W"
+offset_right = 102.0
+offset_bottom = 186.0
+text = "w"
+script = ExtResource("2_drjjf")
+right_key = NodePath("../X")
+left_key = NodePath("../V")
+above_key = NodePath("../P")
+below_key = NodePath("../B")
 
-[node name="X" type="Button" parent="Alphabet" unique_id=1905525477]
+[node name="W Area" type="Area2D" parent="Alphabet/W" unique_id=192838532]
+position = Vector2(6, 12)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Alphabet/W/W Area" unique_id=247327875]
+shape = SubResource("RectangleShape2D_ijtk2")
+
+[node name="X" type="Label" parent="Alphabet" unique_id=937901174 node_paths=PackedStringArray("right_key", "left_key", "above_key", "below_key") groups=["keyboard_button"]]
 layout_mode = 0
 offset_left = 122.0
 offset_top = 161.0
-offset_right = 162.0
-offset_bottom = 208.0
-button_mask = 0
-text = "X"
+offset_right = 142.0
+offset_bottom = 186.0
+text = "x"
+script = ExtResource("2_drjjf")
+right_key = NodePath("../Y")
+left_key = NodePath("../W")
+above_key = NodePath("../Q")
+below_key = NodePath("../C")
 
-[node name="Y" type="Button" parent="Alphabet" unique_id=259324724]
+[node name="X Area" type="Area2D" parent="Alphabet/X" unique_id=188505308]
+position = Vector2(6, 12)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Alphabet/X/X Area" unique_id=1097657889]
+shape = SubResource("RectangleShape2D_ocvjk")
+
+[node name="Y" type="Label" parent="Alphabet" unique_id=2070448478 node_paths=PackedStringArray("right_key", "left_key", "above_key", "below_key") groups=["keyboard_button"]]
 layout_mode = 0
 offset_left = 162.0
 offset_top = 161.0
-offset_right = 202.0
-offset_bottom = 208.0
-button_mask = 0
-text = "Y"
+offset_right = 182.0
+offset_bottom = 186.0
+text = "y"
+script = ExtResource("2_drjjf")
+right_key = NodePath("../Z")
+left_key = NodePath("../X")
+above_key = NodePath("../R")
+below_key = NodePath("../D")
 
-[node name="Z" type="Button" parent="Alphabet" unique_id=749068061]
+[node name="Y Area" type="Area2D" parent="Alphabet/Y" unique_id=2058046099]
+position = Vector2(6, 12)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Alphabet/Y/Y Area" unique_id=759533337]
+shape = SubResource("RectangleShape2D_s0gn8")
+
+[node name="Z" type="Label" parent="Alphabet" unique_id=1204372182 node_paths=PackedStringArray("right_key", "left_key", "above_key", "below_key") groups=["keyboard_button"]]
 layout_mode = 0
 offset_left = 202.0
 offset_top = 161.0
-offset_right = 242.0
-offset_bottom = 208.0
-button_mask = 0
-text = "Z"
+offset_right = 222.0
+offset_bottom = 186.0
+text = "z"
+script = ExtResource("2_drjjf")
+right_key = NodePath("../V")
+left_key = NodePath("../Y")
+above_key = NodePath("../S")
+below_key = NodePath("../E")
 
-[node name="Space" type="Button" parent="Alphabet" unique_id=677932411]
+[node name="Z Area" type="Area2D" parent="Alphabet/Z" unique_id=342881368]
+position = Vector2(6, 12)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Alphabet/Z/Z Area" unique_id=777462155]
+shape = SubResource("RectangleShape2D_r31j2")
+
+[node name="Space" type="Label" parent="Alphabet" unique_id=811423174 node_paths=PackedStringArray("right_key", "left_key", "above_key", "below_key") groups=["keyboard_button"]]
 layout_mode = 0
 offset_left = 347.0
 offset_top = 80.0
-offset_right = 450.0
-offset_bottom = 127.0
-button_mask = 0
+offset_right = 422.0
+offset_bottom = 110.0
 text = "SPACE"
+script = ExtResource("2_drjjf")
+right_key = NodePath("../H")
+left_key = NodePath("../N")
+above_key = NodePath("../Enter")
+below_key = NodePath("../Enter")
+space = true
 
-[node name="Enter" type="Button" parent="Alphabet" unique_id=572726291]
+[node name="Space Area" type="Area2D" parent="Alphabet/Space" unique_id=677360762]
+position = Vector2(6, 12)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Alphabet/Space/Space Area" unique_id=1438090032]
+position = Vector2(18, 0)
+shape = SubResource("RectangleShape2D_jnu2a")
+
+[node name="Enter" type="Label" parent="Alphabet" unique_id=1664924649 node_paths=PackedStringArray("right_key", "left_key", "above_key", "below_key") groups=["keyboard_button"]]
 layout_mode = 0
 offset_left = 345.0
 offset_top = 23.0
-offset_right = 450.0
-offset_bottom = 70.0
-button_mask = 0
+offset_right = 420.0
+offset_bottom = 53.0
 text = "ENTER"
+script = ExtResource("2_drjjf")
+right_key = NodePath("../A")
+left_key = NodePath("../G")
+above_key = NodePath("../Space")
+below_key = NodePath("../Space")
+enter = true
+
+[node name="Enter Area" type="Area2D" parent="Alphabet/Enter" unique_id=1021439976]
+position = Vector2(6, 12)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Alphabet/Enter/Enter Area" unique_id=1261762595]
+position = Vector2(19.5, 0)
+shape = SubResource("RectangleShape2D_iay7r")
 
 [node name="Our Dialogue" type="Control" parent="." unique_id=608725131]
 layout_mode = 3
@@ -283,9 +633,9 @@ anchor_left = 1.0
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
-offset_left = -525.0
+offset_left = -575.0
 offset_top = 40.0
-offset_right = -25.0
+offset_right = -75.0
 offset_bottom = 290.0
 grow_horizontal = 0
 grow_vertical = 2
@@ -311,7 +661,7 @@ offset_top = 29.0
 offset_right = 475.0
 offset_bottom = 229.0
 theme_override_colors/default_color = Color(0.62605184, 0, 0.22267023, 1)
-text = "Target Text"
+text = "yeah you"
 
 [node name="Their Dialogue" type="Control" parent="." unique_id=778171923]
 layout_mode = 3
@@ -333,11 +683,28 @@ offset_right = 500.0
 offset_bottom = 100.0
 texture = SubResource("GradientTexture2D_8a8lt")
 
-[node name="Target Text" type="RichTextLabel" parent="Their Dialogue" unique_id=660719038]
+[node name="Their Text" type="RichTextLabel" parent="Their Dialogue" unique_id=660719038]
 layout_mode = 0
 offset_left = 25.0
 offset_top = 29.0
 offset_right = 475.0
 offset_bottom = 79.0
 theme_override_colors/default_color = Color(1, 1, 1, 1)
-text = "Come here often? "
+text = "See anything good recently? "
+
+[node name="Player 1 Highlight" type="Node2D" parent="." unique_id=153367566]
+position = Vector2(121, 397)
+
+[node name="Player 1 Sprite" type="Sprite2D" parent="Player 1 Highlight" unique_id=836107511]
+z_index = -1
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("3_mmnq6")
+
+[node name="Player 1 Area" type="Area2D" parent="Player 1 Highlight" unique_id=1527408212]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player 1 Highlight/Player 1 Area" unique_id=922450298]
+scale = Vector2(1.5, 1.5)
+shape = SubResource("RectangleShape2D_qndfn")
+debug_color = Color(0.9577566, 2.8878452e-07, 0.5334733, 0.41960785)
+
+[connection signal="area_entered" from="Player 1 Highlight/Player 1 Area" to="." method="_on_player_1_entered"]
