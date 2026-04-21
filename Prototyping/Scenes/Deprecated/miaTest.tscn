@@ -1,0 +1,176 @@
+[gd_scene format=3 uid="uid://omd8pqhpjfjp"]
+
+[ext_resource type="Script" uid="uid://cilbhwwy3bwa3" path="res://Prototyping/Scripts/camera_test_bounce.gd" id="1_ees5g"]
+[ext_resource type="Texture2D" uid="uid://m66qde282cjn" path="res://Prototyping/Sprites/Baby Karl Head.png" id="1_p0itb"]
+[ext_resource type="Texture2D" uid="uid://bt1v53gfl8khv" path="res://Prototyping/Sprites/Test Limbs/dude_front.png" id="2_o8spi"]
+[ext_resource type="Shader" uid="uid://dcfdm75m1xklp" path="res://Prototyping/Shaders/ps1_post_process.gdshader" id="4_twvv7"]
+[ext_resource type="Texture2D" uid="uid://b6tynqt1l3vpd" path="res://Prototyping/Textures/Checkerboard_pattern.svg" id="5_pe0ch"]
+[ext_resource type="Shader" uid="uid://7wkacku4uhsp" path="res://Prototyping/Shaders/ps1_material.gdshader" id="6_7t8ls"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_p0itb"]
+sky_top_color = Color(0.71628284, 0.26112515, 0.4223264, 1)
+sky_horizon_color = Color(0.5584415, 0.40461943, 0.45763534, 1)
+ground_bottom_color = Color(0.16013089, 0, 0.0508624, 1)
+ground_horizon_color = Color(0.5584415, 0.40461943, 0.45763534, 1)
+energy_multiplier = 0.55
+
+[sub_resource type="Sky" id="Sky_o8spi"]
+sky_material = SubResource("ProceduralSkyMaterial_p0itb")
+
+[sub_resource type="Environment" id="Environment_twvv7"]
+background_mode = 2
+sky = SubResource("Sky_o8spi")
+ssao_enabled = true
+glow_enabled = true
+glow_levels/1 = 1.0
+glow_intensity = 2.0
+glow_bloom = 0.2
+fog_sun_scatter = 0.3
+fog_density = 0.23
+fog_aerial_perspective = 0.525
+fog_sky_affect = 0.25
+volumetric_fog_enabled = true
+adjustment_contrast = 1.3
+adjustment_saturation = 0.9
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pe0ch"]
+transparency = 1
+albedo_texture = ExtResource("1_p0itb")
+emission_enabled = true
+emission_energy_multiplier = 3.5
+emission_texture = ExtResource("1_p0itb")
+
+[sub_resource type="Gradient" id="Gradient_7t8ls"]
+colors = PackedColorArray(1, 0.39999998, 0.39999998, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_2pli0"]
+gradient = SubResource("Gradient_7t8ls")
+width = 128
+height = 128
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_2lls7"]
+render_priority = 0
+shader = ExtResource("6_7t8ls")
+shader_parameter/albedo = SubResource("GradientTexture2D_2pli0")
+shader_parameter/jitter = 0.50000002375
+shader_parameter/jitter_z_coordinate = true
+shader_parameter/jitter_depth_independent = true
+shader_parameter/affine_texture_mapping = true
+shader_parameter/alpha_scissor = 1.0
+
+[sub_resource type="SphereMesh" id="SphereMesh_gwux2"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7t8ls"]
+shading_mode = 2
+albedo_texture = ExtResource("5_pe0ch")
+metallic_specular = 0.0
+emission_enabled = true
+uv1_scale = Vector3(5, 5, 5)
+stencil_flags = 2
+stencil_color = Color(1, 0, 0, 1)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_o8spi"]
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_twvv7"]
+points = PackedVector3Array(-1, 0, -1, -1, 0, 1, 1, 0, -1, 1, 0, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ees5g"]
+shader = ExtResource("4_twvv7")
+
+[node name="Node3D" type="Node3D" unique_id=22017466]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1722509765]
+environment = SubResource("Environment_twvv7")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=246824957]
+transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 0, 0, 0)
+visible = false
+shadow_enabled = true
+shadow_blur = 0.5
+
+[node name="FogVolume" type="FogVolume" parent="." unique_id=141918673]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.11529541, 0.19458008, 0)
+size = Vector3(5.5635986, 2.3891602, 2)
+
+[node name="Camera3D" type="Camera3D" parent="." unique_id=1286181676]
+transform = Transform3D(1, 0, 0, 0, 0.9999439, 0.010593944, 0, -0.010593944, 0.9999439, -0.039162338, 0.68607676, 0.9150014)
+script = ExtResource("1_ees5g")
+amplitude = 1.0
+frequency = 0.1
+
+[node name="Props" type="Node3D" parent="." unique_id=400164751]
+transform = Transform3D(0.42603117, 0, 0, 0, 0.42846793, 0, 0, 0, 1, -0.7549153, 0, -0.99348164)
+
+[node name="Sprite3D2" type="Sprite3D" parent="Props" unique_id=1023482393]
+transform = Transform3D(0.84846896, 0, 0, 0, 0.6997585, -0.08711545, 0, 0.07086913, 0.8601743, 2.4989812, 1.0959264, 1.002861)
+texture = ExtResource("2_o8spi")
+
+[node name="Sprite3D3" type="Sprite3D" parent="Props" unique_id=929140849]
+transform = Transform3D(0.84846896, 0, 0, 0, 0.6997585, -0.087115444, 0, 0.07086913, 0.8601743, 1.6167712, 1.0959264, 1.002861)
+texture = ExtResource("2_o8spi")
+
+[node name="Sprite3D4" type="Sprite3D" parent="Props" unique_id=648352853]
+transform = Transform3D(0.84846896, 0, 0, 0, 0.6997585, -0.087115444, 0, 0.07086913, 0.8601743, 0.63603556, 1.0959264, 1.002861)
+texture = ExtResource("2_o8spi")
+
+[node name="Sprite3D5" type="Sprite3D" parent="Props" unique_id=1995070306]
+transform = Transform3D(0.84846896, 0, 0, 0, 0.6997585, -0.087115444, 0, 0.07086913, 0.8601743, -0.26844823, 1.0959264, 1.002861)
+texture = ExtResource("2_o8spi")
+
+[node name="Sprite3D6" type="Sprite3D" parent="Props" unique_id=1428437605]
+transform = Transform3D(0.84846896, 0, 0, 0, 0.6997585, -0.087115444, 0, 0.07086913, 0.8601743, 3.2757492, 1.0959264, 1.002861)
+texture = ExtResource("2_o8spi")
+
+[node name="Sprite3D" type="Sprite3D" parent="Props" unique_id=1524771780]
+transform = Transform3D(0.52811146, 0.008311085, 0.12484567, 0, 0.5282274, -0.1240864, -0.06697821, 0.06553143, 0.9843861, 0.021353602, 2.5112007, 0.5486535)
+material_override = SubResource("StandardMaterial3D_pe0ch")
+texture = ExtResource("1_p0itb")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="Props" unique_id=1985595670]
+transform = Transform3D(0.5, 0, 0, 0, 0.49999988, 0, 0, 0, 0.25, 2.2492998, 2.3343284, 0.995486)
+material_override = SubResource("ShaderMaterial_2lls7")
+mesh = SubResource("SphereMesh_gwux2")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="Props" unique_id=103476142]
+transform = Transform3D(0.44893304, 0, 0, 0, 0.6005548, 0, 0, 0, 0.24406394, 3.8661604, 2.1357102, 0.995486)
+material_override = SubResource("ShaderMaterial_2lls7")
+mesh = SubResource("SphereMesh_gwux2")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1587415601]
+transform = Transform3D(2.3686228, 0, 0, 0, 0.99741536, 0, 0, 0, 0.99741536, 0, 0, 0)
+material_override = SubResource("StandardMaterial3D_7t8ls")
+mesh = SubResource("PlaneMesh_o8spi")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D" unique_id=1515890320]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D/StaticBody3D" unique_id=99023088]
+shape = SubResource("ConvexPolygonShape3D_twvv7")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1784391135]
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer" unique_id=376825261]
+material = SubResource("ShaderMaterial_ees5g")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Lights" type="Node3D" parent="." unique_id=1969942233]
+
+[node name="OmniLight3D" type="OmniLight3D" parent="Lights" unique_id=1541830442]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.713495, 0, -0.6772491)
+light_color = Color(1, 0, 0, 1)
+
+[node name="OmniLight3D" type="OmniLight3D" parent="Lights/OmniLight3D" unique_id=247796646]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.2480385, 0, 0.19185066)
+light_color = Color(0, 0.51666665, 1, 1)
+
+[node name="OmniLight3D2" type="OmniLight3D" parent="Lights/OmniLight3D" unique_id=370625836]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5646908, 0.6595472, -1.3856114)
+light_color = Color(0, 1, 0.3833332, 1)
+omni_range = 3.2582695
+
+[node name="OmniLight3D" type="OmniLight3D" parent="Lights/OmniLight3D/OmniLight3D2" unique_id=837642148]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.2480385, 0, 0.19185066)
+light_color = Color(0, 0.51666665, 1, 1)

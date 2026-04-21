@@ -1,0 +1,25 @@
+[gd_scene format=3 uid="uid://bkrs1xwjpw4ry"]
+
+[ext_resource type="PackedScene" uid="uid://2ctcen10182n" path="res://Prototyping/Scenes/Deprecated/Prefabs/player.tscn" id="1_nps61"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_4ixrs"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_4ixrs"]
+size = Vector3(23.793642, 0.4741211, 33.3459)
+
+[node name="WalkTest" type="Node3D" unique_id=1468448674]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1355396885]
+transform = Transform3D(1, 0, 0, 0, 0.5201602, 0.8540687, 0, -0.8540687, 0.5201602, 0, 0, 0)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=1836412771]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D" unique_id=403922258]
+transform = Transform3D(7.675, 0, 0, 0, 7.675, 0, 0, 0, 7.675, 0, 0, 0)
+mesh = SubResource("PlaneMesh_4ixrs")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" unique_id=1626122535]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.32744312, -0.26293945, -2.300911)
+shape = SubResource("BoxShape3D_4ixrs")
+
+[node name="Player" parent="." unique_id=335144099 instance=ExtResource("1_nps61")]

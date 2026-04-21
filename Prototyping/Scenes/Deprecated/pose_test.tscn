@@ -1,0 +1,88 @@
+[gd_scene format=3 uid="uid://b803w4ruaiy81"]
+
+[ext_resource type="Texture2D" uid="uid://bqk3a55a5ubqx" path="res://Prototyping/Sprites/Test Limbs/test_torso.png" id="1_vgbbk"]
+[ext_resource type="Texture2D" uid="uid://dom3ekf4c4827" path="res://Prototyping/Sprites/Test Limbs/test_left_upper_arm.png" id="2_ebyfu"]
+[ext_resource type="Texture2D" uid="uid://dd1xr8gkcp17u" path="res://Prototyping/Sprites/Test Limbs/test_left_lower_arm.png" id="3_wtoy5"]
+[ext_resource type="Texture2D" uid="uid://cpj47rrh4klq0" path="res://Prototyping/Sprites/Test Limbs/test_left_hand.png" id="4_5sbbb"]
+[ext_resource type="Script" uid="uid://ct4u4mmgug3uu" path="res://Prototyping/Scripts/hand.gd" id="4_ebyfu"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_vgbbk"]
+radius = 34.909912
+height = 269.61945
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ebyfu"]
+radius = 20.094727
+height = 193.56213
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_wtoy5"]
+radius = 26.0
+height = 128.0
+
+[node name="PoseTest" type="Node2D" unique_id=1886142955]
+
+[node name="Torso" type="StaticBody2D" parent="." unique_id=538543206]
+position = Vector2(534, 322)
+
+[node name="TestTorso" type="Sprite2D" parent="Torso" unique_id=798014769]
+position = Vector2(4, -25.799988)
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("1_vgbbk")
+
+[node name="PinJoint2D" type="PinJoint2D" parent="." unique_id=970380808]
+position = Vector2(667, 166)
+node_a = NodePath("../Torso")
+node_b = NodePath("../UpperArm")
+disable_collision = false
+
+[node name="UpperArm" type="RigidBody2D" parent="." unique_id=928432074]
+position = Vector2(682, 271)
+
+[node name="TestLeftUpperArm" type="Sprite2D" parent="UpperArm" unique_id=1426072246]
+position = Vector2(6, -10.799988)
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("2_ebyfu")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="UpperArm" unique_id=1236374481]
+position = Vector2(1.0000005, -19)
+rotation = -0.10775256
+shape = SubResource("CapsuleShape2D_vgbbk")
+
+[node name="PinJoint2D2" type="PinJoint2D" parent="." unique_id=1850692693]
+position = Vector2(706, 388)
+node_a = NodePath("../UpperArm")
+node_b = NodePath("../LowerArm")
+disable_collision = false
+
+[node name="LowerArm" type="RigidBody2D" parent="." unique_id=79520805]
+position = Vector2(727.99994, 477.99997)
+scale = Vector2(0.99999994, 0.99999994)
+
+[node name="TestLeftLowerArm" type="Sprite2D" parent="LowerArm" unique_id=830606213]
+position = Vector2(6.000061, 8.200043)
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("3_wtoy5")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LowerArm" unique_id=503335881]
+position = Vector2(7.0000615, 10.000031)
+rotation = -0.29468316
+shape = SubResource("CapsuleShape2D_ebyfu")
+
+[node name="PinJoint2D3" type="PinJoint2D" parent="." unique_id=631304020]
+position = Vector2(760, 581)
+node_a = NodePath("../LowerArm")
+node_b = NodePath("../Hand")
+disable_collision = false
+angular_limit_enabled = true
+
+[node name="Hand" type="RigidBody2D" parent="." unique_id=1273222945]
+position = Vector2(767, 651)
+script = ExtResource("4_ebyfu")
+
+[node name="TestLeftHand" type="Sprite2D" parent="Hand" unique_id=1753412254]
+position = Vector2(7, -6)
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("4_5sbbb")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hand" unique_id=1273316572]
+position = Vector2(-2, -3)
+shape = SubResource("CapsuleShape2D_wtoy5")

@@ -11,9 +11,9 @@ config_version=5
 [application]
 
 config/name="Gay Game"
-run/main_scene="uid://ccbulw3xgkn8g"
+run/main_scene="uid://b76vij71sl6tt"
 config/features=PackedStringArray("4.6", "Forward Plus")
-config/icon="res://Sprites/icon.svg"
+config/icon="res://Prototyping/Sprites/icon.svg"
 
 [autoload]
 
@@ -31,10 +31,10 @@ enabled=PackedStringArray("res://addons/shaker/plugin.cfg")
 [file_customization]
 
 folder_colors={
-"res://Scenes/": "teal",
-"res://Scenes/Entities/": "green",
-"res://Scripts/": "pink",
-"res://Sprites/": "gray"
+"res://MAIN/": "green",
+"res://MAIN/Scenes/": "teal",
+"res://MAIN/Scripts/": "pink",
+"res://Scenes/Entities/": "green"
 }
 
 [input]
