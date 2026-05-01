@@ -1,0 +1,63 @@
+[gd_scene format=3 uid="uid://nfoumhjrr1px"]
+
+[ext_resource type="Script" uid="uid://bd046eokvcnu2" path="res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" id="1_lrdlj"]
+[ext_resource type="PackedScene" uid="uid://bknhaf3ev31eg" path="res://Prototyping/CHASE/Movement Test/character_body_3d.tscn" id="1_rkv7g"]
+[ext_resource type="Script" uid="uid://csjccrhj5wnx7" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_3d.gd" id="2_pdcg6"]
+[ext_resource type="Script" uid="uid://8umksf8e80fw" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="3_rkv7g"]
+
+[sub_resource type="NavigationMesh" id="NavigationMesh_o3c4m"]
+vertices = PackedVector3Array(-23.133871, 0.15000002, -23.348602, -23.133871, 0.15000002, 23.401398, 23.116129, 0.15000002, 23.401398, 23.116129, 0.15000002, -23.348602)
+polygons = [PackedInt32Array(3, 2, 0), PackedInt32Array(0, 2, 1)]
+cell_height = 0.1
+
+[sub_resource type="BoxMesh" id="BoxMesh_o3c4m"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_o3c4m"]
+
+[sub_resource type="Resource" id="Resource_pnao5"]
+script = ExtResource("3_rkv7g")
+
+[node name="World" type="Node" unique_id=767724366]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=345294312]
+transform = Transform3D(1, -6.9220684e-14, 2.6534556e-14, 2.304723e-14, 0.6304937, 0.7761944, -7.045857e-14, -0.7761944, 0.6304937, 0, 15.365929, 13.380627)
+
+[node name="NavigationRegion3D" type="NavigationRegion3D" parent="." unique_id=1994545092]
+navigation_mesh = SubResource("NavigationMesh_o3c4m")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="NavigationRegion3D" unique_id=1113399160]
+transform = Transform3D(47.267742, 0, 0, 0, 0.099999964, 0, 0, 0, 47.697205, 0, 0, 0)
+mesh = SubResource("BoxMesh_o3c4m")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="NavigationRegion3D/MeshInstance3D" unique_id=14878169]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/MeshInstance3D/StaticBody3D" unique_id=1324720450]
+shape = SubResource("BoxShape3D_o3c4m")
+
+[node name="CharacterBody3D" parent="." unique_id=997567769 node_paths=PackedStringArray("cam") instance=ExtResource("1_rkv7g")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.07204, 1.7926636)
+cam = NodePath("../Camera3D")
+
+[node name="Camera3D" type="Camera3D" parent="." unique_id=1089342661 groups=["Camera"]]
+physics_interpolation_mode = 1
+transform = Transform3D(1, -4.659592e-17, 1.7856677e-17, 1.550966e-17, 0.63035417, 0.7763077, -4.7428803e-17, -0.7763077, 0.63035417, 0, 15.365929, 13.380627)
+top_level = true
+current = true
+
+[node name="PhantomCameraHost" type="Node" parent="Camera3D" unique_id=386236871]
+process_priority = 300
+process_physics_priority = 300
+script = ExtResource("1_lrdlj")
+metadata/_custom_type_script = "uid://bd046eokvcnu2"
+
+[node name="PhantomCamera3D" type="Node3D" parent="." unique_id=821202811 node_paths=PackedStringArray("look_at_target")]
+transform = Transform3D(1, -4.659591e-17, 1.7856672e-17, 1.550966e-17, 0.630354, 0.7763075, -4.7428803e-17, -0.7763075, 0.630354, 0, 15.365929, 13.380627)
+script = ExtResource("2_pdcg6")
+look_at_mode = 2
+look_at_target = NodePath("../CharacterBody3D")
+tween_resource = SubResource("Resource_pnao5")
+look_at_damping = true
+look_at_damping_value = 0.75
+align_transform_with_view = Callable()
+align_rotation_with_view = Callable()
+metadata/_custom_type_script = "uid://csjccrhj5wnx7"
