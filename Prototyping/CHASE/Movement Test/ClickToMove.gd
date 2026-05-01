@@ -1,5 +1,5 @@
 extends CharacterBody3D
-
+#https://youtu.be/KT06pv06Q1U?si=Oyfxr4sBKFvDll4p
 @export var nav_agent : NavigationAgent3D
 @export var cam : Camera3D
 @export var move_speed : float
