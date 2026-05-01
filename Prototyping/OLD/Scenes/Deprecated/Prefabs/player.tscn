@@ -1,0 +1,194 @@
+[gd_scene format=3 uid="uid://2ctcen10182n"]
+
+[ext_resource type="Script" uid="uid://bn4tke84305jp" path="res://Prototyping/OLD/Scripts/player.gd" id="1_gymyn"]
+[ext_resource type="Texture2D" uid="uid://cvd3mpcu58q05" path="res://Prototyping/OLD/Sprites/Test Limbs/dude_pants.png" id="2_pu2lt"]
+[ext_resource type="Script" uid="uid://bfb4stspko1qp" path="res://Prototyping/OLD/Scripts/camera_3d.gd" id="2_ukyrk"]
+[ext_resource type="Texture2D" uid="uid://cfe2ibldh5cu0" path="res://Prototyping/OLD/Sprites/Tiger Head.png" id="3_ukyrk"]
+[ext_resource type="Texture2D" uid="uid://bqk3a55a5ubqx" path="res://Prototyping/OLD/Sprites/Test Limbs/test_torso.png" id="4_7dp3o"]
+[ext_resource type="Texture2D" uid="uid://dom3ekf4c4827" path="res://Prototyping/OLD/Sprites/Test Limbs/test_left_upper_arm.png" id="5_h4iuc"]
+[ext_resource type="Texture2D" uid="uid://dd1xr8gkcp17u" path="res://Prototyping/OLD/Sprites/Test Limbs/test_left_lower_arm.png" id="6_fd4e3"]
+[ext_resource type="Script" uid="uid://5s3h3118h8j8" path="res://Prototyping/OLD/Scripts/player_hand.gd" id="7_gymyn"]
+[ext_resource type="Texture2D" uid="uid://cpj47rrh4klq0" path="res://Prototyping/OLD/Sprites/Test Limbs/test_left_hand.png" id="8_igrcy"]
+[ext_resource type="Texture2D" uid="uid://bcc5b782y6v7g" path="res://Prototyping/OLD/Sprites/Test Limbs/test_right_upper_arm.png" id="9_fs7ks"]
+[ext_resource type="Texture2D" uid="uid://c2yoctxl8xjo6" path="res://Prototyping/OLD/Sprites/Test Limbs/test_right_lower_arm.png" id="10_l6n3p"]
+[ext_resource type="Texture2D" uid="uid://duk2cin3phjft" path="res://Prototyping/OLD/Sprites/Test Limbs/test_right_hand.png" id="11_olqyp"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_nps61"]
+height = 3.0610352
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_gymyn"]
+size = Vector3(7.51001, 41.54547, 1.5704346)
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_gra8q"]
+radius = 0.083496094
+height = 0.59198
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_163or"]
+radius = 0.06640625
+height = 0.2923584
+
+[node name="Player" type="CharacterBody3D" unique_id=335144099]
+script = ExtResource("1_gymyn")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=753970614]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5305176, 0)
+shape = SubResource("CapsuleShape3D_nps61")
+
+[node name="CameraOrigin" type="Node3D" parent="." unique_id=143318523]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.381804, 0)
+
+[node name="SpringArm3D" type="SpringArm3D" parent="CameraOrigin" unique_id=2058991835]
+spring_length = 3.0
+margin = 0.5
+
+[node name="Camera3D" type="Camera3D" parent="CameraOrigin/SpringArm3D" unique_id=616894725]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 3.1255646)
+script = ExtResource("2_ukyrk")
+layers_3d_physics = 4
+
+[node name="MousePositionTarget" type="StaticBody3D" parent="." unique_id=2062623647]
+collision_layer = 4
+collision_mask = 4
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="MousePositionTarget" unique_id=1832944455]
+transform = Transform3D(1, 0, 0, 0, 0.13, 0, 0, 0, 0.13, -0.0072021484, 2.6403344, 0.002683714)
+shape = SubResource("BoxShape3D_gymyn")
+
+[node name="PantsSprite" type="Sprite3D" parent="." unique_id=1694141849]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.0260679, 0.011657715)
+texture = ExtResource("2_pu2lt")
+
+[node name="AnimalHead" type="Sprite3D" parent="." unique_id=1437145895]
+transform = Transform3D(0.125, 0, 0, 0, 0.125, 0, 0, 0, 0.125, -0.05066371, 2.7439559, 0)
+texture = ExtResource("3_ukyrk")
+
+[node name="Torso" type="StaticBody3D" parent="." unique_id=1168670177]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.019723773, 2.0144262, 0.011657715)
+
+[node name="Sprite3D" type="Sprite3D" parent="Torso" unique_id=1813739671]
+transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0, 0)
+texture = ExtResource("4_7dp3o")
+
+[node name="LeftArm" type="Node3D" parent="." unique_id=978457789]
+
+[node name="LeftShoulder" type="HingeJoint3D" parent="LeftArm" unique_id=993298709]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.2824915, 2.3278394, 0)
+node_a = NodePath("../../Torso")
+node_b = NodePath("../LeftUpperArm")
+
+[node name="LeftUpperArm" type="RigidBody3D" parent="LeftArm" unique_id=1655923166]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.36892426, 2.0888336, 0)
+collision_layer = 2
+collision_mask = 2
+
+[node name="Sprite3D" type="Sprite3D" parent="LeftArm/LeftUpperArm" unique_id=1797846282]
+transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0, 0)
+texture = ExtResource("5_h4iuc")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="LeftArm/LeftUpperArm" unique_id=455249641]
+transform = Transform3D(0.9776293, -0.21033525, 0, 0.21033525, 0.9776293, 0, 0, 0, 1, -0.0037358105, 0.0195508, 0)
+shape = SubResource("CapsuleShape3D_gra8q")
+
+[node name="LeftElbow" type="HingeJoint3D" parent="LeftArm" unique_id=98908368]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.4175673, 1.7716722, 0)
+node_a = NodePath("../LeftUpperArm")
+node_b = NodePath("../LeftLowerArm")
+
+[node name="LeftLowerArm" type="RigidBody3D" parent="LeftArm" unique_id=1499067582]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.4859907, 1.5395108, 0)
+collision_layer = 2
+collision_mask = 2
+
+[node name="Sprite3D" type="Sprite3D" parent="LeftArm/LeftLowerArm" unique_id=474816413]
+transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0, 0)
+texture = ExtResource("6_fd4e3")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="LeftArm/LeftLowerArm" unique_id=428147583]
+transform = Transform3D(0.9776293, -0.21033525, 0, 0.21033525, 0.9776293, 0, 0, 0, 1, -0.0037358105, 0.0195508, 0)
+shape = SubResource("CapsuleShape3D_gra8q")
+
+[node name="LeftWrist" type="HingeJoint3D" parent="LeftArm" unique_id=1362895540]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5503004, 1.3529962, 0)
+node_a = NodePath("../LeftLowerArm")
+node_b = NodePath("../LeftHand")
+angular_limit/enable = true
+angular_limit/upper = 0.0
+angular_limit/lower = 0.0
+
+[node name="LeftHand" type="RigidBody3D" parent="LeftArm" unique_id=404914416]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.569524, 1.1543801, 0)
+collision_layer = 2
+collision_mask = 2
+script = ExtResource("7_gymyn")
+move_force = 40.0
+
+[node name="Sprite3D" type="Sprite3D" parent="LeftArm/LeftHand" unique_id=284128447]
+transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0.016189218, 0, 0)
+texture = ExtResource("8_igrcy")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="LeftArm/LeftHand" unique_id=1636837733]
+transform = Transform3D(0.9776293, -0.21033525, 0, 0.21033525, 0.9776293, 0, 0, 0, 1, 0.009397268, -0.04149139, 0)
+shape = SubResource("CapsuleShape3D_163or")
+
+[node name="RightArm" type="Node3D" parent="." unique_id=1566847513]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.95386887, 0, 0)
+
+[node name="RightShoulder" type="HingeJoint3D" parent="RightArm" unique_id=304772430]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.6088464, 2.3278394, 0)
+node_a = NodePath("../../Torso")
+node_b = NodePath("../RightUpperArm")
+
+[node name="RightUpperArm" type="RigidBody3D" parent="RightArm" unique_id=686908526]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.50887287, 2.0888336, 0)
+collision_layer = 2
+collision_mask = 2
+
+[node name="Sprite3D" type="Sprite3D" parent="RightArm/RightUpperArm" unique_id=1600697638]
+transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0, 0)
+texture = ExtResource("9_fs7ks")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RightArm/RightUpperArm" unique_id=1294085287]
+transform = Transform3D(0.9759891, 0.21781962, 0, -0.21781962, 0.9759891, 0, 0, 0, 1, -0.0037357807, 0.0195508, 0)
+shape = SubResource("CapsuleShape3D_gra8q")
+
+[node name="RightElbow" type="HingeJoint3D" parent="RightArm" unique_id=1411474031]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.4175673, 1.7716722, 0)
+node_a = NodePath("../RightUpperArm")
+node_b = NodePath("../RightLowerArm")
+
+[node name="RightLowerArm" type="RigidBody3D" parent="RightArm" unique_id=1242910754]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.38444477, 1.5395108, 0)
+collision_layer = 2
+collision_mask = 2
+
+[node name="Sprite3D" type="Sprite3D" parent="RightArm/RightLowerArm" unique_id=2104288944]
+transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0, 0)
+texture = ExtResource("10_l6n3p")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RightArm/RightLowerArm" unique_id=1339954974]
+transform = Transform3D(0.9712092, 0.23822838, 0, -0.23822838, 0.9712092, 0, 0, 0, 1, -0.010387987, -0.007568836, 0)
+shape = SubResource("CapsuleShape3D_gra8q")
+
+[node name="RightWrist" type="HingeJoint3D" parent="RightArm" unique_id=1681394469]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.3135075, 1.2884164, 0)
+node_a = NodePath("../RightLowerArm")
+node_b = NodePath("../RightHand")
+angular_limit/enable = true
+angular_limit/upper = 0.0
+angular_limit/lower = 0.0
+
+[node name="RightHand" type="RigidBody3D" parent="RightArm" unique_id=1060873]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.32627314, 1.1199375, 0)
+collision_layer = 2
+collision_mask = 2
+script = ExtResource("7_gymyn")
+is_camera_left = true
+move_force = 40.0
+
+[node name="Sprite3D" type="Sprite3D" parent="RightArm/RightHand" unique_id=528996529]
+transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0.016189218, 0, 0)
+texture = ExtResource("11_olqyp")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RightArm/RightHand" unique_id=731262826]
+transform = Transform3D(0.9883111, 0.15245111, 0, -0.15245111, 0.9883111, 0, 0, 0, 1, -0.04657185, -0.04149139, 0)
+shape = SubResource("CapsuleShape3D_163or")

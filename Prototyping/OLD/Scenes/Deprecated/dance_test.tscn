@@ -1,0 +1,185 @@
+[gd_scene format=3 uid="uid://dcbd1uox6jko7"]
+
+[ext_resource type="Script" uid="uid://bfb4stspko1qp" path="res://Prototyping/OLD/Scripts/camera_3d.gd" id="1_yi125"]
+[ext_resource type="Script" uid="uid://cijto64gbnq8d" path="res://Prototyping/OLD/Scripts/joint.gd" id="2_i2fv2"]
+[ext_resource type="Texture2D" uid="uid://cfe2ibldh5cu0" path="res://Prototyping/OLD/Sprites/Tiger Head.png" id="2_lqo5r"]
+[ext_resource type="Texture2D" uid="uid://bqk3a55a5ubqx" path="res://Prototyping/OLD/Sprites/Test Limbs/test_torso.png" id="3_i2fv2"]
+[ext_resource type="Texture2D" uid="uid://dom3ekf4c4827" path="res://Prototyping/OLD/Sprites/Test Limbs/test_left_upper_arm.png" id="4_njjr0"]
+[ext_resource type="Texture2D" uid="uid://dd1xr8gkcp17u" path="res://Prototyping/OLD/Sprites/Test Limbs/test_left_lower_arm.png" id="5_o56do"]
+[ext_resource type="Texture2D" uid="uid://cpj47rrh4klq0" path="res://Prototyping/OLD/Sprites/Test Limbs/test_left_hand.png" id="6_pdgpa"]
+[ext_resource type="Script" uid="uid://7n1qbangjjy4" path="res://Prototyping/OLD/Scripts/joint_manager.gd" id="7_i2fv2"]
+[ext_resource type="Texture2D" uid="uid://bcc5b782y6v7g" path="res://Prototyping/OLD/Sprites/Test Limbs/test_right_upper_arm.png" id="7_u05tb"]
+[ext_resource type="Texture2D" uid="uid://duk2cin3phjft" path="res://Prototyping/OLD/Sprites/Test Limbs/test_right_hand.png" id="8_bp3fj"]
+[ext_resource type="Texture2D" uid="uid://c2yoctxl8xjo6" path="res://Prototyping/OLD/Sprites/Test Limbs/test_right_lower_arm.png" id="9_552k4"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_i2fv2"]
+font_size = 162
+
+[node name="DanceTest" type="Node3D" unique_id=2024012263]
+
+[node name="Camera3D" type="Camera3D" parent="." unique_id=1517564387]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.381804, 1.6531465)
+script = ExtResource("1_yi125")
+layers_3d_physics = 4
+
+[node name="Node3D" type="Node3D" parent="." unique_id=1797010202]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.9281831, -0.18777502, 0)
+
+[node name="JointManager" type="Sprite3D" parent="Node3D" unique_id=91351176 node_paths=PackedStringArray("joint_array", "goal_joint_array", "timer_display")]
+transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0.025494337, 2.219493, 0.011657715)
+texture = ExtResource("3_i2fv2")
+script = ExtResource("7_i2fv2")
+joint_array = [NodePath("../LeftShoulder"), NodePath("../LeftShoulder/LeftElbow"), NodePath("../LeftShoulder/LeftElbow/LeftWrist")]
+goal_joint_array = [NodePath("../../Goal/LeftShoulder"), NodePath("../../Goal/LeftShoulder/LeftElbow"), NodePath("../../Goal/LeftShoulder/LeftElbow/LeftWrist")]
+timer_display = NodePath("../../Label")
+time = 5.0
+
+[node name="LeftShoulder" type="Node3D" parent="Node3D" unique_id=171268160 node_paths=PackedStringArray("sprite", "mirror_joint")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.38106102, 2.5158134, 0)
+script = ExtResource("2_i2fv2")
+hit_pose = true
+rotation_speed = 1.0
+sprite = NodePath("UpperLeftArm")
+rotation_positions = Array[Vector3]([Vector3(0, 0, 0), Vector3(0, 0, 45), Vector3(0, 0, 90)])
+mirror_joint = NodePath("../RightShoulder")
+
+[node name="UpperLeftArm" type="Sprite3D" parent="Node3D/LeftShoulder" unique_id=40301443]
+transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0.033081472, -0.2219131, 0.02092272)
+texture = ExtResource("4_njjr0")
+
+[node name="LeftElbow" type="Node3D" parent="Node3D/LeftShoulder" unique_id=181886980 node_paths=PackedStringArray("sprite", "mirror_joint")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.08206189, -0.53351116, 0)
+script = ExtResource("2_i2fv2")
+hit_pose = true
+rotation_speed = 1.0
+sprite = NodePath("LowerLeftArm")
+rotation_positions = Array[Vector3]([Vector3(0, 0, -90), Vector3(0, 0, 0), Vector3(0, 0, 90)])
+current_rotation = 2
+mirror_joint = NodePath("../../RightShoulder/RightElbow")
+
+[node name="LowerLeftArm" type="Sprite3D" parent="Node3D/LeftShoulder/LeftElbow" unique_id=165454053]
+transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0.06808603, -0.23772466, 0.02092272)
+texture = ExtResource("5_o56do")
+
+[node name="LeftWrist" type="Node3D" parent="Node3D/LeftShoulder/LeftElbow" unique_id=991054328 node_paths=PackedStringArray("sprite", "mirror_joint")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.12305015, -0.4315169, 0)
+script = ExtResource("2_i2fv2")
+hit_pose = true
+rotation_speed = 1.0
+sprite = NodePath("LeftHand")
+rotation_positions = Array[Vector3]([Vector3(0, 0, -90), Vector3(0, 0, 0), Vector3(0, 0, 90)])
+current_rotation = 3
+mirror_joint = NodePath("../../../RightShoulder/RightElbow/Sprite3D7/RightWrist")
+
+[node name="LeftHand" type="Sprite3D" parent="Node3D/LeftShoulder/LeftElbow/LeftWrist" unique_id=1968081502]
+transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0.04475838, -0.19133854, 0.02092272)
+texture = ExtResource("6_pdgpa")
+
+[node name="RightShoulder" type="Node3D" parent="Node3D" unique_id=19343518]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.3446076, 2.5214183, 0)
+
+[node name="Sprite3D5" type="Sprite3D" parent="Node3D/RightShoulder" unique_id=661360885]
+transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, -0.05517018, -0.22751808, 0.02092272)
+texture = ExtResource("7_u05tb")
+
+[node name="RightElbow" type="Node3D" parent="Node3D/RightShoulder" unique_id=161686353]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.11918759, -0.545799, 0)
+
+[node name="Sprite3D7" type="Sprite3D" parent="Node3D/RightShoulder/RightElbow" unique_id=1694916339]
+transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, -0.06041068, -0.23104179, 0.02092272)
+texture = ExtResource("9_552k4")
+
+[node name="RightWrist" type="Node3D" parent="Node3D/RightShoulder/RightElbow/Sprite3D7" unique_id=1732774401]
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, -0.67169476, -2.4908037, -0.2092272)
+
+[node name="Sprite3D6" type="Sprite3D" parent="Node3D/RightShoulder/RightElbow/Sprite3D7/RightWrist" unique_id=704911774]
+transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0.025187075, -0.170493, 0.02092272)
+texture = ExtResource("8_bp3fj")
+
+[node name="AnimalHead" type="Sprite3D" parent="Node3D" unique_id=580213154]
+transform = Transform3D(0.125, 0, 0, 0, 0.125, 0, 0, 0, 0.125, -0.0054454803, 2.9490223, 0)
+texture = ExtResource("2_lqo5r")
+
+[node name="Goal" type="Node3D" parent="." unique_id=1828520433]
+transform = Transform3D(0.585, 0, 0, 0, 0.585, 0, 0, 0, 0.585, -0.92442036, 0.7769071, -0.36054063)
+
+[node name="JointManager" type="Sprite3D" parent="Goal" unique_id=784780280]
+transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0.025494337, 2.219493, 0.011657715)
+texture = ExtResource("3_i2fv2")
+
+[node name="LeftShoulder" type="Node3D" parent="Goal" unique_id=1729267512 node_paths=PackedStringArray("sprite", "mirror_joint")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.38106102, 2.5158134, 0)
+script = ExtResource("2_i2fv2")
+hit_pose = true
+rotation_speed = 1.0
+sprite = NodePath("UpperLeftArm")
+rotation_positions = Array[Vector3]([Vector3(0, 0, 0), Vector3(0, 0, 45), Vector3(0, 0, 90)])
+mirror_joint = NodePath("../RightShoulder")
+
+[node name="UpperLeftArm" type="Sprite3D" parent="Goal/LeftShoulder" unique_id=1068390297]
+transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0.033081472, -0.2219131, 0.02092272)
+texture = ExtResource("4_njjr0")
+
+[node name="LeftElbow" type="Node3D" parent="Goal/LeftShoulder" unique_id=419974520 node_paths=PackedStringArray("sprite", "mirror_joint")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.08206189, -0.53351116, 0)
+script = ExtResource("2_i2fv2")
+hit_pose = true
+rotation_speed = 1.0
+sprite = NodePath("LowerLeftArm")
+rotation_positions = Array[Vector3]([Vector3(0, 0, -90), Vector3(0, 0, 0), Vector3(0, 0, 90)])
+current_rotation = 2
+mirror_joint = NodePath("../../RightShoulder/RightElbow")
+
+[node name="LowerLeftArm" type="Sprite3D" parent="Goal/LeftShoulder/LeftElbow" unique_id=189970572]
+transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0.06808603, -0.23772466, 0.02092272)
+texture = ExtResource("5_o56do")
+
+[node name="LeftWrist" type="Node3D" parent="Goal/LeftShoulder/LeftElbow" unique_id=1310169552 node_paths=PackedStringArray("sprite", "mirror_joint")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.12305015, -0.4315169, 0)
+script = ExtResource("2_i2fv2")
+hit_pose = true
+rotation_speed = 1.0
+sprite = NodePath("LeftHand")
+rotation_positions = Array[Vector3]([Vector3(0, 0, -90), Vector3(0, 0, 0), Vector3(0, 0, 90)])
+current_rotation = 3
+mirror_joint = NodePath("../../../RightShoulder/RightElbow/Sprite3D7/RightWrist")
+
+[node name="LeftHand" type="Sprite3D" parent="Goal/LeftShoulder/LeftElbow/LeftWrist" unique_id=583600854]
+transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0.04475838, -0.19133854, 0.02092272)
+texture = ExtResource("6_pdgpa")
+
+[node name="RightShoulder" type="Node3D" parent="Goal" unique_id=2127585431]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.3446076, 2.5214183, 0)
+
+[node name="Sprite3D5" type="Sprite3D" parent="Goal/RightShoulder" unique_id=1104003755]
+transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, -0.05517018, -0.22751808, 0.02092272)
+texture = ExtResource("7_u05tb")
+
+[node name="RightElbow" type="Node3D" parent="Goal/RightShoulder" unique_id=179036897]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.11918759, -0.545799, 0)
+
+[node name="Sprite3D7" type="Sprite3D" parent="Goal/RightShoulder/RightElbow" unique_id=1632076981]
+transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, -0.06041068, -0.23104179, 0.02092272)
+texture = ExtResource("9_552k4")
+
+[node name="RightWrist" type="Node3D" parent="Goal/RightShoulder/RightElbow/Sprite3D7" unique_id=353813081]
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, -0.67169476, -2.4908037, -0.2092272)
+
+[node name="Sprite3D6" type="Sprite3D" parent="Goal/RightShoulder/RightElbow/Sprite3D7/RightWrist" unique_id=292721150]
+transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0.025187075, -0.170493, 0.02092272)
+texture = ExtResource("8_bp3fj")
+
+[node name="AnimalHead" type="Sprite3D" parent="Goal" unique_id=737753561]
+transform = Transform3D(0.125, 0, 0, 0, 0.125, 0, 0, 0, 0.125, -0.0054454803, 2.9490223, 0)
+texture = ExtResource("2_lqo5r")
+
+[node name="Label" type="Label" parent="." unique_id=1454532985]
+anchors_preset = -1
+anchor_right = 0.25100002
+anchor_bottom = 0.22200002
+offset_left = 169.0
+offset_top = 52.0
+offset_right = 64.84799
+offset_bottom = 130.14398
+text = "10"
+label_settings = SubResource("LabelSettings_i2fv2")
