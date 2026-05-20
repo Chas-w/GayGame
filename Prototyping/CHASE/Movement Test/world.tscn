@@ -1,63 +1,443 @@
 [gd_scene format=3 uid="uid://nfoumhjrr1px"]
 
 [ext_resource type="Script" uid="uid://bd046eokvcnu2" path="res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" id="1_lrdlj"]
+[ext_resource type="Script" uid="uid://itedotrt8tt4" path="res://Prototyping/CHASE/Movement Test/camera_manager.gd" id="1_msnyt"]
 [ext_resource type="PackedScene" uid="uid://bknhaf3ev31eg" path="res://Prototyping/CHASE/Movement Test/character_body_3d.tscn" id="1_rkv7g"]
 [ext_resource type="Script" uid="uid://csjccrhj5wnx7" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_3d.gd" id="2_pdcg6"]
 [ext_resource type="Script" uid="uid://8umksf8e80fw" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="3_rkv7g"]
-
-[sub_resource type="NavigationMesh" id="NavigationMesh_o3c4m"]
-vertices = PackedVector3Array(-23.133871, 0.15000002, -23.348602, -23.133871, 0.15000002, 23.401398, 23.116129, 0.15000002, 23.401398, 23.116129, 0.15000002, -23.348602)
-polygons = [PackedInt32Array(3, 2, 0), PackedInt32Array(0, 2, 1)]
-cell_height = 0.1
-
-[sub_resource type="BoxMesh" id="BoxMesh_o3c4m"]
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_o3c4m"]
+[ext_resource type="PackedScene" uid="uid://d2qbr3msf53bf" path="res://Prototyping/Imported Mesh/Bog Concept.glb" id="5_pnao5"]
+[ext_resource type="Texture2D" uid="uid://4g3itx3xcb17" path="res://Prototyping/Imported Textures/Digicam.png" id="6_sq1oe"]
+[ext_resource type="Texture2D" uid="uid://bge7y74fwiewv" path="res://Prototyping/Imported Textures/Bracelet.png" id="7_ukdgm"]
+[ext_resource type="Script" uid="uid://dpp1y275pe6fk" path="res://Prototyping/CHASE/Movement Test/crt_controller.gd" id="9_fl3qi"]
+[ext_resource type="Shader" uid="uid://byc54teku3wr8" path="res://Prototyping/CHASE/Movement Test/tilt_shift_shader.gdshader" id="9_u4vym"]
 
 [sub_resource type="Resource" id="Resource_pnao5"]
 script = ExtResource("3_rkv7g")
+duration = 0.0
+transition = 1
+
+[sub_resource type="SphereMesh" id="SphereMesh_rkv7g"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pnao5"]
+shading_mode = 0
+albedo_color = Color(0, 0.697588, 0.80509114, 1)
+
+[sub_resource type="NavigationMesh" id="NavigationMesh_o3c4m"]
+vertices = PackedVector3Array(22.5, 10.150001, -10.5, 22.75, 10.150001, -8.5, 24.5, 10.150001, -8.75, 24.5, 10.150001, -24.5, -24.5, 10.150001, -24.5, -24.5, 10.150001, -10.25, -24.25, 0.15, -24.25, -24.25, 0.15, -13, 24.5, 0.15, -13, 24.5, 0.15, -24.25, -25.5, 0.45000002, -10.25, -25.5, 0.45000002, -12, -29.5, 0.45000002, -12, -29.5, 0.45000002, 24, -25.75, 0.45000002, 24, -24.25, 0.45000002, -12, -24.25, 0.45000002, -10.5, 24.5, 0.45000002, -10.75, 24.5, 0.45000002, -12, 9, 0.45000002, 5, 10, 0.45000002, 5, 10.25, 0.45000002, 4, 9, 0.45000002, 0.25, 11.75, 0.45000002, 4, 12.25, 0.45000002, 5, 21.75, 0.45000002, 5, 21.75, 0.45000002, -9.25, 15.75, 0.45000002, -8.75, 8.75, 0.45000002, -5, 6.75, 0.45000002, -4.75, 7, 0.45000002, 0, 14.5, 0.45000002, -8.75, 14.25, 0.45000002, -9.25, 8.75, 0.45000002, -9.25, 16, 0.45000002, -9.25, 23, 0.45000002, 12.5, 24.5, 0.45000002, 12.5, 24.5, 0.45000002, -9.25, 23, 0.45000002, -9.25, 22.75, 10.150001, 12.5, 24.5, 10.150001, 12.75, -20.5, 1.1500001, -5.5, -18.25, 1.1500001, -5.75, -18.25, 1.1500001, -8.25, -23, 1.1500001, -8.25, -23, 1.1500001, 11.75, -20.5, 1.1500001, 11.75, 7.75, 1.1500001, -5.75, 7.75, 1.1500001, -8.25, -19.5, 0.45000002, 2.25, -15, 0.45000002, 2.25, -15, 0.45000002, 0.25, -13.25, 0.45000002, 0, -13.5, 0.45000002, -4.75, -19.5, 0.45000002, -4.75, -14, 1.1500001, 1, -14, 1.1500001, 9, -13.25, 1.1500001, 9, -13, 0.95000005, 8, -13, 0.95000005, 2, -13.25, 1.1500001, 1, 7, 0.95000005, 2, 7, 0.95000005, 8, 7.25, 1.1500001, 9, 8, 1.1500001, 9, 8, 1.1500001, 1, 7.25, 1.1500001, 1, -11.571428, 0.54999995, 8, 5.5714264, 0.54999995, 8, 5.5714264, 0.54999995, 2, -11.571428, 0.54999995, 2, 3.7251205, 0.54999995, 3.484871, 5.260132, 0.54999995, 3.4958591, -13.5, 0.45000002, 14.25, -13.25, 0.45000002, 10, -15, 0.45000002, 9.75, -19.5, 0.45000002, 14.25, 20.25, 0.45000002, 13.75, 21, 0.45000002, 14.5, 21.75, 0.45000002, 13.75, 10.5, 0.45000002, 6.25, 8.75, 0.45000002, 10, 11.75, 0.45000002, 6.25, 18.75, 0.45000002, 14.25, -4.75, 0.45000002, 14.25, -4.5, 0.45000002, 10, -3.25, 0.45000002, 14.25, -2.5, 0.45000002, 15.25, 0.25, 0.45000002, 24.75, 8.75, 0.45000002, 24.75, 8.75, 0.45000002, 23, 0.25, 0.45000002, 22, 8, 0.45000002, 10, 9, 0.45000002, 22.5, 13.75, 0.45000002, 22.5, 13.75, 0.45000002, 21.5, 19.25, 0.45000002, 16.25, 18.5, 0.45000002, 15.25, 23, 0.45000002, 14.5, 24.5, 0.45000002, 34.25, 15, 0.45000002, 22.25, 15, 0.45000002, 34.25, 22.75, 10.150001, 14.25, 14.5, 10.150001, 22.5, 6.5, 8.150001, 34.5, 24.5, 10.150001, 34.5, 14.8076935, 10.150001, 34.5, 14.250904, 10.150001, 33.49903, 6.5, 8.150001, 22.5, -23, 1.75, 12.75, -23, 1.75, 13.75, -20.5, 1.75, 13.75, -20.5, 1.75, 12.75, -24, 0.45000002, 24, -20.75, 0.45000002, 24.25, -20.75, 0.45000002, 14.75, -24, 0.45000002, 14.75, -0.75, 0.95000005, 31.25, -0.75, 0.95000005, 22.5, -3.75, 0.95000005, 15.25, -19.75, 0.95000005, 15.25, -19.75, 0.95000005, 31.25, -24.25, 0.45000002, 25.75, -20.75, 0.45000002, 32, -18.5, 0.45000002, 44.75, -18.5, 0.45000002, 32.25, -29.25, 0.45000002, 25.75, -29.25, 0.45000002, 44.75, 0.25, 0.45000002, 30, 8.75, 0.45000002, 30, 11, 0.45000002, 30.5, 11, 0.45000002, 32.25, 12.75, 0.45000002, 32.25, 12.25, 0.45000002, 30, 12.75, 0.45000002, 24.75, 11, 0.45000002, 24.75, 11.75, 0.45000002, 28.25, 12.25, 0.45000002, 29, 11, 0.45000002, 28.25, 0, 0.45000002, 32.25, 8.75, 0.45000002, 34.25, -2, 0.45000002, 32.25, -2, 0.45000002, 44.75, 10.25, 0.45000002, 44.75, 10.5, 0.45000002, 34.5, 14, 0.45000002, 35.5, 13.75, 0.45000002, 34.5, 15.25, 0.45000002, 44.75, 15.5, 0.45000002, 35.5, 24.5, 0.45000002, 44.75, 24.5, 0.45000002, 35.5)
+polygons = [PackedInt32Array(1, 0, 2), PackedInt32Array(2, 0, 3), PackedInt32Array(5, 4, 0), PackedInt32Array(0, 4, 3), PackedInt32Array(9, 8, 6), PackedInt32Array(6, 8, 7), PackedInt32Array(11, 10, 12), PackedInt32Array(12, 10, 14), PackedInt32Array(12, 14, 13), PackedInt32Array(18, 17, 15), PackedInt32Array(15, 17, 16), PackedInt32Array(20, 19, 21), PackedInt32Array(21, 19, 22), PackedInt32Array(24, 23, 25), PackedInt32Array(25, 23, 28), PackedInt32Array(25, 28, 27), PackedInt32Array(25, 27, 26), PackedInt32Array(21, 22, 23), PackedInt32Array(23, 22, 28), PackedInt32Array(29, 28, 30), PackedInt32Array(30, 28, 22), PackedInt32Array(28, 31, 27), PackedInt32Array(32, 31, 33), PackedInt32Array(33, 31, 28), PackedInt32Array(27, 34, 26), PackedInt32Array(38, 37, 35), PackedInt32Array(35, 37, 36), PackedInt32Array(1, 2, 39), PackedInt32Array(39, 2, 40), PackedInt32Array(42, 41, 43), PackedInt32Array(43, 41, 44), PackedInt32Array(46, 45, 41), PackedInt32Array(41, 45, 44), PackedInt32Array(43, 48, 42), PackedInt32Array(42, 48, 47), PackedInt32Array(51, 50, 49), PackedInt32Array(53, 52, 51), PackedInt32Array(53, 51, 54), PackedInt32Array(54, 51, 49), PackedInt32Array(53, 29, 52), PackedInt32Array(52, 29, 30), PackedInt32Array(60, 59, 55), PackedInt32Array(55, 59, 58), PackedInt32Array(55, 58, 57), PackedInt32Array(55, 57, 56), PackedInt32Array(66, 65, 61), PackedInt32Array(61, 65, 62), PackedInt32Array(62, 65, 63), PackedInt32Array(63, 65, 64), PackedInt32Array(70, 67, 59), PackedInt32Array(59, 67, 58), PackedInt32Array(67, 71, 68), PackedInt32Array(68, 72, 62), PackedInt32Array(62, 72, 61), PackedInt32Array(61, 72, 69), PackedInt32Array(69, 71, 70), PackedInt32Array(70, 71, 67), PackedInt32Array(71, 72, 68), PackedInt32Array(72, 71, 69), PackedInt32Array(74, 73, 75), PackedInt32Array(75, 73, 76), PackedInt32Array(50, 75, 49), PackedInt32Array(49, 75, 76), PackedInt32Array(78, 77, 79), PackedInt32Array(79, 77, 25), PackedInt32Array(20, 80, 19), PackedInt32Array(19, 80, 81), PackedInt32Array(25, 82, 24), PackedInt32Array(81, 80, 82), PackedInt32Array(77, 83, 25), PackedInt32Array(25, 83, 82), PackedInt32Array(82, 83, 81), PackedInt32Array(73, 74, 84), PackedInt32Array(84, 74, 85), PackedInt32Array(86, 84, 85), PackedInt32Array(87, 86, 85), PackedInt32Array(89, 88, 90), PackedInt32Array(90, 88, 91), PackedInt32Array(87, 85, 91), PackedInt32Array(91, 85, 92), PackedInt32Array(91, 92, 90), PackedInt32Array(95, 94, 93), PackedInt32Array(97, 96, 95), PackedInt32Array(97, 95, 83), PackedInt32Array(83, 95, 93), PackedInt32Array(83, 93, 81), PackedInt32Array(81, 93, 92), PackedInt32Array(93, 90, 92), PackedInt32Array(35, 36, 98), PackedInt32Array(98, 36, 99), PackedInt32Array(101, 100, 99), PackedInt32Array(99, 100, 98), PackedInt32Array(102, 39, 40), PackedInt32Array(106, 107, 105), PackedInt32Array(105, 102, 40), PackedInt32Array(102, 105, 103), PackedInt32Array(103, 107, 104), PackedInt32Array(104, 107, 106), PackedInt32Array(107, 103, 105), PackedInt32Array(104, 108, 103), PackedInt32Array(112, 111, 109), PackedInt32Array(109, 111, 110), PackedInt32Array(116, 115, 113), PackedInt32Array(113, 115, 114), PackedInt32Array(118, 117, 119), PackedInt32Array(119, 117, 120), PackedInt32Array(120, 117, 121), PackedInt32Array(113, 114, 122), PackedInt32Array(122, 114, 123), PackedInt32Array(123, 125, 124), PackedInt32Array(122, 123, 126), PackedInt32Array(126, 123, 127), PackedInt32Array(127, 123, 124), PackedInt32Array(88, 89, 128), PackedInt32Array(128, 89, 129), PackedInt32Array(130, 133, 131), PackedInt32Array(131, 133, 132), PackedInt32Array(137, 136, 134), PackedInt32Array(134, 136, 135), PackedInt32Array(133, 137, 132), PackedInt32Array(132, 137, 134), PackedInt32Array(136, 138, 135), PackedInt32Array(128, 129, 139), PackedInt32Array(139, 129, 140), PackedInt32Array(139, 140, 141), PackedInt32Array(141, 140, 142), PackedInt32Array(142, 140, 143), PackedInt32Array(140, 144, 143), PackedInt32Array(125, 141, 124), PackedInt32Array(124, 141, 142), PackedInt32Array(146, 145, 144), PackedInt32Array(144, 145, 143), PackedInt32Array(143, 145, 147), PackedInt32Array(145, 148, 147), PackedInt32Array(150, 149, 148), PackedInt32Array(148, 149, 147)]
+cell_height = 0.1
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_pnao5"]
+size = Vector3(2.1981812, 1, 2.3096924)
+
+[sub_resource type="Shader" id="Shader_fl3qi"]
+resource_local_to_scene = true
+code = "// CRT with Luminance Preservation (no scanlines) by Harrison Allen
+// Public domain
+
+shader_type canvas_item;
+
+render_mode unshaded;
+
+/**
+	The input texture that will have the CRT effect applied to it.
+	This should be supplied by a subviewport texture rendered at a lower res.
+	*/
+uniform sampler2D tex: filter_linear;
+
+
+/**
+	Set the type of mask this CRT will have.
+	Dots: emulates a typical PC CRT monitor.
+	Grille: emulates an aperture grille. Good with higher curve values.
+	Wide Grille: more suitable for 4k monitors.
+	Soft Grille: very close to wide grille, but a little softer.
+	Slot mask: this is the pattern found on most TV sets and arcade cabnets
+	*/
+uniform int mask_type : hint_enum(
+	\"Dots:1\",
+	\"Aperture Grille:2\",
+	\"Wide Grille:3\",
+	\"Wide Soft Grille:4\",
+	\"Slot Mask:5\",
+	\"Null:0\") = 1;
+
+uniform float curve : hint_range(0.0, 0.5) = 0.0;
+
+/**
+	Use to offset color channels from each other.
+	Make sure to increase this at least a little because it's a cool effect
+	*/
+uniform float color_offset : hint_range(-0.5, 0.5) = 0.0;
+
+/**
+	Reduce to preserve phosphor mask details in highlights at the cost of
+	overall brightness. This should usually be kept at or near 1
+	*/
+uniform float mask_brightness : hint_range(0, 1) = 1.0;
+
+/**
+	This should be the input texture's height divided by width.
+	Only important if curve is used.
+	For 16:9, this should be 0.5625.
+	*/
+uniform float aspect : hint_range(0.5, 1.0) = 0.75;
+
+vec2 warp(vec2 uv, float _aspect, float _curve)
+{
+	// Centralize coordinates
+	uv -= 0.5;
+
+	uv.x /= _aspect;
+
+	// Squared distance from the middle
+	float warping = dot(uv, uv) * _curve;
+
+	// Compensate for shrinking
+	warping -= _curve * 0.25;
+
+	// Warp the coordinates
+	uv /= 1.0 - warping;
+
+	uv.x *= _aspect;
+
+	// Decentralize the coordinates
+	uv += 0.5;
+
+	return uv;
+}
+
+vec3 linear_to_srgb(vec3 col)
+{
+	return mix(
+		(pow(col, vec3(1.0 / 2.4)) * 1.055) - 0.055,
+		col * 12.92,
+		lessThan(col, vec3(0.0031318))
+	);
+}
+
+vec3 srgb_to_linear(vec3 col)
+{
+	return mix(
+		pow((col + 0.055) / 1.055, vec3(2.4)),
+		col / 12.92,
+		lessThan(col, vec3(0.04045))
+	);
+}
+
+// Get color from coordinates (returns in linear color)
+vec3 sample(vec2 uv)
+{
+	// Set coordinates to match texture dimensions
+	uv *= vec2(textureSize(tex, 0));
+
+	// Vertical coordinate scanline samples
+	int y = int(uv.y + 0.5) - 1;
+
+	float x = floor(uv.x);
+
+	// Horizontal coordinates for the left and right texture samples
+	float ax = x - 1.0;
+	float dx = x + 1.0;
+
+	// Sample the texture at various points
+	vec3 upper_a = texelFetch(tex, ivec2(int(ax), y), 0).rgb;
+	vec3 upper_b = texelFetch(tex, ivec2(int(x), y), 0).rgb;
+	vec3 upper_c = texelFetch(tex, ivec2(int(dx), y), 0).rgb;
+
+	// Adjust the vertical coordinate for the lower scanline
+	y += 1;
+
+	// Sample the texture at various points
+	vec3 lower_a = texelFetch(tex, ivec2(int(ax), y), 0).rgb;
+	vec3 lower_b = texelFetch(tex, ivec2(int(x), y), 0).rgb;
+	vec3 lower_c = texelFetch(tex, ivec2(int(dx), y), 0).rgb;
+
+	// Convert every sample to linear color
+	upper_a = srgb_to_linear(upper_a);
+	upper_b = srgb_to_linear(upper_b);
+	upper_c = srgb_to_linear(upper_c);
+
+	lower_a = srgb_to_linear(lower_a);
+	lower_b = srgb_to_linear(lower_b);
+	lower_c = srgb_to_linear(lower_c);
+
+	// The x coordinates of electron beam offsets
+	vec3 beam = vec3(uv.x - 0.5);
+	beam.r -= color_offset;
+	beam.b += color_offset;
+
+	// Calculate weights
+	vec3 weight_a = smoothstep(1, 0, (beam - ax));
+	vec3 weight_b = smoothstep(1, 0, abs(beam - x));
+	vec3 weight_c = smoothstep(1, 0, (dx - beam));
+
+	vec3 upper_col = (
+		upper_a * weight_a +
+		upper_b * weight_b +
+		upper_c * weight_c
+	);
+
+	// Mix samples into the lower scanline color
+	vec3 lower_col = (
+		lower_a * weight_a +
+		lower_b * weight_b +
+		lower_c * weight_c
+	);
+
+	// Vertical sawtooth wave used to generate scanlines
+	// Almost the same as fract(uv.y + 0.5), but prevents a rare visual bug
+	float sawtooth = (uv.y + 0.5) - float(y);
+
+	// Smoothstep the sawtooth wave
+	sawtooth = smoothstep(0, 1, sawtooth);
+
+	vec3 combined = mix(upper_col, lower_col, sawtooth);
+
+	return combined;
+}
+
+// Returns the slotmask pattern in RGB plus a fourth value for avg. brightness
+vec4 generate_mask(vec2 fragcoord)
+{
+	switch (mask_type)
+	{
+		case 1: // Dots
+			const vec3 pattern[] = {vec3(1,0,0), vec3(0,1,0), vec3(0,0,1), vec3(0,0,0)};
+
+			ivec2 icoords = ivec2(fragcoord);
+
+			return vec4(pattern[(icoords.y * 2 + icoords.x) % 4], 0.25);
+
+		case 2: // Grille
+			const vec3 pattern[] = {vec3(0,1,0), vec3(1,0,1)};
+
+			return vec4(pattern[int(fragcoord.x) % 2], 0.5);
+
+		case 3: // Wide grille
+			const vec3 pattern[] = {
+				vec3(1,0,0), vec3(0,1,0), vec3(0,0,1), vec3(0,0,0)};
+
+			return vec4(pattern[int(fragcoord.x) % 4], 0.25);
+
+		case 4: // Grille wide soft
+			const vec3 pattern[] = {
+				vec3(1.0,0.125,0.0),
+				vec3(0.125,1.0,0.125),
+				vec3(0.0,0.125,1.0),
+				vec3(0.125,0.0,0.125)};
+
+			return vec4(pattern[int(fragcoord.x) % 4], 0.3125);
+
+		case 5: // Slotmask
+			const vec3 pattern[] = {
+				vec3(1,0,1), vec3(0,1,0), vec3(1,0,1), vec3(0,1,0),
+				vec3(0,0,1), vec3(0,1,0), vec3(1,0,0), vec3(0,0,0),
+				vec3(1,0,1), vec3(0,1,0), vec3(1,0,1), vec3(0,1,0),
+				vec3(1,0,0), vec3(0,0,0), vec3(0,0,1), vec3(0,1,0)
+			};
+
+			ivec2 icoords = ivec2(fragcoord) % 4;
+
+			return vec4(pattern[icoords.y * 4 + icoords.x], 0.375);
+
+		default:
+			return vec4(0.5);
+	}
+}
+
+// Apply phosphor mask/grill
+vec3 apply_mask(vec3 linear_color, vec2 fragcoord)
+{
+	// Get the pattern for the mask. Mask.w equals avg. brightness of the mask
+	vec4 mask = generate_mask(fragcoord);
+
+	// Dim the color if brightness is reduced to preserve mask details
+	linear_color *= mix(mask.w, 1.0, mask_brightness);
+
+	// How bright the color needs to be to maintain 100% brightness while masked
+	vec3 target_color = linear_color / mask.w;
+
+	// Target color limited to the 0 to 1 range.
+	vec3 primary_col = clamp(target_color, 0.0, 1.0);
+
+	// Calculate how bright the secondary subpixels will need to be
+	vec3 secondary = target_color - primary_col;
+	secondary /= 1.0 / mask.w - 1.0;
+
+	primary_col *= mask.rgb;
+
+	// Add the secondary subpixels
+	primary_col += secondary * (1.0 - mask.rgb);
+
+	return primary_col;
+}
+
+void fragment()
+{
+	// Warp UV coordinates
+	vec2 warped_coords = warp(UV, aspect, curve);
+
+	// Sample color
+	vec3 col = sample(warped_coords);
+
+	// Apply phosphor mask
+	col = apply_mask(col, FRAGCOORD.xy);
+
+	// Convert back to srgb
+	col = linear_to_srgb(col);
+
+	COLOR.rgb = col;
+}"
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_fl3qi"]
+viewport_path = NodePath("CanvasLayer/SubViewportContainer/SubViewport")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ds08u"]
+resource_local_to_scene = true
+shader = SubResource("Shader_fl3qi")
+shader_parameter/tex = SubResource("ViewportTexture_fl3qi")
+shader_parameter/mask_type = 1
+shader_parameter/curve = 0.2190000104025
+shader_parameter/color_offset = 0.10400002869000002
+shader_parameter/mask_brightness = 0.8090000384275
+shader_parameter/aspect = 0.7230000105925
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_fl3qi"]
+shader = ExtResource("9_u4vym")
+shader_parameter/limit = 0.3170000150575
+shader_parameter/blur = 0.222000010545
 
 [node name="World" type="Node" unique_id=767724366]
 
+[node name="Camera Manager" type="Node" parent="." unique_id=1972097844 node_paths=PackedStringArray("cam", "environment_cam", "digi_cam")]
+script = ExtResource("1_msnyt")
+cam = NodePath("../CanvasLayer/SubViewportContainer/SubViewport/Camera3D")
+environment_cam = NodePath("../Main")
+digi_cam = NodePath("../CharacterBody3D/Camera Holder/Digicam")
+
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=345294312]
-transform = Transform3D(1, -6.9220684e-14, 2.6534556e-14, 2.304723e-14, 0.6304937, 0.7761944, -7.045857e-14, -0.7761944, 0.6304937, 0, 15.365929, 13.380627)
+transform = Transform3D(-0.20196828, 0.97870314, -0.036729224, -0.9757188, -0.1978243, 0.09401387, 0.084745795, 0.05482525, 0.99489325, 0, 15.365929, 13.380627)
 
-[node name="NavigationRegion3D" type="NavigationRegion3D" parent="." unique_id=1994545092]
-navigation_mesh = SubResource("NavigationMesh_o3c4m")
+[node name="CharacterBody3D" parent="." unique_id=997567769 node_paths=PackedStringArray("cam", "temp_visualizer", "camera_manager") instance=ExtResource("1_rkv7g")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22.102703, 1.07204, 5.094055)
+cam = NodePath("../CanvasLayer/SubViewportContainer/SubViewport/Camera3D")
+temp_visualizer = NodePath("../TempVisualizer")
+camera_manager = NodePath("../Camera Manager")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="NavigationRegion3D" unique_id=1113399160]
-transform = Transform3D(47.267742, 0, 0, 0, 0.099999964, 0, 0, 0, 47.697205, 0, 0, 0)
-mesh = SubResource("BoxMesh_o3c4m")
+[node name="Camera Holder" parent="CharacterBody3D" index="3" unique_id=1292205963 node_paths=PackedStringArray("camera_manager", "main_UI", "CRT_effect")]
+camera_manager = NodePath("../../Camera Manager")
+main_UI = NodePath("../../CanvasLayer/main_UI")
+CRT_effect = NodePath("../../CanvasLayer/CRT")
+digi_move_speed = 0.005
 
-[node name="StaticBody3D" type="StaticBody3D" parent="NavigationRegion3D/MeshInstance3D" unique_id=14878169]
+[node name="Digicam" parent="CharacterBody3D/Camera Holder" index="0" unique_id=1500257124]
+look_at_damping = true
+look_at_damping_value = 0.75
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/MeshInstance3D/StaticBody3D" unique_id=1324720450]
-shape = SubResource("BoxShape3D_o3c4m")
-
-[node name="CharacterBody3D" parent="." unique_id=997567769 node_paths=PackedStringArray("cam") instance=ExtResource("1_rkv7g")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.07204, 1.7926636)
-cam = NodePath("../Camera3D")
-
-[node name="Camera3D" type="Camera3D" parent="." unique_id=1089342661 groups=["Camera"]]
-physics_interpolation_mode = 1
-transform = Transform3D(1, -4.659591e-17, 1.7856672e-17, 1.550966e-17, 0.630354, 0.7763075, -4.7428803e-17, -0.7763075, 0.630354, 0, 15.365929, 13.380627)
-top_level = true
-current = true
-
-[node name="PhantomCameraHost" type="Node" parent="Camera3D" unique_id=386236871]
-process_priority = 300
-process_physics_priority = 300
-script = ExtResource("1_lrdlj")
-metadata/_custom_type_script = "uid://bd046eokvcnu2"
-
-[node name="PhantomCamera3D" type="Node3D" parent="." unique_id=821202811 node_paths=PackedStringArray("look_at_target")]
-transform = Transform3D(1, -4.659591e-17, 1.7856672e-17, 1.550966e-17, 0.630354, 0.7763075, -4.7428803e-17, -0.7763075, 0.630354, 0, 15.365929, 13.380627)
+[node name="Main" type="Node3D" parent="." unique_id=821202811 node_paths=PackedStringArray("look_at_target")]
+transform = Transform3D(0.35158312, 0.4852125, -0.8005984, 8.833408e-05, 0.8551798, 0.51833105, 0.9361567, -0.18230718, 0.3006239, 0, 15.365929, 13.380627)
 script = ExtResource("2_pdcg6")
 look_at_mode = 2
 look_at_target = NodePath("../CharacterBody3D")
 tween_resource = SubResource("Resource_pnao5")
+tween_on_load = false
 look_at_damping = true
 look_at_damping_value = 0.75
 align_transform_with_view = Callable()
 align_rotation_with_view = Callable()
 metadata/_custom_type_script = "uid://csjccrhj5wnx7"
+
+[node name="TempVisualizer" type="Node3D" parent="." unique_id=1731370678]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -85.53169, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="TempVisualizer" unique_id=259426742]
+mesh = SubResource("SphereMesh_rkv7g")
+surface_material_override/0 = SubResource("StandardMaterial3D_pnao5")
+
+[node name="NavigationRegion3D" type="NavigationRegion3D" parent="." unique_id=1994545092]
+navigation_mesh = SubResource("NavigationMesh_o3c4m")
+
+[node name="Bog Concept" parent="NavigationRegion3D" unique_id=2004594051 instance=ExtResource("5_pnao5")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="NavigationRegion3D/Bog Concept/Patio" parent_id_path=PackedInt32Array(2004594051, 650449763) index="0" unique_id=149619076]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/Bog Concept/Patio/StaticBody3D" unique_id=1260757244]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.09677124, 0, 0.6548462)
+shape = SubResource("BoxShape3D_pnao5")
+
+[node name="Standin CHAR" parent="NavigationRegion3D/Bog Concept" index="2" unique_id=1140270219]
+visible = false
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=984685931]
+
+[node name="CRT" type="ColorRect" parent="CanvasLayer" unique_id=633901733 node_paths=PackedStringArray("subviewport_node")]
+z_index = 1
+material = SubResource("ShaderMaterial_ds08u")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("9_fl3qi")
+subviewport_node = NodePath("../SubViewportContainer/SubViewport")
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="CanvasLayer" unique_id=766696180]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="SubViewport" type="SubViewport" parent="CanvasLayer/SubViewportContainer" unique_id=1276451678]
+handle_input_locally = false
+size = Vector2i(1152, 648)
+render_target_update_mode = 4
+
+[node name="Camera3D" type="Camera3D" parent="CanvasLayer/SubViewportContainer/SubViewport" unique_id=1089342661 groups=["Camera"]]
+physics_interpolation_mode = 1
+transform = Transform3D(0.35158312, 0.4852125, -0.8005984, 8.833408e-05, 0.8551798, 0.51833105, 0.9361567, -0.18230718, 0.3006239, 0, 15.365929, 13.380627)
+top_level = true
+projection = 1
+current = true
+size = 25.0
+
+[node name="PhantomCameraHost" type="Node" parent="CanvasLayer/SubViewportContainer/SubViewport/Camera3D" unique_id=386236871]
+process_priority = 300
+process_physics_priority = 300
+script = ExtResource("1_lrdlj")
+metadata/_custom_type_script = "uid://bd046eokvcnu2"
+
+[node name="main_UI" type="Control" parent="CanvasLayer" unique_id=1733962961]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+
+[node name="Digicam" type="Sprite2D" parent="CanvasLayer/main_UI" unique_id=110717533]
+position = Vector2(1183.9999, 332)
+rotation = -3.6808994
+scale = Vector2(0.57, -0.57)
+texture = ExtResource("6_sq1oe")
+
+[node name="Bracelet" type="Sprite2D" parent="CanvasLayer/main_UI" unique_id=207955494]
+position = Vector2(1147.0001, 10.999996)
+rotation = 1.4067354
+scale = Vector2(0.75, 0.75)
+texture = ExtResource("7_ukdgm")
+
+[node name="Tiltshift" type="TextureRect" parent="CanvasLayer/main_UI" unique_id=1550171388]
+material = SubResource("ShaderMaterial_fl3qi")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[editable path="CharacterBody3D"]
+[editable path="NavigationRegion3D/Bog Concept"]

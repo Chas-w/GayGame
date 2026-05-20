@@ -36,6 +36,8 @@ folder_colors={
 "res://MAIN/Scenes/": "teal",
 "res://MAIN/Scripts/": "pink",
 "res://Prototyping/CHASE/": "purple",
+"res://Prototyping/Imported Mesh/": "gray",
+"res://Prototyping/Imported Textures/": "gray",
 "res://Scenes/Entities/": "green"
 }
 
