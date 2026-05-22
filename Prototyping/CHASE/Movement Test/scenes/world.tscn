@@ -1,15 +1,15 @@
 [gd_scene format=3 uid="uid://nfoumhjrr1px"]
 
 [ext_resource type="Script" uid="uid://bd046eokvcnu2" path="res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" id="1_lrdlj"]
-[ext_resource type="Script" uid="uid://itedotrt8tt4" path="res://Prototyping/CHASE/Movement Test/camera_manager.gd" id="1_msnyt"]
-[ext_resource type="PackedScene" uid="uid://bknhaf3ev31eg" path="res://Prototyping/CHASE/Movement Test/character_body_3d.tscn" id="1_rkv7g"]
+[ext_resource type="Script" uid="uid://itedotrt8tt4" path="res://Prototyping/CHASE/Movement Test/scripts/camera_manager.gd" id="1_msnyt"]
+[ext_resource type="PackedScene" uid="uid://bknhaf3ev31eg" path="res://Prototyping/CHASE/Movement Test/scenes/character_body_3d.tscn" id="1_rkv7g"]
 [ext_resource type="Script" uid="uid://csjccrhj5wnx7" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_3d.gd" id="2_pdcg6"]
 [ext_resource type="Script" uid="uid://8umksf8e80fw" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="3_rkv7g"]
 [ext_resource type="PackedScene" uid="uid://d2qbr3msf53bf" path="res://Prototyping/Imported Mesh/Bog Concept.glb" id="5_pnao5"]
 [ext_resource type="Texture2D" uid="uid://4g3itx3xcb17" path="res://Prototyping/Imported Textures/Digicam.png" id="6_sq1oe"]
 [ext_resource type="Texture2D" uid="uid://bge7y74fwiewv" path="res://Prototyping/Imported Textures/Bracelet.png" id="7_ukdgm"]
-[ext_resource type="Script" uid="uid://dpp1y275pe6fk" path="res://Prototyping/CHASE/Movement Test/crt_controller.gd" id="9_fl3qi"]
-[ext_resource type="Shader" uid="uid://byc54teku3wr8" path="res://Prototyping/CHASE/Movement Test/tilt_shift_shader.gdshader" id="9_u4vym"]
+[ext_resource type="Script" uid="uid://dpp1y275pe6fk" path="res://Prototyping/CHASE/Movement Test/scripts/crt_controller.gd" id="9_fl3qi"]
+[ext_resource type="Shader" uid="uid://byc54teku3wr8" path="res://Prototyping/CHASE/Movement Test/shaders/tilt_shift_shader.gdshader" id="9_u4vym"]
 
 [sub_resource type="Resource" id="Resource_pnao5"]
 script = ExtResource("3_rkv7g")
@@ -334,6 +334,8 @@ digi_move_speed = 0.005
 [node name="Digicam" parent="CharacterBody3D/Camera Holder" index="0" unique_id=1500257124]
 look_at_damping = true
 look_at_damping_value = 0.75
+align_transform_with_view = Callable()
+align_rotation_with_view = Callable()
 
 [node name="Main" type="Node3D" parent="." unique_id=821202811 node_paths=PackedStringArray("look_at_target")]
 transform = Transform3D(0.35158312, 0.4852125, -0.8005984, 8.833408e-05, 0.8551798, 0.51833105, 0.9361567, -0.18230718, 0.3006239, 0, 15.365929, 13.380627)
@@ -361,13 +363,13 @@ navigation_mesh = SubResource("NavigationMesh_o3c4m")
 [node name="Bog Concept" parent="NavigationRegion3D" unique_id=2004594051 instance=ExtResource("5_pnao5")]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
 
-[node name="StaticBody3D" type="StaticBody3D" parent="NavigationRegion3D/Bog Concept/Patio" parent_id_path=PackedInt32Array(2004594051, 650449763) index="0" unique_id=149619076]
+[node name="StaticBody3D" type="StaticBody3D" parent="NavigationRegion3D/Bog Concept/Patio" parent_id_path=PackedInt32Array(2004594051, 968067502) index="0" unique_id=149619076]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/Bog Concept/Patio/StaticBody3D" unique_id=1260757244]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.09677124, 0, 0.6548462)
 shape = SubResource("BoxShape3D_pnao5")
 
-[node name="Standin CHAR" parent="NavigationRegion3D/Bog Concept" index="2" unique_id=1140270219]
+[node name="Standin CHAR" parent="NavigationRegion3D/Bog Concept" index="2" unique_id=472877208]
 visible = false
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=984685931]

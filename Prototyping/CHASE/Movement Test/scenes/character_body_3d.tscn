@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://bknhaf3ev31eg"]
 
-[ext_resource type="Script" uid="uid://dk7lsq0wnbva4" path="res://Prototyping/CHASE/Movement Test/click_to_move.gd" id="1_kbjej"]
-[ext_resource type="Script" uid="uid://bnosnv1fo6p0b" path="res://Prototyping/CHASE/Movement Test/digicam_behavior.gd" id="2_5kjr5"]
+[ext_resource type="Script" uid="uid://dk7lsq0wnbva4" path="res://Prototyping/CHASE/Movement Test/scripts/click_to_move.gd" id="1_kbjej"]
+[ext_resource type="Script" uid="uid://bnosnv1fo6p0b" path="res://Prototyping/CHASE/Movement Test/scripts/digicam_behavior.gd" id="2_5kjr5"]
 [ext_resource type="Script" uid="uid://csjccrhj5wnx7" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_3d.gd" id="2_i11nq"]
 [ext_resource type="Script" uid="uid://8umksf8e80fw" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="3_5kjr5"]
 
@@ -37,8 +37,6 @@ script = ExtResource("2_i11nq")
 look_at_mode = 1
 look_at_target = NodePath("../CameraRotationTarget")
 tween_resource = SubResource("Resource_5kjr5")
-align_transform_with_view = Callable()
-align_rotation_with_view = Callable()
 metadata/_custom_type_script = "uid://csjccrhj5wnx7"
 
 [node name="CameraRotationTarget" type="Node3D" parent="Camera Holder" unique_id=1645696846]
