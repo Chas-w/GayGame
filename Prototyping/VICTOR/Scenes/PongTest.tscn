@@ -33,6 +33,10 @@ albedo_color = Color(0.40960324, 0.40960327, 0.40960324, 1)
 [sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_7vbk8"]
 data = PackedVector3Array(1, 0, 1, -1, 0, 1, 1, 0, -1, -1, 0, 1, -1, 0, -1, 1, 0, -1)
 
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_fhfpf"]
+friction = 0.22
+bounce = 0.82
+
 [sub_resource type="SphereMesh" id="SphereMesh_7vbk8"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_fhfpf"]
@@ -145,16 +149,17 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.46851075, 1.2596939)
 
 [node name="PongBall" type="RigidBody3D" parent="." unique_id=620237369]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.46851075, 1.2596939)
+physics_material_override = SubResource("PhysicsMaterial_fhfpf")
 can_sleep = false
 freeze = true
 freeze_mode = 1
 
 [node name="BallMesh" type="MeshInstance3D" parent="PongBall" unique_id=649251215]
-transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 0, 0)
+transform = Transform3D(0.15, 0, 0, 0, 0.15, 0, 0, 0, 0.15, 0, 0, 0)
 mesh = SubResource("SphereMesh_7vbk8")
 
 [node name="BallCollider" type="CollisionShape3D" parent="PongBall" unique_id=801798685]
-transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 0, 0)
+transform = Transform3D(0.15, 0, 0, 0, 0.15, 0, 0, 0, 0.15, 0, 0, 0)
 shape = SubResource("SphereShape3D_fhfpf")
 
 [node name="Solo Cup" type="MeshInstance3D" parent="." unique_id=1207874496]
