@@ -15,6 +15,11 @@ func _process(delta):
 	else: 
 		main_UI.visible = true #toggle UI on
 		CRT_effect.visible = false #toggle CRT off
+		#region Reset Rotation
+		rotation_target.rotation.x = 0
+		rotation_target.rotation.y = 0
+		rotation_target.rotation.z = 0
+		#endregion
 		_release_cam_control() #take away mouse control
 
 func _digi_mouse_control():

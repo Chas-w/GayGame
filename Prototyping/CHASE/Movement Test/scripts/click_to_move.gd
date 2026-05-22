@@ -2,6 +2,7 @@ extends CharacterBody3D
 #https://youtu.be/KT06pv06Q1U?si=Oyfxr4sBKFvDll4p
 @export var nav_agent : NavigationAgent3D
 @export var cam : Camera3D
+@export var rotation_speed : float
 @export var move_speed : float
 @export var temp_visualizer : Node3D #to be used in dev time to check where the player is clicking
 @export var camera_manager : Node
@@ -21,6 +22,13 @@ func _process(delta):
 func _move_to_target(delta,speed): #setting point and click movement parameters
 	var target_position = nav_agent.get_next_path_position()
 	var direction = global_position.direction_to(target_position)
+	#region Rotate To Look At Target
+	var target2D : Vector2 = Vector2(target_position.x, target_position.z)
+	var player2D : Vector2 = Vector2(global_position.x, global_position.z)
+	var face_direction = -(target2D - player2D)
+	rotation.y = lerp_angle(rotation.y, atan2(face_direction.x, face_direction.y), delta * rotation_speed)
+	
+#endregion
 	velocity = direction * speed
 	move_and_slide()
 
