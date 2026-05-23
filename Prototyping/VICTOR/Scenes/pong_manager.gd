@@ -11,9 +11,14 @@ extends Node3D
 @export var enemy_cups : Array[MeshInstance3D]
 @export var enemy_moves : Array[bool]
 
+@export_group("UI References")
+@export var canvas : Control
+@export var player_move_display : Label
+@export var enemy_move_display : Label
+@export var state_display : Label
+
 @export_group("References")
 @export var ball_start : Node3D
-@export var canvas : Control
 @export var table : Node3D
 
 #State Management
@@ -50,22 +55,23 @@ func _process(delta: float) -> void:
 			if wait_timer > 5:
 				wait_timer = 0
 				current_player_move = current_player_move + 1
+				player_move_display.text = "Player Move: " + str(current_player_move)
 				setup_state(STATE.Enemy)
 		STATE.Enemy:
 			wait_timer = wait_timer + delta
 			if wait_timer > 2:
 				wait_timer = 0
 				current_enemy_move = current_enemy_move + 1
+				enemy_move_display.text = "Enemy Move: " + str(current_enemy_move)
 				setup_state(STATE.Player)
 			pass
 		STATE.End:
+			#Rest for debugging
+			if Input.is_action_pressed("rightclick"):
+				pong_ball.freeze = true
+				pong_ball.position = ball_start.position
+				pong_ball.rotation = ball_start.rotation
 			pass
-
-	#Rest for debugging
-	if Input.is_action_pressed("rightclick"):
-		pong_ball.freeze = true
-		pong_ball.position = ball_start.position
-		pong_ball.rotation = ball_start.rotation
 
 
 func _physics_process(delta: float) -> void:
@@ -104,16 +110,15 @@ func _physics_process(delta: float) -> void:
 func setup_state(next_state: STATE) :
 	match next_state:
 		STATE.None:
-			pass
+			state_display.text = "Current State: None"
 		STATE.Player:
 			pong_ball.freeze = true
 			pong_ball.position = ball_start.position
 			pong_ball.rotation = ball_start.rotation
 			
 			ready_to_throw = false
+			state_display.text = "Current State: Player"
 		STATE.Enemy:
-			print(current_enemy_move)
-			print(enemy_moves.size())
 			if current_enemy_move < enemy_moves.size() - 1:
 				if enemy_moves[current_enemy_move] and !enemy_cups.is_empty():
 					destroy_random_enemy()
@@ -121,8 +126,9 @@ func setup_state(next_state: STATE) :
 					print("enemy missed")
 			else:
 				print("invalid enemy move")
-			
+			state_display.text = "Current State: Enemy"
 		STATE.End:
+			state_display.text = "Current State: End"
 			pass
 	
 	current_state = next_state
