@@ -91,7 +91,7 @@ default_throw_force = 3.0
 default_up_force = 40.0
 player_cups = [NodePath("Solo Cups/Solo Cup"), NodePath("Solo Cups/Solo Cup2"), NodePath("Solo Cups/Solo Cup3")]
 enemy_cups = [NodePath("Solo Cups2/Solo Cup"), NodePath("Solo Cups2/Solo Cup2"), NodePath("Solo Cups2/Solo Cup3")]
-enemy_moves = Array[bool]([false, false, false, false, false])
+enemy_moves = Array[bool]([false, true, false, true, false, false, true, false, true])
 ball_start = NodePath("BallStart")
 canvas = NodePath("Canvas")
 table = NodePath("Table")
@@ -167,7 +167,7 @@ shape = SubResource("ConcavePolygonShape3D_7vbk8")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.46851075, 1.2596939)
 
 [node name="PongBall" type="RigidBody3D" parent="." unique_id=620237369]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.46851075, 1.2596939)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.8998804, 0.46851075, 1.2596939)
 physics_material_override = SubResource("PhysicsMaterial_fhfpf")
 can_sleep = false
 freeze = true
