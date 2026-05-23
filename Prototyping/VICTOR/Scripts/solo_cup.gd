@@ -1,5 +1,9 @@
 extends MeshInstance3D
 
+var is_complete : bool
+var collider : CollisionShape3D
+var mesh_var : MeshInstance3D
+var manager : Node3D
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -10,5 +14,5 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	pass
 
-func _on_area_3d_area_entered(area: Area3D) -> void:
-	print("hi!")
+func _on_ball_entered(ball: Node3D) -> void:
+	is_complete = true
