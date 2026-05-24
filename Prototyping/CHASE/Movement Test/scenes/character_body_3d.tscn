@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://bknhaf3ev31eg"]
 
-[ext_resource type="Script" uid="uid://dk7lsq0wnbva4" path="res://Prototyping/CHASE/Movement Test/scripts/click_to_move.gd" id="1_kbjej"]
+[ext_resource type="Script" uid="uid://dk7lsq0wnbva4" path="res://Prototyping/CHASE/Movement Test/scripts/player_behavior.gd" id="1_kbjej"]
 [ext_resource type="Script" uid="uid://bnosnv1fo6p0b" path="res://Prototyping/CHASE/Movement Test/scripts/digicam_behavior.gd" id="2_5kjr5"]
 [ext_resource type="Script" uid="uid://csjccrhj5wnx7" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_3d.gd" id="2_i11nq"]
 [ext_resource type="Script" uid="uid://8umksf8e80fw" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="3_5kjr5"]
@@ -14,11 +14,14 @@ script = ExtResource("3_5kjr5")
 
 [sub_resource type="BoxMesh" id="BoxMesh_u0vh2"]
 
-[node name="CharacterBody3D" type="CharacterBody3D" unique_id=997567769 node_paths=PackedStringArray("nav_agent") groups=["Camera"]]
+[node name="CharacterBody3D" type="CharacterBody3D" unique_id=997567769 node_paths=PackedStringArray("nav_agent", "fp_cam", "rotation_target", "digi_manager") groups=["Camera"]]
 script = ExtResource("1_kbjej")
 nav_agent = NodePath("NavigationAgent3D")
 rotation_speed = 3.0
 move_speed = 10.0
+fp_cam = NodePath("Digi Manager/FP Cam")
+rotation_target = NodePath("Digi Manager/CameraRotationTarget")
+digi_manager = NodePath("Digi Manager")
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="." unique_id=778715464]
 target_desired_distance = 0.5
@@ -29,22 +32,23 @@ mesh = SubResource("CapsuleMesh_o3c4m")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=2050022507]
 shape = SubResource("CapsuleShape3D_lrdlj")
 
-[node name="Camera Holder" type="Node3D" parent="." unique_id=1292205963 node_paths=PackedStringArray("rotation_target")]
+[node name="Digi Manager" type="Node3D" parent="." unique_id=1292205963]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, -1)
 script = ExtResource("2_5kjr5")
-rotation_target = NodePath("CameraRotationTarget")
 
-[node name="Digicam" type="Node3D" parent="Camera Holder" unique_id=1500257124 node_paths=PackedStringArray("look_at_target")]
+[node name="FP Cam" type="Node3D" parent="Digi Manager" unique_id=1500257124 node_paths=PackedStringArray("look_at_target")]
 transform = Transform3D(0.99999994, 0, 0, 0, 0.99999994, 0, 0, 0, 1, 0, 0, 0)
 script = ExtResource("2_i11nq")
 look_at_mode = 1
 look_at_target = NodePath("../CameraRotationTarget")
 tween_resource = SubResource("Resource_5kjr5")
+align_transform_with_view = Callable()
+align_rotation_with_view = Callable()
 metadata/_custom_type_script = "uid://csjccrhj5wnx7"
 
-[node name="CameraRotationTarget" type="Node3D" parent="Camera Holder" unique_id=1645696846]
+[node name="CameraRotationTarget" type="Node3D" parent="Digi Manager" unique_id=1645696846]
 transform = Transform3D(0.99999994, 0, 0, 0, 0.99999994, 0, 0, 0, 1, 0, 0, 0)
 
-[node name="Forward" type="MeshInstance3D" parent="Camera Holder" unique_id=538809345]
+[node name="Forward" type="MeshInstance3D" parent="Digi Manager" unique_id=538809345]
 transform = Transform3D(0.42181194, 0, 0, 0, 0.15900075, 0, 0, 0, 0.70931816, 0, -0.2106731, 0.68605226)
 mesh = SubResource("BoxMesh_u0vh2")
