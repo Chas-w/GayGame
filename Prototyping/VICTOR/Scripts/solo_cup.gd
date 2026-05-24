@@ -15,4 +15,10 @@ func _process(delta: float) -> void:
 	pass
 
 func _on_ball_entered(ball: Node3D) -> void:
-	is_complete = true
+	if !is_complete and ball.name == "PongBall":
+		is_complete = true
+		if manager != null:
+			manager.player_cups.erase(self)
+		else:
+			print("MANAGER IS NULL")
+		queue_free()

@@ -2,6 +2,14 @@
 
 [ext_resource type="Script" uid="uid://c1txq7vawfcfu" path="res://Prototyping/VICTOR/Scenes/pong_manager.gd" id="1_fhfpf"]
 [ext_resource type="PackedScene" uid="uid://ckr6adiwpqj0i" path="res://Prototyping/VICTOR/Scenes/solo_cup.tscn" id="2_hl323"]
+[ext_resource type="Texture2D" uid="uid://bqk3a55a5ubqx" path="res://Prototyping/OLD/Sprites/Test Limbs/test_torso.png" id="3_nf5nu"]
+[ext_resource type="Texture2D" uid="uid://cpj47rrh4klq0" path="res://Prototyping/OLD/Sprites/Test Limbs/test_left_hand.png" id="4_rhxsv"]
+[ext_resource type="Texture2D" uid="uid://dd1xr8gkcp17u" path="res://Prototyping/OLD/Sprites/Test Limbs/test_left_lower_arm.png" id="5_l8t8l"]
+[ext_resource type="Texture2D" uid="uid://dom3ekf4c4827" path="res://Prototyping/OLD/Sprites/Test Limbs/test_left_upper_arm.png" id="6_4jtvf"]
+[ext_resource type="Texture2D" uid="uid://duk2cin3phjft" path="res://Prototyping/OLD/Sprites/Test Limbs/test_right_hand.png" id="7_b14a7"]
+[ext_resource type="Texture2D" uid="uid://c2yoctxl8xjo6" path="res://Prototyping/OLD/Sprites/Test Limbs/test_right_lower_arm.png" id="8_b14a7"]
+[ext_resource type="Texture2D" uid="uid://bcc5b782y6v7g" path="res://Prototyping/OLD/Sprites/Test Limbs/test_right_upper_arm.png" id="9_ti3ej"]
+[ext_resource type="Texture2D" uid="uid://m66qde282cjn" path="res://Prototyping/OLD/Sprites/Baby Karl Head.png" id="10_yel1t"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_7vbk8"]
 sky_top_color = Color(0.6128374, 0.17575681, 0.8644528, 1)
@@ -246,3 +254,38 @@ transform = Transform3D(2, 0, 0, 0, -8.742278e-08, 2, 0, -2, -8.742278e-08, 0.11
 
 [node name="Solo Cup3" parent="Solo Cups" unique_id=1587366971 instance=ExtResource("2_hl323")]
 transform = Transform3D(2, 0, 0, 0, -8.742278e-08, 2, 0, -2, -8.742278e-08, -0.19978493, 0.080347724, -0.3137136)
+
+[node name="Node3D" type="Node3D" parent="." unique_id=2120233699]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1541633, 0)
+
+[node name="Sprite3D" type="Sprite3D" parent="Node3D" unique_id=102301110]
+transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 0.43966925, -2.081293)
+texture = ExtResource("3_nf5nu")
+
+[node name="Sprite3D2" type="Sprite3D" parent="Node3D" unique_id=1822658654]
+transform = Transform3D(-0.19974616, 0.010073291, 0, -0.010073291, -0.19974616, 0, 0, 0, 0.2, 0.9977193, 1.2197319, -1.9084184)
+texture = ExtResource("4_rhxsv")
+
+[node name="Sprite3D3" type="Sprite3D" parent="Node3D" unique_id=2746748]
+transform = Transform3D(-0.17320508, -0.10000002, 0, 0.10000002, -0.17320508, 0, 0, 0, 0.2, 0.99106777, 0.4794796, -1.9722116)
+texture = ExtResource("5_l8t8l")
+
+[node name="Sprite3D4" type="Sprite3D" parent="Node3D" unique_id=22034444]
+transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0.7822604, 0.6001531, -2.081293)
+texture = ExtResource("6_4jtvf")
+
+[node name="Sprite3D5" type="Sprite3D" parent="Node3D" unique_id=1399589383]
+transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, -1.0796577, -1.2010348, -1.7396927)
+texture = ExtResource("7_b14a7")
+
+[node name="Sprite3D6" type="Sprite3D" parent="Node3D" unique_id=266115026]
+transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, -1.0125898, -0.37723538, -1.874006)
+texture = ExtResource("8_b14a7")
+
+[node name="Sprite3D7" type="Sprite3D" parent="Node3D" unique_id=115908748]
+transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, -0.79318964, 0.6371143, -2.0321865)
+texture = ExtResource("9_ti3ej")
+
+[node name="Sprite3D8" type="Sprite3D" parent="Node3D" unique_id=635077965]
+transform = Transform3D(0.42, 0, 0, 0, 0.42, 0, 0, 0, 0.42, 0.08170986, 1.8322694, -1.8690991)
+texture = ExtResource("10_yel1t")

@@ -37,6 +37,11 @@ var start_point : Vector2
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	#Set Manager in Player Cups
+	for i in range(player_cups.size()):
+		player_cups[i].manager = self
+	
+	#SetUp Game
 	setup_state(STATE.Player)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -132,6 +137,9 @@ func setup_state(next_state: STATE) :
 			pass
 	
 	current_state = next_state
+
+func destroy_player_cup(player_cup: Node3D) -> void:
+	pass
 
 func destroy_random_enemy() -> void:
 	if enemy_cups.is_empty():
