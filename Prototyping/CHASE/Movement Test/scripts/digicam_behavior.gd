@@ -1,14 +1,14 @@
 extends Node3D
 
 var pic_count = 1 #keeps track of how many photos taken
-
-@export var camera_manager : Node
 @export var main_UI : Control
 @export var CRT_effect : ColorRect
 @export var digi_move_speed : float
 @export var rotation_target : Node3D
 
 var in_digi_view : bool
+var crt_ready : bool
+var toggle_digi : bool
 func _ready():
 	#region Setup Photo Files
 	var dir = DirAccess.open("res://") #access directory
@@ -26,10 +26,11 @@ func _take_pic():
 	pic_count += 1 #increase pic count for future naming conventions
 
 func _process(delta):
+
 	#region Digi Setup / Breakdown
-	if (camera_manager.toggle_digi): #if the player has triggered the digicam
+	if (toggle_digi): #if the player has triggered the digicam
 		main_UI.visible = false #remove the game UI
-		if (camera_manager.crt_ready): #after the camera transition
+		if (crt_ready): #after the camera transition
 			CRT_effect.visible = true #use CRT effect
 			_digi_mouse_control() #give camera mouse control
 	else: 
@@ -42,6 +43,7 @@ func _process(delta):
 func _digi_mouse_control():
 	in_digi_view = true
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+
 func _release_cam_control():
 	in_digi_view = false
 	#region Reset Rotation

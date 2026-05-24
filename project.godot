@@ -40,6 +40,8 @@ folder_colors={
 "res://Prototyping/CHASE/": "purple",
 "res://Prototyping/Imported Mesh/": "gray",
 "res://Prototyping/Imported Textures/": "gray",
+"res://Prototyping/OLD/": "red",
+"res://Prototyping/VICTOR/": "purple",
 "res://Scenes/Entities/": "green"
 }
 
