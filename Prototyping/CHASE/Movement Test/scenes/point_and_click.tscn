@@ -317,11 +317,13 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22.102703, 1.07204, 5.094055)
 temp_visualizer = NodePath("../TempVisualizer")
 cam = NodePath("../CanvasLayer/SubViewportContainer/SubViewport/Camera3D")
 environment_cam = NodePath("../Main")
+fp_rotation_speed = 0.005
 
-[node name="Digi Manager" parent="CharacterBody3D" index="3" unique_id=1292205963 node_paths=PackedStringArray("main_UI", "CRT_effect")]
+[node name="Digi Manager" parent="CharacterBody3D" index="3" unique_id=1292205963 node_paths=PackedStringArray("main_UI", "CRT_effect", "rotation_target")]
 main_UI = NodePath("../../CanvasLayer/main_UI")
 CRT_effect = NodePath("../../CanvasLayer/CRT")
 digi_move_speed = 0.005
+rotation_target = NodePath("CameraRotationTarget")
 
 [node name="FP Cam" parent="CharacterBody3D/Digi Manager" index="0" unique_id=1500257124]
 look_at_damping = true
