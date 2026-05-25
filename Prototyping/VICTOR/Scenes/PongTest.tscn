@@ -201,20 +201,41 @@ offset_bottom = 634.0
 label_settings = SubResource("LabelSettings_42oot")
 horizontal_alignment = 1
 
-[node name="OpponentView" type="SubViewportContainer" parent="Canvas" unique_id=2005409168]
+[node name="OpponentTurn" type="Control" parent="Canvas" unique_id=672312091]
 visible = false
-layout_mode = 0
-offset_left = 577.0
-offset_right = 1153.0
-offset_bottom = 648.0
+anchors_preset = 0
+offset_left = 576.0
+offset_top = 337.0
+offset_right = 616.0
+offset_bottom = 377.0
 
-[node name="SubViewport" type="SubViewport" parent="Canvas/OpponentView" unique_id=2048362368]
+[node name="OpponentView" type="SubViewportContainer" parent="Canvas/OpponentTurn" unique_id=2005409168]
+layout_mode = 0
+offset_top = -337.0
+offset_right = 576.0
+offset_bottom = 311.0
+
+[node name="SubViewport" type="SubViewport" parent="Canvas/OpponentTurn/OpponentView" unique_id=2048362368]
 handle_input_locally = false
 size = Vector2i(576, 648)
 render_target_update_mode = 0
 
-[node name="Camera3D" type="Camera3D" parent="Canvas/OpponentView/SubViewport" unique_id=482111153]
+[node name="Camera3D" type="Camera3D" parent="Canvas/OpponentTurn/OpponentView/SubViewport" unique_id=482111153]
 transform = Transform3D(1, 1.0518832e-07, -2.136755e-07, -1.18633956e-07, 0.99795425, -0.063932635, 2.065134e-07, 0.063932635, 0.99795425, 0.057753444, 1.42675, 0.27005565)
+
+[node name="OpponentCupView" type="SubViewportContainer" parent="Canvas/OpponentTurn" unique_id=15862890]
+layout_mode = 0
+offset_left = -576.0
+offset_top = -337.0
+offset_bottom = 311.0
+
+[node name="SubViewport" type="SubViewport" parent="Canvas/OpponentTurn/OpponentCupView" unique_id=1189730396]
+handle_input_locally = false
+size = Vector2i(576, 648)
+render_target_update_mode = 0
+
+[node name="Camera3D" type="Camera3D" parent="Canvas/OpponentTurn/OpponentCupView/SubViewport" unique_id=475194335]
+transform = Transform3D(5.960465e-08, 0.063932635, 0.99795425, -1.2390231e-07, 0.99795425, -0.063932635, -1, -1.1983815e-07, 6.7404116e-08, 1.1167842, 0.80012596, 1.9697828)
 
 [node name="Camera3D" type="Camera3D" parent="." unique_id=418442251]
 transform = Transform3D(1, 0, 0, 0, 0.85321033, 0.5215671, 0, -0.5215671, 0.85321033, 0, 1.4952997, 1.788176)
@@ -281,7 +302,7 @@ mesh = SubResource("SphereMesh_0ulbx")
 transform = Transform3D(-1.0000001, 0, 0, 0, 1, 0, 0, 0, -1.0000001, 0, -0.04978323, 2.0270152)
 
 [node name="Solo Cup" type="MeshInstance3D" parent="Solo Cups2" unique_id=1674616431]
-transform = Transform3D(2, 0, 0, 0, -8.742278e-08, 2, 0, -2, -8.742278e-08, -0.17286302, 0.10966532, -0.08661175)
+transform = Transform3D(2.5, 0, 0, 0, -1.09278474e-07, 2.5, 0, -2.5, -1.09278474e-07, -0.17286302, 0.10966532, -0.08661175)
 mesh = SubResource("ArrayMesh_nf5nu")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Solo Cups2/Solo Cup" unique_id=1727522644]
@@ -290,7 +311,7 @@ mesh = SubResource("ArrayMesh_nf5nu")
 shape = SubResource("ConcavePolygonShape3D_hl323")
 
 [node name="Solo Cup2" type="MeshInstance3D" parent="Solo Cups2" unique_id=582167987]
-transform = Transform3D(2, 0, 0, 0, -8.742278e-08, 2, 0, -2, -8.742278e-08, 0.14220288, 0.10966532, -0.081830025)
+transform = Transform3D(2.5, 0, 0, 0, -1.09278474e-07, 2.5, 0, -2.5, -1.09278474e-07, 0.14220288, 0.10966532, -0.081830025)
 mesh = SubResource("ArrayMesh_nf5nu")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Solo Cups2/Solo Cup2" unique_id=725078898]
@@ -299,7 +320,7 @@ mesh = SubResource("ArrayMesh_nf5nu")
 shape = SubResource("ConcavePolygonShape3D_hl323")
 
 [node name="Solo Cup3" type="MeshInstance3D" parent="Solo Cups2" unique_id=2112692265]
-transform = Transform3D(2, 0, 0, 0, -8.742278e-08, 2, 0, -2, -8.742278e-08, -0.00597921, 0.10966532, 0.2235763)
+transform = Transform3D(2.5, 0, 0, 0, -1.09278474e-07, 2.5, 0, -2.5, -1.09278474e-07, -0.00597921, 0.10966532, 0.2235763)
 mesh = SubResource("ArrayMesh_nf5nu")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Solo Cups2/Solo Cup3" unique_id=1744334414]
