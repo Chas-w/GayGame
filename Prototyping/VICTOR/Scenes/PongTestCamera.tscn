@@ -292,34 +292,65 @@ transform = Transform3D(2, 0, 0, 0, -8.742278e-08, 2, 0, -2, -8.742278e-08, -0.1
 [node name="Opponent" type="Node3D" parent="." unique_id=2120233699]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1541633, 0)
 
-[node name="Sprite3D" type="Sprite3D" parent="Opponent" unique_id=102301110]
+[node name="Torso" type="Sprite3D" parent="Opponent" unique_id=102301110]
 transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 0.43966925, -2.081293)
 texture = ExtResource("3_0ulbx")
 
-[node name="Sprite3D2" type="Sprite3D" parent="Opponent" unique_id=1822658654]
-transform = Transform3D(-0.19974616, 0.010073291, 0, -0.010073291, -0.19974616, 0, 0, 0, 0.2, 0.9977193, 1.2197318, -2.0210176)
-texture = ExtResource("4_42oot")
-
-[node name="Sprite3D3" type="Sprite3D" parent="Opponent" unique_id=2746748]
-transform = Transform3D(-0.17320508, -0.10000002, 0, 0.10000002, -0.17320508, 0, 0, 0, 0.2, 0.99106777, 0.4794796, -2.0555155)
-texture = ExtResource("5_m7fwj")
-
-[node name="Sprite3D4" type="Sprite3D" parent="Opponent" unique_id=22034444]
-transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0.7822604, 0.6001531, -2.081293)
-texture = ExtResource("6_qa3ni")
-
-[node name="Sprite3D5" type="Sprite3D" parent="Opponent" unique_id=1399589383]
-transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, -1.0796577, -1.235769, -1.9989071)
-texture = ExtResource("7_frwdm")
-
-[node name="Sprite3D6" type="Sprite3D" parent="Opponent" unique_id=266115026]
-transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, -1.0125898, -0.41196963, -2.0503943)
-texture = ExtResource("8_f7top")
-
-[node name="Sprite3D7" type="Sprite3D" parent="Opponent" unique_id=115908748]
-transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, -0.79318964, 0.60238004, -2.0542936)
-texture = ExtResource("9_o0h8j")
-
-[node name="Sprite3D8" type="Sprite3D" parent="Opponent" unique_id=635077965]
+[node name="Head" type="Sprite3D" parent="Opponent" unique_id=635077965]
 transform = Transform3D(0.42, 0, 0, 0, 0.42, 0, 0, 0, 0.42, 0.08170986, 1.8322694, -1.8690991)
 texture = ExtResource("10_8bpao")
+
+[node name="ThrowArms" type="Node3D" parent="Opponent" unique_id=1374365401]
+transform = Transform3D(-0.19974616, 0.010073291, 0, -0.010073291, -0.19974616, 0, 0, 0, 0.2, 0.9977193, 1.2197318, -2.0210176)
+visible = false
+
+[node name="Sprite3D2" type="Sprite3D" parent="Opponent/ThrowArms" unique_id=1822658654]
+transform = Transform3D(1.0000001, -7.450581e-09, 0, 7.450581e-09, 1.0000001, 0, 0, 0, 0.99999994, 0, 0, 0)
+texture = ExtResource("4_42oot")
+
+[node name="Sprite3D3" type="Sprite3D" parent="Opponent/ThrowArms" unique_id=2746748]
+transform = Transform3D(0.8397431, 0.5429841, 0, -0.5429841, 0.8397431, 0, 0, 0, 0.99999994, 0.21963453, 3.6948886, -0.17249012)
+texture = ExtResource("5_m7fwj")
+
+[node name="Sprite3D4" type="Sprite3D" parent="Opponent/ThrowArms" unique_id=22034444]
+transform = Transform3D(-0.99873084, -0.05036645, 0, 0.05036645, -0.99873084, 0, 0, 0, 0.99999994, 1.231957, 3.0397027, -0.30137825)
+texture = ExtResource("6_qa3ni")
+
+[node name="Sprite3D5" type="Sprite3D" parent="Opponent/ThrowArms" unique_id=1399589383]
+transform = Transform3D(-0.99873084, -0.05036645, 0, 0.05036645, -0.99873084, 0, 0, 0, 0.99999994, 10.992077, 11.738771, 0.110551834)
+texture = ExtResource("7_frwdm")
+
+[node name="Sprite3D6" type="Sprite3D" parent="Opponent/ThrowArms" unique_id=266115026]
+transform = Transform3D(-0.99873084, -0.05036645, 0, 0.05036645, -0.99873084, 0, 0, 0, 0.99999994, 10.449703, 7.6418924, -0.14688396)
+texture = ExtResource("8_f7top")
+
+[node name="Sprite3D7" type="Sprite3D" parent="Opponent/ThrowArms" unique_id=115908748]
+transform = Transform3D(-0.99873084, -0.05036645, 0, 0.05036645, -0.99873084, 0, 0, 0, 0.99999994, 9.098649, 2.6318328, -0.16638088)
+texture = ExtResource("9_o0h8j")
+
+[node name="IdleArms" type="Node3D" parent="Opponent" unique_id=859926423]
+transform = Transform3D(-0.19974616, 0.010073291, 0, -0.010073291, -0.19974616, 0, 0, 0, 0.2, 0.9977193, 1.2197318, -2.0210176)
+
+[node name="Sprite3D2" type="Sprite3D" parent="Opponent/IdleArms" unique_id=2059991696]
+transform = Transform3D(-0.8532782, 0.5214566, 0, -0.5214566, -0.8532782, 0, 0, 0, 0.99999976, -1.4075475, 11.583326, 0)
+texture = ExtResource("4_42oot")
+
+[node name="Sprite3D3" type="Sprite3D" parent="Opponent/IdleArms" unique_id=2060785875]
+transform = Transform3D(-0.9996771, -0.025426786, 0, 0.025426786, -0.9996771, 0, 0, 0, 0.99999976, 0.33176708, 8.316028, -0.17249012)
+texture = ExtResource("5_m7fwj")
+
+[node name="Sprite3D4" type="Sprite3D" parent="Opponent/IdleArms" unique_id=756249599]
+transform = Transform3D(-0.99873084, -0.05036645, 0, 0.05036645, -0.99873084, 0, 0, 0, 0.99999994, 1.231957, 3.0397027, -0.30137825)
+texture = ExtResource("6_qa3ni")
+
+[node name="Sprite3D5" type="Sprite3D" parent="Opponent/IdleArms" unique_id=1535014976]
+transform = Transform3D(-0.99873084, -0.05036645, 0, 0.05036645, -0.99873084, 0, 0, 0, 0.99999994, 10.992077, 11.738771, 0.110551834)
+texture = ExtResource("7_frwdm")
+
+[node name="Sprite3D6" type="Sprite3D" parent="Opponent/IdleArms" unique_id=1966428713]
+transform = Transform3D(-0.99873084, -0.05036645, 0, 0.05036645, -0.99873084, 0, 0, 0, 0.99999994, 10.449703, 7.6418924, -0.14688396)
+texture = ExtResource("8_f7top")
+
+[node name="Sprite3D7" type="Sprite3D" parent="Opponent/IdleArms" unique_id=930082147]
+transform = Transform3D(-0.99873084, -0.05036645, 0, 0.05036645, -0.99873084, 0, 0, 0, 0.99999994, 9.098649, 2.6318328, -0.16638088)
+texture = ExtResource("9_o0h8j")
