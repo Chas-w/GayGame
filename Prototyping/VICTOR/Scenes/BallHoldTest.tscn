@@ -1,0 +1,80 @@
+[gd_scene format=3 uid="uid://ddnthnqvo0kpi"]
+
+[ext_resource type="Script" uid="uid://ddxv3r7p86xrr" path="res://Prototyping/VICTOR/Scenes/mouse_drag.gd" id="1_apqoj"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_n5a0f"]
+sky_top_color = Color(0.6128374, 0.17575681, 0.8644528, 1)
+sky_horizon_color = Color(0.5914699, 0.5100657, 0.70445764, 1)
+ground_bottom_color = Color(0.087211765, 0.19867581, 0.28754753, 1)
+ground_horizon_color = Color(0.5914699, 0.5100657, 0.70445764, 1)
+
+[sub_resource type="Sky" id="Sky_apqoj"]
+sky_material = SubResource("ProceduralSkyMaterial_n5a0f")
+
+[sub_resource type="Environment" id="Environment_y2jrq"]
+background_mode = 2
+sky = SubResource("Sky_apqoj")
+tonemap_mode = 2
+glow_enabled = true
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_n5a0f"]
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_apqoj"]
+data = PackedVector3Array(1, 0, 1, -1, 0, 1, 1, 0, -1, -1, 0, 1, -1, 0, -1, 1, 0, -1)
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_n5a0f"]
+friction = 0.22
+bounce = 0.82
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_nxl31"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_apqoj"]
+material = SubResource("StandardMaterial3D_nxl31")
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_y2jrq"]
+
+[node name="BallHoldTest" type="Node3D" unique_id=90794550 node_paths=PackedStringArray("temp_visualizer", "pong_ball", "cam")]
+script = ExtResource("1_apqoj")
+temp_visualizer = NodePath("TempVisualizer")
+pong_ball = NodePath("PongBall")
+cam = NodePath("Camera3D")
+correction_force = 5.0
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1655766954]
+transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 0, 0, 0)
+light_color = Color(0.78039217, 0.7882353, 0.9137255, 1)
+shadow_enabled = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=80579343]
+environment = SubResource("Environment_y2jrq")
+
+[node name="Camera3D" type="Camera3D" parent="." unique_id=2078787847]
+transform = Transform3D(1, 0, 0, 0, 0.85321033, 0.5215671, 0, -0.5215671, 0.85321033, 0, 1.4952997, 1.788176)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=353274811]
+transform = Transform3D(1.6716473, 0, 0, 0, 0.5128376, -0.8754837, 0, 0.84016275, 0.53439754, 0, 0.7679281, 0.99995077)
+mesh = SubResource("PlaneMesh_n5a0f")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D" unique_id=1771504180]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D/StaticBody3D" unique_id=2048501773]
+shape = SubResource("ConcavePolygonShape3D_apqoj")
+
+[node name="PongBall" type="RigidBody3D" parent="." unique_id=1827045372]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.46851075, 1.2596939)
+physics_material_override = SubResource("PhysicsMaterial_n5a0f")
+gravity_scale = 0.0
+can_sleep = false
+freeze_mode = 1
+
+[node name="BallMesh" type="MeshInstance3D" parent="PongBall" unique_id=2040906539]
+transform = Transform3D(0.125, 0, 0, 0, 0.125, 0, 0, 0, 0.125, 0, 0, 0)
+mesh = SubResource("SphereMesh_apqoj")
+
+[node name="BallCollider" type="CollisionShape3D" parent="PongBall" unique_id=448144012]
+transform = Transform3D(0.125, 0, 0, 0, 0.125, 0, 0, 0, 0.125, 0, 0, 0)
+shape = SubResource("SphereShape3D_y2jrq")
+
+[node name="TempVisualizer" type="MeshInstance3D" parent="." unique_id=771154336]
+transform = Transform3D(0.125, 0, 0, 0, 0.125, 0, 0, 0, 0.125, 0, 0, 0)
+mesh = SubResource("SphereMesh_apqoj")

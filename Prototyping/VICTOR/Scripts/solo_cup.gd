@@ -30,3 +30,7 @@ func _on_ball_entered(ball: Node3D) -> void:
 			manager.destroy_player_cup(self)
 		else:
 			print("MANAGER IS NULL")
+
+
+func _on_ball_entered_top(ball: Node3D) -> void:
+	ball.toggle_bounce(false)

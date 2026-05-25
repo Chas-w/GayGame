@@ -23,6 +23,7 @@ extends Node3D
 @export var ball_start : Node3D
 @export var ball_idle : Node3D
 @export var table : Node3D
+@export var opponent : Node3D
 
 #State Management
 enum STATE {None, Player, Wait, Enemy, End}
@@ -48,6 +49,7 @@ func _ready() -> void:
 	
 	#Setup display
 	result_display.text = ""
+	#pong_ball.physics_material_override
 	
 	#Setup Game
 	setup_state(STATE.Player)
@@ -135,6 +137,7 @@ func setup_state(next_state: STATE) :
 		STATE.Enemy:
 			current_player_turn = 0
 			spare_ball.visible = true
+			opponent.switch_to_idle()
 			result_display.text = ""
 			
 			current_enemy_move = current_enemy_move + 1
@@ -153,6 +156,7 @@ func setup_state(next_state: STATE) :
 			state_display.text = "Current State: None"
 		STATE.Player:
 			pong_ball.freeze = true
+			pong_ball.toggle_bounce(true)
 			pong_ball.position = ball_start.position
 			pong_ball.rotation = ball_start.rotation
 			
@@ -161,6 +165,8 @@ func setup_state(next_state: STATE) :
 		STATE.Wait:
 			pass
 		STATE.Enemy:
+			opponent.switch_to_throw()
+			
 			if current_enemy_move < enemy_moves.size() - 1:
 				if enemy_moves[current_enemy_move] and !enemy_cups.is_empty():
 					destroy_random_enemy()
@@ -179,10 +185,12 @@ func setup_state(next_state: STATE) :
 
 func destroy_player_cup(player_cup: Node3D) -> void:
 	player_cups.erase(player_cup)
-	if current_player_turn == 1:
-		setup_state(STATE.Player)
-	else:
-		move_ball_to_idle()
+	current_player_turn = current_player_turn - 1
+	setup_state(STATE.Player)
+	#if current_player_turn == 1:
+		#
+	#else:
+		#move_ball_to_idle()
 
 func move_player_cup_to_start() -> void:
 	pass
