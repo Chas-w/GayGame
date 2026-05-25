@@ -3,6 +3,7 @@ extends Node3D
 #Serialize Variables
 @export_group("Attributes")
 @export var pong_ball : RigidBody3D
+@export var spare_ball : MeshInstance3D
 @export var default_throw_force : float
 @export var default_up_force : float
 
@@ -16,9 +17,11 @@ extends Node3D
 @export var player_move_display : Label
 @export var enemy_move_display : Label
 @export var state_display : Label
+@export var result_display : Label
 
 @export_group("References")
 @export var ball_start : Node3D
+@export var ball_idle : Node3D
 @export var table : Node3D
 
 #State Management
@@ -31,6 +34,8 @@ var wait_timer : float
 var current_player_move : int = 0
 var current_enemy_move : int = 0
 
+var current_player_turn : int = 0
+
 #Local Variables
 var ready_to_throw : bool
 var start_point : Vector2
@@ -41,7 +46,10 @@ func _ready() -> void:
 	for i in range(player_cups.size()):
 		player_cups[i].manager = self
 	
-	#SetUp Game
+	#Setup display
+	result_display.text = ""
+	
+	#Setup Game
 	setup_state(STATE.Player)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -56,18 +64,25 @@ func _process(delta: float) -> void:
 				ready_to_throw = true
 				start_point = canvas.get_global_mouse_position()
 		STATE.Wait:
+			#Track wait_time
 			wait_timer = wait_timer + delta
 			if wait_timer > 5:
 				wait_timer = 0
-				current_player_move = current_player_move + 1
-				player_move_display.text = "Player Move: " + str(current_player_move)
-				setup_state(STATE.Enemy)
+				if current_player_turn < 1:
+					current_player_turn = current_player_turn + 1
+					spare_ball.visible = false
+					setup_state(STATE.Player)
+				else:
+					setup_state(STATE.Enemy)
+			
+			#Make sure ball is in the right place
+			if pong_ball.position.y < -3 or pong_ball.position.y > 3:
+				move_ball_to_idle()
+				wait_timer = 5
 		STATE.Enemy:
 			wait_timer = wait_timer + delta
 			if wait_timer > 2:
 				wait_timer = 0
-				current_enemy_move = current_enemy_move + 1
-				enemy_move_display.text = "Enemy Move: " + str(current_enemy_move)
 				setup_state(STATE.Player)
 			pass
 		STATE.End:
@@ -113,6 +128,26 @@ func _physics_process(delta: float) -> void:
 	
 
 func setup_state(next_state: STATE) :
+	#End Current State
+	match current_state:
+		STATE.None:
+			pass
+		STATE.Enemy:
+			current_player_turn = 0
+			spare_ball.visible = true
+			result_display.text = ""
+			
+			current_enemy_move = current_enemy_move + 1
+			enemy_move_display.text = "Enemy Move: " + str(current_enemy_move)
+		STATE.Wait:
+			current_player_move = current_player_move + 1
+			player_move_display.text = "Player Move: " + str(current_player_move)
+		STATE.Player:
+			pass
+		STATE.End:
+			pass
+	
+	#Setup Next State
 	match next_state:
 		STATE.None:
 			state_display.text = "Current State: None"
@@ -123,12 +158,16 @@ func setup_state(next_state: STATE) :
 			
 			ready_to_throw = false
 			state_display.text = "Current State: Player"
+		STATE.Wait:
+			pass
 		STATE.Enemy:
 			if current_enemy_move < enemy_moves.size() - 1:
 				if enemy_moves[current_enemy_move] and !enemy_cups.is_empty():
 					destroy_random_enemy()
+					result_display.text = "OPPONENT POINT"
 				else:
 					print("enemy missed")
+					result_display.text = "OPPONENT MISS"
 			else:
 				print("invalid enemy move")
 			state_display.text = "Current State: Enemy"
@@ -139,7 +178,24 @@ func setup_state(next_state: STATE) :
 	current_state = next_state
 
 func destroy_player_cup(player_cup: Node3D) -> void:
+	player_cups.erase(player_cup)
+	if current_player_turn == 1:
+		setup_state(STATE.Player)
+	else:
+		move_ball_to_idle()
+
+func move_player_cup_to_start() -> void:
 	pass
+
+func move_ball_to_idle() -> void:
+	pong_ball.freeze = true
+	pong_ball.position = ball_idle.position
+	pong_ball.rotation = ball_idle.rotation
+
+func move_ball_to_start() -> void:
+	pong_ball.freeze = true
+	pong_ball.position = ball_start.position
+	pong_ball.rotation = ball_start.rotation
 
 func destroy_random_enemy() -> void:
 	if enemy_cups.is_empty():
