@@ -26,46 +26,56 @@ enum PC_State{PC_IDLE, PC_WALK, PC_NULL}
 var trigger_click_movement : bool
 
 func _process(delta):
-	if (move_state == Move_State.POINT_AND_CLICK):
-		#region PC Camera
-		digi_manager.fp_cam_set = false
-		fp_cam.priority = 0
-		environment_cam.priority = 100
-		cam.set_orthogonal(25,.05,4000)
-		#endregion
-		#enable nav agent
-		if (pc_state == PC_State.PC_IDLE):
-			pass
-		elif (pc_state == PC_State.PC_WALK):
-			if (nav_agent.is_navigation_finished()):
-				return
-				#go to idle state
-			else:
-				_move_to_target(delta,move_speed)
-		elif (pc_state == PC_State.PC_NULL):
-			pass
-
-	if (move_state == Move_State.FIRST_PERSON):
-		#disable nav agent? 
-		#region FP Camera
-		timer += delta
-		if (timer >= (fp_cam.tween_duration -.1)):
-			digi_manager.fp_cam_set = true
-		fp_cam.priority = 100
-		environment_cam.priority = 0
-		cam.set_perspective(50,.05,4000)
-		#endregion
-		if (fp_state == FP_State.FP_IDLE):
-			from_fp = true #move this to a place where it only calls once
-			pass
-		elif (fp_state == FP_State.FP_WALK):
-			#first person walking
-			pass
-		elif (fp_state == FP_State.FP_DIGI):
-			pass
-		elif (fp_state == FP_State.FP_NULL):
-			pass
-
+	match(move_state):
+		Move_State.POINT_AND_CLICK:
+			#region Setup PC Camera
+			digi_manager.fp_cam_set = false
+			fp_cam.priority = 0
+			environment_cam.priority = 100
+			cam.set_orthogonal(25,.05,4000)
+			#endregion
+			#enable nav agent
+			match(pc_state):
+				PC_State.PC_IDLE:
+					pass
+				PC_State.PC_WALK:
+					if (nav_agent.is_navigation_finished()):
+						return
+					#go to idle state
+					else:
+						_move_to_target(delta,move_speed)
+				PC_State.PC_NULL:
+					pass
+		Move_State.FIRST_PERSON:
+			#region FP Camera
+			timer += delta
+			if (timer >= (fp_cam.tween_duration -.1)):
+				digi_manager.fp_cam_set = true
+			fp_cam.priority = 100
+			environment_cam.priority = 0
+			cam.set_perspective(50,.05,4000)
+			#endregion
+			match(fp_state):
+				FP_State.FP_IDLE:
+					from_fp = true
+					var input_dir := Input.get_vector("left", "right", "up", "down")
+					if (input_dir != Vector2.ZERO):
+						_set_fp_state(FP_State.FP_WALK)
+				FP_State.FP_WALK:
+					var input_dir := Input.get_vector("left", "right", "up", "down")
+					var direction := (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
+					if direction:
+						velocity.x = direction.x * move_speed
+						velocity.z = direction.z * move_speed
+					else:
+						velocity.x = move_toward(velocity.x, 0, move_speed)
+						velocity.z = move_toward(velocity.z, 0, move_speed)
+					pass
+				FP_State.FP_DIGI:
+					pass
+				FP_State.FP_NULL:
+					pass
+	move_and_slide()
 
 #region Set States
 func _set_move_state(next_move_state:int):
@@ -73,38 +83,50 @@ func _set_move_state(next_move_state:int):
 	move_state = next_move_state
 	
 	#check last state
-	if (prev_move_state == Move_State.POINT_AND_CLICK):
-		_set_pc_state(PC_State.PC_NULL)
-		_set_fp_state(FP_State.FP_IDLE)
-		from_fp = false
-		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
-	if (prev_move_state == Move_State.FIRST_PERSON):
-		_set_fp_state(FP_State.FP_NULL)
-		_set_pc_state(PC_State.PC_IDLE)
-		from_fp = true
-		Input.set_mouse_mode(Input.MOUSE_MODE_CONFINED)
+	match(prev_move_state):
+		Move_State.POINT_AND_CLICK:
+			_set_pc_state(PC_State.PC_NULL)
+			_set_fp_state(FP_State.FP_IDLE)
+			from_fp = false
+			Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+		Move_State.FIRST_PERSON:
+			_set_pc_state(PC_State.PC_IDLE)
+			from_fp = true
+			Input.set_mouse_mode(Input.MOUSE_MODE_CONFINED)
 
 	#check upcoming state
-	if (move_state == Move_State.POINT_AND_CLICK):
+	match(next_move_state):
+
 		pass
-	if (move_state == Move_State.FIRST_PERSON):
-		pass 
+
 func _set_pc_state(next_pc_state:int):
 	var prev_pc_state := pc_state
 	pc_state = next_pc_state
+	
+	#check prev state
+	match(prev_pc_state):
+		pass
+		
+	#check next state
+	match(next_pc_state):
+		pass
+
 func _set_fp_state(next_fp_state:int):
 	var prev_fp_state := fp_state
 	fp_state = next_fp_state
 	
 	#check prev state		
-	
+	match(prev_fp_state):
+		pass
+
 	#check upcoming state
-	if (fp_state == FP_State.FP_DIGI):
-		fp_cam.look_at_damping = true #floaty camera movement
-		digi_manager.toggle_digi = true #trigger digi behavior in digicam script
-	else:
-		fp_cam.look_at_damping = false
-		digi_manager.toggle_digi = false 
+	match(next_fp_state):
+		FP_State.FP_DIGI:
+			fp_cam.look_at_damping = true #floaty camera movement
+			digi_manager.toggle_digi = true #trigger digi behavior in digicam script
+		FP_State.FP_IDLE:
+			fp_cam.look_at_damping = false #no floaty movement
+			digi_manager.toggle_digi = false #digi disabled
 #endregion
 
 func _move_to_target(delta,speed): #setting point and click movement parameters
@@ -115,10 +137,8 @@ func _move_to_target(delta,speed): #setting point and click movement parameters
 	var player2D : Vector2 = Vector2(global_position.x, global_position.z)
 	var face_direction = -(target2D - player2D)
 	rotation.y = lerp_angle(rotation.y, atan2(face_direction.x, face_direction.y), delta * rotation_speed)
-	
 #endregion
 	velocity = direction * speed
-	move_and_slide()
 
 func _input(event):
 	#region Toggle PC & FP
@@ -170,6 +190,7 @@ func _input(event):
 			rotation_target.rotation.z = 0
 			rotation_target.rotation.x = clampf(rotation_target.rotation.x, -deg_to_rad(70), deg_to_rad(70))
 			rotation_target.rotation.y = clampf(rotation_target.rotation.y, -deg_to_rad(70), deg_to_rad(70))
+			rotation.y = rotation_target.rotation.y
 		elif (move_state == Move_State.POINT_AND_CLICK):
 			#region Reset Rotation
 			rotation_target.rotation.x = 0

@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://nfoumhjrr1px"]
 
-[ext_resource type="PackedScene" uid="uid://bknhaf3ev31eg" path="res://Prototyping/CHASE/Movement Test/scenes/character_body_3d.tscn" id="2_u2qq3"]
+[ext_resource type="PackedScene" uid="uid://bknhaf3ev31eg" path="res://Prototyping/CHASE/Movement Test/scenes/player.tscn" id="2_u2qq3"]
 [ext_resource type="Script" uid="uid://csjccrhj5wnx7" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_3d.gd" id="3_xcpho"]
 [ext_resource type="Script" uid="uid://8umksf8e80fw" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="4_fp1sp"]
 [ext_resource type="PackedScene" uid="uid://d2qbr3msf53bf" path="res://Prototyping/Imported Mesh/Bog Concept.glb" id="5_28pbn"]
@@ -312,20 +312,21 @@ shader_parameter/blur = 0.222000010545
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=345294312]
 transform = Transform3D(-0.20196828, 0.97870314, -0.036729224, -0.9757188, -0.1978243, 0.09401387, 0.084745795, 0.05482525, 0.99489325, 0, 15.365929, 13.380627)
 
-[node name="CharacterBody3D" parent="." unique_id=997567769 node_paths=PackedStringArray("temp_visualizer", "cam", "environment_cam") instance=ExtResource("2_u2qq3")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22.102703, 1.07204, 5.094055)
+[node name="Player" parent="." unique_id=997567769 node_paths=PackedStringArray("temp_visualizer", "cam", "environment_cam") instance=ExtResource("2_u2qq3")]
+transform = Transform3D(-0.06933859, 0, 0.99759316, 0, 1, 0, -0.99759316, 0, -0.06933859, 22.102703, 1.07204, 5.094055)
 temp_visualizer = NodePath("../TempVisualizer")
 cam = NodePath("../CanvasLayer/SubViewportContainer/SubViewport/Camera3D")
 environment_cam = NodePath("../Main")
 fp_rotation_speed = 0.005
 
-[node name="Digi Manager" parent="CharacterBody3D" index="3" unique_id=1292205963 node_paths=PackedStringArray("main_UI", "CRT_effect", "rotation_target")]
+[node name="Digi Manager" parent="Player" index="3" unique_id=1292205963 node_paths=PackedStringArray("main_UI", "CRT_effect", "rotation_target")]
 main_UI = NodePath("../../CanvasLayer/main_UI")
 CRT_effect = NodePath("../../CanvasLayer/CRT")
 digi_move_speed = 0.005
 rotation_target = NodePath("CameraRotationTarget")
 
-[node name="FP Cam" parent="CharacterBody3D/Digi Manager" index="0" unique_id=1500257124]
+[node name="FP Cam" parent="Player/Digi Manager" index="0" unique_id=1500257124]
+transform = Transform3D(-0.0693388, 0, 0.9975932, 0, 0.99999994, 0, -0.9975932, 0, -0.0693388, 0, 0, 0)
 look_at_damping = true
 look_at_damping_value = 0.75
 
@@ -333,7 +334,7 @@ look_at_damping_value = 0.75
 transform = Transform3D(0.35158312, 0.4852125, -0.8005984, 8.833408e-05, 0.8551798, 0.51833105, 0.9361567, -0.18230718, 0.3006239, 0, 15.365929, 13.380627)
 script = ExtResource("3_xcpho")
 look_at_mode = 2
-look_at_target = NodePath("../CharacterBody3D")
+look_at_target = NodePath("../Player")
 tween_resource = SubResource("Resource_pnao5")
 tween_on_load = false
 look_at_damping = true
@@ -433,5 +434,5 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[editable path="CharacterBody3D"]
+[editable path="Player"]
 [editable path="NavigationRegion3D/Bog Concept"]

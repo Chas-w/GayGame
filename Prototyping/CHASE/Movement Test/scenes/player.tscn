@@ -14,7 +14,7 @@ script = ExtResource("3_5kjr5")
 
 [sub_resource type="BoxMesh" id="BoxMesh_u0vh2"]
 
-[node name="CharacterBody3D" type="CharacterBody3D" unique_id=997567769 node_paths=PackedStringArray("nav_agent", "fp_cam", "rotation_target", "digi_manager") groups=["Camera"]]
+[node name="Player" type="CharacterBody3D" unique_id=997567769 node_paths=PackedStringArray("nav_agent", "fp_cam", "rotation_target", "digi_manager") groups=["Camera"]]
 script = ExtResource("1_kbjej")
 nav_agent = NodePath("NavigationAgent3D")
 rotation_speed = 3.0
