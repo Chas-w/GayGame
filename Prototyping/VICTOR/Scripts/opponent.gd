@@ -1,5 +1,9 @@
 extends Node3D
 
+@export_category("Opponent Cameras")
+@export var opponent_turn : Control
+
+@export_category("Opponent Visuals")
 @export var idle_arms : Node3D
 @export var throw_arms : Node3D
 
@@ -15,7 +19,9 @@ func _process(delta: float) -> void:
 func switch_to_idle() -> void:
 	idle_arms.visible = true
 	throw_arms.visible = false
+	#opponent_turn.visible = false
 
 func switch_to_throw() -> void:
 	idle_arms.visible = false
 	throw_arms.visible = true
+	#opponent_turn.visible = true

@@ -1,7 +1,7 @@
 [gd_scene format=4 uid="uid://crwn1tbnvxelg"]
 
 [ext_resource type="Script" uid="uid://c1txq7vawfcfu" path="res://Prototyping/VICTOR/Scripts/pong_manager.gd" id="1_fhfpf"]
-[ext_resource type="Script" path="res://Prototyping/VICTOR/Scripts/canvas.gd" id="2_fm7vh"]
+[ext_resource type="Script" uid="uid://b4p4almorgo68" path="res://Prototyping/VICTOR/Scripts/canvas.gd" id="2_fm7vh"]
 [ext_resource type="PackedScene" uid="uid://ckr6adiwpqj0i" path="res://Prototyping/VICTOR/Scenes/solo_cup.tscn" id="2_hl323"]
 [ext_resource type="FontFile" uid="uid://bmimebg5qcne7" path="res://Prototyping/VICTOR/Fonts/Oswald-VariableFont_wght.ttf" id="2_yel1t"]
 [ext_resource type="Texture2D" uid="uid://bqk3a55a5ubqx" path="res://Prototyping/OLD/Sprites/Test Limbs/test_torso.png" id="3_nf5nu"]
@@ -123,7 +123,7 @@ transform = Transform3D(0.9899076, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 script = ExtResource("1_fhfpf")
 pong_ball = NodePath("PongBall")
 spare_ball = NodePath("SpareBall")
-default_throw_force = 3.0
+default_throw_force = 4.0
 default_up_force = 40.0
 player_cups = [NodePath("Solo Cups/Solo Cup"), NodePath("Solo Cups/Solo Cup2"), NodePath("Solo Cups/Solo Cup3")]
 enemy_cups = [NodePath("Solo Cups2/Solo Cup"), NodePath("Solo Cups2/Solo Cup2"), NodePath("Solo Cups2/Solo Cup3")]

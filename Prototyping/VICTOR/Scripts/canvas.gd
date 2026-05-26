@@ -3,6 +3,7 @@ extends Control
 @export var player_action_view : Control
 var start_point : Vector2
 var end_point : Vector2
+var retract_line : bool
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -10,11 +11,23 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	pass
+	if retract_line:
+		if end_point != start_point:
+			queue_redraw()
+			start_point = start_point.move_toward(end_point, 22)
+		else:
+			queue_redraw()
+			end_point = start_point
+			retract_line = false
 
 func _draw() -> void:
 	if end_point != start_point:
+		#draw line
 		draw_line(start_point, end_point, Color.WHITE, 5)
+		#draw circle
+		draw_circle(end_point, 10, Color.WHITE)
+		draw_circle(start_point, 2.5, Color.WHITE)
+
 
 func set_start_point() -> void:
 	queue_redraw()
@@ -29,5 +42,6 @@ func update_end_point() -> void:
 
 func reset_end_point() -> void:
 	queue_redraw()
-	end_point = start_point
+	#end_point = start_point
+	retract_line = true
 	player_action_view.visible = false
