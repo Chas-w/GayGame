@@ -25,6 +25,9 @@ enum PC_State{PC_IDLE, PC_WALK, PC_NULL}
 @export var pc_state : PC_State = PC_State.PC_IDLE
 var trigger_click_movement : bool
 
+func _ready():
+	_set_move_state(Move_State.FIRST_PERSON)
+
 func _process(delta):
 	match(move_state):
 		Move_State.POINT_AND_CLICK:
@@ -63,13 +66,13 @@ func _process(delta):
 						_set_fp_state(FP_State.FP_WALK)
 				FP_State.FP_WALK:
 					var input_dir := Input.get_vector("left", "right", "up", "down")
-					var direction := (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
+					var direction := (cam.transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
 					if direction:
 						velocity.x = direction.x * move_speed
 						velocity.z = direction.z * move_speed
 					else:
-						velocity.x = move_toward(velocity.x, 0, move_speed)
-						velocity.z = move_toward(velocity.z, 0, move_speed)
+						velocity.x = 0.0
+						velocity.z = 0.0
 					pass
 				FP_State.FP_DIGI:
 					pass
@@ -140,7 +143,7 @@ func _move_to_target(delta,speed): #setting point and click movement parameters
 #endregion
 	velocity = direction * speed
 
-func _input(event):
+func _toggle_move(event):
 	#region Toggle PC & FP
 	if (event.is_action_pressed("enter")): #this is where we toggle from fp view and pc view
 		#toggle between point and click and first person
@@ -150,6 +153,9 @@ func _input(event):
 			_set_move_state(Move_State.POINT_AND_CLICK)
 		timer = 0
 	#endregion
+
+func _input(event):
+	#_toggle_move(event)
 	
 	#region digicam view
 	if (event.is_action_pressed("digi_view")):
@@ -189,7 +195,8 @@ func _input(event):
 			rotation_target.rotate_x(-event.relative.y * fp_rotation_speed)
 			rotation_target.rotation.z = 0
 			rotation_target.rotation.x = clampf(rotation_target.rotation.x, -deg_to_rad(70), deg_to_rad(70))
-			rotation_target.rotation.y = clampf(rotation_target.rotation.y, -deg_to_rad(70), deg_to_rad(70))
+			#if (fp_state == FP_State.FP_DIGI): #not working rn bc it needs to be relative to last rotation
+				#rotation_target.rotation.y = clampf(rotation_target.rotation.y, -deg_to_rad(70), deg_to_rad(70))
 			rotation.y = rotation_target.rotation.y
 		elif (move_state == Move_State.POINT_AND_CLICK):
 			#region Reset Rotation

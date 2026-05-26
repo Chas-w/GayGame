@@ -356,13 +356,13 @@ navigation_mesh = SubResource("NavigationMesh_o3c4m")
 [node name="Bog Concept" parent="NavigationRegion3D" unique_id=2004594051 instance=ExtResource("5_28pbn")]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
 
-[node name="StaticBody3D" type="StaticBody3D" parent="NavigationRegion3D/Bog Concept/Patio" parent_id_path=PackedInt32Array(2004594051, 968067502) index="0" unique_id=149619076]
+[node name="StaticBody3D" type="StaticBody3D" parent="NavigationRegion3D/Bog Concept/Patio" parent_id_path=PackedInt32Array(2004594051, 650449763) index="0" unique_id=149619076]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/Bog Concept/Patio/StaticBody3D" unique_id=1260757244]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.09677124, 0, 0.6548462)
 shape = SubResource("BoxShape3D_pnao5")
 
-[node name="Standin CHAR" parent="NavigationRegion3D/Bog Concept" index="2" unique_id=472877208]
+[node name="Standin CHAR" parent="NavigationRegion3D/Bog Concept" index="2" unique_id=1140270219]
 visible = false
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=984685931]
