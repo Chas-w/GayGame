@@ -65,6 +65,9 @@ func _process(delta: float) -> void:
 			if Input.is_action_pressed("click") and !ready_to_throw:
 				ready_to_throw = true
 				start_point = canvas.get_global_mouse_position()
+				canvas.set_start_point()
+			if ready_to_throw:
+				canvas.update_end_point()
 		STATE.Wait:
 			#Track wait_time
 			wait_timer = wait_timer + delta
@@ -102,6 +105,9 @@ func _physics_process(delta: float) -> void:
 			pass
 		STATE.Player:
 			if Input.is_action_just_released("click") and ready_to_throw:
+				#Release mouse draw line
+				canvas.reset_end_point()
+				
 				#Set Variables
 				pong_ball.freeze = false
 				ready_to_throw = false
@@ -143,8 +149,7 @@ func setup_state(next_state: STATE) :
 			current_enemy_move = current_enemy_move + 1
 			enemy_move_display.text = "Enemy Move: " + str(current_enemy_move)
 		STATE.Wait:
-			current_player_move = current_player_move + 1
-			player_move_display.text = "Player Move: " + str(current_player_move)
+			pass
 		STATE.Player:
 			pass
 		STATE.End:
@@ -166,6 +171,9 @@ func setup_state(next_state: STATE) :
 			pass
 		STATE.Enemy:
 			opponent.switch_to_throw()
+			
+			current_player_move = current_player_move + 1
+			player_move_display.text = "Player Move: " + str(current_player_move)
 			
 			if current_enemy_move < enemy_moves.size() - 1:
 				if enemy_moves[current_enemy_move] and !enemy_cups.is_empty():

@@ -1,6 +1,7 @@
 [gd_scene format=4 uid="uid://crwn1tbnvxelg"]
 
 [ext_resource type="Script" uid="uid://c1txq7vawfcfu" path="res://Prototyping/VICTOR/Scripts/pong_manager.gd" id="1_fhfpf"]
+[ext_resource type="Script" uid="uid://b4p4almorgo68" path="res://Prototyping/VICTOR/Scripts/canvas.gd" id="2_fm7vh"]
 [ext_resource type="PackedScene" uid="uid://ckr6adiwpqj0i" path="res://Prototyping/VICTOR/Scenes/solo_cup.tscn" id="2_hl323"]
 [ext_resource type="FontFile" uid="uid://bmimebg5qcne7" path="res://Prototyping/VICTOR/Fonts/Oswald-VariableFont_wght.ttf" id="2_yel1t"]
 [ext_resource type="Texture2D" uid="uid://bqk3a55a5ubqx" path="res://Prototyping/OLD/Sprites/Test Limbs/test_torso.png" id="3_nf5nu"]
@@ -137,11 +138,30 @@ ball_idle = NodePath("BallIdle")
 table = NodePath("Table")
 opponent = NodePath("Opponent")
 
-[node name="Canvas" type="Control" parent="." unique_id=1454380754]
+[node name="Canvas" type="Control" parent="." unique_id=1454380754 node_paths=PackedStringArray("player_action_view")]
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
+script = ExtResource("2_fm7vh")
+player_action_view = NodePath("PlayerActionView")
+
+[node name="PlayerActionView" type="SubViewportContainer" parent="Canvas" unique_id=1952382615]
+layout_mode = 0
+offset_left = -2.0
+offset_top = -1.0
+offset_right = 1150.0
+offset_bottom = 647.0
+
+[node name="SubViewport" type="SubViewport" parent="Canvas/PlayerActionView" unique_id=1926013400]
+transparent_bg = true
+handle_input_locally = false
+size = Vector2i(1152, 648)
+render_target_update_mode = 4
+
+[node name="Camera3D" type="Camera3D" parent="Canvas/PlayerActionView/SubViewport" unique_id=418442251]
+transform = Transform3D(1, 0, 0, 0, 0.85321033, 0.5215671, 0, -0.5215671, 0.85321033, 0, 1.4952997, 1.788176)
+cull_mask = 2
 
 [node name="PlayerCups" type="SubViewportContainer" parent="Canvas" unique_id=1974591136]
 layout_mode = 0
@@ -237,8 +257,12 @@ render_target_update_mode = 0
 [node name="Camera3D" type="Camera3D" parent="Canvas/OpponentTurn/OpponentCupView/SubViewport" unique_id=475194335]
 transform = Transform3D(5.960465e-08, 0.063932635, 0.99795425, -1.2390231e-07, 0.99795425, -0.063932635, -1, -1.1983815e-07, 6.7404116e-08, 1.1167842, 0.80012596, 1.9697828)
 
-[node name="Camera3D" type="Camera3D" parent="." unique_id=418442251]
-transform = Transform3D(1, 0, 0, 0, 0.85321033, 0.5215671, 0, -0.5215671, 0.85321033, 0, 1.4952997, 1.788176)
+[node name="Control" type="Control" parent="Canvas" unique_id=1421619594]
+anchors_preset = 0
+offset_left = 555.0
+offset_top = 568.0
+offset_right = 595.0
+offset_bottom = 608.0
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=128619308]
 transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 0, 0, 0)
@@ -247,6 +271,9 @@ shadow_enabled = true
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=2081209419]
 environment = SubResource("Environment_hl323")
+
+[node name="Camera3D" type="Camera3D" parent="." unique_id=857685835]
+transform = Transform3D(1.0101953, 0, 0, 0, 0.85321033, 0.5215671, 0, -0.5215671, 0.85321033, 0, 1.4952997, 1.788176)
 
 [node name="Table" type="MeshInstance3D" parent="." unique_id=997627797]
 transform = Transform3D(1.9046423, 0, 0, 0, 0.09820628, 0, 0, 0, 4.3922935, 0, 0, 0.61900645)
@@ -288,6 +315,7 @@ no_bounce_material = SubResource("PhysicsMaterial_fm7vh")
 
 [node name="BallMesh" type="MeshInstance3D" parent="PongBall" unique_id=649251215]
 transform = Transform3D(0.125, 0, 0, 0, 0.125, 0, 0, 0, 0.125, 0, 0, 0)
+layers = 3
 mesh = SubResource("SphereMesh_7vbk8")
 
 [node name="BallCollider" type="CollisionShape3D" parent="PongBall" unique_id=801798685]
