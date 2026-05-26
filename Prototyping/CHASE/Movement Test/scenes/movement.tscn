@@ -319,7 +319,7 @@ cam = NodePath("../CanvasLayer/SubViewportContainer/SubViewport/Camera3D")
 environment_cam = NodePath("../Main")
 fp_rotation_speed = 0.005
 
-[node name="CollisionShape3D" parent="Player" index="2" unique_id=2050022507]
+[node name="MeshInstance3D" parent="Player" index="1" unique_id=990262259]
 visible = false
 
 [node name="Digi Manager" parent="Player" index="3" unique_id=1292205963 node_paths=PackedStringArray("main_UI", "CRT_effect", "rotation_target")]
