@@ -21,6 +21,7 @@ config/icon="res://Prototyping/OLD/Sprites/icon.svg"
 
 Shaker="*uid://dpk87m0wcxk1p"
 PhantomCameraManager="*uid://duq6jhf6unyis"
+DialogueManager="*uid://c3rodes2l3gxb"
 
 [display]
 
@@ -29,7 +30,7 @@ window/stretch/aspect="keep_height"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/phantom_camera/plugin.cfg", "res://addons/shaker/plugin.cfg")
+enabled=PackedStringArray("res://addons/dialogue_manager/plugin.cfg", "res://addons/phantom_camera/plugin.cfg", "res://addons/shaker/plugin.cfg")
 
 [file_customization]
 

@@ -1,7 +1,7 @@
 [gd_scene format=4 uid="uid://crwn1tbnvxelg"]
 
 [ext_resource type="Script" uid="uid://c1txq7vawfcfu" path="res://Prototyping/VICTOR/Scripts/pong_manager.gd" id="1_fhfpf"]
-[ext_resource type="Script" uid="uid://b4p4almorgo68" path="res://Prototyping/VICTOR/Scripts/canvas.gd" id="2_fm7vh"]
+[ext_resource type="Script" path="res://Prototyping/VICTOR/Scripts/canvas.gd" id="2_fm7vh"]
 [ext_resource type="PackedScene" uid="uid://ckr6adiwpqj0i" path="res://Prototyping/VICTOR/Scenes/solo_cup.tscn" id="2_hl323"]
 [ext_resource type="FontFile" uid="uid://bmimebg5qcne7" path="res://Prototyping/VICTOR/Fonts/Oswald-VariableFont_wght.ttf" id="2_yel1t"]
 [ext_resource type="Texture2D" uid="uid://bqk3a55a5ubqx" path="res://Prototyping/OLD/Sprites/Test Limbs/test_torso.png" id="3_nf5nu"]
