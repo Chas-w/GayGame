@@ -65,6 +65,9 @@ func _process(delta: float) -> void:
 			if Input.is_action_pressed("click") and !ready_to_throw:
 				ready_to_throw = true
 				start_point = canvas.get_global_mouse_position()
+				canvas.set_start_point()
+			if ready_to_throw:
+				canvas.update_end_point()
 		STATE.Wait:
 			#Track wait_time
 			wait_timer = wait_timer + delta
@@ -102,6 +105,9 @@ func _physics_process(delta: float) -> void:
 			pass
 		STATE.Player:
 			if Input.is_action_just_released("click") and ready_to_throw:
+				#Release mouse draw line
+				canvas.reset_end_point()
+				
 				#Set Variables
 				pong_ball.freeze = false
 				ready_to_throw = false
