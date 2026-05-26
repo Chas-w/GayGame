@@ -1,5 +1,7 @@
 extends MeshInstance3D
 
+@export var is_player : bool
+
 var is_complete : bool
 var collider : CollisionShape3D
 var mesh_var : MeshInstance3D
@@ -26,8 +28,10 @@ func _on_ball_entered(ball: Node3D) -> void:
 	if !is_complete and ball.name == "PongBall":
 		is_complete = true
 		if manager != null:
-			#manager.player_cups.erase(self)
-			manager.destroy_player_cup(self)
+			if is_player:
+				manager.destroy_player_cup(self)
+			else:
+				manager.destroy_opponent_cup(self)
 		else:
 			print("MANAGER IS NULL")
 

@@ -19,9 +19,9 @@ func _process(delta: float) -> void:
 func switch_to_idle() -> void:
 	idle_arms.visible = true
 	throw_arms.visible = false
-	#opponent_turn.visible = false
+	opponent_turn.visible = false
 
 func switch_to_throw() -> void:
 	idle_arms.visible = false
 	throw_arms.visible = true
-	#opponent_turn.visible = true
+	opponent_turn.visible = true

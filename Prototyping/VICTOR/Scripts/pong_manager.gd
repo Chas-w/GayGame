@@ -36,6 +36,7 @@ var current_player_move : int = 0
 var current_enemy_move : int = 0
 
 var current_player_turn : int = 0
+var player_balls_left : int = 0
 
 #Local Variables
 var ready_to_throw : bool
@@ -46,6 +47,8 @@ func _ready() -> void:
 	#Set Manager in Player Cups
 	for i in range(player_cups.size()):
 		player_cups[i].manager = self
+	for i in range(enemy_cups.size()):
+		enemy_cups[i].manager = self
 	
 	#Setup display
 	result_display.text = ""
@@ -56,6 +59,7 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
+	#MANAGE STATE FUNCTIONS
 	match current_state:
 		STATE.None:
 			if Input.is_action_just_pressed("enter"):
@@ -86,9 +90,13 @@ func _process(delta: float) -> void:
 				wait_timer = 5
 		STATE.Enemy:
 			wait_timer = wait_timer + delta
-			if wait_timer > 2:
+			if wait_timer > 5:
 				wait_timer = 0
+				canvas.display_message("OPPONENT MISS")
 				setup_state(STATE.Player)
+			elif pong_ball.position.y < -3 or pong_ball.position.y > 3:
+				move_ball_to_idle()
+				wait_timer = 5
 			pass
 		STATE.End:
 			#Rest for debugging
@@ -97,6 +105,9 @@ func _process(delta: float) -> void:
 				pong_ball.position = ball_start.position
 				pong_ball.rotation = ball_start.rotation
 			pass
+	
+	#MANAGE DISPLAY FUNCTIONS
+	
 
 
 func _physics_process(delta: float) -> void:
@@ -177,11 +188,9 @@ func setup_state(next_state: STATE) :
 			
 			if current_enemy_move < enemy_moves.size() - 1:
 				if enemy_moves[current_enemy_move] and !enemy_cups.is_empty():
-					destroy_random_enemy()
-					result_display.text = "OPPONENT POINT"
+					spawn_random_opponent_throw()
 				else:
 					print("enemy missed")
-					result_display.text = "OPPONENT MISS"
 			else:
 				print("invalid enemy move")
 			state_display.text = "Current State: Enemy"
@@ -191,28 +200,43 @@ func setup_state(next_state: STATE) :
 	
 	current_state = next_state
 
+#Called in solo_cup
 func destroy_player_cup(player_cup: Node3D) -> void:
 	player_cups.erase(player_cup)
 	current_player_turn = current_player_turn - 1
 	setup_state(STATE.Player)
-	#if current_player_turn == 1:
-		#
-	#else:
-		#move_ball_to_idle()
 
-func move_player_cup_to_start() -> void:
-	pass
-
+#Move ball into an idle holding position
 func move_ball_to_idle() -> void:
 	pong_ball.freeze = true
 	pong_ball.position = ball_idle.position
 	pong_ball.rotation = ball_idle.rotation
 
+#Move ball to start
 func move_ball_to_start() -> void:
 	pong_ball.freeze = true
 	pong_ball.position = ball_start.position
 	pong_ball.rotation = ball_start.rotation
 
+
+func release_ball_at_position(release_position: Vector3) -> void:
+	pong_ball.position = release_position
+	pong_ball.freeze = false
+
+func destroy_opponent_cup(opponent_cup: Node3D) -> void:
+	enemy_cups.erase(opponent_cup)
+	canvas.display_message("OPPONENT POINT")
+	setup_state(STATE.Player)
+
+func spawn_random_opponent_throw() -> void:
+	if enemy_cups.is_empty():
+		print("tried to destroy nonexistant enemy cup")
+		return
+	
+	var current_cup = enemy_cups.pick_random()
+	var release_position = current_cup.global_position + Vector3(0,2,0)
+	release_ball_at_position(release_position)
+	
 func destroy_random_enemy() -> void:
 	if enemy_cups.is_empty():
 		print("tried to destroy nonexistant enemy cup")

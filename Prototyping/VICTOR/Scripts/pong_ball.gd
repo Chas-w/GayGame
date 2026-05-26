@@ -12,6 +12,12 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	pass
 
+func freeze_ball_at_position(freeze_position: Vector3) -> void:
+	pass
+
+func release_ball_at_position(release_position: Vector3) -> void:
+	pass
+
 func toggle_bounce(toggle: bool) -> void:
 	if toggle:
 		physics_material_override = bounce_material
