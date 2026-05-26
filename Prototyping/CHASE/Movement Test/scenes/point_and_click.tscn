@@ -319,6 +319,9 @@ cam = NodePath("../CanvasLayer/SubViewportContainer/SubViewport/Camera3D")
 environment_cam = NodePath("../Main")
 fp_rotation_speed = 0.005
 
+[node name="CollisionShape3D" parent="Player" index="2" unique_id=2050022507]
+visible = false
+
 [node name="Digi Manager" parent="Player" index="3" unique_id=1292205963 node_paths=PackedStringArray("main_UI", "CRT_effect", "rotation_target")]
 main_UI = NodePath("../../CanvasLayer/main_UI")
 CRT_effect = NodePath("../../CanvasLayer/CRT")
@@ -329,6 +332,9 @@ rotation_target = NodePath("CameraRotationTarget")
 transform = Transform3D(-0.0693388, 0, 0.9975932, 0, 0.99999994, 0, -0.9975932, 0, -0.0693388, 0, 0, 0)
 look_at_damping = true
 look_at_damping_value = 0.75
+
+[node name="Forward" parent="Player/Digi Manager" index="2" unique_id=538809345]
+visible = false
 
 [node name="Main" type="Node3D" parent="." unique_id=821202811 node_paths=PackedStringArray("look_at_target")]
 transform = Transform3D(0.35158312, 0.4852125, -0.8005984, 8.833408e-05, 0.8551798, 0.51833105, 0.9361567, -0.18230718, 0.3006239, 0, 15.365929, 13.380627)
