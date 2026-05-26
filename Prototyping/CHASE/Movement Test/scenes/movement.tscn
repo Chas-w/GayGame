@@ -1,17 +1,17 @@
 [gd_scene format=3 uid="uid://nfoumhjrr1px"]
 
-[ext_resource type="PackedScene" uid="uid://bknhaf3ev31eg" path="res://Prototyping/CHASE/Movement Test/scenes/player.tscn" id="2_u2qq3"]
-[ext_resource type="Script" uid="uid://csjccrhj5wnx7" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_3d.gd" id="3_xcpho"]
-[ext_resource type="Script" uid="uid://8umksf8e80fw" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="4_fp1sp"]
-[ext_resource type="PackedScene" uid="uid://d2qbr3msf53bf" path="res://Prototyping/Imported Mesh/Bog Concept.glb" id="5_28pbn"]
-[ext_resource type="Script" uid="uid://dpp1y275pe6fk" path="res://Prototyping/CHASE/Movement Test/scripts/crt_controller.gd" id="6_h3id7"]
-[ext_resource type="Script" uid="uid://bd046eokvcnu2" path="res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" id="7_tuyvo"]
-[ext_resource type="Texture2D" uid="uid://4g3itx3xcb17" path="res://Prototyping/Imported Textures/Digicam.png" id="8_ghyff"]
-[ext_resource type="Texture2D" uid="uid://bge7y74fwiewv" path="res://Prototyping/Imported Textures/Bracelet.png" id="9_vodnm"]
-[ext_resource type="Shader" uid="uid://byc54teku3wr8" path="res://Prototyping/CHASE/Movement Test/shaders/tilt_shift_shader.gdshader" id="10_2l7t7"]
+[ext_resource type="PackedScene" uid="uid://bknhaf3ev31eg" path="res://Prototyping/CHASE/Movement Test/scenes/player.tscn" id="1_847wq"]
+[ext_resource type="Script" uid="uid://csjccrhj5wnx7" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_3d.gd" id="2_0vhfh"]
+[ext_resource type="Script" uid="uid://8umksf8e80fw" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="3_dnwio"]
+[ext_resource type="PackedScene" uid="uid://d2qbr3msf53bf" path="res://Prototyping/Imported Mesh/Bog Concept.glb" id="4_lodjo"]
+[ext_resource type="Script" uid="uid://dpp1y275pe6fk" path="res://Prototyping/CHASE/Movement Test/scripts/crt_controller.gd" id="5_ba7hu"]
+[ext_resource type="Script" uid="uid://bd046eokvcnu2" path="res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" id="6_awtj7"]
+[ext_resource type="Texture2D" uid="uid://4g3itx3xcb17" path="res://Prototyping/Imported Textures/Digicam.png" id="7_yafed"]
+[ext_resource type="Texture2D" uid="uid://bge7y74fwiewv" path="res://Prototyping/Imported Textures/Bracelet.png" id="8_lufhb"]
+[ext_resource type="Shader" uid="uid://byc54teku3wr8" path="res://Prototyping/CHASE/Movement Test/shaders/tilt_shift_shader.gdshader" id="9_4mgj3"]
 
 [sub_resource type="Resource" id="Resource_pnao5"]
-script = ExtResource("4_fp1sp")
+script = ExtResource("3_dnwio")
 duration = 0.0
 transition = 1
 
@@ -303,16 +303,16 @@ shader_parameter/mask_brightness = 0.8090000384275
 shader_parameter/aspect = 0.7230000105925
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_fl3qi"]
-shader = ExtResource("10_2l7t7")
+shader = ExtResource("9_4mgj3")
 shader_parameter/limit = 0.3170000150575
 shader_parameter/blur = 0.222000010545
 
-[node name="Point And Click" type="Node" unique_id=767724366]
+[node name="Movement" type="Node" unique_id=767724366]
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=345294312]
 transform = Transform3D(-0.20196828, 0.97870314, -0.036729224, -0.9757188, -0.1978243, 0.09401387, 0.084745795, 0.05482525, 0.99489325, 0, 15.365929, 13.380627)
 
-[node name="Player" parent="." unique_id=997567769 node_paths=PackedStringArray("temp_visualizer", "cam", "environment_cam") instance=ExtResource("2_u2qq3")]
+[node name="Player" parent="." unique_id=997567769 node_paths=PackedStringArray("temp_visualizer", "cam", "environment_cam") instance=ExtResource("1_847wq")]
 transform = Transform3D(-0.06933859, 0, 0.99759316, 0, 1, 0, -0.99759316, 0, -0.06933859, 22.102703, 1.07204, 5.094055)
 temp_visualizer = NodePath("../TempVisualizer")
 cam = NodePath("../CanvasLayer/SubViewportContainer/SubViewport/Camera3D")
@@ -338,7 +338,7 @@ visible = false
 
 [node name="Main" type="Node3D" parent="." unique_id=821202811 node_paths=PackedStringArray("look_at_target")]
 transform = Transform3D(0.35158312, 0.4852125, -0.8005984, 8.833408e-05, 0.8551798, 0.51833105, 0.9361567, -0.18230718, 0.3006239, 0, 15.365929, 13.380627)
-script = ExtResource("3_xcpho")
+script = ExtResource("2_0vhfh")
 look_at_mode = 2
 look_at_target = NodePath("../Player")
 tween_resource = SubResource("Resource_pnao5")
@@ -359,7 +359,7 @@ surface_material_override/0 = SubResource("StandardMaterial3D_pnao5")
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="." unique_id=1994545092]
 navigation_mesh = SubResource("NavigationMesh_o3c4m")
 
-[node name="Bog Concept" parent="NavigationRegion3D" unique_id=2004594051 instance=ExtResource("5_28pbn")]
+[node name="Bog Concept" parent="NavigationRegion3D" unique_id=2004594051 instance=ExtResource("4_lodjo")]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
 
 [node name="StaticBody3D" type="StaticBody3D" parent="NavigationRegion3D/Bog Concept/Patio" parent_id_path=PackedInt32Array(2004594051, 650449763) index="0" unique_id=149619076]
@@ -381,7 +381,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("6_h3id7")
+script = ExtResource("5_ba7hu")
 subviewport_node = NodePath("../SubViewportContainer/SubViewport")
 
 [node name="SubViewportContainer" type="SubViewportContainer" parent="CanvasLayer" unique_id=766696180]
@@ -407,7 +407,7 @@ size = 25.0
 [node name="PhantomCameraHost" type="Node" parent="CanvasLayer/SubViewportContainer/SubViewport/Camera3D" unique_id=386236871]
 process_priority = 300
 process_physics_priority = 300
-script = ExtResource("7_tuyvo")
+script = ExtResource("6_awtj7")
 metadata/_custom_type_script = "uid://bd046eokvcnu2"
 
 [node name="main_UI" type="Control" parent="CanvasLayer" unique_id=1733962961]
@@ -423,13 +423,13 @@ size_flags_horizontal = 4
 position = Vector2(1183.9999, 332)
 rotation = -3.6808994
 scale = Vector2(0.57, -0.57)
-texture = ExtResource("8_ghyff")
+texture = ExtResource("7_yafed")
 
 [node name="Bracelet" type="Sprite2D" parent="CanvasLayer/main_UI" unique_id=207955494]
 position = Vector2(1147.0001, 10.999996)
 rotation = 1.4067354
 scale = Vector2(0.75, 0.75)
-texture = ExtResource("9_vodnm")
+texture = ExtResource("8_lufhb")
 
 [node name="Tiltshift" type="TextureRect" parent="CanvasLayer/main_UI" unique_id=1550171388]
 material = SubResource("ShaderMaterial_fl3qi")
