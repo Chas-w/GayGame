@@ -1,0 +1,25 @@
+{
+    "NPC_Dialogue" : {
+        "Name" : "Character Name",
+        "Has_Quest_Dialogue" : true,
+        
+        "Dialogue" : {
+            "Default" : {
+                "Opener" : "First Line",
+                "Follow_Up" : "Second Line",
+                "Follow_Up_1" : "Third Line, and so on",
+                "Default_Finished" : false
+            },
+            
+            "Quest_Dialogue" : {
+                "Quest_Name" : "Quest Name",
+                "Player_Response_Options" : ["Op_1", "Op_2", "Op_3"],
+                "Op_1" : "Response to Option 1",
+                "Op_2" : "Response to Option 2",
+                "Op_3" : "Response to Option 3",
+                "Quest_Finished" : false
+            }
+        }
+    }
+
+}
