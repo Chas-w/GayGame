@@ -16,12 +16,18 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	pass
 
+#Show Opponent View Cameras
+func toggle_opponent_view(toggle: bool) -> void:
+	opponent_turn.visible = toggle
+
+#Show idle arms (SWITCH TO ANIMATION)
 func switch_to_idle() -> void:
 	idle_arms.visible = true
 	throw_arms.visible = false
-	opponent_turn.visible = false
+	#opponent_turn.visible = false
 
+#Show throw arms (SWITCH TO ANIMATION)
 func switch_to_throw() -> void:
 	idle_arms.visible = false
 	throw_arms.visible = true
-	opponent_turn.visible = true
+	#opponent_turn.visible = true

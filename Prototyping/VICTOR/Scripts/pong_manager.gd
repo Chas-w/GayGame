@@ -69,6 +69,9 @@ func _process(delta: float) -> void:
 			if Input.is_action_just_pressed("enter"):
 				setup_state(STATE.Player)
 		STATE.Player:
+			#Display player balls:
+			player_move_display.text = "Balls Remaining: " + str(player_balls_left)
+			
 			#Start throwing the ball
 			if Input.is_action_pressed("click") and !ready_to_throw:
 				ready_to_throw = true
@@ -77,6 +80,10 @@ func _process(delta: float) -> void:
 			if ready_to_throw:
 				canvas.update_end_point()
 		STATE.Wait:
+			#Display player balls:
+			if state_before_wait == STATE.Player:
+				player_move_display.text = "Balls Remaining: " + str(player_balls_left)
+			
 			#Track wait_time
 			wait_timer = wait_timer + delta
 			if !point_scored and wait_timer > 5:
@@ -91,6 +98,7 @@ func _process(delta: float) -> void:
 			wait_timer = wait_timer + delta
 			if wait_timer > 2:
 				wait_timer = 0
+				opponent.switch_to_throw()
 				if current_enemy_move < enemy_moves.size() - 1:
 					if enemy_moves[current_enemy_move] and !enemy_cups.is_empty():
 						spawn_random_opponent_throw()
@@ -154,16 +162,20 @@ func setup_state(next_state: STATE) :
 			#spare_ball.visible = true
 		STATE.Wait:
 			point_scored = false
-			
+			#Turn off enemy stuff
 			if state_before_wait == STATE.Enemy:
 				opponent.switch_to_idle()
+				opponent.toggle_opponent_view(false)
 				current_enemy_move = current_enemy_move + 1
 				enemy_move_display.text = "Enemy Move: " + str(current_enemy_move)
+			#Turn off player stuff
 			if state_before_wait == STATE.Player:
-				pass
+				player_move_display.text = ""
+			
+			#END GAME IF EMPTY
+			if player_cups.is_empty() or enemy_cups.is_empty():
+				next_state = STATE.End
 		STATE.Player:
-			pass
-		STATE.End:
 			pass
 	
 	#Setup Next State
@@ -181,18 +193,19 @@ func setup_state(next_state: STATE) :
 			wait_timer = 0
 			state_before_wait = current_state
 		STATE.Enemy:
-			opponent.switch_to_throw()
+			opponent.toggle_opponent_view(true)
 			
 			pong_ball.toggle_bounce(true)
 			pong_ball.freeze_at_location(ball_idle.position, ball_idle.rotation)
 			state_display.text = "Current State: Enemy"
 		STATE.End:
 			state_display.text = "Current State: End"
+			canvas.display_message("GAME OVER")
 			pass
 	
 	current_state = next_state
 
-#Called in _process wait
+#Called in _process wait, processes wait functions
 func process_wait() -> void:
 	update_spare_balls()
 	if state_before_wait == STATE.Player:
@@ -205,17 +218,18 @@ func process_wait() -> void:
 		setup_state(STATE.Player)
 
 func update_spare_balls() -> void:
-	for i in range(spare_balls.size() - 1):
-		spare_balls[i].queue_free()
-	spare_balls.clear()
-	
-	var spawn_position = ball_start.position + Vector3(-0.5, 0, 0)
-	for i in range(player_balls_left-1):
-		var new_spare = spare_prefab.instantiate()
-		new_spare.position = spawn_position - Vector3(0.25, 0, 0) * i
-		add_child(new_spare)
-		spare_balls.append(new_spare)
-		pass
+	pass
+	#CODE NOT WORKING
+	#for i in range(spare_balls.size() - 1):
+		#spare_balls[i].queue_free()
+	#spare_balls.clear()
+	#
+	#var spawn_position = ball_start.position + Vector3(-0.5, 0, 0)
+	#for i in range(player_balls_left-1):
+		#var new_spare = spare_prefab.instantiate()
+		#new_spare.position = spawn_position - Vector3(0.25, 0, 0) * i
+		#add_child(new_spare)
+		#spare_balls.append(new_spare)
 
 #Called in solo_cup
 func destroy_player_cup(player_cup: Node3D) -> void:

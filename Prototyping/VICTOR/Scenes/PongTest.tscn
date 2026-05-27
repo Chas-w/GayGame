@@ -16,6 +16,10 @@
 [ext_resource type="Texture2D" uid="uid://m66qde282cjn" path="res://Prototyping/OLD/Sprites/Baby Karl Head.png" id="10_yel1t"]
 [ext_resource type="PackedScene" uid="uid://ce8pwoka5a3mk" path="res://Prototyping/VICTOR/Prefabs/spare_ball.tscn" id="15_rfqhs"]
 
+[sub_resource type="LabelSettings" id="LabelSettings_rfqhs"]
+font = ExtResource("2_yel1t")
+font_size = 30
+
 [sub_resource type="LabelSettings" id="LabelSettings_42oot"]
 font = ExtResource("2_yel1t")
 font_size = 161
@@ -147,9 +151,12 @@ transform = Transform3D(1.1693858e-07, -0.54555255, 0.8380766, -6.3661076e-08, 0
 [node name="PlayerMove" type="Label" parent="Canvas" unique_id=1832471021]
 layout_mode = 0
 offset_left = 10.0
-offset_top = 263.0
+offset_top = 594.0
 offset_right = 242.0
-offset_bottom = 291.0
+offset_bottom = 639.0
+text = "BALLS REMAINING:"
+label_settings = SubResource("LabelSettings_rfqhs")
+vertical_alignment = 2
 
 [node name="EnemyMove" type="Label" parent="Canvas" unique_id=825106124]
 layout_mode = 0
