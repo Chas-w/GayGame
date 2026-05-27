@@ -6,8 +6,10 @@
 [ext_resource type="PackedScene" uid="uid://d2qbr3msf53bf" path="res://Prototyping/Imported Mesh/Bog Concept.glb" id="4_lodjo"]
 [ext_resource type="PackedScene" uid="uid://bfrtcqi3os4po" path="res://Prototyping/CHASE/Movement Test/scenes/interaction_trigger.tscn" id="5_0vhfh"]
 [ext_resource type="Script" uid="uid://dpp1y275pe6fk" path="res://Prototyping/CHASE/Movement Test/scripts/crt_controller.gd" id="5_ba7hu"]
-[ext_resource type="PackedScene" uid="uid://i45rxxu8g27j" path="res://Prototyping/CHASE/Movement Test/scenes/user_interface.tscn" id="6_3yvbg"]
 [ext_resource type="Script" uid="uid://bd046eokvcnu2" path="res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" id="6_awtj7"]
+[ext_resource type="Texture2D" uid="uid://4g3itx3xcb17" path="res://Prototyping/Imported Textures/Digicam.png" id="7_yafed"]
+[ext_resource type="Texture2D" uid="uid://bge7y74fwiewv" path="res://Prototyping/Imported Textures/Bracelet.png" id="8_lufhb"]
+[ext_resource type="Shader" uid="uid://byc54teku3wr8" path="res://Prototyping/CHASE/Movement Test/shaders/tilt_shift_shader.gdshader" id="9_4mgj3"]
 
 [sub_resource type="Resource" id="Resource_pnao5"]
 script = ExtResource("3_dnwio")
@@ -28,7 +30,7 @@ cell_height = 0.1
 [sub_resource type="BoxShape3D" id="BoxShape3D_pnao5"]
 size = Vector3(2.1981812, 1, 2.3096924)
 
-[sub_resource type="Shader" id="Shader_dildx"]
+[sub_resource type="Shader" id="Shader_fl3qi"]
 resource_local_to_scene = true
 code = "// CRT with Luminance Preservation (no scanlines) by Harrison Allen
 // Public domain
@@ -288,18 +290,23 @@ void fragment()
 	COLOR.rgb = col;
 }"
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_847wq"]
-viewport_path = NodePath("User Interface/SubViewportContainer/SubViewport")
+[sub_resource type="ViewportTexture" id="ViewportTexture_fl3qi"]
+viewport_path = NodePath("CanvasLayer/SubViewportContainer/SubViewport")
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_0vhfh"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ds08u"]
 resource_local_to_scene = true
-shader = SubResource("Shader_dildx")
-shader_parameter/tex = SubResource("ViewportTexture_847wq")
+shader = SubResource("Shader_fl3qi")
+shader_parameter/tex = SubResource("ViewportTexture_fl3qi")
 shader_parameter/mask_type = 1
 shader_parameter/curve = 0.09600000456
 shader_parameter/color_offset = 0.10400002869000002
 shader_parameter/mask_brightness = 0.8090000384275
 shader_parameter/aspect = 0.7230000105925
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_fl3qi"]
+shader = ExtResource("9_4mgj3")
+shader_parameter/limit = 0.3170000150575
+shader_parameter/blur = 0.222000010545
 
 [node name="Movement" type="Node" unique_id=767724366]
 
@@ -310,13 +317,17 @@ transform = Transform3D(-0.20196828, 0.97870314, -0.036729224, -0.9757188, -0.19
 transform = Transform3D(-0.06933859, 0, 0.99759316, 0, 1, 0, -0.99759316, 0, -0.06933859, 22.102703, 1.07204, 5.094055)
 rotation_speed = 10.0
 temp_visualizer = NodePath("../TempVisualizer")
-cam = NodePath("../User Interface/SubViewportContainer/SubViewport/Camera3D")
+move_state = null
+pc_state = null
+cam = NodePath("../CanvasLayer/SubViewportContainer/SubViewport/Camera3D")
 environment_cam = NodePath("../Main")
 fp_rotation_speed = 0.001
+can_interact = null
+dialogue_interaction = null
 
 [node name="Digi Manager" parent="Player" index="3" unique_id=1292205963 node_paths=PackedStringArray("main_UI", "CRT_effect", "rotation_target")]
-main_UI = NodePath("../../User Interface/main_UI")
-CRT_effect = NodePath("../../User Interface/CRT")
+main_UI = NodePath("../../CanvasLayer/main_UI")
+CRT_effect = NodePath("../../CanvasLayer/CRT")
 digi_move_speed = 0.005
 rotation_target = NodePath("CameraRotationTarget")
 
@@ -370,11 +381,11 @@ visible = false
 transform = Transform3D(6.374224, 0, 0, 0, 2.9, 0, 0, 0, 9.6, -5.0369873, 0.2880001, 0)
 has_dialogue = true
 
-[node name="User Interface" parent="." unique_id=2020881195 instance=ExtResource("6_3yvbg")]
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=984685931]
 
-[node name="CRT" type="ColorRect" parent="User Interface" unique_id=452677996 node_paths=PackedStringArray("subviewport_node")]
+[node name="CRT" type="ColorRect" parent="CanvasLayer" unique_id=633901733 node_paths=PackedStringArray("subviewport_node")]
 z_index = 1
-material = SubResource("ShaderMaterial_0vhfh")
+material = SubResource("ShaderMaterial_ds08u")
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -383,19 +394,19 @@ grow_vertical = 2
 script = ExtResource("5_ba7hu")
 subviewport_node = NodePath("../SubViewportContainer/SubViewport")
 
-[node name="SubViewportContainer" type="SubViewportContainer" parent="User Interface" unique_id=591998087]
+[node name="SubViewportContainer" type="SubViewportContainer" parent="CanvasLayer" unique_id=766696180]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="SubViewport" type="SubViewport" parent="User Interface/SubViewportContainer" unique_id=2082785686]
+[node name="SubViewport" type="SubViewport" parent="CanvasLayer/SubViewportContainer" unique_id=1276451678]
 handle_input_locally = false
 size = Vector2i(1152, 648)
 render_target_update_mode = 4
 
-[node name="Camera3D" type="Camera3D" parent="User Interface/SubViewportContainer/SubViewport" unique_id=350252024 groups=["Camera"]]
+[node name="Camera3D" type="Camera3D" parent="CanvasLayer/SubViewportContainer/SubViewport" unique_id=1089342661 groups=["Camera"]]
 physics_interpolation_mode = 1
 transform = Transform3D(0.35158312, 0.4852125, -0.8005984, 8.833408e-05, 0.8551798, 0.51833105, 0.9361567, -0.18230718, 0.3006239, 0, 15.365929, 13.380627)
 top_level = true
@@ -403,15 +414,68 @@ projection = 1
 current = true
 size = 25.0
 
-[node name="PhantomCameraHost" type="Node" parent="User Interface/SubViewportContainer/SubViewport/Camera3D" unique_id=323991140]
+[node name="PhantomCameraHost" type="Node" parent="CanvasLayer/SubViewportContainer/SubViewport/Camera3D" unique_id=386236871]
 process_priority = 300
 process_physics_priority = 300
 script = ExtResource("6_awtj7")
 metadata/_custom_type_script = "uid://bd046eokvcnu2"
 
-[node name="Database" type="Node" parent="." unique_id=1638776077]
+[node name="main_UI" type="Control" parent="CanvasLayer" unique_id=1733962961]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+
+[node name="Digicam" type="Sprite2D" parent="CanvasLayer/main_UI" unique_id=110717533]
+position = Vector2(1183.9999, 332)
+rotation = -3.6808994
+scale = Vector2(0.57, -0.57)
+texture = ExtResource("7_yafed")
+
+[node name="Bracelet" type="Sprite2D" parent="CanvasLayer/main_UI" unique_id=207955494]
+position = Vector2(1147.0001, 10.999996)
+rotation = 1.4067354
+scale = Vector2(0.75, 0.75)
+texture = ExtResource("8_lufhb")
+
+[node name="Tiltshift" type="TextureRect" parent="CanvasLayer/main_UI" unique_id=1550171388]
+material = SubResource("ShaderMaterial_fl3qi")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Information Text" type="Control" parent="CanvasLayer" unique_id=2132638869]
+layout_mode = 3
+anchor_top = 0.62200004
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_top = -0.056030273
+offset_right = -4.0
+offset_bottom = -4.0
+
+[node name="PanelContainer" type="PanelContainer" parent="CanvasLayer/Information Text" unique_id=845308907]
+z_index = 2
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TitleLabel" type="Label" parent="CanvasLayer/Information Text/PanelContainer" unique_id=1251964851]
+layout_mode = 2
+size_flags_vertical = 0
+text = "Title"
+
+[node name="DataLabel" type="Label" parent="CanvasLayer/Information Text/PanelContainer" unique_id=1753908669]
+layout_mode = 2
+text = "Data Label"
 
 [editable path="Player"]
 [editable path="NavigationRegion3D/Bog Concept"]
-[editable path="User Interface"]
-[editable path="User Interface/Information Text"]

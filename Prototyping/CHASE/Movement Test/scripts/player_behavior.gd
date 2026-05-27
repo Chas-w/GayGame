@@ -23,9 +23,14 @@ enum PC_State{PC_WALK, PC_NULL}
 var timer : float
 
 @export_category("Interaction Variables")
+var player_states : Dictionary = {}
 @export var can_interact : bool 
 @export var dialogue_interaction : bool
 var interaction_source : Node3D
+	
+
+func _ready():
+	_set_move_state(Move_State.POINT_AND_CLICK) #setup for point and click
 
 func _process(delta):
 	match(move_state):
@@ -150,13 +155,12 @@ func _input(event):
 			rotation_target.rotation.y = clampf(rotation_target.rotation.y, -deg_to_rad(70), deg_to_rad(70))
 	#endregion
 	#region interact input
-	if(event.is_action_pressed("interact")):
+	if(event.is_action_pressed("interact") && interaction_source != null):
 		if (interaction_source.has_dialogue):
 			_set_move_state(Move_State.CHATTING)
 		else:
 			_set_move_state(Move_State.INSPECTING)
 	#endregion
-
 
 func _on_interaction_detector_area_entered(area):
 	if(area.is_in_group("Interaction")):
