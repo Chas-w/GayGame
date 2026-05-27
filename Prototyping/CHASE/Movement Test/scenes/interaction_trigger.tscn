@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://bfrtcqi3os4po"]
+
+[ext_resource type="Script" uid="uid://byo4pafatcltw" path="res://Prototyping/CHASE/Movement Test/scripts/interaction_manager.gd" id="1_iwsgo"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_iwsgo"]
+
+[node name="Interaction Trigger" type="Node3D" unique_id=101737479 groups=["Interaction"]]
+script = ExtResource("1_iwsgo")
+
+[node name="Area3D" type="Area3D" parent="." unique_id=1905126529 groups=["Interaction"]]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" unique_id=945985089 groups=["Interaction"]]
+shape = SubResource("BoxShape3D_iwsgo")
+debug_color = Color(4.428029e-06, 0.8605231, 0.69217527, 1)

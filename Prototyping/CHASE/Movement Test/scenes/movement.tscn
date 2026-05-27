@@ -4,8 +4,10 @@
 [ext_resource type="Script" uid="uid://csjccrhj5wnx7" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_3d.gd" id="2_0vhfh"]
 [ext_resource type="Script" uid="uid://8umksf8e80fw" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="3_dnwio"]
 [ext_resource type="PackedScene" uid="uid://d2qbr3msf53bf" path="res://Prototyping/Imported Mesh/Bog Concept.glb" id="4_lodjo"]
+[ext_resource type="PackedScene" uid="uid://bfrtcqi3os4po" path="res://Prototyping/CHASE/Movement Test/scenes/interaction_trigger.tscn" id="5_0vhfh"]
 [ext_resource type="Script" uid="uid://dpp1y275pe6fk" path="res://Prototyping/CHASE/Movement Test/scripts/crt_controller.gd" id="5_ba7hu"]
 [ext_resource type="Script" uid="uid://bd046eokvcnu2" path="res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" id="6_awtj7"]
+[ext_resource type="PackedScene" uid="uid://c0b54c486n0y7" path="res://Prototyping/CHASE/Movement Test/scenes/dialogue.tscn" id="6_lodjo"]
 [ext_resource type="Texture2D" uid="uid://4g3itx3xcb17" path="res://Prototyping/Imported Textures/Digicam.png" id="7_yafed"]
 [ext_resource type="Texture2D" uid="uid://bge7y74fwiewv" path="res://Prototyping/Imported Textures/Bracelet.png" id="8_lufhb"]
 [ext_resource type="Shader" uid="uid://byc54teku3wr8" path="res://Prototyping/CHASE/Movement Test/shaders/tilt_shift_shader.gdshader" id="9_4mgj3"]
@@ -365,6 +367,19 @@ shape = SubResource("BoxShape3D_pnao5")
 
 [node name="Standin CHAR" parent="NavigationRegion3D/Bog Concept" index="2" unique_id=1140270219]
 visible = false
+
+[node name="Standin CHAR_001" parent="NavigationRegion3D/Bog Concept" index="5" unique_id=2062879469]
+visible = false
+
+[node name="Standin CHAR_002" parent="NavigationRegion3D/Bog Concept" index="7" unique_id=1199953620]
+visible = false
+
+[node name="Interaction Trigger" parent="NavigationRegion3D/Bog Concept/Standin CHAR_003" parent_id_path=PackedInt32Array(2004594051, 1530826805) index="0" unique_id=101737479 node_paths=PackedStringArray("dialogue_controller") groups=["interaction"] instance=ExtResource("5_0vhfh")]
+transform = Transform3D(6.374224, 0, 0, 0, 2.9, 0, 0, 0, 9.6, -5.0369873, 0.2880001, 0)
+has_dialogue = true
+dialogue_controller = NodePath("../Dialogue Controller")
+
+[node name="Dialogue Controller" parent="NavigationRegion3D/Bog Concept/Standin CHAR_003" parent_id_path=PackedInt32Array(2004594051, 1530826805) index="1" unique_id=458939855 instance=ExtResource("6_lodjo")]
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=984685931]
 

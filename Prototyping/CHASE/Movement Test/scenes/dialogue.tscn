@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://c0b54c486n0y7"]
+
+[ext_resource type="Script" uid="uid://cyg7cnpviy3yj" path="res://Prototyping/CHASE/Movement Test/scripts/dialogue_controller.gd" id="1_yjmxl"]
+
+[node name="Dialogue Controller" type="Node3D" unique_id=458939855]
+script = ExtResource("1_yjmxl")
