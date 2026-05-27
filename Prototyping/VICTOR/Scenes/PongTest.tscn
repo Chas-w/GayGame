@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://c1txq7vawfcfu" path="res://Prototyping/VICTOR/Scripts/pong_manager.gd" id="1_fhfpf"]
 [ext_resource type="Script" uid="uid://b4p4almorgo68" path="res://Prototyping/VICTOR/Scripts/canvas.gd" id="2_fm7vh"]
-[ext_resource type="PackedScene" uid="uid://ckr6adiwpqj0i" path="res://Prototyping/VICTOR/Scenes/solo_cup.tscn" id="2_hl323"]
+[ext_resource type="PackedScene" uid="uid://ckr6adiwpqj0i" path="res://Prototyping/VICTOR/Prefabs/solo_cup.tscn" id="2_hl323"]
 [ext_resource type="FontFile" uid="uid://bmimebg5qcne7" path="res://Prototyping/VICTOR/Fonts/Oswald-VariableFont_wght.ttf" id="2_yel1t"]
 [ext_resource type="Texture2D" uid="uid://bqk3a55a5ubqx" path="res://Prototyping/OLD/Sprites/Test Limbs/test_torso.png" id="3_nf5nu"]
 [ext_resource type="Script" uid="uid://bq3ugj7nd7i2k" path="res://Prototyping/VICTOR/Scripts/pong_ball.gd" id="3_w52o3"]
@@ -14,6 +14,7 @@
 [ext_resource type="Texture2D" uid="uid://c2yoctxl8xjo6" path="res://Prototyping/OLD/Sprites/Test Limbs/test_right_lower_arm.png" id="8_b14a7"]
 [ext_resource type="Texture2D" uid="uid://bcc5b782y6v7g" path="res://Prototyping/OLD/Sprites/Test Limbs/test_right_upper_arm.png" id="9_ti3ej"]
 [ext_resource type="Texture2D" uid="uid://m66qde282cjn" path="res://Prototyping/OLD/Sprites/Baby Karl Head.png" id="10_yel1t"]
+[ext_resource type="PackedScene" uid="uid://ce8pwoka5a3mk" path="res://Prototyping/VICTOR/Prefabs/spare_ball.tscn" id="15_rfqhs"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_42oot"]
 font = ExtResource("2_yel1t")
@@ -63,29 +64,22 @@ friction = 0.22
 bounce = 0.1
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_yel1t"]
+transparency = 1
 
 [sub_resource type="SphereMesh" id="SphereMesh_7vbk8"]
 material = SubResource("StandardMaterial3D_yel1t")
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_fhfpf"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_f6mwx"]
-transparency = 1
-albedo_color = Color(1, 1, 1, 0.6)
-
-[sub_resource type="SphereMesh" id="SphereMesh_0ulbx"]
-material = SubResource("StandardMaterial3D_f6mwx")
-
-[node name="PongTest" type="Node3D" unique_id=1373645394 node_paths=PackedStringArray("pong_ball", "spare_ball", "player_cups", "enemy_cups", "canvas", "player_move_display", "enemy_move_display", "state_display", "result_display", "ball_start", "ball_idle", "table", "opponent")]
+[node name="PongTest" type="Node3D" unique_id=1373645394 node_paths=PackedStringArray("pong_ball", "player_cups", "enemy_cups", "canvas", "player_move_display", "enemy_move_display", "state_display", "result_display", "ball_start", "ball_idle", "opponent_miss", "table", "opponent")]
 transform = Transform3D(0.9899076, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 script = ExtResource("1_fhfpf")
 pong_ball = NodePath("PongBall")
-spare_ball = NodePath("SpareBall")
 default_throw_force = 4.0
 default_up_force = 40.0
 player_cups = [NodePath("PlayerSoloCups/Solo Cup"), NodePath("PlayerSoloCups/Solo Cup2"), NodePath("PlayerSoloCups/Solo Cup3")]
 enemy_cups = [NodePath("OpponentSoloCups/Solo Cup"), NodePath("OpponentSoloCups/Solo Cup2"), NodePath("OpponentSoloCups/Solo Cup3")]
-enemy_moves = Array[bool]([true, true, false, true, false, false, true, false, true])
+enemy_moves = Array[bool]([false, true, false, true, false, false, true, false])
 canvas = NodePath("Canvas")
 player_move_display = NodePath("Canvas/PlayerMove")
 enemy_move_display = NodePath("Canvas/EnemyMove")
@@ -93,6 +87,7 @@ state_display = NodePath("Canvas/CurrentState")
 result_display = NodePath("Canvas/OpponentResult")
 ball_start = NodePath("BallStart")
 ball_idle = NodePath("BallIdle")
+opponent_miss = NodePath("OpponentMiss")
 table = NodePath("Table")
 opponent = NodePath("Opponent")
 
@@ -211,6 +206,7 @@ layout_mode = 0
 offset_top = 308.0
 offset_right = 1152.0
 offset_bottom = 634.0
+text = "OPPONENT"
 label_settings = SubResource("LabelSettings_42oot")
 horizontal_alignment = 1
 
@@ -260,6 +256,12 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.46851075, 1.2596939)
 [node name="BallIdle" type="Node3D" parent="." unique_id=440458480]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.81529, 1.2596939)
 
+[node name="OpponentMiss" type="Node3D" parent="." unique_id=773924897]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.3016795, 0.17486814, 1.718806)
+
+[node name="SpareBall" parent="." unique_id=866605607 instance=ExtResource("15_rfqhs")]
+transform = Transform3D(0.1262744, 0, 0, 0, 0.125, 0, 0, 0, 0.125, 0.050115325, 0, 1.7856336)
+
 [node name="PongBall" type="RigidBody3D" parent="." unique_id=620237369]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.46851075, 1.2596939)
 physics_material_override = SubResource("PhysicsMaterial_fhfpf")
@@ -279,21 +281,20 @@ mesh = SubResource("SphereMesh_7vbk8")
 transform = Transform3D(0.125, 0, 0, 0, 0.125, 0, 0, 0, 0.125, 0, 0, 0)
 shape = SubResource("SphereShape3D_fhfpf")
 
-[node name="SpareBall" type="MeshInstance3D" parent="." unique_id=1851578578]
-transform = Transform3D(0.125, 0, 0, 0, 0.125, 0, 0, 0, 0.125, -0.4296335, 0.46851075, 1.2596939)
-mesh = SubResource("SphereMesh_0ulbx")
-
 [node name="PlayerSoloCups" type="Node3D" parent="." unique_id=2112737641]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.06327772, -0.024891615, -0.39277887)
 
 [node name="Solo Cup" parent="PlayerSoloCups" unique_id=1436110714 instance=ExtResource("2_hl323")]
 transform = Transform3D(2.5, 0, 0, 0, -1.09278474e-07, 2.5, 0, -2.5, -1.09278474e-07, -0.036768615, 0.080347724, 0.020106435)
+is_player = true
 
 [node name="Solo Cup2" parent="PlayerSoloCups" unique_id=1139661238 instance=ExtResource("2_hl323")]
 transform = Transform3D(2.5, 0, 0, 0, -1.09278474e-07, 2.5, 0, -2.5, -1.09278474e-07, 0.20327878, 0.080347724, -0.3980986)
+is_player = true
 
 [node name="Solo Cup3" parent="PlayerSoloCups" unique_id=1587366971 instance=ExtResource("2_hl323")]
 transform = Transform3D(2.5, 0, 0, 0, -1.09278474e-07, 2.5, 0, -2.5, -1.09278474e-07, -0.27862018, 0.080347724, -0.38401043)
+is_player = true
 
 [node name="OpponentSoloCups" type="Node3D" parent="." unique_id=632960647]
 transform = Transform3D(-0.99999994, 0, 0, 0, 1, 0, 0, 0, -0.99999994, -0.009352691, -0.021984339, 1.7706909)

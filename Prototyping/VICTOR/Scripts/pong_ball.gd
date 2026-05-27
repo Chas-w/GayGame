@@ -12,11 +12,15 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	pass
 
-func freeze_ball_at_position(freeze_position: Vector3) -> void:
-	pass
+func freeze_ball_at_point(freeze_position: Vector3, freeze_rotation: Vector3) -> void:
+	freeze = true
+	position = freeze_position
+	rotation = freeze_rotation
 
-func release_ball_at_position(release_position: Vector3) -> void:
-	pass
+func release_ball_at_point(release_position: Vector3, release_rotation: Vector3) -> void:
+	position = release_position
+	rotation = release_rotation
+	freeze = false
 
 func toggle_bounce(toggle: bool) -> void:
 	if toggle:

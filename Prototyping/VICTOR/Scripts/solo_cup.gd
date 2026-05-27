@@ -8,7 +8,7 @@ var mesh_var : MeshInstance3D
 var manager : Node3D
 
 var complete_position : Vector3
-var move_speed : float = 2
+var move_speed : float = 3
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
