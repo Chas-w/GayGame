@@ -4,12 +4,12 @@ importer="scene"
 importer_version=1
 type="PackedScene"
 uid="uid://oma0e6h6mknb"
-path="res://.godot/imported/solo_cup_rec_room.glb-42c5149c0eb8afec1834ea414f8702ef.scn"
+path="res://.godot/imported/solo_cup_rec_room.glb-8cf6291f5e573690cb0d823e562506c0.scn"
 
 [deps]
 
-source_file="res://Prototyping/VICTOR/solo_cup_rec_room.glb"
-dest_files=["res://.godot/imported/solo_cup_rec_room.glb-42c5149c0eb8afec1834ea414f8702ef.scn"]
+source_file="res://Prototyping/VICTOR/Models/solo_cup_rec_room.glb"
+dest_files=["res://.godot/imported/solo_cup_rec_room.glb-8cf6291f5e573690cb0d823e562506c0.scn"]
 
 [params]
 

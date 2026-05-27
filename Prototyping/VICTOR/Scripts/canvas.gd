@@ -11,7 +11,7 @@ var retract_line : bool
 
 #Message Display
 var message_display_timer: float
-var message_display_time: float = 2
+var message_display_time: float = 1
 var message_displayed: bool
 
 # Called when the node enters the scene tree for the first time.

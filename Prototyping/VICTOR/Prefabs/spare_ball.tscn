@@ -1,0 +1,12 @@
+[gd_scene format=3 uid="uid://ce8pwoka5a3mk"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_f6mwx"]
+transparency = 1
+albedo_color = Color(1, 1, 1, 0.6)
+
+[sub_resource type="SphereMesh" id="SphereMesh_0ulbx"]
+material = SubResource("StandardMaterial3D_f6mwx")
+
+[node name="SpareBall" type="MeshInstance3D" unique_id=866605607]
+transform = Transform3D(0.125, 0, 0, 0, 0.125, 0, 0, 0, 0.125, 0, 0, 0)
+mesh = SubResource("SphereMesh_0ulbx")

@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://ddnthnqvo0kpi"]
 
-[ext_resource type="Script" uid="uid://ddxv3r7p86xrr" path="res://Prototyping/VICTOR/Scenes/mouse_drag.gd" id="1_apqoj"]
+[ext_resource type="Script" uid="uid://ddxv3r7p86xrr" path="res://Prototyping/VICTOR/Scripts/mouse_drag.gd" id="1_apqoj"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_n5a0f"]
 sky_top_color = Color(0.6128374, 0.17575681, 0.8644528, 1)
