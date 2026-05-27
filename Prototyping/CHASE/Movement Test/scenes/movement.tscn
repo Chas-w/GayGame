@@ -314,13 +314,11 @@ transform = Transform3D(-0.20196828, 0.97870314, -0.036729224, -0.9757188, -0.19
 
 [node name="Player" parent="." unique_id=997567769 node_paths=PackedStringArray("temp_visualizer", "cam", "environment_cam") instance=ExtResource("1_847wq")]
 transform = Transform3D(-0.06933859, 0, 0.99759316, 0, 1, 0, -0.99759316, 0, -0.06933859, 22.102703, 1.07204, 5.094055)
+rotation_speed = 10.0
 temp_visualizer = NodePath("../TempVisualizer")
 cam = NodePath("../CanvasLayer/SubViewportContainer/SubViewport/Camera3D")
 environment_cam = NodePath("../Main")
-fp_rotation_speed = 0.005
-
-[node name="MeshInstance3D" parent="Player" index="1" unique_id=990262259]
-visible = false
+fp_rotation_speed = 0.001
 
 [node name="Digi Manager" parent="Player" index="3" unique_id=1292205963 node_paths=PackedStringArray("main_UI", "CRT_effect", "rotation_target")]
 main_UI = NodePath("../../CanvasLayer/main_UI")
@@ -332,9 +330,6 @@ rotation_target = NodePath("CameraRotationTarget")
 transform = Transform3D(-0.0693388, 0, 0.9975932, 0, 0.99999994, 0, -0.9975932, 0, -0.0693388, 0, 0, 0)
 look_at_damping = true
 look_at_damping_value = 0.75
-
-[node name="Forward" parent="Player/Digi Manager" index="2" unique_id=538809345]
-visible = false
 
 [node name="Main" type="Node3D" parent="." unique_id=821202811 node_paths=PackedStringArray("look_at_target")]
 transform = Transform3D(0.35158312, 0.4852125, -0.8005984, 8.833408e-05, 0.8551798, 0.51833105, 0.9361567, -0.18230718, 0.3006239, 0, 15.365929, 13.380627)
