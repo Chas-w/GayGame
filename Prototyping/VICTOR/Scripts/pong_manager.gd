@@ -102,9 +102,7 @@ func _process(delta: float) -> void:
 		STATE.End:
 			#Rest for debugging
 			if Input.is_action_pressed("rightclick"):
-				pong_ball.freeze = true
-				pong_ball.position = ball_start.position
-				pong_ball.rotation = ball_start.rotation
+				pong_ball.freeze_at_location(ball_start.position, ball_start.rotation)
 			pass
 
 func _physics_process(delta: float) -> void:
@@ -173,10 +171,8 @@ func setup_state(next_state: STATE) :
 		STATE.None:
 			state_display.text = "Current State: None"
 		STATE.Player:
-			pong_ball.freeze = true
 			pong_ball.toggle_bounce(true)
-			pong_ball.position = ball_start.position
-			pong_ball.rotation = ball_start.rotation
+			pong_ball.freeze_at_location(ball_start.position, ball_start.rotation)
 			
 			update_spare_balls()
 			ready_to_throw = false
@@ -187,10 +183,8 @@ func setup_state(next_state: STATE) :
 		STATE.Enemy:
 			opponent.switch_to_throw()
 			
-			pong_ball.freeze = true
 			pong_ball.toggle_bounce(true)
-			pong_ball.position = ball_idle.position
-			pong_ball.rotation = ball_idle.rotation
+			pong_ball.freeze_at_location(ball_idle.position, ball_idle.rotation)
 			state_display.text = "Current State: Enemy"
 		STATE.End:
 			state_display.text = "Current State: End"
@@ -230,34 +224,18 @@ func destroy_player_cup(player_cup: Node3D) -> void:
 	player_cups.erase(player_cup)
 	
 	player_balls_left = player_balls_left + 1
-	move_ball_to_idle()
-
-#Move ball into an idle holding position
-func move_ball_to_idle() -> void:
-	pong_ball.freeze = true
-	pong_ball.position = ball_idle.position
-	pong_ball.rotation = ball_idle.rotation
-
-#Move ball to start
-func move_ball_to_start() -> void:
-	pong_ball.freeze = true
-	pong_ball.position = ball_start.position
-	pong_ball.rotation = ball_start.rotation
-
-func release_ball_at_position(release_position: Vector3) -> void:
-	pong_ball.position = release_position
-	pong_ball.freeze = false
+	pong_ball.freeze_at_location(ball_idle.position, ball_idle.rotation)
 
 func destroy_opponent_cup(opponent_cup: Node3D) -> void:
 	enemy_cups.erase(opponent_cup)
 	point_scored = true
 	wait_timer = 0
-	move_ball_to_idle()
+	pong_ball.freeze_at_location(ball_idle.position, ball_idle.rotation)
 
 func spawn_opponent_miss() -> void:
 	canvas.display_message("OPPONENT MISS")
 	var release_position = opponent_miss.position + Vector3(0,2,0)
-	release_ball_at_position(release_position)
+	pong_ball.release_at_location(release_position, ball_start.rotation)
 
 func spawn_random_opponent_throw() -> void:
 	if enemy_cups.is_empty():
@@ -268,4 +246,4 @@ func spawn_random_opponent_throw() -> void:
 	wait_timer = 0
 	var current_cup = enemy_cups.pick_random()
 	var release_position = current_cup.global_position + Vector3(0,2,0)
-	release_ball_at_position(release_position)
+	pong_ball.release_at_location(release_position, ball_start.rotation)

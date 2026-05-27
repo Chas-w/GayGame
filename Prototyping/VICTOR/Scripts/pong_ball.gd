@@ -12,12 +12,12 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	pass
 
-func freeze_ball_at_point(freeze_position: Vector3, freeze_rotation: Vector3) -> void:
+func freeze_at_location(freeze_position: Vector3, freeze_rotation: Vector3) -> void:
 	freeze = true
 	position = freeze_position
 	rotation = freeze_rotation
 
-func release_ball_at_point(release_position: Vector3, release_rotation: Vector3) -> void:
+func release_at_location(release_position: Vector3, release_rotation: Vector3) -> void:
 	position = release_position
 	rotation = release_rotation
 	freeze = false

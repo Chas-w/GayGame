@@ -260,7 +260,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.81529, 1.2596939)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.3016795, 0.17486814, 1.718806)
 
 [node name="SpareBall" parent="." unique_id=866605607 instance=ExtResource("15_rfqhs")]
-transform = Transform3D(0.1262744, 0, 0, 0, 0.125, 0, 0, 0, 0.125, 0.050115325, 0, 1.7856336)
+transform = Transform3D(0.1262744, 0, 0, 0, 0.125, 0, 0, 0, 0.125, 0.050115325, -0.33487818, 1.7856336)
 
 [node name="PongBall" type="RigidBody3D" parent="." unique_id=620237369]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.46851075, 1.2596939)
