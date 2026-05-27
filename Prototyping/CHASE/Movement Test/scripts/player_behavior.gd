@@ -155,7 +155,7 @@ func _input(event):
 			rotation_target.rotation.y = clampf(rotation_target.rotation.y, -deg_to_rad(70), deg_to_rad(70))
 	#endregion
 	#region interact input
-	if(event.is_action_pressed("interact") && interaction_source != null):
+	if(event.is_action_pressed("interact") && interaction_source != null && move_state != Move_State.DIGICAM):
 		if (interaction_source.has_dialogue):
 			_set_move_state(Move_State.CHATTING)
 		else:
