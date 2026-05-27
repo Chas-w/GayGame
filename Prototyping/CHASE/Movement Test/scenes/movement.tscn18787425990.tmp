@@ -311,10 +311,14 @@ transform = Transform3D(-0.20196828, 0.97870314, -0.036729224, -0.9757188, -0.19
 transform = Transform3D(-0.06933859, 0, 0.99759316, 0, 1, 0, -0.99759316, 0, -0.06933859, 22.102703, 1.07204, 5.094055)
 rotation_speed = 10.0
 temp_visualizer = NodePath("../TempVisualizer")
+move_state = null
+pc_state = null
 cam = NodePath("../User Interface/SubViewportContainer/SubViewport/Camera3D")
 environment_cam = NodePath("../Main")
 fp_rotation_speed = 0.001
 database = NodePath("../Database")
+can_interact = null
+dialogue_interaction = null
 
 [node name="Digi Manager" parent="Player" index="3" unique_id=1292205963 node_paths=PackedStringArray("main_UI", "CRT_effect", "rotation_target")]
 main_UI = NodePath("../../User Interface/main_UI")

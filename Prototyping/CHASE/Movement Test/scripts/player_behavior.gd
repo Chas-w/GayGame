@@ -23,7 +23,7 @@ enum PC_State{PC_WALK, PC_NULL}
 var timer : float
 
 @export_category("Interaction Variables")
-var player_states : Dictionary = {}
+@export var database : Node
 @export var can_interact : bool 
 @export var dialogue_interaction : bool
 var interaction_source : Node3D
@@ -107,10 +107,10 @@ func _set_move_state(next_move_state:int):
 			Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 			_set_PC_state(PC_State.PC_NULL)
 		Move_State.CHATTING:
-			print("Hi I am stupid and I am chatting")
+			database._display_dialogue(FileAccess.get_file_as_string("res://Prototyping/CHASE/Movement Test/Data/Test.json"))
 			pass
 		Move_State.INSPECTING:
-			print("Hi I am stupid and I am inspecting")
+			pass
 func _set_PC_state(next_PC_state:int):
 	var prev_PC_state := pc_state
 	pc_state = next_PC_state
