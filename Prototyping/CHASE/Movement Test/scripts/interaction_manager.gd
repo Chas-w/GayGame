@@ -49,6 +49,10 @@ func _enter_interaction():
 
 func _exit_interaction(): 
 	database.player_dict.Stored_Conversations[ID] = player_interaction_status # I think this is adding this value to the dictionary
+	print(player_interaction_status)
+	pass
+
+func _give_exit_option():
 	pass
 
 func _progress_interaction():
@@ -57,12 +61,16 @@ func _progress_interaction():
 	if (follow_up_position < _setup().Dialogue.Default.Follow_Up.size() -1 && progress_info):
 		follow_up_position += 1
 		database.player_dict.Dialogue_Manager.Current_Conversation_Status = _setup().Dialogue.Default.Follow_Up[follow_up_position]
+		player_interaction_status = database.player_dict.Dialogue_Manager.Current_Conversation_Status
 		progress_info = false
-		print(database.player_dict.Dialogue_Manager.Current_Conversation_Status)
+		print(player_interaction_status)
 		return
 	elif(follow_up_position >= _setup().Dialogue.Default.Follow_Up.size() -1 && progress_info):
 		if (_setup().Dialogue.Default.Loop):
 			follow_up_position = _setup().Dialogue.Default.Loop_From
 			database.player_dict.Dialogue_Manager.Current_Conversation_Status = _setup().Dialogue.Default.Follow_Up[follow_up_position]
+			player_interaction_status = database.player_dict.Dialogue_Manager.Current_Conversation_Status
+			progress_info = false
+			print(_setup().Dialogue.Default.Follow_Up[follow_up_position])
 			return
-		_exit_interaction()
+		#_exit_interaction()

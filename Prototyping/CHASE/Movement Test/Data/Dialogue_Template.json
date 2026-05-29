@@ -12,8 +12,8 @@
 					"Second Line",
 					"Third Line"
 				],
-                "Loop" : false,
-                "Loop_From" : 3,
+                "Loop" : true,
+                "Loop_From" : 0,
 				"Default_Finished": false
 			},
 			"Banter_Dialogue": {

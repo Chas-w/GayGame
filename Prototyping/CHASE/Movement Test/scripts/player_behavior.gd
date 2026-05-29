@@ -144,6 +144,7 @@ func _input(event):
 		temp_visualizer.position = (result.position) #set visualizer for devs
 		nav_agent.set_target_position(result.position) #apply navigation
 	#endregion
+
 	#region FP Mouse Movement
 	if (event is InputEventMouseMotion):
 		if (move_state == Move_State.DIGICAM && digi_manager.toggle_digi):
@@ -153,6 +154,7 @@ func _input(event):
 			rotation_target.rotation.x = clampf(rotation_target.rotation.x, -deg_to_rad(70), deg_to_rad(70))
 			rotation_target.rotation.y = clampf(rotation_target.rotation.y, -deg_to_rad(70), deg_to_rad(70))
 	#endregion
+
 	#region interact input
 	if(event.is_action_pressed("interact") && interaction_source != null && move_state != Move_State.DIGICAM):
 		if(!interaction_source.entered):
