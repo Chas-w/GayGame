@@ -155,10 +155,15 @@ func _input(event):
 	#endregion
 	#region interact input
 	if(event.is_action_pressed("interact") && interaction_source != null && move_state != Move_State.DIGICAM):
-		if (interaction_source.is_dialogue):
-			_set_move_state(Move_State.CHATTING)
-		else:
-			_set_move_state(Move_State.INSPECTING)
+		if(!interaction_source.entered):
+			if (interaction_source.is_dialogue):
+				_set_move_state(Move_State.CHATTING)
+			else:
+				_set_move_state(Move_State.INSPECTING)
+		elif(interaction_source.entered):
+			interaction_source._progress_interaction()
+
+
 	#endregion
 
 func _on_interaction_detector_area_entered(area):
