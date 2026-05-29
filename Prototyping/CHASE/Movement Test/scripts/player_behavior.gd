@@ -106,7 +106,7 @@ func _set_move_state(next_move_state:int):
 			Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 			_set_PC_state(PC_State.PC_NULL)
 		Move_State.CHATTING:
-			print(interaction_source._enter_interaction())
+			interaction_source._enter_interaction()
 			pass
 		Move_State.INSPECTING:
 			pass
