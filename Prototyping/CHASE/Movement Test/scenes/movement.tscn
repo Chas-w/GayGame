@@ -8,7 +8,7 @@
 [ext_resource type="Script" uid="uid://dpp1y275pe6fk" path="res://Prototyping/CHASE/Movement Test/scripts/crt_controller.gd" id="5_ba7hu"]
 [ext_resource type="PackedScene" uid="uid://i45rxxu8g27j" path="res://Prototyping/CHASE/Movement Test/scenes/user_interface.tscn" id="6_3yvbg"]
 [ext_resource type="Script" uid="uid://bd046eokvcnu2" path="res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" id="6_awtj7"]
-[ext_resource type="Script" uid="uid://y15qfmggxddx" path="res://Prototyping/CHASE/Movement Test/scripts/database.gd" id="9_847wq"]
+[ext_resource type="PackedScene" uid="uid://btp0kaa5kbu0b" path="res://Prototyping/CHASE/Movement Test/scenes/database.tscn" id="9_847wq"]
 
 [sub_resource type="Resource" id="Resource_pnao5"]
 script = ExtResource("3_dnwio")
@@ -307,14 +307,13 @@ shader_parameter/aspect = 0.7230000105925
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=345294312]
 transform = Transform3D(-0.20196828, 0.97870314, -0.036729224, -0.9757188, -0.1978243, 0.09401387, 0.084745795, 0.05482525, 0.99489325, 0, 15.365929, 13.380627)
 
-[node name="Player" parent="." unique_id=997567769 node_paths=PackedStringArray("temp_visualizer", "cam", "environment_cam", "database") instance=ExtResource("1_847wq")]
+[node name="Player" parent="." unique_id=997567769 node_paths=PackedStringArray("temp_visualizer", "cam", "environment_cam") groups=["Player"] instance=ExtResource("1_847wq")]
 transform = Transform3D(-0.06933859, 0, 0.99759316, 0, 1, 0, -0.99759316, 0, -0.06933859, 22.102703, 1.07204, 5.094055)
 rotation_speed = 10.0
 temp_visualizer = NodePath("../TempVisualizer")
 cam = NodePath("../User Interface/SubViewportContainer/SubViewport/Camera3D")
 environment_cam = NodePath("../Main")
 fp_rotation_speed = 0.001
-database = NodePath("../Database")
 
 [node name="Digi Manager" parent="Player" index="3" unique_id=1292205963 node_paths=PackedStringArray("main_UI", "CRT_effect", "rotation_target")]
 main_UI = NodePath("../../User Interface/main_UI")
@@ -374,6 +373,9 @@ has_dialogue = true
 
 [node name="User Interface" parent="." unique_id=2020881195 instance=ExtResource("6_3yvbg")]
 
+[node name="main_UI" parent="User Interface" index="0" unique_id=1350061328]
+z_index = 2
+
 [node name="Information Text" parent="User Interface" index="1" unique_id=18896065]
 visible = false
 
@@ -414,11 +416,7 @@ process_physics_priority = 300
 script = ExtResource("6_awtj7")
 metadata/_custom_type_script = "uid://bd046eokvcnu2"
 
-[node name="Database" type="Node" parent="." unique_id=1638776077 node_paths=PackedStringArray("text_display_title", "text_display_data", "text_display_control")]
-script = ExtResource("9_847wq")
-text_display_title = NodePath("../User Interface/Information Text/PanelContainer/TitleLabel")
-text_display_data = NodePath("../User Interface/Information Text/PanelContainer/DataLabel")
-text_display_control = NodePath("../User Interface/Information Text")
+[node name="Database" parent="." unique_id=1605308466 groups=["Database"] instance=ExtResource("9_847wq")]
 
 [editable path="Player"]
 [editable path="NavigationRegion3D/Bog Concept"]

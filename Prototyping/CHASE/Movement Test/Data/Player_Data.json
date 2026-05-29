@@ -1,0 +1,10 @@
+{
+	"Dialogue_Manager": {
+		"Current_Conversation_ID": "Name of Current NPC",
+		"Current_Conversation_Status": "Either default, selected option, quest, or finished"
+	},
+	"Stored_Conversations": [
+		"Conversation ID",
+		"Conversation ID"
+	]
+}

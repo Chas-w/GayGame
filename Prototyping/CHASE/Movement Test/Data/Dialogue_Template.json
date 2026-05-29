@@ -1,25 +1,31 @@
 {
-    "NPC_Dialogue" : {
-        "Name" : "Character Name",
-        "Has_Quest_Dialogue" : true,
-        
-        "Dialogue" : {
-            "Default" : {
-                "Opener" : "First Line",
-                "Follow_Up" : "Second Line",
-                "Follow_Up_1" : "Third Line, and so on",
-                "Default_Finished" : false
-            },
-            
-            "Quest_Dialogue" : {
-                "Quest_Name" : "Quest Name",
-                "Player_Response_Options" : ["Op_1", "Op_2", "Op_3"],
-                "Op_1" : "Response to Option 1",
-                "Op_2" : "Response to Option 2",
-                "Op_3" : "Response to Option 3",
-                "Quest_Finished" : false
-            }
-        }
-    }
-
+	"NPC_Dialogue": {
+		"ID": "Interactable_Name",
+		"Scene_Group": "Scene",
+		"Player_Banter": true,
+		"Dialogue": {
+			"Default": {
+				"Follow_Up": [
+					"First Line",
+					"Second Line",
+					"Third Line"
+				],
+				"Default_Finished": false
+			},
+			"Banter_Dialogue": {
+				"Banter_ID": "ID_Name",
+				"Player_Banter_Options": [
+					"Op_1",
+					"Op_2",
+					"Op_3"
+				],
+				"Op_1": "Response to Option 1",
+				"Op_2": "Response to Option 2",
+				"Op_3": "Response to Option 3",
+				"Banter_Finished": false,
+				"Completion_Line": "This is after banter is finished"
+			},
+			"Exit": true
+		}
+	}
 }

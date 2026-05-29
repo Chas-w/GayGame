@@ -21,6 +21,7 @@ config/icon="res://Prototyping/OLD/Sprites/icon.svg"
 
 Shaker="*uid://dpk87m0wcxk1p"
 PhantomCameraManager="*uid://duq6jhf6unyis"
+Database="*uid://btp0kaa5kbu0b"
 
 [dialogue_manager]
 
@@ -53,6 +54,8 @@ folder_colors={
 
 Camera=""
 Interaction=""
+Player=""
+Database=""
 
 [input]
 
