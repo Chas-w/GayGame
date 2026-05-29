@@ -369,7 +369,8 @@ visible = false
 [node name="Interaction Trigger" parent="NavigationRegion3D/Bog Concept/Standin CHAR_003" parent_id_path=PackedInt32Array(2004594051, 1530826805) index="0" unique_id=101737479 instance=ExtResource("5_0vhfh")]
 transform = Transform3D(6.374224, 0, 0, 0, 2.9, 0, 0, 0, 9.6, -5.0369873, 0.2880001, 0)
 is_dialogue = true
-interaction_file_path = "res://Prototyping/CHASE/Movement Test/Data/Dialogue_Template.json"
+next_scene_path = "res://Prototyping/VICTOR/Scenes/PongTest.tscn"
+interaction_file_path = "res://Prototyping/CHASE/Movement Test/Data/Victor_Demo_Dialogue.json"
 
 [node name="PhantomCamera3D" parent="NavigationRegion3D/Bog Concept/Standin CHAR_003/Interaction Trigger" index="1" unique_id=2012020923]
 transform = Transform3D(0, 0.258819, -0.9659258, 0, 0.96592575, 0.25881904, 1, 0, 0, -0.8514619, 0.8797621, 0)

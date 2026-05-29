@@ -4,7 +4,7 @@ extends Node3D
 @export var is_dialogue : bool
 var player_banter : bool
 var dialogue = {}
-
+@export var next_scene_path : String
 @export var interaction_file_path : String
 @export var ID : String
 @export var target_name : String
@@ -17,6 +17,7 @@ var player_interaction_status : String #where the player is at in the conversati
 var progress_info : bool
 var entered : bool 
 var can_exit : bool
+var can_move_scene : bool
 var trigger_exit : bool #so interactions can't interrupt while exiting an interaction
 var follow_up_position
 
@@ -67,6 +68,12 @@ func _exit_interaction(): #reset everything
 	print(player_interaction_status)
 	pass
 
+func _next_scene():
+	_exit_interaction()
+	#save data
+	database._go_to_scene(next_scene_path)
+
+
 func _progress_interaction():
 	if (!trigger_exit): #as long as the player isn't in the middle of exiting
 		#if default
@@ -78,6 +85,9 @@ func _progress_interaction():
 			progress_info = false #exit loop
 			print(player_interaction_status)
 		elif(follow_up_position >= _setup().Dialogue.Default.Follow_Up.size() -1 && progress_info): #if larger than array
+			if (_setup().Dialogue.Default.Scene_Transition == true):
+				can_move_scene = true
+				database._display_ui(database.lets_go_button)
 			database._display_ui(database.exit_interaction_button) #show the option to exit
 			can_exit = true #dialogue exitable
 			if (_setup().Dialogue.Default.Loop): #if set to loop

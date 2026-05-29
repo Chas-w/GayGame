@@ -1,21 +1,23 @@
 {
 	"NPC_Dialogue": {
-		"ID": "Interactable_Name",
-		"Scene_Group": "Scene",
-        "Target_Name" : "look_target",
-		"Player_Banter": true,
+		"ID": "Victor",
+		"Scene_Group": "Patio",
+        "Target_Name" : "Player",
+		"Player_Banter": false,
 		"Dialogue": {
             "Use_Banter": false, 
 			"Default": {
 				"Follow_Up": [
-					"First Line",
-					"Second Line",
-					"Third Line"
+					"Hey I'm Victor, I don't know anything about JSON files",
+					"I am really good at cup pong though. I bet you're ass.",
+					"Wanna play?",
+					" "
 				],
                 "Loop" : true,
-                "Loop_From" : 0,
+                "Loop_From" : 1,
 				"Scene_Transition": true,
 				"Completion_Line" : "this is after default is finished"
+
 			},
 			"Banter_Dialogue": {
 				"Banter_ID": "ID_Name",

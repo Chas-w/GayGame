@@ -10,6 +10,7 @@ var player_dict
 @export var dialogue_ui : Control
 @export var dialogue_label : RichTextLabel
 @export var interaction_name_label : Label
+@export var lets_go_button : Button
 @export var exit_interaction_button : Button
 
 
@@ -23,6 +24,7 @@ func _ready():
 	dialogue_label = dialogue_ui.get_child(0).get_child(0)
 	interaction_name_label = dialogue_ui.get_child(1).get_child(0)
 	exit_interaction_button = dialogue_ui.get_child(0).get_child(1)
+	lets_go_button = dialogue_ui.get_child(0).get_child(2)
 	#endregion
 	_hide_ui(dialogue_ui)
 	
@@ -46,4 +48,11 @@ func _hide_ui(ui_control : Control):
 func _clear_interaction_text():
 	dialogue_label.text = " "
 	interaction_name_label.text = " "
+	pass
+
+func _go_to_scene(target_scene : String):
+	get_tree().change_scene_to_file(target_scene)
+	pass
+
+func _save_scene_data():
 	pass

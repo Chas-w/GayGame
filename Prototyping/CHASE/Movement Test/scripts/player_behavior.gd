@@ -59,6 +59,8 @@ func _process(delta):
 			if (interaction_source.can_exit && Input.is_action_just_pressed("exit")):
 				interaction_source.trigger_exit = true
 				_set_move_state(Move_State.POINT_AND_CLICK)
+			if (interaction_source.can_move_scene && Input.is_action_just_pressed("enter")):
+				interaction_source._next_scene()
 			pass
 		Move_State.INSPECTING:
 			pass

@@ -29,7 +29,7 @@ runtime/balloon_path="res://Prototyping/CHASE/Movement Test/Dialogue/balloon.tsc
 
 [display]
 
-window/size/mode=3
+window/size/mode=2
 window/stretch/mode="viewport"
 window/stretch/aspect="keep_height"
 

@@ -96,6 +96,23 @@ grow_vertical = 0
 action_mode = 0
 text = "ESC to exit"
 
+[node name="Let\'s Go" type="Button" parent="dialogue_UI/Dialogue Bubble" unique_id=1834427091]
+visible = false
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.78400004
+anchor_top = 0.72900003
+anchor_right = 0.98
+anchor_bottom = 0.96700007
+offset_left = 0.23999023
+offset_top = -221.09001
+offset_right = -0.2000122
+offset_bottom = -221.07
+grow_horizontal = 0
+grow_vertical = 0
+action_mode = 0
+text = "Let's Go (Enter)"
+
 [node name="Name Tag" type="ReferenceRect" parent="dialogue_UI" unique_id=24810882]
 layout_mode = 1
 anchors_preset = -1
