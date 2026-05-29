@@ -44,7 +44,7 @@ func _setup(): #sets up all the interaction variables and stores the dictionary 
 	#else: parse as though inspectable object
 	return current_dictionary
 
-func _enter_interaction():
+func _enter_interaction(): #set up interaction for player
 	if (!trigger_exit):
 		database._display_ui(database.dialogue_ui)
 		database.interaction_name_label.text = ID # assign name to UI
@@ -56,7 +56,7 @@ func _enter_interaction():
 		entered = true
 		_progress_interaction()
 
-func _exit_interaction(): 
+func _exit_interaction(): #reset everything
 	database.player_dict.Stored_Conversations[ID] = player_interaction_status # I think this is adding this value to the dictionary
 	database._hide_ui(database.exit_interaction_button)
 	database._hide_ui(database.dialogue_ui)
@@ -68,23 +68,23 @@ func _exit_interaction():
 	pass
 
 func _progress_interaction():
-	if (!trigger_exit):
+	if (!trigger_exit): #as long as the player isn't in the middle of exiting
 		#if default
-		progress_info = true
-		if (follow_up_position < _setup().Dialogue.Default.Follow_Up.size() -1 && progress_info):
-			follow_up_position += 1
-			database.player_dict.Dialogue_Manager.Current_Conversation_Status = _setup().Dialogue.Default.Follow_Up[follow_up_position]
-			player_interaction_status = database.player_dict.Dialogue_Manager.Current_Conversation_Status
-			progress_info = false
+		progress_info = true #progress the information forward
+		if (follow_up_position < _setup().Dialogue.Default.Follow_Up.size() -1 && progress_info): #if we haven't reached the end of the dialogue array
+			follow_up_position += 1 #increase the position in the array
+			database.player_dict.Dialogue_Manager.Current_Conversation_Status = _setup().Dialogue.Default.Follow_Up[follow_up_position] #current status updated to match current dialogue
+			player_interaction_status = database.player_dict.Dialogue_Manager.Current_Conversation_Status #stored within this script 
+			progress_info = false #exit loop
 			print(player_interaction_status)
-		elif(follow_up_position >= _setup().Dialogue.Default.Follow_Up.size() -1 && progress_info):
-			database._display_ui(database.exit_interaction_button)
-			can_exit = true
-			if (_setup().Dialogue.Default.Loop):
-				follow_up_position = _setup().Dialogue.Default.Loop_From
-				database.player_dict.Dialogue_Manager.Current_Conversation_Status = _setup().Dialogue.Default.Follow_Up[follow_up_position]
-				player_interaction_status = database.player_dict.Dialogue_Manager.Current_Conversation_Status
-				progress_info = false
+		elif(follow_up_position >= _setup().Dialogue.Default.Follow_Up.size() -1 && progress_info): #if larger than array
+			database._display_ui(database.exit_interaction_button) #show the option to exit
+			can_exit = true #dialogue exitable
+			if (_setup().Dialogue.Default.Loop): #if set to loop
+				follow_up_position = _setup().Dialogue.Default.Loop_From #update the position in the array to the loop start
+				database.player_dict.Dialogue_Manager.Current_Conversation_Status = _setup().Dialogue.Default.Follow_Up[follow_up_position] #current status updated
+				player_interaction_status = database.player_dict.Dialogue_Manager.Current_Conversation_Status #stored on this script
+				progress_info = false #exit loop
 				print(_setup().Dialogue.Default.Follow_Up[follow_up_position])
 			#_exit_interaction()
 		database.dialogue_label.text = player_interaction_status #update label text
