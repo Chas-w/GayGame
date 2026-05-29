@@ -56,6 +56,9 @@ func _process(delta):
 				cam.set_perspective(50,.05,4000)
 			pass
 		Move_State.CHATTING:
+			if (interaction_source.can_exit && Input.is_action_just_pressed("exit")):
+				interaction_source.trigger_exit = true
+				_set_move_state(Move_State.POINT_AND_CLICK)
 			pass
 		Move_State.INSPECTING:
 			pass
@@ -87,6 +90,8 @@ func _set_move_state(next_move_state:int):
 			rotation_target.rotation.y = 0
 			rotation_target.rotation.z = 0
 			#endregion
+		#Move_State.CHATTING:
+			#interaction_source = null
 		pass
 	#check upcoming state
 	match(next_move_state):
@@ -97,13 +102,13 @@ func _set_move_state(next_move_state:int):
 			environment_cam.priority = 100
 			cam.set_orthogonal(25,.05,4000)
 			#endregion
-			Input.set_mouse_mode(Input.MOUSE_MODE_CONFINED)
+			#Input.set_mouse_mode(Input.MOUSE_MODE_CONFINED)
 			_set_PC_state(PC_State.PC_WALK)
 		Move_State.DIGICAM:
 			timer = 0
 			nav_agent.set_target_position(position) #stop the movement, reset the target position
 			temp_visualizer.position = position
-			Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+			#Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 			_set_PC_state(PC_State.PC_NULL)
 		Move_State.CHATTING:
 			interaction_source._enter_interaction()
@@ -156,7 +161,7 @@ func _input(event):
 	#endregion
 
 	#region interact input
-	if(event.is_action_pressed("interact") && interaction_source != null && move_state != Move_State.DIGICAM):
+	if(event.is_action_pressed("interact") && can_interact && move_state != Move_State.DIGICAM):
 		if(!interaction_source.entered):
 			if (interaction_source.is_dialogue):
 				_set_move_state(Move_State.CHATTING)
@@ -164,8 +169,6 @@ func _input(event):
 				_set_move_state(Move_State.INSPECTING)
 		elif(interaction_source.entered):
 			interaction_source._progress_interaction()
-
-
 	#endregion
 
 func _on_interaction_detector_area_entered(area):

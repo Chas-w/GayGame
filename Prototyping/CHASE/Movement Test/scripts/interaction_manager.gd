@@ -16,7 +16,10 @@ var player #for temp use... will usually be NULL
 var player_interaction_status : String #where the player is at in the conversation/interaction/quest
 var progress_info : bool
 var entered : bool 
+var can_exit : bool
+var trigger_exit : bool #so interactions can't interrupt while exiting an interaction
 var follow_up_position
+
 
 func _ready():
 	for game_obj in get_tree().get_nodes_in_group("Database"): #assign database
@@ -24,6 +27,10 @@ func _ready():
 	main_dictionary = database._JSON_to_dictionary(interaction_file_path)
 	_setup()
 
+func _process(delta):
+	if (trigger_exit && can_exit):
+		_exit_interaction()
+		can_exit = false
 
 func _setup(): #sets up all the interaction variables and stores the dictionary that will be referenced
 	var current_dictionary = " "
@@ -38,39 +45,46 @@ func _setup(): #sets up all the interaction variables and stores the dictionary 
 	return current_dictionary
 
 func _enter_interaction():
-	#check player dictionary -> dialogue manager for all stored conversations, if this conversation ID matches any of those
-	#continue the conversation from the cooresponding stored status
-	#else, start conversation fresh and add this to the player's list of conversations
-	follow_up_position = -1
-	database.player_dict.Dialogue_Manager.Current_Conversation_ID = ID
-	entered = true
-	_progress_interaction()
-	pass
+	if (!trigger_exit):
+		database._display_ui(database.dialogue_ui)
+		database.interaction_name_label.text = ID # assign name to UI
+		#check player dictionary -> dialogue manager for all stored conversations, if this conversation ID matches any of those
+		#continue the conversation from the cooresponding stored status
+		#else, start conversation fresh and add this to the player's list of conversations
+		follow_up_position = -1
+		database.player_dict.Dialogue_Manager.Current_Conversation_ID = ID
+		entered = true
+		_progress_interaction()
 
 func _exit_interaction(): 
 	database.player_dict.Stored_Conversations[ID] = player_interaction_status # I think this is adding this value to the dictionary
+	database._hide_ui(database.exit_interaction_button)
+	database._hide_ui(database.dialogue_ui)
+	database._clear_interaction_text()
+	entered = false
+	progress_info = false
+	trigger_exit = false
 	print(player_interaction_status)
 	pass
 
-func _give_exit_option():
-	pass
-
 func _progress_interaction():
-	#if default
-	progress_info = true
-	if (follow_up_position < _setup().Dialogue.Default.Follow_Up.size() -1 && progress_info):
-		follow_up_position += 1
-		database.player_dict.Dialogue_Manager.Current_Conversation_Status = _setup().Dialogue.Default.Follow_Up[follow_up_position]
-		player_interaction_status = database.player_dict.Dialogue_Manager.Current_Conversation_Status
-		progress_info = false
-		print(player_interaction_status)
-		return
-	elif(follow_up_position >= _setup().Dialogue.Default.Follow_Up.size() -1 && progress_info):
-		if (_setup().Dialogue.Default.Loop):
-			follow_up_position = _setup().Dialogue.Default.Loop_From
+	if (!trigger_exit):
+		#if default
+		progress_info = true
+		if (follow_up_position < _setup().Dialogue.Default.Follow_Up.size() -1 && progress_info):
+			follow_up_position += 1
 			database.player_dict.Dialogue_Manager.Current_Conversation_Status = _setup().Dialogue.Default.Follow_Up[follow_up_position]
 			player_interaction_status = database.player_dict.Dialogue_Manager.Current_Conversation_Status
 			progress_info = false
-			print(_setup().Dialogue.Default.Follow_Up[follow_up_position])
-			return
-		#_exit_interaction()
+			print(player_interaction_status)
+		elif(follow_up_position >= _setup().Dialogue.Default.Follow_Up.size() -1 && progress_info):
+			database._display_ui(database.exit_interaction_button)
+			can_exit = true
+			if (_setup().Dialogue.Default.Loop):
+				follow_up_position = _setup().Dialogue.Default.Loop_From
+				database.player_dict.Dialogue_Manager.Current_Conversation_Status = _setup().Dialogue.Default.Follow_Up[follow_up_position]
+				player_interaction_status = database.player_dict.Dialogue_Manager.Current_Conversation_Status
+				progress_info = false
+				print(_setup().Dialogue.Default.Follow_Up[follow_up_position])
+			#_exit_interaction()
+		database.dialogue_label.text = player_interaction_status #update label text

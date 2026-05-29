@@ -366,7 +366,7 @@ visible = false
 [node name="Standin CHAR_002" parent="NavigationRegion3D/Bog Concept" index="7" unique_id=1199953620]
 visible = false
 
-[node name="Interaction Trigger" parent="NavigationRegion3D/Bog Concept/Standin CHAR_003" parent_id_path=PackedInt32Array(2004594051, 1530826805) index="0" unique_id=101737479 groups=["interaction"] instance=ExtResource("5_0vhfh")]
+[node name="Interaction Trigger" parent="NavigationRegion3D/Bog Concept/Standin CHAR_003" parent_id_path=PackedInt32Array(2004594051, 1530826805) index="0" unique_id=101737479 instance=ExtResource("5_0vhfh")]
 transform = Transform3D(6.374224, 0, 0, 0, 2.9, 0, 0, 0, 9.6, -5.0369873, 0.2880001, 0)
 is_dialogue = true
 interaction_file_path = "res://Prototyping/CHASE/Movement Test/Data/Dialogue_Template.json"
