@@ -8,7 +8,6 @@
 [ext_resource type="Script" uid="uid://dpp1y275pe6fk" path="res://Prototyping/CHASE/Movement Test/scripts/crt_controller.gd" id="5_ba7hu"]
 [ext_resource type="PackedScene" uid="uid://i45rxxu8g27j" path="res://Prototyping/CHASE/Movement Test/scenes/user_interface.tscn" id="6_3yvbg"]
 [ext_resource type="Script" uid="uid://bd046eokvcnu2" path="res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" id="6_awtj7"]
-[ext_resource type="PackedScene" uid="uid://btp0kaa5kbu0b" path="res://Prototyping/CHASE/Movement Test/scenes/database.tscn" id="9_847wq"]
 
 [sub_resource type="Resource" id="Resource_pnao5"]
 script = ExtResource("3_dnwio")
@@ -415,8 +414,6 @@ process_priority = 300
 process_physics_priority = 300
 script = ExtResource("6_awtj7")
 metadata/_custom_type_script = "uid://bd046eokvcnu2"
-
-[node name="Database" parent="." unique_id=1605308466 groups=["Database"] instance=ExtResource("9_847wq")]
 
 [editable path="Player"]
 [editable path="NavigationRegion3D/Bog Concept"]

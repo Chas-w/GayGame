@@ -1,10 +1,6 @@
 [gd_scene format=3 uid="uid://btp0kaa5kbu0b"]
 
 [ext_resource type="Script" uid="uid://y15qfmggxddx" path="res://Prototyping/CHASE/Movement Test/scripts/database.gd" id="1_mq437"]
-[ext_resource type="JSON" path="res://Prototyping/CHASE/Movement Test/Data/Dialogue_Template.json" id="2_4bydl"]
-[ext_resource type="JSON" path="res://Prototyping/CHASE/Movement Test/Data/Player_Data.json" id="2_pm2ek"]
 
 [node name="Database" type="Node" unique_id=1605308466]
 script = ExtResource("1_mq437")
-player_data = ExtResource("2_pm2ek")
-dialogue_template = ExtResource("2_4bydl")

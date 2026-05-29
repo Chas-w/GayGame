@@ -9,3 +9,15 @@ extends Node3D
 @export_category("Dialogue")
 @export var dia_source : JSON
 @export var current_key : String
+
+func _process(delta):
+	pass
+
+func _enter_interaction():
+	pass
+
+func _exit_interaction(): 
+	pass
+
+func _process_interaction():
+	pass
