@@ -23,16 +23,12 @@ enum PC_State{PC_WALK, PC_NULL}
 var timer : float
 
 @export_category("Interaction Variables")
-var database : Node
 @export var can_interact : bool 
 @export var dialogue_interaction : bool
 var interaction_source : Node3D
 	
 
 func _ready():
-	for gameObject in get_tree().get_nodes_in_group("Database"): #assign database
-		database = gameObject
-	
 	_set_move_state(Move_State.POINT_AND_CLICK) #setup for point and click
 
 func _process(delta):
@@ -110,6 +106,7 @@ func _set_move_state(next_move_state:int):
 			Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 			_set_PC_state(PC_State.PC_NULL)
 		Move_State.CHATTING:
+			print(interaction_source._enter_interaction())
 			pass
 		Move_State.INSPECTING:
 			pass
@@ -158,7 +155,7 @@ func _input(event):
 	#endregion
 	#region interact input
 	if(event.is_action_pressed("interact") && interaction_source != null && move_state != Move_State.DIGICAM):
-		if (interaction_source.has_dialogue):
+		if (interaction_source.is_dialogue):
 			_set_move_state(Move_State.CHATTING)
 		else:
 			_set_move_state(Move_State.INSPECTING)

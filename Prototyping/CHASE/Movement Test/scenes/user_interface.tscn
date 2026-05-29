@@ -3,7 +3,6 @@
 [ext_resource type="Texture2D" uid="uid://4g3itx3xcb17" path="res://Prototyping/Imported Textures/Digicam.png" id="3_g43uo"]
 [ext_resource type="Texture2D" uid="uid://bge7y74fwiewv" path="res://Prototyping/Imported Textures/Bracelet.png" id="4_s2w0g"]
 [ext_resource type="Shader" uid="uid://byc54teku3wr8" path="res://Prototyping/CHASE/Movement Test/shaders/tilt_shift_shader.gdshader" id="5_vjshv"]
-[ext_resource type="PackedScene" uid="uid://bk4ay0l5jnfak" path="res://Prototyping/CHASE/Movement Test/scenes/information_text.tscn" id="6_64fsk"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_fl3qi"]
 shader = ExtResource("5_vjshv")
@@ -41,7 +40,3 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-
-[node name="Information Text" parent="." unique_id=18896065 instance=ExtResource("6_64fsk")]
-
-[editable path="Information Text"]

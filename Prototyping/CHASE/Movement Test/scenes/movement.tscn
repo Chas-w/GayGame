@@ -368,15 +368,13 @@ visible = false
 
 [node name="Interaction Trigger" parent="NavigationRegion3D/Bog Concept/Standin CHAR_003" parent_id_path=PackedInt32Array(2004594051, 1530826805) index="0" unique_id=101737479 groups=["interaction"] instance=ExtResource("5_0vhfh")]
 transform = Transform3D(6.374224, 0, 0, 0, 2.9, 0, 0, 0, 9.6, -5.0369873, 0.2880001, 0)
-has_dialogue = true
+is_dialogue = true
+interaction_file_path = "res://Prototyping/CHASE/Movement Test/Data/Dialogue_Template.json"
 
 [node name="User Interface" parent="." unique_id=2020881195 instance=ExtResource("6_3yvbg")]
 
 [node name="main_UI" parent="User Interface" index="0" unique_id=1350061328]
 z_index = 2
-
-[node name="Information Text" parent="User Interface" index="1" unique_id=18896065]
-visible = false
 
 [node name="CRT" type="ColorRect" parent="User Interface" unique_id=452677996 node_paths=PackedStringArray("subviewport_node")]
 z_index = 1
@@ -418,4 +416,3 @@ metadata/_custom_type_script = "uid://bd046eokvcnu2"
 [editable path="Player"]
 [editable path="NavigationRegion3D/Bog Concept"]
 [editable path="User Interface"]
-[editable path="User Interface/Information Text"]

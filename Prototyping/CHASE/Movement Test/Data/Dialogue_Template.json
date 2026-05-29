@@ -2,6 +2,7 @@
 	"NPC_Dialogue": {
 		"ID": "Interactable_Name",
 		"Scene_Group": "Scene",
+        "Target_Name" : "look_target",
 		"Player_Banter": true,
 		"Dialogue": {
 			"Default": {

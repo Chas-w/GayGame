@@ -2,5 +2,5 @@
 
 [ext_resource type="Script" uid="uid://y15qfmggxddx" path="res://Prototyping/CHASE/Movement Test/scripts/database.gd" id="1_mq437"]
 
-[node name="Database" type="Node" unique_id=1605308466]
+[node name="Database" type="Node" unique_id=1605308466 groups=["Database"]]
 script = ExtResource("1_mq437")
