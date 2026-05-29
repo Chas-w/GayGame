@@ -1,8 +1,13 @@
 [gd_scene format=3 uid="uid://bfrtcqi3os4po"]
 
 [ext_resource type="Script" uid="uid://byo4pafatcltw" path="res://Prototyping/CHASE/Movement Test/scripts/interaction_manager.gd" id="1_iwsgo"]
+[ext_resource type="Script" uid="uid://csjccrhj5wnx7" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_3d.gd" id="2_suskh"]
+[ext_resource type="Script" uid="uid://8umksf8e80fw" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="3_6muxn"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_iwsgo"]
+
+[sub_resource type="Resource" id="Resource_6qh51"]
+script = ExtResource("3_6muxn")
 
 [node name="Interaction Trigger" type="Node3D" unique_id=101737479 groups=["Interaction"]]
 script = ExtResource("1_iwsgo")
@@ -12,3 +17,8 @@ script = ExtResource("1_iwsgo")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" unique_id=945985089 groups=["Interaction"]]
 shape = SubResource("BoxShape3D_iwsgo")
 debug_color = Color(4.428029e-06, 0.8605231, 0.69217527, 1)
+
+[node name="PhantomCamera3D" type="Node3D" parent="." unique_id=2012020923]
+script = ExtResource("2_suskh")
+tween_resource = SubResource("Resource_6qh51")
+metadata/_custom_type_script = "uid://csjccrhj5wnx7"

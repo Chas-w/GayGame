@@ -90,8 +90,10 @@ func _set_move_state(next_move_state:int):
 			rotation_target.rotation.y = 0
 			rotation_target.rotation.z = 0
 			#endregion
-		#Move_State.CHATTING:
-			#interaction_source = null
+		Move_State.CHATTING:
+			cam.set_orthogonal(25,.05,4000)
+			environment_cam.priority = 100
+			interaction_source.get_child(1).priority = 0
 		pass
 	#check upcoming state
 	match(next_move_state):
@@ -111,6 +113,9 @@ func _set_move_state(next_move_state:int):
 			#Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 			_set_PC_state(PC_State.PC_NULL)
 		Move_State.CHATTING:
+			cam.set_perspective(50,.05,4000)
+			interaction_source.get_child(1).priority = 100
+			environment_cam.priority = 0
 			interaction_source._enter_interaction()
 			pass
 		Move_State.INSPECTING:
@@ -136,7 +141,7 @@ func _input(event):
 		else:
 			_set_move_state(Move_State.POINT_AND_CLICK)
 	#region Checking for Point and Click Ability
-	if(Input.is_action_just_pressed("click") && !digi_manager.toggle_digi):
+	if(Input.is_action_just_pressed("click") && !digi_manager.toggle_digi && move_state != Move_State.CHATTING && move_state != Move_State.INSPECTING):
 		var mouse_pos = get_viewport().get_mouse_position() #mouse position translated to WHERE in the viewport the mouse clicked
 		var ray_length = 1000 #length of raycast shot from mouse position
 		var from = cam.project_ray_origin(mouse_pos) #starting position of raycast

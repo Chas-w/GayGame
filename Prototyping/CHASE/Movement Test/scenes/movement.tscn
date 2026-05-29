@@ -371,6 +371,9 @@ transform = Transform3D(6.374224, 0, 0, 0, 2.9, 0, 0, 0, 9.6, -5.0369873, 0.2880
 is_dialogue = true
 interaction_file_path = "res://Prototyping/CHASE/Movement Test/Data/Dialogue_Template.json"
 
+[node name="PhantomCamera3D" parent="NavigationRegion3D/Bog Concept/Standin CHAR_003/Interaction Trigger" index="1" unique_id=2012020923]
+transform = Transform3D(0, 0.258819, -0.9659258, 0, 0.96592575, 0.25881904, 1, 0, 0, -0.8514619, 0.8797621, 0)
+
 [node name="User Interface" parent="." unique_id=2020881195 instance=ExtResource("6_3yvbg")]
 
 [node name="main_UI" parent="User Interface" index="0" unique_id=1350061328]
@@ -400,8 +403,7 @@ size = Vector2i(1152, 648)
 render_target_update_mode = 4
 
 [node name="Camera3D" type="Camera3D" parent="User Interface/SubViewportContainer/SubViewport" unique_id=350252024 groups=["Camera"]]
-physics_interpolation_mode = 1
-transform = Transform3D(0.35158312, 0.4852125, -0.8005984, 8.833408e-05, 0.8551798, 0.51833105, 0.9361567, -0.18230718, 0.3006239, 0, 15.365929, 13.380627)
+transform = Transform3D(0, 0.8248852, -3.0785139, 0, 2.801185, 0.75057524, 4.8, 0, 0, 5.7929482, 3.8393104, 29.442451)
 top_level = true
 projection = 1
 current = true
@@ -415,4 +417,5 @@ metadata/_custom_type_script = "uid://bd046eokvcnu2"
 
 [editable path="Player"]
 [editable path="NavigationRegion3D/Bog Concept"]
+[editable path="NavigationRegion3D/Bog Concept/Standin CHAR_003/Interaction Trigger"]
 [editable path="User Interface"]
