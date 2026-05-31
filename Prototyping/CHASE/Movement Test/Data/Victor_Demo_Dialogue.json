@@ -31,8 +31,7 @@
 				"Op_3": "Response to Option 3",
 				"Scene_Transition": false,
 				"Completion_Line": "This is after banter is finished"
-			},
-			"Exit": true
+			}
 		}
 	}
 }

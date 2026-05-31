@@ -1,0 +1,491 @@
+[gd_scene format=3 uid="uid://xbkwtfxpuub0"]
+
+[ext_resource type="PackedScene" uid="uid://bknhaf3ev31eg" path="res://Prototyping/CHASE/Movement Test/scenes/player.tscn" id="1_jyv6n"]
+[ext_resource type="Script" uid="uid://csjccrhj5wnx7" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_3d.gd" id="2_mxqci"]
+[ext_resource type="Script" uid="uid://8umksf8e80fw" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="3_wa5u4"]
+[ext_resource type="PackedScene" uid="uid://duobsg7qn1cod" path="res://Prototyping/Imported Mesh/partyscape.glb" id="4_521uk"]
+[ext_resource type="PackedScene" uid="uid://i45rxxu8g27j" path="res://Prototyping/CHASE/Movement Test/scenes/user_interface.tscn" id="6_8ld12"]
+[ext_resource type="Script" uid="uid://dpp1y275pe6fk" path="res://Prototyping/CHASE/Movement Test/scripts/crt_controller.gd" id="7_8gidt"]
+[ext_resource type="Script" uid="uid://bd046eokvcnu2" path="res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" id="8_bvqjo"]
+[ext_resource type="PackedScene" uid="uid://n65o7xbj7i07" path="res://Prototyping/Imported Mesh/Pigeon Lady.glb" id="8_jyv6n"]
+
+[sub_resource type="Gradient" id="Gradient_521uk"]
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_jyv6n"]
+gradient = SubResource("Gradient_521uk")
+fill_from = Vector2(1, 1)
+
+[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_mxqci"]
+panorama = SubResource("GradientTexture2D_jyv6n")
+
+[sub_resource type="Sky" id="Sky_jyv6n"]
+sky_material = SubResource("PanoramaSkyMaterial_mxqci")
+
+[sub_resource type="Environment" id="Environment_mxqci"]
+background_mode = 2
+sky = SubResource("Sky_jyv6n")
+
+[sub_resource type="Resource" id="Resource_pnao5"]
+script = ExtResource("3_wa5u4")
+duration = 0.0
+transition = 1
+
+[sub_resource type="SphereMesh" id="SphereMesh_rkv7g"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pnao5"]
+shading_mode = 0
+albedo_color = Color(0, 0.697588, 0.80509114, 1)
+
+[sub_resource type="NavigationMesh" id="NavigationMesh_o3c4m"]
+vertices = PackedVector3Array(9.684731, -19.946686, -35.460358, 10.184731, -19.846687, -35.960358, 8.934731, -19.846687, -35.960358, 9.184731, -19.946686, -25.460358, 10.184731, -19.946686, -25.460358, -5.5652695, -20.646687, -25.210358, 8.184731, -20.646687, -25.210358, 7.9347305, -20.646687, -35.710358, -5.5652695, -20.646687, -35.460358, 19.68473, -19.946686, -25.960358, 19.18473, -19.946686, -25.710358, 19.18473, -19.946686, -25.460358, 19.93473, -19.946686, -25.460358, 26.18473, -19.946686, -32.710358, 25.93473, -19.946686, -34.710358, 19.43473, -19.946686, -34.460358, 19.68473, -19.946686, -29.460358, 22.43473, -19.946686, -26.710358, 26.18473, -19.946686, -25.460358, 20.18473, -19.946686, -26.710358, 19.43473, -19.946686, -33.460358, 21.43473, -19.946686, -26.960358, 18.43473, -19.946686, -33.210358, 18.43473, -19.946686, -29.710358, 22.43473, -19.946686, -25.460358, 17.43473, -19.946686, -25.960358, 11.434731, -19.946686, -25.460358, 17.43473, -19.946686, -29.460358, 11.934731, -19.946686, -32.960358, 11.184731, -19.946686, -26.710358, 11.184731, -19.946686, -34.460358, 20.93473, 3.753315, -23.710358, 21.93473, 3.753315, -23.210358, 21.43473, 3.753315, -23.710358, 20.93473, 3.753315, -25.460358, 21.43473, 3.753315, -25.460358, 28.68473, 3.5533142, 10.539642, 28.93473, 3.5533142, 12.789642, 29.43473, 3.5533142, 12.789642, 28.93473, 3.5533142, -21.710358, 28.68473, 3.5533142, -24.460358, 28.18473, 3.5533142, -24.460358, 30.18473, 2.9533157, 16.289642, 30.43473, 2.9533157, 24.039642, 30.93473, 2.9533157, 24.039642, 30.43473, 2.9533157, 7.2896423, 30.43473, 2.9533157, -15.460358, 30.18473, 2.9533157, -24.460358, 29.68473, 2.9533157, -24.460358, 11.934731, 12.753315, 22.539642, 11.184731, 12.753315, 22.539642, 11.184731, 12.953316, 23.539642, 11.684731, 13.053314, 26.039642, 11.7680645, 13.253315, 24.872974, 11.434731, 13.253315, 24.789642, -3.0652695, 13.053314, 25.039642, -4.5652695, 13.053314, 25.539642, -4.5652695, 13.053314, 26.289642, 10.184731, 12.753315, 23.539642, 10.184731, 12.153313, 21.039642, 7.534731, 12.153313, 21.839642, 11.184731, 12.353313, 21.039642, 11.684731, 12.353313, 21.039642, 11.684731, 12.153313, -24.210358, 10.571827, 12.253315, 9.362225, -4.0652695, 12.153313, -24.210358, 10.2529125, 12.253315, -24.210358, -3.1297855, 12.153313, 21.862225, -0.048291683, 12.453316, 5.5165253, -0.07838869, 12.153313, 4.0286293, -0.06819582, 12.153313, 7.0544243, 4.43684, 12.153313, 7.037384, 10.425081, 12.253315, -19.966732, 1.4367199, 12.153313, 5.5275116, 13.434731, 0.95331573, -6.9603577, 13.184731, 0.95331573, -8.960358, 12.684731, 0.95331573, -8.960358, 12.684731, 0.95331573, 23.289642, 27.43473, 0.95331573, -24.210358, 22.93473, 0.95331573, -23.960358, 26.68473, 0.95331573, -20.960358, 24.68473, 0.95331573, -11.210358, 20.68473, 0.95331573, -10.710358, 20.43473, 0.95331573, -6.9603577, 28.18473, 0.95331573, 23.039642, 26.93473, 0.95331573, -11.210358, 13.434731, 0.95331573, -10.960358, 12.684731, 0.95331573, -23.960358, 20.43473, 0.95331573, -11.210358, 24.18473, 0.95331573, -19.710358, 19.93473, 0.95331573, -23.210358, 19.93473, 0.95331573, -23.960358, 9.684731, 0.95331573, 23.789642, 11.434731, 0.95331573, 23.789642, 10.684731, 0.95331573, -23.710358, 9.684731, 0.95331573, -23.710358, 25.43473, 1.9533157, -12.960358, 25.93473, 1.9533157, -11.960358, 25.68473, 3.253315, -19.460358, 25.18473, 2.9533157, -18.960358, 25.23473, 1.9533157, -17.760357, 25.768064, 1.9533157, -16.960358, 25.726397, 2.1533127, -18.210358, 14.184731, 1.9533157, -9.960358, 14.184731, 1.753315, -7.9603577, 19.68473, 1.753315, -7.9603577, 19.68473, 1.753315, -10.210358, 18.30973, 1.9533157, -10.147858, 16.93473, 1.753315, -10.085358, 16.93473, 1.753315, -7.9603577, 18.30973, 1.9533157, -7.9603577, 28.93473, 5.253315, 23.789642, 22.18473, 5.253315, 24.039642, 29.43473, 5.253315, 24.289642, 29.43473, 5.253315, 13.789642, 28.93473, 5.253315, 13.789642)
+polygons = [PackedInt32Array(2, 1, 0), PackedInt32Array(4, 3, 0), PackedInt32Array(0, 3, 2), PackedInt32Array(8, 7, 5), PackedInt32Array(5, 7, 6), PackedInt32Array(10, 9, 11), PackedInt32Array(11, 9, 12), PackedInt32Array(17, 16, 18), PackedInt32Array(18, 16, 13), PackedInt32Array(13, 16, 14), PackedInt32Array(14, 16, 15), PackedInt32Array(12, 9, 19), PackedInt32Array(19, 9, 16), PackedInt32Array(16, 20, 15), PackedInt32Array(21, 19, 16), PackedInt32Array(22, 20, 23), PackedInt32Array(23, 20, 16), PackedInt32Array(17, 21, 16), PackedInt32Array(18, 24, 17), PackedInt32Array(10, 11, 25), PackedInt32Array(25, 11, 26), PackedInt32Array(23, 27, 22), PackedInt32Array(22, 27, 28), PackedInt32Array(26, 29, 25), PackedInt32Array(25, 29, 27), PackedInt32Array(27, 29, 28), PackedInt32Array(30, 28, 29), PackedInt32Array(31, 33, 32), PackedInt32Array(35, 33, 34), PackedInt32Array(34, 33, 31), PackedInt32Array(37, 36, 38), PackedInt32Array(38, 36, 39), PackedInt32Array(39, 36, 40), PackedInt32Array(40, 36, 41), PackedInt32Array(43, 42, 44), PackedInt32Array(44, 42, 45), PackedInt32Array(47, 46, 48), PackedInt32Array(48, 46, 45), PackedInt32Array(45, 46, 44), PackedInt32Array(52, 54, 53), PackedInt32Array(53, 54, 51), PackedInt32Array(53, 51, 50), PackedInt32Array(53, 50, 49), PackedInt32Array(51, 54, 58), PackedInt32Array(58, 54, 52), PackedInt32Array(58, 52, 55), PackedInt32Array(55, 52, 56), PackedInt32Array(56, 52, 57), PackedInt32Array(59, 58, 60), PackedInt32Array(60, 58, 55), PackedInt32Array(63, 62, 61), PackedInt32Array(59, 64, 61), PackedInt32Array(61, 64, 63), PackedInt32Array(67, 60, 55), PackedInt32Array(60, 64, 59), PackedInt32Array(64, 72, 63), PackedInt32Array(63, 72, 66), PackedInt32Array(66, 72, 65), PackedInt32Array(65, 69, 67), PackedInt32Array(67, 70, 60), PackedInt32Array(60, 71, 64), PackedInt32Array(64, 71, 72), PackedInt32Array(72, 69, 65), PackedInt32Array(69, 70, 67), PackedInt32Array(70, 71, 60), PackedInt32Array(71, 69, 72), PackedInt32Array(69, 68, 70), PackedInt32Array(70, 73, 71), PackedInt32Array(71, 73, 69), PackedInt32Array(68, 73, 70), PackedInt32Array(69, 73, 68), PackedInt32Array(75, 74, 76), PackedInt32Array(76, 74, 77), PackedInt32Array(80, 79, 78), PackedInt32Array(81, 85, 82), PackedInt32Array(82, 85, 83), PackedInt32Array(83, 85, 84), PackedInt32Array(74, 83, 77), PackedInt32Array(77, 83, 84), PackedInt32Array(80, 78, 85), PackedInt32Array(85, 78, 84), PackedInt32Array(75, 76, 86), PackedInt32Array(86, 76, 87), PackedInt32Array(82, 88, 81), PackedInt32Array(81, 88, 89), PackedInt32Array(87, 91, 90), PackedInt32Array(90, 89, 87), PackedInt32Array(87, 89, 88), PackedInt32Array(87, 88, 86), PackedInt32Array(95, 94, 92), PackedInt32Array(92, 94, 93), PackedInt32Array(98, 102, 99), PackedInt32Array(99, 102, 100), PackedInt32Array(100, 102, 101), PackedInt32Array(100, 101, 96), PackedInt32Array(96, 101, 97), PackedInt32Array(106, 105, 107), PackedInt32Array(107, 105, 110), PackedInt32Array(107, 110, 108), PackedInt32Array(108, 110, 109), PackedInt32Array(108, 109, 103), PackedInt32Array(103, 109, 104), PackedInt32Array(113, 112, 111), PackedInt32Array(115, 114, 111), PackedInt32Array(111, 114, 113), PackedInt32Array(61, 62, 50), PackedInt32Array(50, 62, 49)]
+cell_height = 0.1
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_521uk"]
+size = Vector3(6.8178864, 0.08402252, 16.2695)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_jyv6n"]
+size = Vector3(5.7023926, 0.15704632, 16.498108)
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_521uk"]
+viewport_path = NodePath("SubViewportContainer/SubViewport")
+
+[sub_resource type="Shader" id="Shader_dildx"]
+resource_local_to_scene = true
+code = "// CRT with Luminance Preservation (no scanlines) by Harrison Allen
+// Public domain
+
+shader_type canvas_item;
+
+render_mode unshaded;
+
+/**
+	The input texture that will have the CRT effect applied to it.
+	This should be supplied by a subviewport texture rendered at a lower res.
+	*/
+uniform sampler2D tex: filter_linear;
+
+
+/**
+	Set the type of mask this CRT will have.
+	Dots: emulates a typical PC CRT monitor.
+	Grille: emulates an aperture grille. Good with higher curve values.
+	Wide Grille: more suitable for 4k monitors.
+	Soft Grille: very close to wide grille, but a little softer.
+	Slot mask: this is the pattern found on most TV sets and arcade cabnets
+	*/
+uniform int mask_type : hint_enum(
+	\"Dots:1\",
+	\"Aperture Grille:2\",
+	\"Wide Grille:3\",
+	\"Wide Soft Grille:4\",
+	\"Slot Mask:5\",
+	\"Null:0\") = 1;
+
+uniform float curve : hint_range(0.0, 0.5) = 0.0;
+
+/**
+	Use to offset color channels from each other.
+	Make sure to increase this at least a little because it's a cool effect
+	*/
+uniform float color_offset : hint_range(-0.5, 0.5) = 0.0;
+
+/**
+	Reduce to preserve phosphor mask details in highlights at the cost of
+	overall brightness. This should usually be kept at or near 1
+	*/
+uniform float mask_brightness : hint_range(0, 1) = 1.0;
+
+/**
+	This should be the input texture's height divided by width.
+	Only important if curve is used.
+	For 16:9, this should be 0.5625.
+	*/
+uniform float aspect : hint_range(0.5, 1.0) = 0.75;
+
+vec2 warp(vec2 uv, float _aspect, float _curve)
+{
+	// Centralize coordinates
+	uv -= 0.5;
+
+	uv.x /= _aspect;
+
+	// Squared distance from the middle
+	float warping = dot(uv, uv) * _curve;
+
+	// Compensate for shrinking
+	warping -= _curve * 0.25;
+
+	// Warp the coordinates
+	uv /= 1.0 - warping;
+
+	uv.x *= _aspect;
+
+	// Decentralize the coordinates
+	uv += 0.5;
+
+	return uv;
+}
+
+vec3 linear_to_srgb(vec3 col)
+{
+	return mix(
+		(pow(col, vec3(1.0 / 2.4)) * 1.055) - 0.055,
+		col * 12.92,
+		lessThan(col, vec3(0.0031318))
+	);
+}
+
+vec3 srgb_to_linear(vec3 col)
+{
+	return mix(
+		pow((col + 0.055) / 1.055, vec3(2.4)),
+		col / 12.92,
+		lessThan(col, vec3(0.04045))
+	);
+}
+
+// Get color from coordinates (returns in linear color)
+vec3 sample(vec2 uv)
+{
+	// Set coordinates to match texture dimensions
+	uv *= vec2(textureSize(tex, 0));
+
+	// Vertical coordinate scanline samples
+	int y = int(uv.y + 0.5) - 1;
+
+	float x = floor(uv.x);
+
+	// Horizontal coordinates for the left and right texture samples
+	float ax = x - 1.0;
+	float dx = x + 1.0;
+
+	// Sample the texture at various points
+	vec3 upper_a = texelFetch(tex, ivec2(int(ax), y), 0).rgb;
+	vec3 upper_b = texelFetch(tex, ivec2(int(x), y), 0).rgb;
+	vec3 upper_c = texelFetch(tex, ivec2(int(dx), y), 0).rgb;
+
+	// Adjust the vertical coordinate for the lower scanline
+	y += 1;
+
+	// Sample the texture at various points
+	vec3 lower_a = texelFetch(tex, ivec2(int(ax), y), 0).rgb;
+	vec3 lower_b = texelFetch(tex, ivec2(int(x), y), 0).rgb;
+	vec3 lower_c = texelFetch(tex, ivec2(int(dx), y), 0).rgb;
+
+	// Convert every sample to linear color
+	upper_a = srgb_to_linear(upper_a);
+	upper_b = srgb_to_linear(upper_b);
+	upper_c = srgb_to_linear(upper_c);
+
+	lower_a = srgb_to_linear(lower_a);
+	lower_b = srgb_to_linear(lower_b);
+	lower_c = srgb_to_linear(lower_c);
+
+	// The x coordinates of electron beam offsets
+	vec3 beam = vec3(uv.x - 0.5);
+	beam.r -= color_offset;
+	beam.b += color_offset;
+
+	// Calculate weights
+	vec3 weight_a = smoothstep(1, 0, (beam - ax));
+	vec3 weight_b = smoothstep(1, 0, abs(beam - x));
+	vec3 weight_c = smoothstep(1, 0, (dx - beam));
+
+	vec3 upper_col = (
+		upper_a * weight_a +
+		upper_b * weight_b +
+		upper_c * weight_c
+	);
+
+	// Mix samples into the lower scanline color
+	vec3 lower_col = (
+		lower_a * weight_a +
+		lower_b * weight_b +
+		lower_c * weight_c
+	);
+
+	// Vertical sawtooth wave used to generate scanlines
+	// Almost the same as fract(uv.y + 0.5), but prevents a rare visual bug
+	float sawtooth = (uv.y + 0.5) - float(y);
+
+	// Smoothstep the sawtooth wave
+	sawtooth = smoothstep(0, 1, sawtooth);
+
+	vec3 combined = mix(upper_col, lower_col, sawtooth);
+
+	return combined;
+}
+
+// Returns the slotmask pattern in RGB plus a fourth value for avg. brightness
+vec4 generate_mask(vec2 fragcoord)
+{
+	switch (mask_type)
+	{
+		case 1: // Dots
+			const vec3 pattern[] = {vec3(1,0,0), vec3(0,1,0), vec3(0,0,1), vec3(0,0,0)};
+
+			ivec2 icoords = ivec2(fragcoord);
+
+			return vec4(pattern[(icoords.y * 2 + icoords.x) % 4], 0.25);
+
+		case 2: // Grille
+			const vec3 pattern[] = {vec3(0,1,0), vec3(1,0,1)};
+
+			return vec4(pattern[int(fragcoord.x) % 2], 0.5);
+
+		case 3: // Wide grille
+			const vec3 pattern[] = {
+				vec3(1,0,0), vec3(0,1,0), vec3(0,0,1), vec3(0,0,0)};
+
+			return vec4(pattern[int(fragcoord.x) % 4], 0.25);
+
+		case 4: // Grille wide soft
+			const vec3 pattern[] = {
+				vec3(1.0,0.125,0.0),
+				vec3(0.125,1.0,0.125),
+				vec3(0.0,0.125,1.0),
+				vec3(0.125,0.0,0.125)};
+
+			return vec4(pattern[int(fragcoord.x) % 4], 0.3125);
+
+		case 5: // Slotmask
+			const vec3 pattern[] = {
+				vec3(1,0,1), vec3(0,1,0), vec3(1,0,1), vec3(0,1,0),
+				vec3(0,0,1), vec3(0,1,0), vec3(1,0,0), vec3(0,0,0),
+				vec3(1,0,1), vec3(0,1,0), vec3(1,0,1), vec3(0,1,0),
+				vec3(1,0,0), vec3(0,0,0), vec3(0,0,1), vec3(0,1,0)
+			};
+
+			ivec2 icoords = ivec2(fragcoord) % 4;
+
+			return vec4(pattern[icoords.y * 4 + icoords.x], 0.375);
+
+		default:
+			return vec4(0.5);
+	}
+}
+
+// Apply phosphor mask/grill
+vec3 apply_mask(vec3 linear_color, vec2 fragcoord)
+{
+	// Get the pattern for the mask. Mask.w equals avg. brightness of the mask
+	vec4 mask = generate_mask(fragcoord);
+
+	// Dim the color if brightness is reduced to preserve mask details
+	linear_color *= mix(mask.w, 1.0, mask_brightness);
+
+	// How bright the color needs to be to maintain 100% brightness while masked
+	vec3 target_color = linear_color / mask.w;
+
+	// Target color limited to the 0 to 1 range.
+	vec3 primary_col = clamp(target_color, 0.0, 1.0);
+
+	// Calculate how bright the secondary subpixels will need to be
+	vec3 secondary = target_color - primary_col;
+	secondary /= 1.0 / mask.w - 1.0;
+
+	primary_col *= mask.rgb;
+
+	// Add the secondary subpixels
+	primary_col += secondary * (1.0 - mask.rgb);
+
+	return primary_col;
+}
+
+void fragment()
+{
+	// Warp UV coordinates
+	vec2 warped_coords = warp(UV, aspect, curve);
+
+	// Sample color
+	vec3 col = sample(warped_coords);
+
+	// Apply phosphor mask
+	col = apply_mask(col, FRAGCOORD.xy);
+
+	// Convert back to srgb
+	col = linear_to_srgb(col);
+
+	COLOR.rgb = col;
+}"
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_847wq"]
+viewport_path = NodePath("User Interface/SubViewportContainer/SubViewport")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_0vhfh"]
+resource_local_to_scene = true
+shader = SubResource("Shader_dildx")
+shader_parameter/tex = SubResource("ViewportTexture_847wq")
+shader_parameter/mask_type = 1
+shader_parameter/curve = 0.09600000456
+shader_parameter/color_offset = 0.10400002869000002
+shader_parameter/mask_brightness = 0.8090000384275
+shader_parameter/aspect = 0.7230000105925
+
+[node name="Movement" type="Node" unique_id=767724366]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=961595683]
+environment = SubResource("Environment_mxqci")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=345294312]
+transform = Transform3D(-0.20196828, 0.97870314, -0.036729224, -0.9757188, -0.1978243, 0.09401387, 0.084745795, 0.05482525, 0.99489325, 0, 15.365929, 13.380627)
+
+[node name="Player" parent="." unique_id=997567769 node_paths=PackedStringArray("temp_visualizer", "cam", "environment_cam") groups=["Player"] instance=ExtResource("1_jyv6n")]
+transform = Transform3D(-0.06933859, 0, 0.99759316, 0, 1, 0, -0.99759316, 0, -0.06933859, 22.102703, 1.07204, 5.094055)
+rotation_speed = 10.0
+temp_visualizer = NodePath("../TempVisualizer")
+cam = NodePath("../User Interface/SubViewportContainer/SubViewport/Camera3D")
+environment_cam = NodePath("../Main")
+fp_rotation_speed = 0.001
+
+[node name="Digi Manager" parent="Player" index="3" unique_id=1292205963 node_paths=PackedStringArray("main_UI", "CRT_effect", "rotation_target")]
+main_UI = NodePath("../../User Interface/main_UI")
+CRT_effect = NodePath("../../User Interface/CRT")
+digi_move_speed = 0.005
+rotation_target = NodePath("CameraRotationTarget")
+
+[node name="FP Cam" parent="Player/Digi Manager" index="0" unique_id=1500257124]
+transform = Transform3D(-0.0693388, 0, 0.9975932, 0, 0.99999994, 0, -0.9975932, 0, -0.0693388, 0, 0, 0)
+look_at_damping = true
+look_at_damping_value = 0.75
+
+[node name="Main" type="Node3D" parent="." unique_id=821202811 node_paths=PackedStringArray("look_at_target")]
+transform = Transform3D(-0.11022806, -0.5904372, 0.79952073, 0, 0.80442226, 0.5940574, -0.9939064, 0.06548175, -0.08867001, 52.86212, 23.891502, 1.6830796)
+script = ExtResource("2_mxqci")
+look_at_mode = 2
+look_at_target = NodePath("../Player")
+tween_resource = SubResource("Resource_pnao5")
+tween_on_load = false
+look_at_damping = true
+look_at_damping_value = 0.75
+align_transform_with_view = Callable()
+align_rotation_with_view = Callable()
+metadata/_custom_type_script = "uid://csjccrhj5wnx7"
+
+[node name="TempVisualizer" type="Node3D" parent="." unique_id=1731370678]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -85.53169, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="TempVisualizer" unique_id=259426742]
+mesh = SubResource("SphereMesh_rkv7g")
+surface_material_override/0 = SubResource("StandardMaterial3D_pnao5")
+
+[node name="NavigationRegion3D" type="NavigationRegion3D" parent="." unique_id=1994545092]
+navigation_mesh = SubResource("NavigationMesh_o3c4m")
+
+[node name="partyscape" parent="NavigationRegion3D" unique_id=1585000895 instance=ExtResource("4_521uk")]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 16.118687, -31.209866, 0)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="NavigationRegion3D/partyscape" unique_id=436969268 groups=["Ground"]]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/partyscape/StaticBody3D" unique_id=2078632248]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.1629562, 10.635952, -0.11143494)
+shape = SubResource("BoxShape3D_521uk")
+debug_color = Color(0.92992824, 2.9648543e-05, 0.66079307, 0.41960785)
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="NavigationRegion3D/partyscape/StaticBody3D" unique_id=1733172756]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.219445, 14.318083, 0.02498207)
+shape = SubResource("BoxShape3D_jyv6n")
+debug_color = Color(6.256998e-07, 0.62888765, 0.49111778, 0.41960785)
+
+[node name="User Interface" parent="." unique_id=2020881195 instance=ExtResource("6_8ld12")]
+
+[node name="main_UI" parent="User Interface" index="0" unique_id=1350061328]
+z_index = 2
+
+[node name="Tiltshift" parent="User Interface/main_UI" index="2" unique_id=1900336007]
+texture = SubResource("ViewportTexture_521uk")
+
+[node name="CRT" type="ColorRect" parent="User Interface" unique_id=452677996 node_paths=PackedStringArray("subviewport_node")]
+z_index = 1
+material = SubResource("ShaderMaterial_0vhfh")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("7_8gidt")
+subviewport_node = NodePath("../SubViewportContainer/SubViewport")
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="User Interface" unique_id=591998087]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="SubViewport" type="SubViewport" parent="User Interface/SubViewportContainer" unique_id=2082785686]
+handle_input_locally = false
+size = Vector2i(1152, 648)
+render_target_update_mode = 4
+
+[node name="Camera3D" type="Camera3D" parent="User Interface/SubViewportContainer/SubViewport" unique_id=350252024 groups=["Camera"]]
+physics_interpolation_mode = 1
+transform = Transform3D(-0.110227704, -0.5904217, 0.7995323, -2.9802322e-08, 0.80443436, 0.5940416, -0.99390626, 0.065479845, -0.08867097, 52.86212, 23.891502, 1.6830796)
+top_level = true
+projection = 1
+current = true
+size = 40.0
+
+[node name="PhantomCameraHost" type="Node" parent="User Interface/SubViewportContainer/SubViewport/Camera3D" unique_id=323991140]
+process_priority = 300
+process_physics_priority = 300
+script = ExtResource("8_bvqjo")
+metadata/_custom_type_script = "uid://bd046eokvcnu2"
+
+[node name="Pigeon Lady2" parent="." unique_id=1938342267 instance=ExtResource("8_jyv6n")]
+transform = Transform3D(0.032148212, 0, 2.9998279, 0, 3, 0, -2.9998279, 0, 0.032148212, 18.07417, 0.08820689, 7.2187157)
+
+[node name="Skeleton3D" parent="Pigeon Lady2/Main" parent_id_path=PackedInt32Array(1938342267, 231985511) index="0" unique_id=505015500]
+bones/0/position = Vector3(-0.22421888, 1.7681983, -82.18391)
+bones/0/rotation = Quaternion(-0.76308304, 0.005539589, 0.08855812, 0.6401806)
+bones/1/rotation = Quaternion(0.07104798, 0.029179465, 0.0058739735, 0.99702877)
+bones/2/rotation = Quaternion(0.023095611, 0.0039059198, -0.00038276063, 0.99972564)
+bones/3/rotation = Quaternion(0.023131385, 0.003943986, -0.00031542493, 0.9997246)
+bones/4/rotation = Quaternion(0.0076701716, -0.040201582, -0.05698337, 0.99753594)
+bones/5/rotation = Quaternion(-0.11956941, -0.27941808, 0.11945346, 0.945177)
+bones/7/rotation = Quaternion(-0.55246466, -0.45166785, 0.52144724, -0.46783736)
+bones/8/position = Vector3(-6.697444e-07, 9.858203, 1.1986748e-05)
+bones/8/rotation = Quaternion(0.47347805, 0.072713025, 0.2591534, 0.8386721)
+bones/9/rotation = Quaternion(0.013901368, 0.0026228444, 0.1852982, 0.9825805)
+bones/10/rotation = Quaternion(-0.067293234, 0.7325072, 0.15566094, 0.6592985)
+bones/11/rotation = Quaternion(-0.011797725, -0.014083522, 0.15357193, 0.9879667)
+bones/12/rotation = Quaternion(0.0820918, -0.016232416, -0.1793388, 0.980222)
+bones/13/rotation = Quaternion(0.021427216, -0.016403928, 0.09662356, 0.9949552)
+bones/14/rotation = Quaternion(-2.4720975e-08, -1.9361166e-06, -2.9029616e-07, 1)
+bones/15/rotation = Quaternion(0.11224111, 0.037369274, 0.18338944, 0.9758964)
+bones/16/rotation = Quaternion(0.15867348, -0.006772088, -0.011938933, 0.9872358)
+bones/17/rotation = Quaternion(0.15912281, 0.01673616, 0.16900626, 0.97254145)
+bones/18/rotation = Quaternion(8.193788e-07, 2.8777777e-06, 5.8508476e-07, 1)
+bones/19/rotation = Quaternion(0.5595853, -0.44674033, 0.50647205, 0.48038903)
+bones/20/position = Vector3(-4.9400364e-07, 9.8582, -1.1439573e-05)
+bones/20/rotation = Quaternion(0.36707368, 0.00961946, -0.3181466, 0.8740408)
+bones/21/rotation = Quaternion(0.05972764, -0.0016068832, -0.77834916, 0.624982)
+bones/22/position = Vector3(-4.426403e-06, 22.838158, -4.910489e-06)
+bones/22/rotation = Quaternion(-0.010696516, -0.4653949, 0.01934597, 0.884827)
+bones/23/rotation = Quaternion(0.07345509, 0.02100176, -0.17996189, 0.98070234)
+bones/24/position = Vector3(-0.05981636, 3.909468, -1.086331e-05)
+bones/24/rotation = Quaternion(0.09333378, 0.022556582, 0.16589843, 0.981457)
+bones/25/position = Vector3(0.23714375, 3.1600294, -6.8654354e-06)
+bones/25/rotation = Quaternion(0.020409992, 0.024596702, 0.00148044, 0.999488)
+bones/26/position = Vector3(-0.17732573, 2.4204626, 6.019698e-06)
+bones/26/rotation = Quaternion(3.8132566e-07, 4.9867594e-07, 4.1985186e-07, 1)
+bones/27/rotation = Quaternion(0.077948555, -0.008111008, -0.08069756, 0.993653)
+bones/28/rotation = Quaternion(0.102576375, -0.00031545773, 0.0067337435, 0.99470234)
+bones/29/rotation = Quaternion(0.114964835, -0.0067511033, -0.12751837, 0.9851277)
+bones/30/rotation = Quaternion(3.7499922e-07, -2.3171656e-06, -4.1336534e-07, 1)
+bones/31/rotation = Quaternion(-0.014339106, 0.060701203, 0.9962836, 0.05940374)
+bones/32/rotation = Quaternion(-0.4031912, -0.06300429, -0.08304143, 0.9091598)
+bones/33/rotation = Quaternion(0.6784871, -0.01449904, 0.05445939, 0.73244745)
+bones/34/rotation = Quaternion(0.29595712, 0.0022569203, -0.0006992579, 0.9551983)
+bones/36/rotation = Quaternion(-0.028760524, 0.06332431, 0.99540466, 0.065821484)
+bones/37/rotation = Quaternion(-0.54574925, 0.09385181, -0.0096018445, 0.83262086)
+bones/38/rotation = Quaternion(0.55518496, 0.13347994, 0.0099799065, 0.8208856)
+bones/39/rotation = Quaternion(0.5340214, 0.03238932, 0.022380738, 0.8445539)
+
+[node name="AnimationPlayer" parent="Pigeon Lady2" index="1" unique_id=107515142]
+autoplay = &"Choppy Free Dance"
+
+[editable path="Player"]
+[editable path="User Interface"]
+[editable path="Pigeon Lady2"]

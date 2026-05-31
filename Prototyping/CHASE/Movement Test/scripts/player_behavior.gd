@@ -93,7 +93,7 @@ func _set_move_state(next_move_state:int):
 			rotation_target.rotation.z = 0
 			#endregion
 		Move_State.CHATTING:
-			cam.set_orthogonal(25,.05,4000)
+			cam.set_orthogonal(50,.05,4000)
 			environment_cam.priority = 100
 			interaction_source.get_child(1).priority = 0
 		pass
@@ -104,18 +104,18 @@ func _set_move_state(next_move_state:int):
 			digi_manager.fp_cam_set = false
 			fp_cam.priority = 0
 			environment_cam.priority = 100
-			cam.set_orthogonal(25,.05,4000)
+			cam.set_orthogonal(40,.05,4000)
 			#endregion
-			#Input.set_mouse_mode(Input.MOUSE_MODE_CONFINED)
+			Input.set_mouse_mode(Input.MOUSE_MODE_CONFINED)
 			_set_PC_state(PC_State.PC_WALK)
 		Move_State.DIGICAM:
 			timer = 0
 			nav_agent.set_target_position(position) #stop the movement, reset the target position
 			temp_visualizer.position = position
-			#Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+			Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 			_set_PC_state(PC_State.PC_NULL)
 		Move_State.CHATTING:
-			cam.set_perspective(50,.05,4000)
+			cam.set_perspective(45,.05,4000)
 			interaction_source.get_child(1).priority = 100
 			environment_cam.priority = 0
 			interaction_source._enter_interaction()
@@ -153,8 +153,11 @@ func _input(event):
 		ray_query.from = from
 		ray_query.to = to
 		var result = space.intersect_ray(ray_query) #where the raycast intersects with an object
-		temp_visualizer.position = (result.position) #set visualizer for devs
-		nav_agent.set_target_position(result.position) #apply navigation
+		if(result != { }): #ensuring that this is a clickable space
+			var clicked_node = result.collider
+			if (clicked_node.is_in_group("Ground")): #ensuring that this is where we want the player to be targeting
+				temp_visualizer.position = (result.position) #set visualizer for devs
+				nav_agent.set_target_position(result.position) #apply navigation
 	#endregion
 
 	#region FP Mouse Movement

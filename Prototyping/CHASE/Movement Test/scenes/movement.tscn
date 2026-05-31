@@ -326,7 +326,7 @@ look_at_damping = true
 look_at_damping_value = 0.75
 
 [node name="Main" type="Node3D" parent="." unique_id=821202811 node_paths=PackedStringArray("look_at_target")]
-transform = Transform3D(0.35158312, 0.4852125, -0.8005984, 8.833408e-05, 0.8551798, 0.51833105, 0.9361567, -0.18230718, 0.3006239, 0, 15.365929, 13.380627)
+transform = Transform3D(0.3519274, 0.48531947, -0.8003823, 0.0002438426, 0.85503674, 0.51856697, 0.9360273, -0.18269308, 0.30079252, 0, 15.365929, 13.380627)
 script = ExtResource("2_0vhfh")
 look_at_mode = 2
 look_at_target = NodePath("../Player")
