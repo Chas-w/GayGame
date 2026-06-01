@@ -1,8 +1,8 @@
 {
 	"NPC_Dialogue": {
-		"ID": "Interactable_Name",
-		"Scene_Group": "Scene",
-		"Target_Name" : "look_target",
+		"ID": "Nathan",
+		"Scene_Group": "Demo",
+		"Target_Name" : "Player",
 		"Player_Banter": true,
 		"Dialogue": {
 			"Use_Banter": false, 
@@ -14,7 +14,7 @@
 				],
 				"Loop" : true,
 				"Loop_From" : 0,
-				"Scene_Transition": true,
+				"Scene_Transition": false,
 				"Completion_Line" : "No, we've met, for sure."
 			},
 			"Banter_Dialogue": {
@@ -29,8 +29,7 @@
 				"Op_3": "I JUST got here with my friends and I get really bad FOMO. No thanks.",
 				"Scene_Transition": false,
 				"Completion_Line": "See you."
-			},
-			"Exit": true
+			}
 		}
 	}
 }

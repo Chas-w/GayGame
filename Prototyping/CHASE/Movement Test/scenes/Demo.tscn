@@ -8,6 +8,7 @@
 [ext_resource type="Script" uid="uid://dpp1y275pe6fk" path="res://Prototyping/CHASE/Movement Test/scripts/crt_controller.gd" id="7_8gidt"]
 [ext_resource type="Script" uid="uid://bd046eokvcnu2" path="res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" id="8_bvqjo"]
 [ext_resource type="PackedScene" uid="uid://n65o7xbj7i07" path="res://Prototyping/Imported Mesh/Pigeon Lady.glb" id="8_jyv6n"]
+[ext_resource type="PackedScene" uid="uid://bfrtcqi3os4po" path="res://Prototyping/CHASE/Movement Test/scenes/interaction_trigger.tscn" id="9_mxqci"]
 
 [sub_resource type="Gradient" id="Gradient_521uk"]
 
@@ -422,8 +423,7 @@ size = Vector2i(1152, 648)
 render_target_update_mode = 4
 
 [node name="Camera3D" type="Camera3D" parent="User Interface/SubViewportContainer/SubViewport" unique_id=350252024 groups=["Camera"]]
-physics_interpolation_mode = 1
-transform = Transform3D(-0.11022806, -0.5904372, 0.79952073, 0, 0.80442226, 0.5940574, -0.9939064, 0.06548175, -0.08867001, 52.86212, 23.891502, 1.6830796)
+transform = Transform3D(2.8006656, 0.16110058, 1.0631657, 0.15629588, 2.8736522, -0.84716797, -1.063883, 0.84626734, 2.674319, 20.020771, 2.0915923, 11.02017)
 top_level = true
 projection = 1
 current = true
@@ -441,10 +441,10 @@ metadata/_custom_type_script = "uid://bd046eokvcnu2"
 
 [node name="Other" type="Node3D" parent="NPCs" unique_id=1031219380]
 
-[node name="Pigeon Lady2" parent="NPCs/Other" unique_id=1938342267 instance=ExtResource("8_jyv6n")]
+[node name="Pigeon Lady" parent="NPCs/Other" unique_id=1938342267 instance=ExtResource("8_jyv6n")]
 transform = Transform3D(0.032148212, 0, 2.9998279, 0, 3, 0, -2.9998279, 0, 0.032148212, 18.07417, 0.08820689, 7.2187157)
 
-[node name="Skeleton3D" parent="NPCs/Other/Pigeon Lady2/Main" parent_id_path=PackedInt32Array(1938342267, 231985511) index="0" unique_id=505015500]
+[node name="Skeleton3D" parent="NPCs/Other/Pigeon Lady/Main" parent_id_path=PackedInt32Array(1938342267, 231985511) index="0" unique_id=505015500]
 bones/0/position = Vector3(-0.22421888, 1.7681983, -82.18391)
 bones/0/rotation = Quaternion(-0.76308304, 0.005539589, 0.08855812, 0.6401806)
 bones/1/rotation = Quaternion(0.07104798, 0.029179465, 0.0058739735, 0.99702877)
@@ -491,8 +491,19 @@ bones/37/rotation = Quaternion(-0.54574925, 0.09385181, -0.0096018445, 0.8326208
 bones/38/rotation = Quaternion(0.55518496, 0.13347994, 0.0099799065, 0.8208856)
 bones/39/rotation = Quaternion(0.5340214, 0.03238932, 0.022380738, 0.8445539)
 
-[node name="AnimationPlayer" parent="NPCs/Other/Pigeon Lady2" index="1" unique_id=107515142]
+[node name="AnimationPlayer" parent="NPCs/Other/Pigeon Lady" index="1" unique_id=107515142]
 autoplay = &"Choppy Free Dance"
+
+[node name="Interaction Trigger" parent="NPCs/Other/Pigeon Lady" unique_id=101737479 instance=ExtResource("9_mxqci")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.656613e-10, 1, 0.4319461)
+is_dialogue = true
+interaction_file_path = "res://Prototyping/CHASE/Movement Test/Data/Nathan_Demo_Dialogue.json"
+
+[node name="Area3D" parent="NPCs/Other/Pigeon Lady/Interaction Trigger" index="0" unique_id=1905126529]
+transform = Transform3D(2.4359717, 0, 0, 0, 1, 0, 0, 0, 1.9000001, 0, 0, 0)
+
+[node name="PhantomCamera3D" parent="NPCs/Other/Pigeon Lady/Interaction Trigger" index="1" unique_id=2012020923]
+transform = Transform3D(0.36461133, -0.28149745, -0.88759077, 0.052098628, 0.9578841, -0.2823893, 0.9297013, 0.056719996, 0.36392093, -1.2601255, -0.3322048, 0.23046274)
 
 [node name="Infinite Area [for mouse position]" type="Node3D" parent="." unique_id=739573380]
 
@@ -503,4 +514,5 @@ shape = SubResource("WorldBoundaryShape3D_jyv6n")
 
 [editable path="Player"]
 [editable path="User Interface"]
-[editable path="NPCs/Other/Pigeon Lady2"]
+[editable path="NPCs/Other/Pigeon Lady"]
+[editable path="NPCs/Other/Pigeon Lady/Interaction Trigger"]

@@ -1,7 +1,7 @@
 {
 	"NPC_Dialogue": {
 		"ID": "Victor",
-		"Scene_Group": "Patio",
+		"Scene_Group": "Demo",
 		"Target_Name" : "Player",
 		"Player_Banter": false,
 		"Dialogue": {
@@ -16,7 +16,7 @@
 				"Loop" : true,
 				"Loop_From" : 1,
 				"Scene_Transition": true,
-				"Completion_Line" : "this is after default is finished"
+				"Completion_Line" : "Ball's in your court... haha balls"
 
 			},
 			"Banter_Dialogue": {

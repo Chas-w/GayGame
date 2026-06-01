@@ -92,8 +92,8 @@ func _progress_interaction():
 			can_exit = true #dialogue exitable
 			if (_setup().Dialogue.Default.Loop): #if set to loop
 				follow_up_position = _setup().Dialogue.Default.Loop_From #update the position in the array to the loop start
-				database.player_dict.Dialogue_Manager.Current_Conversation_Status = _setup().Dialogue.Default.Follow_Up[follow_up_position] #current status updated
-				player_interaction_status = database.player_dict.Dialogue_Manager.Current_Conversation_Status #stored on this script
+				database.player_dict.Dialogue_Manager.Current_Conversation_Status = _setup().Dialogue.Default.Follow_Up[follow_up_position - 1] #current status updated
+				player_interaction_status = _setup().Dialogue.Default.Completion_Line #stored on this script
 				progress_info = false #exit loop
 				print(_setup().Dialogue.Default.Follow_Up[follow_up_position])
 			#_exit_interaction()
