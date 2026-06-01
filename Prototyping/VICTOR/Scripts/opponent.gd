@@ -18,7 +18,8 @@ func _process(delta: float) -> void:
 
 #Show Opponent View Cameras
 func toggle_opponent_view(toggle: bool) -> void:
-	opponent_turn.visible = toggle
+	#opponent_turn.visible = toggle
+	pass
 
 #Show idle arms (SWITCH TO ANIMATION)
 func switch_to_idle() -> void:

@@ -97,7 +97,7 @@ func _process(delta: float) -> void:
 				
 		STATE.Enemy:
 			wait_timer = wait_timer + delta
-			if wait_timer > 2:
+			if wait_timer > 10:
 				wait_timer = 0
 				opponent.switch_to_throw()
 				if current_enemy_move < enemy_moves.size() - 1:
@@ -166,7 +166,8 @@ func setup_state(next_state: STATE) :
 			#Turn off enemy stuff
 			if state_before_wait == STATE.Enemy:
 				opponent.switch_to_idle()
-				opponent.toggle_opponent_view(false)
+				#opponent.toggle_opponent_view(false)
+				canvas.toggle_opponent_view(false)
 				current_enemy_move = current_enemy_move + 1
 				enemy_move_display.text = "Enemy Move: " + str(current_enemy_move)
 			#Turn off player stuff
@@ -195,6 +196,7 @@ func setup_state(next_state: STATE) :
 			state_before_wait = current_state
 		STATE.Enemy:
 			opponent.toggle_opponent_view(true)
+			canvas.toggle_opponent_view(true)
 			
 			pong_ball.toggle_bounce(true)
 			pong_ball.freeze_at_location(ball_idle.position, ball_idle.rotation)

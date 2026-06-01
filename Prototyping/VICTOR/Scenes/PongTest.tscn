@@ -127,7 +127,7 @@ opponent_miss = NodePath("OpponentMiss")
 table = NodePath("Table")
 opponent = NodePath("Opponent")
 
-[node name="Canvas" type="Control" parent="." unique_id=1454380754 node_paths=PackedStringArray("player_action_view", "result_display", "ball_sprites")]
+[node name="Canvas" type="Control" parent="." unique_id=1454380754 node_paths=PackedStringArray("player_action_view", "result_display", "ball_sprites", "opponent_view", "opponent_cup_view", "opponent_view_positions", "opponent_cup_view_positions")]
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
@@ -136,6 +136,10 @@ script = ExtResource("2_fm7vh")
 player_action_view = NodePath("PlayerActionView")
 result_display = NodePath("OpponentResult")
 ball_sprites = [NodePath("Hand/UiBall"), NodePath("Hand/UiBall2"), NodePath("Hand/UiBall3"), NodePath("Hand/UiBall4"), NodePath("Hand/UiBall5")]
+opponent_view = NodePath("OpponentTurn/OpponentView")
+opponent_cup_view = NodePath("OpponentTurn/OpponentCupView")
+opponent_view_positions = [NodePath("OpponentTurn/OpponentViews/PassiveView"), NodePath("OpponentTurn/OpponentViews/ActiveView")]
+opponent_cup_view_positions = [NodePath("OpponentTurn/OpponentCupViews/PassiveView"), NodePath("OpponentTurn/OpponentCupViews/ActiveView")]
 
 [node name="PlayerActionView" type="SubViewportContainer" parent="Canvas" unique_id=1952382615]
 layout_mode = 1
@@ -237,7 +241,6 @@ offset_right = 673.0
 offset_bottom = 49.0
 
 [node name="OpponentTurn" type="Control" parent="Canvas" unique_id=672312091]
-visible = false
 anchors_preset = 0
 offset_left = 576.0
 offset_top = 337.0
@@ -246,14 +249,14 @@ offset_bottom = 377.0
 
 [node name="OpponentView" type="SubViewportContainer" parent="Canvas/OpponentTurn" unique_id=2005409168]
 layout_mode = 0
-offset_top = -337.0
+offset_top = 337.0
 offset_right = 576.0
-offset_bottom = 311.0
+offset_bottom = 985.0
 
 [node name="SubViewport" type="SubViewport" parent="Canvas/OpponentTurn/OpponentView" unique_id=2048362368]
 handle_input_locally = false
 size = Vector2i(576, 648)
-render_target_update_mode = 0
+render_target_update_mode = 4
 
 [node name="Camera3D" type="Camera3D" parent="Canvas/OpponentTurn/OpponentView/SubViewport" unique_id=482111153]
 transform = Transform3D(1, 1.0518832e-07, -2.136755e-07, -1.18633956e-07, 0.99795425, -0.063932635, 2.065134e-07, 0.063932635, 0.99795425, 0.057753444, 1.42675, 0.27005565)
@@ -261,16 +264,52 @@ transform = Transform3D(1, 1.0518832e-07, -2.136755e-07, -1.18633956e-07, 0.9979
 [node name="OpponentCupView" type="SubViewportContainer" parent="Canvas/OpponentTurn" unique_id=15862890]
 layout_mode = 0
 offset_left = -576.0
-offset_top = -337.0
-offset_bottom = 311.0
+offset_top = -1011.0
+offset_bottom = -363.0
 
 [node name="SubViewport" type="SubViewport" parent="Canvas/OpponentTurn/OpponentCupView" unique_id=1189730396]
 handle_input_locally = false
 size = Vector2i(576, 648)
-render_target_update_mode = 0
+render_target_update_mode = 4
 
 [node name="Camera3D" type="Camera3D" parent="Canvas/OpponentTurn/OpponentCupView/SubViewport" unique_id=475194335]
 transform = Transform3D(1.2186783e-07, -0.54555255, 0.83807665, -6.3661076e-08, 0.83807665, 0.54555255, -1, -1.1983818e-07, 6.7404116e-08, 0.96153796, 1.208902, 1.9697828)
+
+[node name="OpponentViews" type="Control" parent="Canvas/OpponentTurn" unique_id=1772478745]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="PassiveView" type="Control" parent="Canvas/OpponentTurn/OpponentViews" unique_id=1541490950]
+anchors_preset = 0
+offset_top = 337.0
+offset_right = 40.0
+offset_bottom = 377.0
+
+[node name="ActiveView" type="Control" parent="Canvas/OpponentTurn/OpponentViews" unique_id=739062032]
+anchors_preset = 0
+offset_top = -337.0
+offset_right = 40.0
+offset_bottom = -297.0
+
+[node name="OpponentCupViews" type="Control" parent="Canvas/OpponentTurn" unique_id=1970537323]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="PassiveView" type="Control" parent="Canvas/OpponentTurn/OpponentCupViews" unique_id=1673893373]
+anchors_preset = 0
+offset_left = -576.0
+offset_top = -1011.0
+offset_right = -536.0
+offset_bottom = -971.0
+
+[node name="ActiveView" type="Control" parent="Canvas/OpponentTurn/OpponentCupViews" unique_id=1305957110]
+anchors_preset = 0
+offset_left = -576.0
+offset_top = -337.0
+offset_right = -536.0
+offset_bottom = -297.0
 
 [node name="OpponentResult" type="Label" parent="Canvas" unique_id=1939621976]
 layout_mode = 0

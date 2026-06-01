@@ -1,9 +1,16 @@
 extends Control
 
-@export_category("References")
+@export_category("Ball and Line References")
 @export var player_action_view : Control
 @export var result_display : Label
 @export var ball_sprites : Array[Sprite2D]
+
+@export_category("Opponent Turn References")
+@export var view_move_speed: float
+@export var opponent_view: SubViewportContainer
+@export var opponent_cup_view: SubViewportContainer
+@export var opponent_view_positions: Array[Control]
+@export var opponent_cup_view_positions: Array[Control]
 
 #Line Drawing
 var start_point : Vector2
@@ -17,6 +24,10 @@ var message_displayed: bool
 
 #Ball Display
 var current_balls_displayed: int
+
+#Opponent Turn View
+var current_ovp: int #opponent_view_position
+var move_opponent_view: bool
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -41,6 +52,23 @@ func _process(delta: float) -> void:
 			result_display.text = ""
 			message_display_timer = 0
 			message_displayed = false
+	
+	#Move opponent view into frame
+	if move_opponent_view:
+		var opponent_view_check = opponent_view.position == opponent_view_positions[current_ovp].position
+		var opponent_cup_check = opponent_cup_view.position == opponent_cup_view_positions[current_ovp].position
+		
+		print("moving view")
+		print(opponent_view.position)
+		print(opponent_view.global_position)
+		
+		#Move opponent views to correct spot
+		if !opponent_view_check:
+			opponent_view.position = opponent_view.position.move_toward(opponent_view_positions[current_ovp].position, 10)
+		if !opponent_cup_check:
+			opponent_cup_view.position = opponent_cup_view.position.move_toward(opponent_cup_view_positions[current_ovp].position, 10)
+		if opponent_view_check && opponent_cup_check:
+			move_opponent_view = false
 
 func _draw() -> void:
 	if end_point != start_point:
@@ -92,3 +120,10 @@ func update_ball_display(ball_num: int) -> void:
 func reset_ball_display()->void:
 	for i in range(ball_sprites.size()):
 		ball_sprites[i].visible = false
+
+func toggle_opponent_view(toggle: bool)->void:
+	if toggle:
+		current_ovp = 1
+	else:
+		current_ovp = 0
+	move_opponent_view = true
