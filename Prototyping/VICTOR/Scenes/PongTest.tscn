@@ -6,15 +6,22 @@
 [ext_resource type="FontFile" uid="uid://bmimebg5qcne7" path="res://Prototyping/VICTOR/Fonts/Oswald-VariableFont_wght.ttf" id="2_yel1t"]
 [ext_resource type="Texture2D" uid="uid://bqk3a55a5ubqx" path="res://Prototyping/OLD/Sprites/Test Limbs/test_torso.png" id="3_nf5nu"]
 [ext_resource type="Script" uid="uid://bq3ugj7nd7i2k" path="res://Prototyping/VICTOR/Scripts/pong_ball.gd" id="3_w52o3"]
+[ext_resource type="Texture2D" uid="uid://o0uqhnvaaukk" path="res://Prototyping/VICTOR/UI SPRITES/camera-clipping-shape.png" id="3_xmhhg"]
 [ext_resource type="Texture2D" uid="uid://cpj47rrh4klq0" path="res://Prototyping/OLD/Sprites/Test Limbs/test_left_hand.png" id="4_rhxsv"]
 [ext_resource type="Script" uid="uid://rfgbpycilf5w" path="res://Prototyping/VICTOR/Scripts/opponent.gd" id="4_w52o3"]
+[ext_resource type="Texture2D" uid="uid://crym1hgtr268f" path="res://Prototyping/VICTOR/UI SPRITES/ui-bottom-gradient.png" id="5_c56ix"]
 [ext_resource type="Texture2D" uid="uid://dd1xr8gkcp17u" path="res://Prototyping/OLD/Sprites/Test Limbs/test_left_lower_arm.png" id="5_l8t8l"]
 [ext_resource type="Texture2D" uid="uid://dom3ekf4c4827" path="res://Prototyping/OLD/Sprites/Test Limbs/test_left_upper_arm.png" id="6_4jtvf"]
+[ext_resource type="Texture2D" uid="uid://cim7bktv2l3hx" path="res://Prototyping/VICTOR/UI SPRITES/timer-ui.png" id="6_stqof"]
+[ext_resource type="Texture2D" uid="uid://e3cyotyim017" path="res://Prototyping/VICTOR/UI SPRITES/ui-hand.png" id="7_3ejg8"]
 [ext_resource type="Texture2D" uid="uid://duk2cin3phjft" path="res://Prototyping/OLD/Sprites/Test Limbs/test_right_hand.png" id="7_b14a7"]
 [ext_resource type="Texture2D" uid="uid://c2yoctxl8xjo6" path="res://Prototyping/OLD/Sprites/Test Limbs/test_right_lower_arm.png" id="8_b14a7"]
 [ext_resource type="Texture2D" uid="uid://bcc5b782y6v7g" path="res://Prototyping/OLD/Sprites/Test Limbs/test_right_upper_arm.png" id="9_ti3ej"]
 [ext_resource type="Texture2D" uid="uid://m66qde282cjn" path="res://Prototyping/OLD/Sprites/Baby Karl Head.png" id="10_yel1t"]
 [ext_resource type="PackedScene" uid="uid://ce8pwoka5a3mk" path="res://Prototyping/VICTOR/Prefabs/spare_ball.tscn" id="15_rfqhs"]
+[ext_resource type="Texture2D" uid="uid://4vb6jpaa5axx" path="res://Prototyping/VICTOR/UI SPRITES/crowd-billboard.png" id="17_upwxk"]
+[ext_resource type="Texture2D" uid="uid://du3x1dtsoo1n6" path="res://Prototyping/VICTOR/UI SPRITES/angel.png" id="18_mwdgd"]
+[ext_resource type="Texture2D" uid="uid://cxr4hoka0gjdr" path="res://Prototyping/VICTOR/UI SPRITES/halo-addblendingmode.png" id="22_36pvm"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_rfqhs"]
 font = ExtResource("2_yel1t")
@@ -75,6 +82,30 @@ material = SubResource("StandardMaterial3D_yel1t")
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_fhfpf"]
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mwdgd"]
+transparency = 1
+albedo_texture = ExtResource("17_upwxk")
+billboard_keep_scale = true
+
+[sub_resource type="QuadMesh" id="QuadMesh_c56ix"]
+material = SubResource("StandardMaterial3D_mwdgd")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_c56ix"]
+transparency = 1
+shading_mode = 0
+albedo_texture = ExtResource("18_mwdgd")
+
+[sub_resource type="QuadMesh" id="QuadMesh_stqof"]
+material = SubResource("StandardMaterial3D_c56ix")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tdt7h"]
+transparency = 1
+shading_mode = 0
+albedo_texture = ExtResource("22_36pvm")
+
+[sub_resource type="QuadMesh" id="QuadMesh_wnkvk"]
+material = SubResource("StandardMaterial3D_tdt7h")
+
 [node name="PongTest" type="Node3D" unique_id=1373645394 node_paths=PackedStringArray("pong_ball", "player_cups", "enemy_cups", "canvas", "player_move_display", "enemy_move_display", "state_display", "result_display", "ball_start", "ball_idle", "opponent_miss", "table", "opponent")]
 transform = Transform3D(0.9899076, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 script = ExtResource("1_fhfpf")
@@ -105,11 +136,14 @@ player_action_view = NodePath("PlayerActionView")
 result_display = NodePath("OpponentResult")
 
 [node name="PlayerActionView" type="SubViewportContainer" parent="Canvas" unique_id=1952382615]
-layout_mode = 0
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 6.4220004
+anchor_bottom = 6.4220004
 offset_left = -2.0
 offset_top = -1.0
-offset_right = 1150.0
-offset_bottom = 647.0
+offset_right = 893.12
+offset_bottom = 390.12
 
 [node name="SubViewport" type="SubViewport" parent="Canvas/PlayerActionView" unique_id=1926013400]
 transparent_bg = true
@@ -121,32 +155,58 @@ render_target_update_mode = 4
 transform = Transform3D(1, 0, 0, 0, 0.85321033, 0.5215671, 0, -0.5215671, 0.85321033, 0, 1.4952997, 1.788176)
 cull_mask = 2
 
-[node name="EnemyCups" type="SubViewportContainer" parent="Canvas" unique_id=1974591136]
-layout_mode = 0
-offset_right = 512.0
-offset_bottom = 512.0
+[node name="Camera Clip Shape" type="Sprite2D" parent="Canvas" unique_id=391908730]
+clip_children = 2
+position = Vector2(154, 223.733)
+scale = Vector2(0.448, 0.448)
+texture = ExtResource("3_xmhhg")
 
-[node name="SubViewport" type="SubViewport" parent="Canvas/EnemyCups" unique_id=1601171329]
+[node name="EnemyCups" type="SubViewportContainer" parent="Canvas/Camera Clip Shape" unique_id=1974591136]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -513.9502
+offset_top = -550.7535
+offset_right = -1.9501648
+offset_bottom = -38.75348
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1.14, 1.14)
+size_flags_horizontal = 4
+metadata/_edit_use_anchors_ = true
+
+[node name="SubViewport" type="SubViewport" parent="Canvas/Camera Clip Shape/EnemyCups" unique_id=1601171329]
 handle_input_locally = false
-size = Vector2i(256, 256)
+size = Vector2i(485, 512)
 render_target_update_mode = 4
 
-[node name="Camera3D2" type="Camera3D" parent="Canvas/EnemyCups/SubViewport" unique_id=1722274534]
+[node name="Camera3D2" type="Camera3D" parent="Canvas/Camera Clip Shape/EnemyCups/SubViewport" unique_id=1722274534]
 transform = Transform3D(1.1693858e-07, -0.54555255, 0.8380766, -6.3661076e-08, 0.8380766, 0.54555255, -1, -1.17149e-07, 6.327302e-08, 0.96153796, 1.208902, 1.9697828)
+fov = 102.0
 
-[node name="PlayerCups" type="SubViewportContainer" parent="Canvas" unique_id=394095649]
-layout_mode = 0
-offset_left = 896.0
-offset_right = 1408.0
-offset_bottom = 512.0
+[node name="Camera Clip Shape2" type="Sprite2D" parent="Canvas" unique_id=1963882481]
+clip_children = 2
+position = Vector2(992, 225.733)
+scale = Vector2(0.448, 0.448)
+texture = ExtResource("3_xmhhg")
 
-[node name="SubViewport" type="SubViewport" parent="Canvas/PlayerCups" unique_id=1430383036]
+[node name="PlayerCups" type="SubViewportContainer" parent="Canvas/Camera Clip Shape2" unique_id=394095649]
+offset_left = -303.42584
+offset_top = -301.7945
+offset_right = 208.57416
+offset_bottom = 210.2055
+scale = Vector2(2.155, 2.155)
+
+[node name="SubViewport" type="SubViewport" parent="Canvas/Camera Clip Shape2/PlayerCups" unique_id=1430383036]
 handle_input_locally = false
 size = Vector2i(256, 256)
 render_target_update_mode = 4
 
-[node name="Camera3D2" type="Camera3D" parent="Canvas/PlayerCups/SubViewport" unique_id=2082618030]
+[node name="Camera3D2" type="Camera3D" parent="Canvas/Camera Clip Shape2/PlayerCups/SubViewport" unique_id=2082618030]
 transform = Transform3D(1.1693858e-07, -0.54555255, 0.8380766, -6.3661076e-08, 0.8380766, 0.54555255, -1, -1.17149e-07, 6.327303e-08, 0.96153796, 1.208902, -0.57747483)
+fov = 95.5
 
 [node name="PlayerMove" type="Label" parent="Canvas" unique_id=1832471021]
 layout_mode = 0
@@ -224,16 +284,41 @@ offset_top = 568.0
 offset_right = 595.0
 offset_bottom = 608.0
 
+[node name="Gradient" type="Sprite2D" parent="Canvas" unique_id=331609286]
+z_index = -2
+position = Vector2(566, 222)
+texture = ExtResource("5_c56ix")
+
+[node name="Gradient2" type="Sprite2D" parent="Canvas" unique_id=484111584]
+z_index = -2
+position = Vector2(815, 424)
+rotation = -3.1415927
+texture = ExtResource("5_c56ix")
+
+[node name="Timer" type="Sprite2D" parent="Canvas" unique_id=938551392]
+z_index = -2
+position = Vector2(999, 484)
+rotation = -6.2831855
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("6_stqof")
+
+[node name="Hand" type="Sprite2D" parent="Canvas" unique_id=452136964]
+z_index = -2
+position = Vector2(122, 577)
+rotation = -6.2831855
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("7_3ejg8")
+
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=128619308]
 transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 0, 0, 0)
-light_color = Color(0.78039217, 0.7882353, 0.9137255, 1)
+light_color = Color(2.3102762e-06, 0.90663564, 0.94950217, 1)
 shadow_enabled = true
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=2081209419]
 environment = SubResource("Environment_hl323")
 
 [node name="Camera3D" type="Camera3D" parent="." unique_id=857685835]
-transform = Transform3D(1.0101953, 0, 0, 0, 0.85321033, 0.5215671, 0, -0.5215671, 0.85321033, 0, 1.4952997, 1.788176)
+transform = Transform3D(1.0101953, 0, 0, 0, 0.9532307, 0.30224386, 0, -0.30224386, 0.9532307, 0, 1.4952997, 2.009749)
 
 [node name="Table" type="MeshInstance3D" parent="." unique_id=997627797]
 transform = Transform3D(1.9046423, 0, 0, 0, 0.09820628, 0, 0, 0, 4.3922935, 0, 0, 0.61900645)
@@ -258,10 +343,10 @@ surface_material_override/0 = SubResource("StandardMaterial3D_fhfpf")
 shape = SubResource("ConcavePolygonShape3D_7vbk8")
 
 [node name="BallStart" type="Node3D" parent="." unique_id=374535406]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.46851075, 1.2596939)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.46851075, 0.907894)
 
 [node name="BallIdle" type="Node3D" parent="." unique_id=440458480]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.81529, 1.2596939)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5946524, -0.81529, 0.907894)
 
 [node name="OpponentMiss" type="Node3D" parent="." unique_id=773924897]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.3016795, 0.17486814, 1.718806)
@@ -384,3 +469,24 @@ texture = ExtResource("8_b14a7")
 [node name="Sprite3D7" type="Sprite3D" parent="Opponent/IdleArms" unique_id=930082147]
 transform = Transform3D(-0.99873084, -0.05036645, 0, 0.05036645, -0.99873084, 0, 0, 0, 0.99999994, 9.098649, 2.6318328, -0.16638088)
 texture = ExtResource("9_ti3ej")
+
+[node name="Background" type="Node3D" parent="." unique_id=1692812567]
+
+[node name="Crowd" type="MeshInstance3D" parent="Background" unique_id=153654762]
+transform = Transform3D(32.08, 0, 0, 0, 11.651474, 5.5574684, 0, -5.5574684, 11.651474, 0, -0.7792225, -4.524)
+mesh = SubResource("QuadMesh_c56ix")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="Background/Crowd" unique_id=552032309]
+mesh = SubResource("QuadMesh_c56ix")
+
+[node name="Angel" type="MeshInstance3D" parent="Background" unique_id=1789439776]
+transform = Transform3D(1.41, 0, 0, 0, 1.0884291, 0.6547408, 0, -0.9428268, 0.7558535, 1.795, 1.832437, -1.09)
+mesh = SubResource("QuadMesh_stqof")
+
+[node name="Angel2" type="MeshInstance3D" parent="Background" unique_id=2078788605]
+transform = Transform3D(-1.41, 0, 0, 0, 1.0884291, 0.6547408, 0, -0.9428268, 0.7558535, -1.795, 1.832437, -1.09)
+mesh = SubResource("QuadMesh_stqof")
+
+[node name="Halo" type="MeshInstance3D" parent="Background" unique_id=249034334]
+transform = Transform3D(3.4, 0, 0, 0, 3.3375325, -0.6487506, 0, 0.6487506, 3.3375325, 0, 1.628, -2.159)
+mesh = SubResource("QuadMesh_wnkvk")
