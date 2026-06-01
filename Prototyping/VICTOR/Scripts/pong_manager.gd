@@ -53,6 +53,8 @@ var start_point : Vector2
 var spare_prefab = preload("res://Prototyping/VICTOR/Prefabs/spare_ball.tscn")
 var spare_balls : Array[MeshInstance3D]
 
+var winner : String
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	#Set Manager in Player Cups
@@ -173,8 +175,12 @@ func setup_state(next_state: STATE) :
 				player_move_display.text = ""
 			
 			#END GAME IF EMPTY
-			if player_cups.is_empty() or enemy_cups.is_empty():
+			if player_cups.is_empty(): 
 				next_state = STATE.End
+				winner = "player"
+			if enemy_cups.is_empty():
+				next_state = STATE.End
+				winner = "opponent"
 		STATE.Transition:
 			if state_before_wait == STATE.Enemy:
 				canvas.toggle_opponent_view(false)
