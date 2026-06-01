@@ -57,6 +57,7 @@ func _ready() -> void:
 	#Setup display
 	result_display.text = ""
 	player_balls_left = 2
+	canvas.update_ball_display(player_balls_left)
 	
 	#Setup Game
 	setup_state(STATE.Player)
@@ -143,7 +144,7 @@ func _physics_process(delta: float) -> void:
 				
 				#Next State
 				player_balls_left = player_balls_left - 1
-				update_spare_balls()
+				canvas.update_ball_display(player_balls_left)
 				setup_state(STATE.Wait)
 		STATE.Enemy:
 			pass
@@ -186,7 +187,7 @@ func setup_state(next_state: STATE) :
 			pong_ball.toggle_bounce(true)
 			pong_ball.freeze_at_location(ball_start.position, ball_start.rotation)
 			
-			update_spare_balls()
+			canvas.update_ball_display(player_balls_left)
 			ready_to_throw = false
 			state_display.text = "Current State: Player"
 		STATE.Wait:
@@ -207,7 +208,6 @@ func setup_state(next_state: STATE) :
 
 #Called in _process wait, processes wait functions
 func process_wait() -> void:
-	update_spare_balls()
 	if state_before_wait == STATE.Player:
 		if player_balls_left > 0:
 			setup_state(STATE.Player)
@@ -217,20 +217,6 @@ func process_wait() -> void:
 	elif state_before_wait == STATE.Enemy:
 		setup_state(STATE.Player)
 
-func update_spare_balls() -> void:
-	pass
-	#CODE NOT WORKING
-	#for i in range(spare_balls.size() - 1):
-		#spare_balls[i].queue_free()
-	#spare_balls.clear()
-	#
-	#var spawn_position = ball_start.position + Vector3(-0.5, 0, 0)
-	#for i in range(player_balls_left-1):
-		#var new_spare = spare_prefab.instantiate()
-		#new_spare.position = spawn_position - Vector3(0.25, 0, 0) * i
-		#add_child(new_spare)
-		#spare_balls.append(new_spare)
-
 #Called in solo_cup
 func destroy_player_cup(player_cup: Node3D) -> void:
 	point_scored = true
@@ -238,6 +224,7 @@ func destroy_player_cup(player_cup: Node3D) -> void:
 	player_cups.erase(player_cup)
 	
 	player_balls_left = player_balls_left + 1
+	canvas.update_ball_display(player_balls_left)
 	pong_ball.freeze_at_location(ball_idle.position, ball_idle.rotation)
 
 func destroy_opponent_cup(opponent_cup: Node3D) -> void:
