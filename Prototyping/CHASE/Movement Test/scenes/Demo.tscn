@@ -323,6 +323,8 @@ shader_parameter/color_offset = 0.10400002869000002
 shader_parameter/mask_brightness = 0.8090000384275
 shader_parameter/aspect = 0.7230000105925
 
+[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_jyv6n"]
+
 [node name="Movement" type="Node" unique_id=767724366]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=961595683]
@@ -491,6 +493,13 @@ bones/39/rotation = Quaternion(0.5340214, 0.03238932, 0.022380738, 0.8445539)
 
 [node name="AnimationPlayer" parent="NPCs/Other/Pigeon Lady2" index="1" unique_id=107515142]
 autoplay = &"Choppy Free Dance"
+
+[node name="Infinite Area [for mouse position]" type="Node3D" parent="." unique_id=739573380]
+
+[node name="Area3D" type="Area3D" parent="Infinite Area [for mouse position]" unique_id=1652473502]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Infinite Area [for mouse position]/Area3D" unique_id=1458833167 groups=["Mouse Pos"]]
+shape = SubResource("WorldBoundaryShape3D_jyv6n")
 
 [editable path="Player"]
 [editable path="User Interface"]

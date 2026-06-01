@@ -26,7 +26,6 @@ fp_cam = NodePath("Digi Manager/FP Cam")
 rotation_target = NodePath("Digi Manager/CameraRotationTarget")
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="." unique_id=778715464]
-target_desired_distance = 0.5
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=990262259]
 mesh = SubResource("CapsuleMesh_o3c4m")

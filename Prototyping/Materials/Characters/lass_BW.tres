@@ -1,0 +1,19 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://dutiwvgbm1a8v"]
+
+[ext_resource type="Texture2D" uid="uid://chlmkxx52frqa" path="res://Prototyping/Imported Textures/Default_Lass_BW_tex.png" id="1_dumj3"]
+
+[sub_resource type="Gradient" id="Gradient_6n5gi"]
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_30feu"]
+gradient = SubResource("Gradient_6n5gi")
+fill_from = Vector2(0.64529914, 0.8247863)
+fill_to = Vector2(0.3931624, 0)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ti2pe"]
+albedo_texture = SubResource("GradientTexture2D_30feu")
+
+[resource]
+next_pass = SubResource("StandardMaterial3D_ti2pe")
+shading_mode = 0
+albedo_color = Color(0, 0.88857853, 0.3623615, 1)
+albedo_texture = ExtResource("1_dumj3")

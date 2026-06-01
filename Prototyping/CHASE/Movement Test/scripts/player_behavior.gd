@@ -5,6 +5,7 @@ extends CharacterBody3D
 @export var rotation_speed : float
 @export var move_speed : float
 @export var temp_visualizer : Node3D #to be used in dev time to check where the player is clicking
+var moving : bool 
 
 @export_category("Movement States")
 enum Move_State{DIGICAM, POINT_AND_CLICK, CHATTING, INSPECTING, IN_MENU, MOVE_NULL}
@@ -38,7 +39,7 @@ func _process(delta):
 				PC_State.PC_WALK:
 					#region Applying Point and Click Movement
 					if (!digi_manager.toggle_digi): #as long as the camera isn't in digicam mode
-						if(nav_agent.is_navigation_finished()): #if navigation is finished do NOTHING (breaks the movement loop)
+						if(nav_agent.is_navigation_finished() ): #if navigation is finished do NOTHING (breaks the movement loop)
 							return
 						else:
 							_move_to_target(delta,move_speed) #otherwise, continuously move towards the target position at preset speed (move_speed)
@@ -71,11 +72,15 @@ func _move_to_target(delta,speed): #setting point and click movement parameters
 	var target_position = nav_agent.get_next_path_position()
 	var direction = global_position.direction_to(target_position)
 	#region Rotate To Look At Target
-	var target2D : Vector2 = Vector2(target_position.x, target_position.z)
-	var player2D : Vector2 = Vector2(global_position.x, global_position.z)
-	var face_direction = -(target2D - player2D)
-	rotation.y = lerp_angle(rotation.y, atan2(face_direction.x, face_direction.y), delta * rotation_speed)
-#endregion
+	if (velocity != Vector3.ZERO):
+		var target2D : Vector2 = Vector2(target_position.x, target_position.z)
+		var player2D : Vector2 = Vector2(global_position.x, global_position.z)
+		var face_direction = -(target2D - player2D)
+		rotation.y = lerp_angle(rotation.y, atan2(face_direction.x, face_direction.y), delta * rotation_speed)
+		moving = true
+	else:
+		moving = false
+	#endregion
 	velocity = direction * speed
 	move_and_slide()
 
@@ -136,15 +141,19 @@ func _set_PC_state(next_PC_state:int):
 #endregion
 
 func _input(event):
+	#region digicam input
+	
 	if(Input.is_action_just_pressed("digi_view")):
 		digi_manager.toggle_digi = !digi_manager.toggle_digi
 		if(digi_manager.toggle_digi):
 			_set_move_state(Move_State.DIGICAM)
 		else:
 			_set_move_state(Move_State.POINT_AND_CLICK)
+	#endregion
+
 	#region Checking for Point and Click Ability
 	if(Input.is_action_just_pressed("click") && !digi_manager.toggle_digi && move_state != Move_State.CHATTING && move_state != Move_State.INSPECTING):
-		var mouse_pos = get_viewport().get_mouse_position() #mouse position translated to WHERE in the viewport the mouse clicked
+		var mouse_pos = get_viewport().get_mouse_position() #mouse position in world space
 		var ray_length = 1000 #length of raycast shot from mouse position
 		var from = cam.project_ray_origin(mouse_pos) #starting position of raycast
 		var to = from + cam.project_ray_normal(mouse_pos) * ray_length #target of raycast
@@ -158,6 +167,10 @@ func _input(event):
 			if (clicked_node.is_in_group("Ground")): #ensuring that this is where we want the player to be targeting
 				temp_visualizer.position = (result.position) #set visualizer for devs
 				nav_agent.set_target_position(result.position) #apply navigation
+	#region turn in place
+	if (Input.is_action_just_pressed("rotate") && move_state == Move_State.POINT_AND_CLICK && !moving):
+		rotation.y += 1
+	#endregion
 	#endregion
 
 	#region FP Mouse Movement
@@ -168,6 +181,7 @@ func _input(event):
 			rotation_target.rotation.z = 0
 			rotation_target.rotation.x = clampf(rotation_target.rotation.x, -deg_to_rad(70), deg_to_rad(70))
 			rotation_target.rotation.y = clampf(rotation_target.rotation.y, -deg_to_rad(70), deg_to_rad(70))
+
 	#endregion
 
 	#region interact input

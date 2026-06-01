@@ -1,0 +1,6 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://d4epkeg6s0dlq"]
+
+[ext_resource type="Texture2D" uid="uid://40jnidr4kig6" path="res://Prototyping/Imported Textures/pigeon_BW_tex.png" id="1_h4cyd"]
+
+[resource]
+albedo_texture = ExtResource("1_h4cyd")
