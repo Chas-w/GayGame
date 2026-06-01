@@ -351,22 +351,22 @@ navigation_mesh = SubResource("NavigationMesh_o3c4m")
 [node name="Bog Concept" parent="NavigationRegion3D" unique_id=2004594051 instance=ExtResource("4_lodjo")]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
 
-[node name="StaticBody3D" type="StaticBody3D" parent="NavigationRegion3D/Bog Concept/Patio" parent_id_path=PackedInt32Array(2004594051, 650449763) index="0" unique_id=149619076]
+[node name="StaticBody3D" type="StaticBody3D" parent="NavigationRegion3D/Bog Concept/Patio" parent_id_path=PackedInt32Array(2004594051, 1477995226) index="0" unique_id=149619076]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/Bog Concept/Patio/StaticBody3D" unique_id=1260757244]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.09677124, 0, 0.6548462)
 shape = SubResource("BoxShape3D_pnao5")
 
-[node name="Standin CHAR" parent="NavigationRegion3D/Bog Concept" index="2" unique_id=1140270219]
+[node name="Standin CHAR" parent="NavigationRegion3D/Bog Concept" index="2" unique_id=478133379]
 visible = false
 
-[node name="Standin CHAR_001" parent="NavigationRegion3D/Bog Concept" index="5" unique_id=2062879469]
+[node name="Standin CHAR_001" parent="NavigationRegion3D/Bog Concept" index="5" unique_id=1968917455]
 visible = false
 
-[node name="Standin CHAR_002" parent="NavigationRegion3D/Bog Concept" index="7" unique_id=1199953620]
+[node name="Standin CHAR_002" parent="NavigationRegion3D/Bog Concept" index="7" unique_id=591664009]
 visible = false
 
-[node name="Interaction Trigger" parent="NavigationRegion3D/Bog Concept/Standin CHAR_003" parent_id_path=PackedInt32Array(2004594051, 1530826805) index="0" unique_id=101737479 instance=ExtResource("5_0vhfh")]
+[node name="Interaction Trigger" parent="NavigationRegion3D/Bog Concept/Standin CHAR_003" parent_id_path=PackedInt32Array(2004594051, 674970824) index="0" unique_id=101737479 instance=ExtResource("5_0vhfh")]
 transform = Transform3D(6.374224, 0, 0, 0, 2.9, 0, 0, 0, 9.6, -5.0369873, 0.2880001, 0)
 is_dialogue = true
 next_scene_path = "res://Prototyping/VICTOR/Scenes/PongTest.tscn"

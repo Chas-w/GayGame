@@ -2,10 +2,10 @@
 	"NPC_Dialogue": {
 		"ID": "Victor",
 		"Scene_Group": "Patio",
-        "Target_Name" : "Player",
+		"Target_Name" : "Player",
 		"Player_Banter": false,
 		"Dialogue": {
-            "Use_Banter": false, 
+			"Use_Banter": false, 
 			"Default": {
 				"Follow_Up": [
 					"Hey I'm Victor, I don't know anything about JSON files",
@@ -13,8 +13,8 @@
 					"Wanna play?",
 					" "
 				],
-                "Loop" : true,
-                "Loop_From" : 1,
+				"Loop" : true,
+				"Loop_From" : 1,
 				"Scene_Transition": true,
 				"Completion_Line" : "this is after default is finished"
 

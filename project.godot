@@ -32,6 +32,10 @@ runtime/balloon_path="res://Prototyping/CHASE/Movement Test/Dialogue/balloon.tsc
 window/stretch/mode="viewport"
 window/stretch/aspect="keep_height"
 
+[dotnet]
+
+project/assembly_name="Gay Game"
+
 [editor_plugins]
 
 enabled=PackedStringArray("res://addons/phantom_camera/plugin.cfg", "res://addons/shaker/plugin.cfg")

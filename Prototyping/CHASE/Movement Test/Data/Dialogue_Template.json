@@ -2,18 +2,18 @@
 	"NPC_Dialogue": {
 		"ID": "Interactable_Name",
 		"Scene_Group": "Scene",
-        "Target_Name" : "look_target",
+		"Target_Name" : "look_target",
 		"Player_Banter": true,
 		"Dialogue": {
-            "Use_Banter": false, 
+			"Use_Banter": false, 
 			"Default": {
 				"Follow_Up": [
 					"First Line",
 					"Second Line",
 					"Third Line"
 				],
-                "Loop" : true,
-                "Loop_From" : 0,
+				"Loop" : true,
+				"Loop_From" : 0,
 				"Scene_Transition": true,
 				"Completion_Line" : "this is after default is finished"
 			},
