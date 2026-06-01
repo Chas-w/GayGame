@@ -48,7 +48,7 @@ size = Vector3(6.8178864, 0.08402252, 16.2695)
 [sub_resource type="BoxShape3D" id="BoxShape3D_jyv6n"]
 size = Vector3(5.7023926, 0.15704632, 16.498108)
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_jyv6n"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_mxqci"]
 viewport_path = NodePath("SubViewportContainer/SubViewport")
 
 [sub_resource type="Shader" id="Shader_dildx"]
@@ -397,7 +397,7 @@ debug_color = Color(6.256998e-07, 0.62888765, 0.49111778, 0.41960785)
 z_index = 2
 
 [node name="Tiltshift" parent="User Interface/main_UI" index="2" unique_id=1900336007]
-texture = SubResource("ViewportTexture_jyv6n")
+texture = SubResource("ViewportTexture_mxqci")
 
 [node name="CRT" type="ColorRect" parent="User Interface" unique_id=452677996 node_paths=PackedStringArray("subviewport_node")]
 z_index = 1
@@ -444,7 +444,7 @@ metadata/_custom_type_script = "uid://bd046eokvcnu2"
 [node name="Pigeon Lady" parent="NPCs/Other" unique_id=1938342267 instance=ExtResource("8_jyv6n")]
 transform = Transform3D(0.032148212, 0, 2.9998279, 0, 3, 0, -2.9998279, 0, 0.032148212, 18.07417, 0.08820689, 7.2187157)
 
-[node name="Skeleton3D" parent="NPCs/Other/Pigeon Lady/Main" parent_id_path=PackedInt32Array(1938342267, 231985511) index="0" unique_id=505015500]
+[node name="Skeleton3D" parent="NPCs/Other/Pigeon Lady/Main" parent_id_path=PackedInt32Array(1938342267, 405763622) index="0" unique_id=1098273852]
 bones/0/position = Vector3(-0.22421888, 1.7681983, -82.18391)
 bones/0/rotation = Quaternion(-0.76308304, 0.005539589, 0.08855812, 0.6401806)
 bones/1/rotation = Quaternion(0.07104798, 0.029179465, 0.0058739735, 0.99702877)
@@ -491,7 +491,7 @@ bones/37/rotation = Quaternion(-0.54574925, 0.09385181, -0.0096018445, 0.8326208
 bones/38/rotation = Quaternion(0.55518496, 0.13347994, 0.0099799065, 0.8208856)
 bones/39/rotation = Quaternion(0.5340214, 0.03238932, 0.022380738, 0.8445539)
 
-[node name="AnimationPlayer" parent="NPCs/Other/Pigeon Lady" index="1" unique_id=107515142]
+[node name="AnimationPlayer" parent="NPCs/Other/Pigeon Lady" index="1" unique_id=482572616]
 autoplay = &"Choppy Free Dance"
 
 [node name="Interaction Trigger" parent="NPCs/Other/Pigeon Lady" unique_id=101737479 instance=ExtResource("9_mxqci")]

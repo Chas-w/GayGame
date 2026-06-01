@@ -1,0 +1,35 @@
+{
+	"NPC_Dialogue": {
+		"ID": "Jason",
+		"Scene_Group": "Demo",
+		"Target_Name" : "Player",
+		"Player_Banter": true,
+		"Dialogue": {
+			"Use_Banter": false, 
+			"Default": {
+				"Follow_Up": [
+					"Watch where you're going! I spilled my drink...",
+					"Now I have to go get another.",
+					"I'm Jason by the way. Come grab another drink with me."
+				],
+				"Loop" : true,
+				"Loop_From" : 0,
+				"Scene_Transition": false,
+				"Completion_Line" : "That was $14."
+			},
+			"Banter_Dialogue": {
+				"Banter_ID": "ID_Name",
+				"Player_Banter_Options": [
+					"Let me buy you a drink.",
+					"Only if you buy me one!",
+					"Hell no."
+				],
+				"Op_1": "Thanks... you owe me anyways.",
+				"Op_2": "Sure. Just cause you're hot.",
+				"Op_3": "Screw you.",
+				"Scene_Transition": false,
+				"Completion_Line": "See you around."
+			}
+		}
+	}
+}
