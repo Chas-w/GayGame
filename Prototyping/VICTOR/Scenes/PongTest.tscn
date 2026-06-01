@@ -226,6 +226,7 @@ label_settings = SubResource("LabelSettings_rfqhs")
 vertical_alignment = 2
 
 [node name="EnemyMove" type="Label" parent="Canvas" unique_id=825106124]
+visible = false
 layout_mode = 0
 offset_left = 912.0
 offset_top = 272.0

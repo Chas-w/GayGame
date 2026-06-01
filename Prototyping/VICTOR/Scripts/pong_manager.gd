@@ -26,9 +26,16 @@ extends Node3D
 @export var opponent : Node3D
 
 #State Management
-enum STATE {None, Player, Wait, Enemy, End}
+enum STATE {None, Player, Wait, Transition, Enemy, End}
 var current_state = STATE.None
 var state_before_wait : STATE
+var state_after_transition : STATE
+
+#NONE: nothing
+#Player: player can throw ball
+#Wait: computer waits for player or enemy to throw the ball, waits to see result
+#Transition: purely a timer, waits a second before moving to next state
+#Enemy takes a turn, defined by bools in enemy moves array
 
 var wait_timer : float
 var point_scored : bool
@@ -72,7 +79,6 @@ func _process(delta: float) -> void:
 		STATE.Player:
 			#Display player balls:
 			player_move_display.text = "Balls Remaining: " + str(player_balls_left)
-			
 			#Start throwing the ball
 			if Input.is_action_pressed("click") and !ready_to_throw:
 				ready_to_throw = true
@@ -84,7 +90,6 @@ func _process(delta: float) -> void:
 			#Display player balls:
 			if state_before_wait == STATE.Player:
 				player_move_display.text = "Balls Remaining: " + str(player_balls_left)
-			
 			#Track wait_time
 			wait_timer = wait_timer + delta
 			if !point_scored and wait_timer > 5:
@@ -93,11 +98,17 @@ func _process(delta: float) -> void:
 				process_wait()
 			#Make sure ball is in the right place
 			if pong_ball.position.y < -3 or pong_ball.position.y > 3:
+				if state_before_wait == STATE.Enemy:
+					canvas.display_message("OPPONENT MISS")
 				process_wait()
-				
+		STATE.Transition:
+			wait_timer = wait_timer + delta
+			if wait_timer > 2:
+				wait_timer = 0
+				setup_state(state_after_transition)
 		STATE.Enemy:
 			wait_timer = wait_timer + delta
-			if wait_timer > 10:
+			if wait_timer > 2:
 				wait_timer = 0
 				opponent.switch_to_throw()
 				if current_enemy_move < enemy_moves.size() - 1:
@@ -109,10 +120,11 @@ func _process(delta: float) -> void:
 				else:
 					print("invalid enemy move")
 		STATE.End:
-			#Rest for debugging
-			if Input.is_action_pressed("rightclick"):
-				pong_ball.freeze_at_location(ball_start.position, ball_start.rotation)
-			pass
+			wait_timer = wait_timer + delta
+			if wait_timer > 10:
+				wait_timer = 0
+				print("SCENE TRANSITION NOW")
+				#CHASE PUT SCENE TRANSITION HERE IF YOU WANT A DELAY
 
 func _physics_process(delta: float) -> void:
 	match current_state:
@@ -144,7 +156,6 @@ func _physics_process(delta: float) -> void:
 				
 				#Next State
 				player_balls_left = player_balls_left - 1
-				canvas.update_ball_display(player_balls_left)
 				setup_state(STATE.Wait)
 		STATE.Enemy:
 			pass
@@ -155,21 +166,8 @@ func _physics_process(delta: float) -> void:
 func setup_state(next_state: STATE) :
 	#End Current State
 	match current_state:
-		STATE.None:
-			pass
-		STATE.Enemy:
-			pass
-			#current_player_turn = 0
-			#spare_ball.visible = true
 		STATE.Wait:
 			point_scored = false
-			#Turn off enemy stuff
-			if state_before_wait == STATE.Enemy:
-				opponent.switch_to_idle()
-				#opponent.toggle_opponent_view(false)
-				canvas.toggle_opponent_view(false)
-				current_enemy_move = current_enemy_move + 1
-				enemy_move_display.text = "Enemy Move: " + str(current_enemy_move)
 			#Turn off player stuff
 			if state_before_wait == STATE.Player:
 				player_move_display.text = ""
@@ -177,8 +175,11 @@ func setup_state(next_state: STATE) :
 			#END GAME IF EMPTY
 			if player_cups.is_empty() or enemy_cups.is_empty():
 				next_state = STATE.End
-		STATE.Player:
-			pass
+		STATE.Transition:
+			if state_before_wait == STATE.Enemy:
+				canvas.toggle_opponent_view(false)
+				current_enemy_move = current_enemy_move + 1
+				enemy_move_display.text = "Enemy Move: " + str(current_enemy_move)
 	
 	#Setup Next State
 	match next_state:
@@ -194,16 +195,19 @@ func setup_state(next_state: STATE) :
 		STATE.Wait:
 			wait_timer = 0
 			state_before_wait = current_state
+		STATE.Transition:
+			wait_timer = 0
 		STATE.Enemy:
-			opponent.toggle_opponent_view(true)
+			wait_timer = 0
 			canvas.toggle_opponent_view(true)
-			
 			pong_ball.toggle_bounce(true)
 			pong_ball.freeze_at_location(ball_idle.position, ball_idle.rotation)
 			state_display.text = "Current State: Enemy"
 		STATE.End:
+			wait_timer = 0
 			state_display.text = "Current State: End"
 			canvas.display_message("GAME OVER")
+			#CHASE START SCENE TRANSITION HERE. PUT A WAIT TIMER IN WAIT IF YOU WANT A DELAY
 			pass
 	
 	current_state = next_state
@@ -217,36 +221,39 @@ func process_wait() -> void:
 			player_balls_left = 2
 			setup_state(STATE.Enemy)
 	elif state_before_wait == STATE.Enemy:
-		setup_state(STATE.Player)
+		state_after_transition = STATE.Player
+		setup_state(STATE.Transition)
 
 #Called in solo_cup
 func destroy_player_cup(player_cup: Node3D) -> void:
 	point_scored = true
-	canvas.display_message("BALL BACK")
+	canvas.display_timed_message("BALL BACK", 1)
 	player_cups.erase(player_cup)
 	
 	player_balls_left = player_balls_left + 1
 	canvas.update_ball_display(player_balls_left)
 	pong_ball.freeze_at_location(ball_idle.position, ball_idle.rotation)
 
+#Called in solo_cup
 func destroy_opponent_cup(opponent_cup: Node3D) -> void:
 	enemy_cups.erase(opponent_cup)
+	canvas.display_message("OPPONENT POINT")
 	point_scored = true
 	wait_timer = 0
 	pong_ball.freeze_at_location(ball_idle.position, ball_idle.rotation)
 
+#Called in enemy
 func spawn_opponent_miss() -> void:
-	canvas.display_message("OPPONENT MISS")
 	var release_position = opponent_miss.position + Vector3(0,2,0)
 	pong_ball.release_at_location(release_position, ball_start.rotation)
 
+#Called in enemy
 func spawn_random_opponent_throw() -> void:
 	if enemy_cups.is_empty():
 		print("tried to destroy nonexistant enemy cup")
 		return
 	
 	point_scored = true
-	wait_timer = 0
 	var current_cup = enemy_cups.pick_random()
 	var release_position = current_cup.global_position + Vector3(0,2,0)
 	pong_ball.release_at_location(release_position, ball_start.rotation)

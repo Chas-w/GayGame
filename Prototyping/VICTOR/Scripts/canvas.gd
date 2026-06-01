@@ -19,7 +19,7 @@ var retract_line : bool
 
 #Message Display
 var message_display_timer: float
-var message_display_time: float = 1
+var message_display_time: float = 2
 var message_displayed: bool
 
 #Ball Display
@@ -57,11 +57,6 @@ func _process(delta: float) -> void:
 	if move_opponent_view:
 		var opponent_view_check = opponent_view.position == opponent_view_positions[current_ovp].position
 		var opponent_cup_check = opponent_cup_view.position == opponent_cup_view_positions[current_ovp].position
-		
-		print("moving view")
-		print(opponent_view.position)
-		print(opponent_view.global_position)
-		
 		#Move opponent views to correct spot
 		if !opponent_view_check:
 			opponent_view.position = opponent_view.position.move_toward(opponent_view_positions[current_ovp].position, 10)
@@ -101,7 +96,12 @@ func reset_end_point() -> void:
 func display_message(message: String) -> void:
 	message_displayed = true
 	result_display.text = message
-	print("displaying message")
+	message_display_time = 2
+
+func display_timed_message(message: String, display_time: float) -> void:
+	message_displayed = true
+	result_display.text = message
+	message_display_time = display_time
 
 #Update the amount of balls shown
 func update_ball_display(ball_num: int) -> void:
