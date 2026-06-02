@@ -3,6 +3,7 @@ extends Node3D
 @export_category("Setup")
 @export var is_dialogue : bool
 var player_banter : bool
+@export var hover_label : Label3D
 var dialogue = {}
 @export var next_scene_path : String
 @export var interaction_file_path : String
@@ -39,13 +40,14 @@ func _ready():
 
 func _process(delta):
 	if (trigger_exit && can_exit):
-		_exit_interaction()
+		_exit_interaction(_setup().Dialogue.Default.Completion_Line)
 		can_exit = false
 	if(trigger_word_display):
 		_display_sentence(player_interaction_status,delta)
 
 func _setup(): #sets up all the interaction variables and stores the dictionary that will be referenced
 	var current_dictionary = " "
+	hover_label.text = " "
 	if (is_dialogue):
 		current_dictionary = main_dictionary.NPC_Dialogue
 		ID = current_dictionary.ID
@@ -68,7 +70,7 @@ func _enter_interaction(): #set up interaction for player
 		entered = true
 		_progress_interaction()
 
-func _exit_interaction(): #reset everything
+func _exit_interaction(hover_message : String): #reset everything
 	database.player_dict.Stored_Conversations[ID] = player_interaction_status # I think this is adding this value to the dictionary
 	database._hide_ui(database.exit_interaction_button)
 	database._hide_ui(database.dialogue_ui)
@@ -76,10 +78,11 @@ func _exit_interaction(): #reset everything
 	entered = false
 	progress_info = false
 	trigger_exit = false
+	hover_label.text = hover_message
 	pass
 
 func _next_scene():
-	_exit_interaction()
+	_exit_interaction(" ")
 	#save data
 	database._go_to_scene(next_scene_path)
 

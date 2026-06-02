@@ -9,8 +9,9 @@
 [sub_resource type="Resource" id="Resource_6qh51"]
 script = ExtResource("3_6muxn")
 
-[node name="Interaction Trigger" type="Node3D" unique_id=101737479 groups=["Interaction"]]
+[node name="Interaction Trigger" type="Node3D" unique_id=101737479 node_paths=PackedStringArray("hover_label") groups=["Interaction"]]
 script = ExtResource("1_iwsgo")
+hover_label = NodePath("Label3D")
 
 [node name="Area3D" type="Area3D" parent="." unique_id=1905126529 groups=["Interaction"]]
 
@@ -22,3 +23,6 @@ debug_color = Color(4.428029e-06, 0.8605231, 0.69217527, 1)
 script = ExtResource("2_suskh")
 tween_resource = SubResource("Resource_6qh51")
 metadata/_custom_type_script = "uid://csjccrhj5wnx7"
+
+[node name="Label3D" type="Label3D" parent="." unique_id=1095324867]
+font_size = 64

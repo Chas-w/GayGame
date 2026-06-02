@@ -88,7 +88,7 @@ func _move_to_target(delta,speed): #setting point and click movement parameters
 func _set_move_state(next_move_state:int):
 	var prev_move_state := move_state
 	move_state = next_move_state
-	
+		
 	#check last state
 	match(prev_move_state):
 		Move_State.DIGICAM:
@@ -106,6 +106,8 @@ func _set_move_state(next_move_state:int):
 	match(next_move_state):
 		Move_State.POINT_AND_CLICK:
 			#region Setup PC Camera
+			if(interaction_source != null):
+				interaction_source.hover_label.visible = true
 			digi_manager.fp_cam_set = false
 			fp_cam.priority = 0
 			environment_cam.priority = 100
@@ -114,6 +116,8 @@ func _set_move_state(next_move_state:int):
 			Input.set_mouse_mode(Input.MOUSE_MODE_CONFINED)
 			_set_PC_state(PC_State.PC_WALK)
 		Move_State.DIGICAM:
+			if(interaction_source != null):
+				interaction_source.hover_label.visible = false
 			timer = 0
 			nav_agent.set_target_position(position) #stop the movement, reset the target position
 			temp_visualizer.position = position
@@ -199,7 +203,10 @@ func _on_interaction_detector_area_entered(area):
 	if(area.is_in_group("Interaction")):
 		can_interact = true
 		interaction_source = area.get_parent()
+		interaction_source.hover_label.text = "E"
 func _on_interaction_detector_area_exited(area):
 	if(area.is_in_group("Interaction")):
 		can_interact = false
+		interaction_source.hover_label.text = " "
+
 	
