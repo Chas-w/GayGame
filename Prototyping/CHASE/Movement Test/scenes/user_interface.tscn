@@ -1,6 +1,8 @@
 [gd_scene format=3 uid="uid://i45rxxu8g27j"]
 
+[ext_resource type="Script" uid="uid://d3qiwemwdlxl5" path="res://Prototyping/CHASE/Movement Test/scripts/user_interface.gd" id="1_y11tf"]
 [ext_resource type="Texture2D" uid="uid://4g3itx3xcb17" path="res://Prototyping/Imported Textures/Digicam.png" id="3_g43uo"]
+[ext_resource type="Texture2D" uid="uid://dold15uhwe4vq" path="res://photos/pic_1.png" id="4_7n4kj"]
 [ext_resource type="Texture2D" uid="uid://bge7y74fwiewv" path="res://Prototyping/Imported Textures/Bracelet.png" id="4_s2w0g"]
 [ext_resource type="Shader" uid="uid://byc54teku3wr8" path="res://Prototyping/CHASE/Movement Test/shaders/tilt_shift_shader.gdshader" id="5_vjshv"]
 
@@ -23,8 +25,10 @@ colors = PackedColorArray(0, 0, 0, 1, 0, 0, 0, 1)
 gradient = SubResource("Gradient_7n4kj")
 
 [node name="User Interface" type="CanvasLayer" unique_id=2020881195 groups=["UI"]]
+script = ExtResource("1_y11tf")
 
 [node name="main_UI" type="Control" parent="." unique_id=1350061328]
+visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -55,6 +59,7 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="dialogue_UI" type="Control" parent="." unique_id=713169548]
+visible = false
 z_index = 10
 layout_mode = 3
 anchors_preset = 15
@@ -154,3 +159,77 @@ grow_vertical = 2
 text = "NAME"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="digicam_UI" type="Control" parent="." unique_id=1132395004]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Viewfinder" type="Control" parent="digicam_UI" unique_id=1757123904]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Photobook" type="Panel" parent="digicam_UI" unique_id=468324431]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="List of Photos" type="CenterContainer" parent="digicam_UI/Photobook" unique_id=1349653667]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.042534724
+anchor_top = 0.030864198
+anchor_right = 1.0425347
+anchor_bottom = 1.0308642
+offset_left = 1.0
+offset_right = 1213.0
+offset_bottom = 708.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.45, 0.45)
+metadata/_edit_use_anchors_ = true
+
+[node name="GridContainer" type="GridContainer" parent="digicam_UI/Photobook/List of Photos" unique_id=1996479168]
+layout_mode = 2
+theme_override_constants/h_separation = 60
+theme_override_constants/v_separation = 60
+columns = 2
+
+[node name="TextureRect" type="TextureRect" parent="digicam_UI/Photobook/List of Photos/GridContainer" unique_id=17627690]
+layout_mode = 2
+texture = ExtResource("4_7n4kj")
+
+[node name="TextureRect2" type="TextureRect" parent="digicam_UI/Photobook/List of Photos/GridContainer" unique_id=1950948566]
+layout_mode = 2
+texture = ExtResource("4_7n4kj")
+
+[node name="TextureRect3" type="TextureRect" parent="digicam_UI/Photobook/List of Photos/GridContainer" unique_id=1090777022]
+layout_mode = 2
+texture = ExtResource("4_7n4kj")
+
+[node name="TextureRect4" type="TextureRect" parent="digicam_UI/Photobook/List of Photos/GridContainer" unique_id=1766790730]
+layout_mode = 2
+texture = ExtResource("4_7n4kj")
+
+[node name="Focused Photo" type="CenterContainer" parent="digicam_UI/Photobook" unique_id=473386572]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="digicam_UI/Photobook/Focused Photo" unique_id=1714812152]
+layout_mode = 2
+texture = ExtResource("4_7n4kj")
