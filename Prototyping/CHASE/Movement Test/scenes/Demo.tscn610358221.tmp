@@ -498,7 +498,6 @@ autoplay = &"Choppy Free Dance"
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.656613e-10, 1, 0.4319461)
 is_dialogue = true
 interaction_file_path = "res://Prototyping/CHASE/Movement Test/Data/Nathan_Demo_Dialogue.json"
-display_buffer = 0.17
 
 [node name="Area3D" parent="NPCs/Other/Pigeon Lady/Interaction Trigger" index="0" unique_id=1905126529]
 transform = Transform3D(2.4359717, 0, 0, 0, 1, 0, 0, 0, 1.9000001, 0, 0, 0)

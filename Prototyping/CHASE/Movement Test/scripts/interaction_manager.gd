@@ -10,9 +10,18 @@ var dialogue = {}
 @export var target_name : String
 @export var scene_group : String
 
+@export_category("Display Settings")
+@export_range (0,1.5,.01) var display_buffer #amount of time inbetween each word
+var buffer : float = 0
+var current_sentence : String
+var split_sentence #an array that stores all the words in a sentence
+var word_in_sentence : int #used to track where we are in displaying the sentence
+var setup_word_display : bool #used to do an initial setup of function variables
+var trigger_word_display : bool #used to process displaying sentence
+
+@export_category("process information")
 var database : Node
 var main_dictionary #overarching folder that contains all the data within this JSON file
-var player #for temp use... will usually be NULL
 var player_interaction_status : String #where the player is at in the conversation/interaction/quest
 var progress_info : bool
 var entered : bool 
@@ -32,6 +41,8 @@ func _process(delta):
 	if (trigger_exit && can_exit):
 		_exit_interaction()
 		can_exit = false
+	if(trigger_word_display):
+		_display_sentence(player_interaction_status,delta)
 
 func _setup(): #sets up all the interaction variables and stores the dictionary that will be referenced
 	var current_dictionary = " "
@@ -65,7 +76,6 @@ func _exit_interaction(): #reset everything
 	entered = false
 	progress_info = false
 	trigger_exit = false
-	print(player_interaction_status)
 	pass
 
 func _next_scene():
@@ -73,8 +83,36 @@ func _next_scene():
 	#save data
 	database._go_to_scene(next_scene_path)
 
+func _display_sentence(sentence : String,delta):
+	if (!setup_word_display):
+		print("[" + ID + " Current Sentence]: " + sentence)
+		buffer = randf_range(.01,display_buffer)
+		split_sentence = sentence.split(" ") 
+		current_sentence = " "
+		word_in_sentence = -1
+		setup_word_display = true
+	else:
+		if(buffer >= 0):
+			buffer -= delta
+		else: 
+			if (word_in_sentence < split_sentence.size()-1):
+				word_in_sentence += 1
+				current_sentence += split_sentence[word_in_sentence] + " "
+				database.dialogue_label.text = current_sentence #update label text
+				buffer = randf_range(.01,display_buffer)
+			else:
+				trigger_word_display = false
+				setup_word_display = false
+		if(Input.is_action_just_pressed("interact")):
+			database.dialogue_label.text = " " + sentence
+		if(database.dialogue_label.text == " " + sentence):
+			trigger_word_display = false
+			setup_word_display = false
+
 func _progress_interaction():
 	if (trigger_exit): #don't progress while exiting
+		return
+	if(trigger_word_display):
 		return
 	var dialogue_data = _setup().Dialogue.Default
 	var follow_up = dialogue_data.Follow_Up
@@ -95,5 +133,4 @@ func _progress_interaction():
 			follow_up_position = dialogue_data.Loop_From #update the position in the array to the loop start
 			player_interaction_status = follow_up[follow_up_position] #current status updated
 			database.player_dict.Dialogue_Manager.Current_Conversation_Status = player_interaction_status
-	database.dialogue_label.text = player_interaction_status #update label text
-	print(player_interaction_status) #print text displayed on screen in console
+	trigger_word_display = true
