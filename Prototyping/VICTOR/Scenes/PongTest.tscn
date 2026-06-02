@@ -5,6 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://ckr6adiwpqj0i" path="res://Prototyping/VICTOR/Prefabs/solo_cup.tscn" id="2_hl323"]
 [ext_resource type="FontFile" uid="uid://bmimebg5qcne7" path="res://Prototyping/VICTOR/Fonts/Oswald-VariableFont_wght.ttf" id="2_yel1t"]
 [ext_resource type="Texture2D" uid="uid://bqk3a55a5ubqx" path="res://Prototyping/OLD/Sprites/Test Limbs/test_torso.png" id="3_nf5nu"]
+[ext_resource type="Shader" uid="uid://depmnrh71dcgd" path="res://Prototyping/CHASE/Movement Test/shaders/outline.gdshader" id="3_s2fv2"]
 [ext_resource type="Script" uid="uid://bq3ugj7nd7i2k" path="res://Prototyping/VICTOR/Scripts/pong_ball.gd" id="3_w52o3"]
 [ext_resource type="Texture2D" uid="uid://o0uqhnvaaukk" path="res://Prototyping/VICTOR/UI SPRITES/camera-clipping-shape.png" id="3_xmhhg"]
 [ext_resource type="Texture2D" uid="uid://cpj47rrh4klq0" path="res://Prototyping/OLD/Sprites/Test Limbs/test_left_hand.png" id="4_rhxsv"]
@@ -15,7 +16,9 @@
 [ext_resource type="Texture2D" uid="uid://cim7bktv2l3hx" path="res://Prototyping/VICTOR/UI SPRITES/timer-ui.png" id="6_stqof"]
 [ext_resource type="Texture2D" uid="uid://e3cyotyim017" path="res://Prototyping/VICTOR/UI SPRITES/ui-hand.png" id="7_3ejg8"]
 [ext_resource type="Texture2D" uid="uid://duk2cin3phjft" path="res://Prototyping/OLD/Sprites/Test Limbs/test_right_hand.png" id="7_b14a7"]
+[ext_resource type="Texture2D" uid="uid://xlh5c78igpdp" path="res://Prototyping/VICTOR/UI SPRITES/bracelet-ui.png" id="7_wnkvk"]
 [ext_resource type="Texture2D" uid="uid://c2yoctxl8xjo6" path="res://Prototyping/OLD/Sprites/Test Limbs/test_right_lower_arm.png" id="8_b14a7"]
+[ext_resource type="Material" uid="uid://d4k7ivvrbgjfa" path="res://Prototyping/VICTOR/green-outline.tres" id="8_fs4rc"]
 [ext_resource type="Texture2D" uid="uid://cr2kl346y860v" path="res://Prototyping/VICTOR/UI SPRITES/ui-ball.png" id="8_tdt7h"]
 [ext_resource type="Texture2D" uid="uid://bcc5b782y6v7g" path="res://Prototyping/OLD/Sprites/Test Limbs/test_right_upper_arm.png" id="9_ti3ej"]
 [ext_resource type="Texture2D" uid="uid://m66qde282cjn" path="res://Prototyping/OLD/Sprites/Baby Karl Head.png" id="10_yel1t"]
@@ -31,6 +34,18 @@ font_size = 30
 [sub_resource type="LabelSettings" id="LabelSettings_42oot"]
 font = ExtResource("2_yel1t")
 font_size = 161
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_slsta"]
+shader = ExtResource("3_s2fv2")
+shader_parameter/thickness = 31.86800151373
+shader_parameter/ring_count = 16
+shader_parameter/ring_offset = 0.0
+shader_parameter/outline_color = Color(0.29803923, 0.9843137, 0.30588236, 1)
+shader_parameter/border_clipping_fix = true
+shader_parameter/aspect_ratio = 0.66999998874948
+shader_parameter/square_border = false
+shader_parameter/offset = Vector2(0, 0)
+shader_parameter/max_or_add = false
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_7vbk8"]
 sky_top_color = Color(0.6128374, 0.17575681, 0.8644528, 1)
@@ -90,6 +105,42 @@ billboard_keep_scale = true
 
 [sub_resource type="QuadMesh" id="QuadMesh_c56ix"]
 material = SubResource("StandardMaterial3D_mwdgd")
+
+[sub_resource type="Animation" id="Animation_fs4rc"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, -0.7792225, -4.524)]
+}
+
+[sub_resource type="Animation" id="Animation_slsta"]
+resource_name = "score"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.060000002, 0.26, 0.49333334, 0.7, 0.93333334),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, -0.7792225, -4.524), Vector3(0, -0.3186803, -4.524), Vector3(0, -0.7792225, -4.524), Vector3(0, -0.3186803, -4.524), Vector3(0, -0.7792225, -4.524)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_6nxwe"]
+_data = {
+&"RESET": SubResource("Animation_fs4rc"),
+&"score": SubResource("Animation_slsta")
+}
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_c56ix"]
 transparency = 1
@@ -163,8 +214,8 @@ cull_mask = 2
 
 [node name="Camera Clip Shape" type="Sprite2D" parent="Canvas" unique_id=391908730]
 clip_children = 2
-position = Vector2(154, 223.733)
-scale = Vector2(0.448, 0.448)
+position = Vector2(189.988, 256.888)
+scale = Vector2(0.568, 0.568)
 texture = ExtResource("3_xmhhg")
 
 [node name="EnemyCups" type="SubViewportContainer" parent="Canvas/Camera Clip Shape" unique_id=1974591136]
@@ -181,7 +232,6 @@ grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(1.14, 1.14)
 size_flags_horizontal = 4
-metadata/_edit_use_anchors_ = true
 
 [node name="SubViewport" type="SubViewport" parent="Canvas/Camera Clip Shape/EnemyCups" unique_id=1601171329]
 handle_input_locally = false
@@ -192,10 +242,26 @@ render_target_update_mode = 4
 transform = Transform3D(1.1693858e-07, -0.54555255, 0.8380766, -6.3661076e-08, 0.8380766, 0.54555255, -1, -1.17149e-07, 6.327302e-08, 0.96153796, 1.208902, 1.9697828)
 fov = 102.0
 
+[node name="outline cam 1" type="Sprite2D" parent="Canvas" unique_id=801477068]
+clip_children = 2
+z_index = -1
+material = ExtResource("8_fs4rc")
+position = Vector2(189.988, 256.888)
+scale = Vector2(0.568, 0.568)
+texture = ExtResource("3_xmhhg")
+
+[node name="outline cam 2" type="Sprite2D" parent="Canvas" unique_id=245897251]
+clip_children = 2
+z_index = -1
+material = ExtResource("8_fs4rc")
+position = Vector2(962.00006, 259.00003)
+scale = Vector2(0.568, 0.568)
+texture = ExtResource("3_xmhhg")
+
 [node name="Camera Clip Shape2" type="Sprite2D" parent="Canvas" unique_id=1963882481]
 clip_children = 2
-position = Vector2(992, 225.733)
-scale = Vector2(0.448, 0.448)
+position = Vector2(961.98804, 258.888)
+scale = Vector2(0.568, 0.568)
 texture = ExtResource("3_xmhhg")
 
 [node name="PlayerCups" type="SubViewportContainer" parent="Canvas/Camera Clip Shape2" unique_id=394095649]
@@ -274,7 +340,7 @@ size = Vector2i(576, 648)
 render_target_update_mode = 4
 
 [node name="Camera3D" type="Camera3D" parent="Canvas/OpponentTurn/OpponentCupView/SubViewport" unique_id=475194335]
-transform = Transform3D(1.2186783e-07, -0.54555255, 0.83807665, -6.3661076e-08, 0.83807665, 0.54555255, -1, -1.1983818e-07, 6.7404116e-08, 0.96153796, 1.208902, 1.9697828)
+transform = Transform3D(1.2186783e-07, -0.54555255, 0.83807665, -6.3661076e-08, 0.83807665, 0.54555255, -1, -1.1983818e-07, 6.7404116e-08, 0.96153796, 1.1969664, 1.9697828)
 
 [node name="OpponentViews" type="Control" parent="Canvas/OpponentTurn" unique_id=1772478745]
 anchors_preset = 0
@@ -346,35 +412,46 @@ rotation = -6.2831855
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("6_stqof")
 
+[node name="BraceletUi" type="Sprite2D" parent="Canvas/Timer" unique_id=1514715121]
+position = Vector2(22.499985, 14.979858)
+scale = Vector2(0.92718446, 0.92718446)
+texture = ExtResource("7_wnkvk")
+
 [node name="Hand" type="Sprite2D" parent="Canvas" unique_id=452136964]
 z_index = -2
-position = Vector2(122, 577)
+material = ExtResource("8_fs4rc")
+position = Vector2(114, 577)
 rotation = -6.2831855
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("7_3ejg8")
 
 [node name="UiBall5" type="Sprite2D" parent="Canvas/Hand" unique_id=1728650302]
+material = SubResource("ShaderMaterial_slsta")
 position = Vector2(22, -38.000008)
 scale = Vector2(0.19210057, 0.19210054)
 texture = ExtResource("8_tdt7h")
 
 [node name="UiBall4" type="Sprite2D" parent="Canvas/Hand" unique_id=673493784]
+material = SubResource("ShaderMaterial_slsta")
 position = Vector2(70.000015, -5.9999924)
 scale = Vector2(0.19210057, 0.19210054)
 texture = ExtResource("8_tdt7h")
 
 [node name="UiBall3" type="Sprite2D" parent="Canvas/Hand" unique_id=1259982358]
+material = SubResource("ShaderMaterial_slsta")
 position = Vector2(-22.000006, 3.9999943)
 scale = Vector2(0.19210057, 0.19210054)
 texture = ExtResource("8_tdt7h")
 
 [node name="UiBall2" type="Sprite2D" parent="Canvas/Hand" unique_id=1861224702]
+material = SubResource("ShaderMaterial_slsta")
 position = Vector2(104, 68.00002)
 scale = Vector2(0.19210057, 0.19210054)
 texture = ExtResource("8_tdt7h")
 
 [node name="UiBall" type="Sprite2D" parent="Canvas/Hand" unique_id=1837044141]
-position = Vector2(5.999995, 52)
+material = SubResource("ShaderMaterial_slsta")
+position = Vector2(5.9999948, 54)
 scale = Vector2(0.19210057, 0.19210054)
 texture = ExtResource("8_tdt7h")
 
@@ -446,28 +523,28 @@ shape = SubResource("SphereShape3D_fhfpf")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.06327772, -0.024891615, -0.39277887)
 
 [node name="Solo Cup" parent="PlayerSoloCups" unique_id=1436110714 instance=ExtResource("2_hl323")]
-transform = Transform3D(2.5, 0, 0, 0, -1.09278474e-07, 2.5, 0, -2.5, -1.09278474e-07, -0.036768615, 0.080347724, 0.020106435)
+transform = Transform3D(2.5, 0, 0, 0, -1.09278474e-07, 2.5, 0, -2.5, -1.09278474e-07, -0.03676861, 0.06841219, 0.020106435)
 is_player = true
 
 [node name="Solo Cup2" parent="PlayerSoloCups" unique_id=1139661238 instance=ExtResource("2_hl323")]
-transform = Transform3D(2.5, 0, 0, 0, -1.09278474e-07, 2.5, 0, -2.5, -1.09278474e-07, 0.20327878, 0.080347724, -0.3980986)
+transform = Transform3D(2.5, 0, 0, 0, -1.09278474e-07, 2.5, 0, -2.5, -1.09278474e-07, 0.20327878, 0.06841219, -0.3980986)
 is_player = true
 
 [node name="Solo Cup3" parent="PlayerSoloCups" unique_id=1587366971 instance=ExtResource("2_hl323")]
-transform = Transform3D(2.5, 0, 0, 0, -1.09278474e-07, 2.5, 0, -2.5, -1.09278474e-07, -0.27862018, 0.080347724, -0.38401043)
+transform = Transform3D(2.5, 0, 0, 0, -1.09278474e-07, 2.5, 0, -2.5, -1.09278474e-07, -0.27862018, 0.06841219, -0.38401043)
 is_player = true
 
 [node name="OpponentSoloCups" type="Node3D" parent="." unique_id=632960647]
 transform = Transform3D(-0.99999994, 0, 0, 0, 1, 0, 0, 0, -0.99999994, -0.009352691, -0.021984339, 1.7706909)
 
 [node name="Solo Cup" parent="OpponentSoloCups" unique_id=2059909540 instance=ExtResource("2_hl323")]
-transform = Transform3D(2.5, 0, 0, 0, -1.09278474e-07, 2.5, 0, -2.5, -1.09278474e-07, -0.036768615, 0.080347724, 0.020106435)
+transform = Transform3D(2.4999998, 0, 0, 0, -1.09278474e-07, 2.5, 0, -2.4999998, -1.0927847e-07, -0.036768615, 0.06841219, 0.020106435)
 
 [node name="Solo Cup2" parent="OpponentSoloCups" unique_id=1556282605 instance=ExtResource("2_hl323")]
-transform = Transform3D(2.5, 0, 0, 0, -1.09278474e-07, 2.5, 0, -2.5, -1.09278474e-07, 0.20327878, 0.080347724, -0.3980986)
+transform = Transform3D(2.4999998, 0, 0, 0, -1.09278474e-07, 2.5, 0, -2.4999998, -1.0927847e-07, 0.20327877, 0.06841219, -0.39809847)
 
 [node name="Solo Cup3" parent="OpponentSoloCups" unique_id=2108548060 instance=ExtResource("2_hl323")]
-transform = Transform3D(2.5, 0, 0, 0, -1.09278474e-07, 2.5, 0, -2.5, -1.09278474e-07, -0.27862018, 0.080347724, -0.38401043)
+transform = Transform3D(2.4999998, 0, 0, 0, -1.09278474e-07, 2.5, 0, -2.4999998, -1.0927847e-07, -0.27862015, 0.06841219, -0.38401031)
 
 [node name="Opponent" type="Node3D" parent="." unique_id=2120233699 node_paths=PackedStringArray("opponent_turn", "idle_arms", "throw_arms")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1541633, 0)
@@ -542,20 +619,32 @@ texture = ExtResource("9_ti3ej")
 [node name="Background" type="Node3D" parent="." unique_id=1692812567]
 
 [node name="Crowd" type="MeshInstance3D" parent="Background" unique_id=153654762]
-transform = Transform3D(32.08, 0, 0, 0, 11.651474, 5.5574684, 0, -5.5574684, 11.651474, 0, -0.7792225, -4.524)
+transform = Transform3D(32.080006, 0, 0, 0, 12.588404, 2.859091, 0, -2.859091, 12.588404, 0, -0.7792225, -4.524)
 mesh = SubResource("QuadMesh_c56ix")
 
 [node name="MeshInstance3D2" type="MeshInstance3D" parent="Background/Crowd" unique_id=552032309]
+transform = Transform3D(1, 0, 0, 0, 1, -1.4901161e-08, 0, 1.4901161e-08, 1, 0, 0.07225566, 0.016410798)
 mesh = SubResource("QuadMesh_c56ix")
 
+[node name="MeshInstance3D4" type="MeshInstance3D" parent="Background/Crowd" unique_id=522585094]
+transform = Transform3D(1, 0, 0, 0, 0.99999994, -2.9802322e-08, 0, 2.9802322e-08, 0.99999994, 0, 0.07225566, 0.016410798)
+mesh = SubResource("QuadMesh_c56ix")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="Background/Crowd" unique_id=718021596]
+transform = Transform3D(1, 0, 0, 0, 0.9999999, -4.4703484e-08, 0, 4.4703484e-08, 0.9999999, -0.022798156, 0.21231931, -0.42999005)
+mesh = SubResource("QuadMesh_c56ix")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Background/Crowd" unique_id=560475157]
+libraries/ = SubResource("AnimationLibrary_6nxwe")
+
 [node name="Angel" type="MeshInstance3D" parent="Background" unique_id=1789439776]
-transform = Transform3D(1.41, 0, 0, 0, 1.0884291, 0.6547408, 0, -0.9428268, 0.7558535, 1.795, 1.832437, -1.09)
+transform = Transform3D(1.41, 0, 0, 0, 1.4363148, -0.07149747, 0, 0.102956355, 0.9974408, 1.795, 1.6314967, -1.09)
 mesh = SubResource("QuadMesh_stqof")
 
 [node name="Angel2" type="MeshInstance3D" parent="Background" unique_id=2078788605]
-transform = Transform3D(-1.41, 0, 0, 0, 1.0884291, 0.6547408, 0, -0.9428268, 0.7558535, -1.795, 1.832437, -1.09)
+transform = Transform3D(-1.41, 0, 0, 0, 1.4363148, -0.07149747, 0, 0.102956355, 0.9974408, -1.795, 1.6314967, -1.09)
 mesh = SubResource("QuadMesh_stqof")
 
 [node name="Halo" type="MeshInstance3D" parent="Background" unique_id=249034334]
-transform = Transform3D(3.4, 0, 0, 0, 3.3375325, -0.6487506, 0, 0.6487506, 3.3375325, 0, 1.628, -2.159)
+transform = Transform3D(3.3999999, 0, 0, 0, 3.3375325, -0.6487506, 0, 0.6487506, 3.3375325, 0, 1.628, -2.412421)
 mesh = SubResource("QuadMesh_wnkvk")

@@ -4,25 +4,14 @@
 [ext_resource type="Texture2D" uid="uid://4g3itx3xcb17" path="res://Prototyping/Imported Textures/Digicam.png" id="3_g43uo"]
 [ext_resource type="Texture2D" uid="uid://dold15uhwe4vq" path="res://photos/pic_1.png" id="4_7n4kj"]
 [ext_resource type="Texture2D" uid="uid://bge7y74fwiewv" path="res://Prototyping/Imported Textures/Bracelet.png" id="4_s2w0g"]
+[ext_resource type="Texture2D" uid="uid://bsfem34h5k4dt" path="res://Prototyping/VICTOR/UI SPRITES/dialoguebox.png" id="5_n25kw"]
 [ext_resource type="Shader" uid="uid://byc54teku3wr8" path="res://Prototyping/CHASE/Movement Test/shaders/tilt_shift_shader.gdshader" id="5_vjshv"]
+[ext_resource type="Texture2D" uid="uid://1irk3myob0xk" path="res://Prototyping/VICTOR/UI SPRITES/dialoguebox-nametag.png" id="6_3fpc0"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_fl3qi"]
 shader = ExtResource("5_vjshv")
 shader_parameter/limit = 0.3170000150575
 shader_parameter/blur = 0.222000010545
-
-[sub_resource type="Gradient" id="Gradient_w6wi0"]
-offsets = PackedFloat32Array(0, 0.07219251, 0.88502675, 1)
-colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 0.8117647, 0, 0, 0, 0.8117647, 1, 1, 1, 1)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_7n4kj"]
-gradient = SubResource("Gradient_w6wi0")
-
-[sub_resource type="Gradient" id="Gradient_7n4kj"]
-colors = PackedColorArray(0, 0, 0, 1, 0, 0, 0, 1)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_y11tf"]
-gradient = SubResource("Gradient_7n4kj")
 
 [node name="User Interface" type="CanvasLayer" unique_id=2020881195 node_paths=PackedStringArray("main_ui", "dialogue_ui", "digicam_ui") groups=["UI"]]
 script = ExtResource("1_y11tf")
@@ -77,29 +66,35 @@ anchors_preset = -1
 anchor_top = 0.67800003
 anchor_right = 0.554
 anchor_bottom = 1.0
-offset_left = 13.0
-offset_top = -13.344025
-offset_right = 14.791992
-offset_bottom = -12.0
+offset_left = 5.0
+offset_top = -426.34402
+offset_right = 508.12537
+offset_bottom = 7.0
 grow_vertical = 0
-texture = SubResource("GradientTexture2D_7n4kj")
+texture = ExtResource("5_n25kw")
+expand_mode = 1
 
 [node name="Dialogue Contents" type="RichTextLabel" parent="dialogue_UI/Dialogue Bubble" unique_id=180374836]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.061000004
-anchor_right = 0.90900004
-anchor_bottom = 1.0
-offset_left = -0.040000916
-offset_right = 0.23999023
+anchor_left = 0.126
+anchor_top = 0.79800004
+anchor_right = 0.88500005
+anchor_bottom = 0.98600006
+offset_left = 0.19198608
+offset_top = -0.31604004
+offset_right = -0.080078125
+offset_bottom = -5.012024
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_font_sizes/normal_font_size = 36
+theme_override_font_sizes/normal_font_size = 24
 theme_override_font_sizes/bold_font_size = 36
 theme_override_font_sizes/bold_italics_font_size = 36
 theme_override_font_sizes/italics_font_size = 36
 theme_override_font_sizes/mono_font_size = 36
-text = "This is where the dialogue is displayed"
+text = "HELLO I'M TALKING RIGHT NOW IF YOU CAN SEE THIS THAT MEANS THAT
+SOMETHING IN THE GAME BROKE AND WE ARE ALL BUMS WHO ARE BEING
+EXECUTED TOMORROW MORNING"
 tab_size = 5
 
 [node name="Exit" type="Button" parent="dialogue_UI/Dialogue Bubble" unique_id=1324096649]
@@ -143,23 +138,27 @@ anchor_left = 0.91600007
 anchor_top = 0.92
 anchor_right = 0.994
 anchor_bottom = 0.99100006
-offset_left = -0.23205566
-offset_top = -0.16003418
-offset_right = -0.088012695
-offset_bottom = -0.16802979
+offset_left = -893.23206
+offset_top = -198.16003
+offset_right = -649.1864
+offset_bottom = -130.16803
 grow_vertical = 0
-texture = SubResource("GradientTexture2D_y11tf")
+texture = ExtResource("6_3fpc0")
+expand_mode = 1
 
 [node name="Name" type="Label" parent="dialogue_UI/Name Tag" unique_id=530923689]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -3.0
-offset_right = 3.0
+offset_left = 23.0
+offset_top = 21.0
+offset_right = -18.901611
+offset_bottom = -14.0
 grow_horizontal = 2
 grow_vertical = 2
-text = "NAME"
+theme_override_font_sizes/font_size = 31
+text = "BARTENDER"
 horizontal_alignment = 1
 vertical_alignment = 1
 

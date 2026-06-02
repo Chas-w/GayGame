@@ -1,0 +1,15 @@
+[gd_resource type="ShaderMaterial" format=3 uid="uid://d4k7ivvrbgjfa"]
+
+[ext_resource type="Shader" uid="uid://depmnrh71dcgd" path="res://Prototyping/CHASE/Movement Test/shaders/outline.gdshader" id="1_v2axx"]
+
+[resource]
+shader = ExtResource("1_v2axx")
+shader_parameter/thickness = 5.494000260965
+shader_parameter/ring_count = 16
+shader_parameter/ring_offset = 0.0
+shader_parameter/outline_color = Color(0.29803923, 0.9843137, 0.30588236, 1)
+shader_parameter/border_clipping_fix = true
+shader_parameter/aspect_ratio = 0.66999998874948
+shader_parameter/square_border = false
+shader_parameter/offset = Vector2(0, 0)
+shader_parameter/max_or_add = false
