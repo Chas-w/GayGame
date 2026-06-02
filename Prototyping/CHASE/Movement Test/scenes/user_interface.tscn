@@ -24,8 +24,11 @@ colors = PackedColorArray(0, 0, 0, 1, 0, 0, 0, 1)
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_y11tf"]
 gradient = SubResource("Gradient_7n4kj")
 
-[node name="User Interface" type="CanvasLayer" unique_id=2020881195 groups=["UI"]]
+[node name="User Interface" type="CanvasLayer" unique_id=2020881195 node_paths=PackedStringArray("main_ui", "dialogue_ui", "digicam_ui") groups=["UI"]]
 script = ExtResource("1_y11tf")
+main_ui = NodePath("main_UI")
+dialogue_ui = NodePath("dialogue_UI")
+digicam_ui = NodePath("digicam_UI")
 
 [node name="main_UI" type="Control" parent="." unique_id=1350061328]
 visible = false
@@ -199,25 +202,25 @@ grow_vertical = 2
 scale = Vector2(0.45, 0.45)
 metadata/_edit_use_anchors_ = true
 
-[node name="GridContainer" type="GridContainer" parent="digicam_UI/Photobook/List of Photos" unique_id=1996479168]
+[node name="Page" type="GridContainer" parent="digicam_UI/Photobook/List of Photos" unique_id=1996479168]
 layout_mode = 2
 theme_override_constants/h_separation = 60
 theme_override_constants/v_separation = 60
 columns = 2
 
-[node name="TextureRect" type="TextureRect" parent="digicam_UI/Photobook/List of Photos/GridContainer" unique_id=17627690]
+[node name="TextureRect" type="TextureRect" parent="digicam_UI/Photobook/List of Photos/Page" unique_id=17627690]
 layout_mode = 2
 texture = ExtResource("4_7n4kj")
 
-[node name="TextureRect2" type="TextureRect" parent="digicam_UI/Photobook/List of Photos/GridContainer" unique_id=1950948566]
+[node name="TextureRect2" type="TextureRect" parent="digicam_UI/Photobook/List of Photos/Page" unique_id=1950948566]
 layout_mode = 2
 texture = ExtResource("4_7n4kj")
 
-[node name="TextureRect3" type="TextureRect" parent="digicam_UI/Photobook/List of Photos/GridContainer" unique_id=1090777022]
+[node name="TextureRect3" type="TextureRect" parent="digicam_UI/Photobook/List of Photos/Page" unique_id=1090777022]
 layout_mode = 2
 texture = ExtResource("4_7n4kj")
 
-[node name="TextureRect4" type="TextureRect" parent="digicam_UI/Photobook/List of Photos/GridContainer" unique_id=1766790730]
+[node name="TextureRect4" type="TextureRect" parent="digicam_UI/Photobook/List of Photos/Page" unique_id=1766790730]
 layout_mode = 2
 texture = ExtResource("4_7n4kj")
 
