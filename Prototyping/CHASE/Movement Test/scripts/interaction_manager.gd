@@ -41,7 +41,6 @@ func _ready():
 func _process(delta):
 	if (trigger_exit && can_exit):
 		_exit_interaction(_setup().Dialogue.Default.Completion_Line)
-		can_exit = false
 	if(trigger_word_display):
 		_display_sentence(player_interaction_status,delta)
 
@@ -72,7 +71,7 @@ func _enter_interaction(): #set up interaction for player
 
 func _exit_interaction(hover_message : String): #reset everything
 	database.player_dict.Stored_Conversations[ID] = player_interaction_status # I think this is adding this value to the dictionary
-	database._hide_ui(database.exit_interaction_button)
+	#database._hide_ui(database.exit_interaction_button)
 	database._hide_ui(database.dialogue_ui)
 	database._clear_interaction_text()
 	entered = false
