@@ -164,6 +164,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="digicam_UI" type="Control" parent="." unique_id=1132395004]
+visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0

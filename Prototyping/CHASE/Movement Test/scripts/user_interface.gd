@@ -40,7 +40,6 @@ func _set_ui_state(next_state:int):
 			digicam_ui.visible = true
 		pass
 
-
 func _setup_digi_menu():
 	pass
 
