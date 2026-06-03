@@ -31,6 +31,7 @@ var interaction_source : Node3D
 
 func _ready():
 	_set_move_state(Move_State.POINT_AND_CLICK) #setup for point and click
+	
 
 func _process(delta):
 	match(move_state):

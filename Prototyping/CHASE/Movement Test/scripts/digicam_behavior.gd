@@ -1,16 +1,18 @@
 extends Node3D
 
 var pic_count = 1 #keeps track of how many photos taken
+var UI : CanvasLayer
 @export var main_UI : Control
 @export var CRT_effect : ColorRect
 @export var digi_move_speed : float
 @export var rotation_target : Node3D
-var user_interface : CanvasLayer
 
 var in_digi_view : bool
 var fp_cam_set : bool
 var toggle_digi : bool
 func _ready():
+	for game_obj in get_tree().get_nodes_in_group("UI"): #assign database
+		UI = game_obj
 	#region Setup Photo Files
 	var dir = DirAccess.open("res://") #access directory
 	dir.make_dir("photos") #create folder in directory
@@ -18,9 +20,8 @@ func _ready():
 	for i in dir.get_files():
 		pic_count += 1 #update pic count based on exisitng files
 	#endregion
-	for game_obj in get_tree().get_nodes_in_group("UI"): #assign database
-		user_interface = game_obj
-	main_UI = user_interface.get_child(0)
+
+	main_UI = UI.get_child(0)
 
 func _take_pic():
 	await RenderingServer.frame_post_draw

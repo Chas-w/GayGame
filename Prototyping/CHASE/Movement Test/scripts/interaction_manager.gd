@@ -39,6 +39,8 @@ func _ready():
 	_setup()
 
 func _process(delta):
+	if (database.exit_interaction_button.button_pressed):
+		print("poop")
 	if (trigger_exit && can_exit):
 		_exit_interaction(_setup().Dialogue.Default.Completion_Line)
 	if(trigger_word_display):

@@ -20,7 +20,7 @@ func _ready():
 	#region Store UI Data
 	for game_obj in get_tree().get_nodes_in_group("UI"): #assign database
 		UI = game_obj
-	dialogue_ui = UI.get_child(1)
+	dialogue_ui = UI.dialogue_ui
 	dialogue_label = dialogue_ui.get_child(0).get_child(0)
 	interaction_name_label = dialogue_ui.get_child(1).get_child(0)
 	exit_interaction_button = dialogue_ui.get_child(0).get_child(1)

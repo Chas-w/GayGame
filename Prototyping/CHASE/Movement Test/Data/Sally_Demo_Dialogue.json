@@ -1,6 +1,6 @@
 {
 	"NPC_Dialogue": {
-		"ID": "Victor",
+		"ID": "Sally",
 		"Scene_Group": "Demo",
 		"Target_Name" : "Player",
 		"Player_Banter": false,
@@ -8,14 +8,14 @@
 			"Use_Banter": false, 
 			"Default": {
 				"Follow_Up": [
-					"Hey I'm Victor, I don't know anything about JSON files",
-					"I am really good at cup pong though. I bet you're ass.",
-					"Wanna play?"
+					"Nice night out . . .",
+					"I wish this moment could be forever . . . y'know? Like . . .",
+					"I dunno . . ."
 				],
 				"Loop" : true,
-				"Loop_From" : 1,
-				"Scene_Transition": true,
-				"Completion_Line" : "Ball's in your court... haha balls"
+				"Loop_From" : 0,
+				"Scene_Transition": false,
+				"Completion_Line" : "yeah"
 
 			},
 			"Banter_Dialogue": {

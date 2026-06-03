@@ -2,7 +2,6 @@
 
 [ext_resource type="Script" uid="uid://d3qiwemwdlxl5" path="res://Prototyping/CHASE/Movement Test/scripts/user_interface.gd" id="1_y11tf"]
 [ext_resource type="Texture2D" uid="uid://4g3itx3xcb17" path="res://Prototyping/Imported Textures/Digicam.png" id="3_g43uo"]
-[ext_resource type="Texture2D" uid="uid://dold15uhwe4vq" path="res://photos/pic_1.png" id="4_7n4kj"]
 [ext_resource type="Texture2D" uid="uid://bge7y74fwiewv" path="res://Prototyping/Imported Textures/Bracelet.png" id="4_s2w0g"]
 [ext_resource type="Texture2D" uid="uid://bsfem34h5k4dt" path="res://Prototyping/VICTOR/UI SPRITES/dialoguebox.png" id="5_n25kw"]
 [ext_resource type="Shader" uid="uid://byc54teku3wr8" path="res://Prototyping/CHASE/Movement Test/shaders/tilt_shift_shader.gdshader" id="5_vjshv"]
@@ -13,11 +12,14 @@ shader = ExtResource("5_vjshv")
 shader_parameter/limit = 0.3170000150575
 shader_parameter/blur = 0.222000010545
 
-[node name="User Interface" type="CanvasLayer" unique_id=2020881195 node_paths=PackedStringArray("main_ui", "dialogue_ui", "digicam_ui") groups=["UI"]]
+[node name="User Interface" type="CanvasLayer" unique_id=2020881195 node_paths=PackedStringArray("main_ui", "dialogue_ui", "digicam_ui", "page", "pictures", "focus_photo") groups=["UI"]]
 script = ExtResource("1_y11tf")
 main_ui = NodePath("main_UI")
 dialogue_ui = NodePath("dialogue_UI")
 digicam_ui = NodePath("digicam_UI")
+page = NodePath("digicam_UI/Photobook/List of Photos/Page")
+pictures = [NodePath("digicam_UI/Photobook/List of Photos/Page/TextureRect"), NodePath("digicam_UI/Photobook/List of Photos/Page/TextureRect2"), NodePath("digicam_UI/Photobook/List of Photos/Page/TextureRect3"), NodePath("digicam_UI/Photobook/List of Photos/Page/TextureRect4"), NodePath("digicam_UI/Photobook/List of Photos/Page/TextureRect5"), NodePath("digicam_UI/Photobook/List of Photos/Page/TextureRect6"), NodePath("digicam_UI/Photobook/List of Photos/Page/TextureRect7"), NodePath("digicam_UI/Photobook/List of Photos/Page/TextureRect8"), NodePath("digicam_UI/Photobook/List of Photos/Page/TextureRect9")]
+focus_photo = NodePath("digicam_UI/Photobook/Focused Photo/TextureRect")
 
 [node name="main_UI" type="Control" parent="." unique_id=1350061328]
 visible = false
@@ -51,7 +53,6 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="dialogue_UI" type="Control" parent="." unique_id=713169548]
-visible = false
 z_index = 10
 layout_mode = 3
 anchors_preset = 15
@@ -92,9 +93,6 @@ theme_override_font_sizes/bold_font_size = 36
 theme_override_font_sizes/bold_italics_font_size = 36
 theme_override_font_sizes/italics_font_size = 36
 theme_override_font_sizes/mono_font_size = 36
-text = "HELLO I'M TALKING RIGHT NOW IF YOU CAN SEE THIS THAT MEANS THAT
-SOMETHING IN THE GAME BROKE AND WE ARE ALL BUMS WHO ARE BEING
-EXECUTED TOMORROW MORNING"
 tab_size = 5
 
 [node name="Exit" type="Button" parent="dialogue_UI/Dialogue Bubble" unique_id=1324096649]
@@ -102,12 +100,12 @@ visible = false
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.78400004
-anchor_top = 0.72900003
-anchor_right = 0.98
+anchor_top = 0.91600007
+anchor_right = 0.883
 anchor_bottom = 0.96700007
 offset_left = 0.23999023
-offset_top = -0.0900116
-offset_right = -0.2000122
+offset_top = -0.072021484
+offset_right = 0.20263672
 offset_bottom = -0.070007324
 grow_horizontal = 0
 grow_vertical = 0
@@ -118,14 +116,14 @@ text = "ESC to exit"
 visible = false
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.78400004
-anchor_top = 0.72900003
-anchor_right = 0.98
-anchor_bottom = 0.96700007
-offset_left = 0.23999023
-offset_top = -69.09001
-offset_right = 0.7999878
-offset_bottom = -69.07001
+anchor_left = 0.044000003
+anchor_top = 0.047000002
+anchor_right = 0.15400001
+anchor_bottom = 0.115
+offset_left = -0.2186737
+offset_top = -0.1740017
+offset_right = 0.23464966
+offset_bottom = 0.24201965
 grow_horizontal = 0
 grow_vertical = 0
 action_mode = 0
@@ -158,7 +156,6 @@ offset_bottom = -14.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_font_sizes/font_size = 31
-text = "BARTENDER"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -190,39 +187,52 @@ grow_vertical = 2
 [node name="List of Photos" type="CenterContainer" parent="digicam_UI/Photobook" unique_id=1349653667]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.042534724
-anchor_top = 0.030864198
-anchor_right = 1.0425347
-anchor_bottom = 1.0308642
-offset_left = 1.0
-offset_right = 1213.0
-offset_bottom = 708.0
+anchor_left = 0.07899305
+anchor_top = 0.043209877
+anchor_right = 2.1310763
+anchor_bottom = 2.1358025
+offset_left = -46.0
+offset_top = -13.0
+offset_right = 1166.0
+offset_bottom = 695.0
 grow_horizontal = 2
 grow_vertical = 2
-scale = Vector2(0.45, 0.45)
+scale = Vector2(0.3, 0.3)
 metadata/_edit_use_anchors_ = true
 
 [node name="Page" type="GridContainer" parent="digicam_UI/Photobook/List of Photos" unique_id=1996479168]
+visible = false
 layout_mode = 2
 theme_override_constants/h_separation = 60
 theme_override_constants/v_separation = 60
-columns = 2
+columns = 3
 
-[node name="TextureRect" type="TextureRect" parent="digicam_UI/Photobook/List of Photos/Page" unique_id=17627690]
+[node name="TextureRect" type="TextureButton" parent="digicam_UI/Photobook/List of Photos/Page" unique_id=1594426701]
 layout_mode = 2
-texture = ExtResource("4_7n4kj")
 
-[node name="TextureRect2" type="TextureRect" parent="digicam_UI/Photobook/List of Photos/Page" unique_id=1950948566]
+[node name="TextureRect2" type="TextureButton" parent="digicam_UI/Photobook/List of Photos/Page" unique_id=1164578645]
 layout_mode = 2
-texture = ExtResource("4_7n4kj")
 
-[node name="TextureRect3" type="TextureRect" parent="digicam_UI/Photobook/List of Photos/Page" unique_id=1090777022]
+[node name="TextureRect3" type="TextureButton" parent="digicam_UI/Photobook/List of Photos/Page" unique_id=886324464]
 layout_mode = 2
-texture = ExtResource("4_7n4kj")
 
-[node name="TextureRect4" type="TextureRect" parent="digicam_UI/Photobook/List of Photos/Page" unique_id=1766790730]
+[node name="TextureRect4" type="TextureButton" parent="digicam_UI/Photobook/List of Photos/Page" unique_id=151650715]
 layout_mode = 2
-texture = ExtResource("4_7n4kj")
+
+[node name="TextureRect5" type="TextureButton" parent="digicam_UI/Photobook/List of Photos/Page" unique_id=216223199]
+layout_mode = 2
+
+[node name="TextureRect6" type="TextureButton" parent="digicam_UI/Photobook/List of Photos/Page" unique_id=1480217553]
+layout_mode = 2
+
+[node name="TextureRect7" type="TextureButton" parent="digicam_UI/Photobook/List of Photos/Page" unique_id=286163128]
+layout_mode = 2
+
+[node name="TextureRect8" type="TextureButton" parent="digicam_UI/Photobook/List of Photos/Page" unique_id=1550366412]
+layout_mode = 2
+
+[node name="TextureRect9" type="TextureButton" parent="digicam_UI/Photobook/List of Photos/Page" unique_id=951062739]
+layout_mode = 2
 
 [node name="Focused Photo" type="CenterContainer" parent="digicam_UI/Photobook" unique_id=473386572]
 visible = false
@@ -235,4 +245,3 @@ grow_vertical = 2
 
 [node name="TextureRect" type="TextureRect" parent="digicam_UI/Photobook/Focused Photo" unique_id=1714812152]
 layout_mode = 2
-texture = ExtResource("4_7n4kj")

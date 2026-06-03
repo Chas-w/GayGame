@@ -374,8 +374,7 @@ cam = NodePath("../SubViewportContainer/SubViewport/Camera3D")
 environment_cam = NodePath("../Main")
 fp_rotation_speed = 0.001
 
-[node name="Digi Manager" parent="Player" index="3" unique_id=1292205963 node_paths=PackedStringArray("main_UI", "CRT_effect", "rotation_target")]
-main_UI = NodePath("")
+[node name="Digi Manager" parent="Player" index="3" unique_id=1292205963 node_paths=PackedStringArray("CRT_effect", "rotation_target")]
 CRT_effect = NodePath("../../CRT")
 digi_move_speed = 0.005
 rotation_target = NodePath("CameraRotationTarget")
@@ -485,9 +484,8 @@ autoplay = &"Choppy Free Dance"
 [node name="Interaction Trigger" parent="NPCs/Other/Pigeon Lady" unique_id=101737479 instance=ExtResource("9_mxqci")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.656613e-10, 1, 0.4319461)
 is_dialogue = true
-next_scene_path = "res://Prototyping/VICTOR/Scenes/PongTest.tscn"
-interaction_file_path = "res://Prototyping/CHASE/Movement Test/Data/Victor_Demo_Dialogue.json"
-display_buffer = 0.17
+interaction_file_path = "res://Prototyping/CHASE/Movement Test/Data/Sally_Demo_Dialogue.json"
+display_buffer = 0.45
 
 [node name="Area3D" parent="NPCs/Other/Pigeon Lady/Interaction Trigger" index="0" unique_id=1905126529]
 transform = Transform3D(2.4359717, 0, 0, 0, 1, 0, 0, 0, 1.9000001, 0, 0, 0)

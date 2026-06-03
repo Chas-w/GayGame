@@ -9,10 +9,15 @@ extends CanvasLayer
 enum UI_State{OVERWORLD, DIALOGUE, DIGICAM, MINIGAME}
 @export var ui_state : UI_State = UI_State.OVERWORLD
 
+@export_category("Digicam Vars")
+@export var page : GridContainer
+@export var pictures : Array[TextureButton]
+var picture_paths : Array[String]
+@export var focus_photo : TextureRect
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	_set_ui_state(UI_State.OVERWORLD)
-	pass # Replace with function body.
 
 func _process(delta):
 	pass
@@ -42,9 +47,12 @@ func _set_ui_state(next_state:int):
 
 func _setup_digi_menu():
 	pass
-
-func _add_to_photobook(photo_path : String):
-	pass
-	
 func _focus_photo(photo_path : String):
 	pass
+
+#func _take_photo():
+	#var img = get_viewport().get_texture().get_image()
+	#var tex = ImageTexture.new()
+	#tex.create_from_image(img)
+	#focus_photo.texture = tex
+	#print(img)
