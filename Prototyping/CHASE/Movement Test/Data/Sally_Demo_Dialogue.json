@@ -1,36 +1,83 @@
 {
-	"NPC_Dialogue": {
-		"ID": "Sally",
-		"Scene_Group": "Demo",
-		"Target_Name" : "Player",
-		"Player_Banter": false,
-		"Dialogue": {
-			"Use_Banter": false, 
-			"Default": {
-				"Follow_Up": [
-					"Nice night out . . .",
-					"I wish this moment could be forever . . . y'know? Like . . .",
-					"I dunno . . ."
-				],
-				"Loop" : true,
-				"Loop_From" : 0,
-				"Scene_Transition": false,
-				"Completion_Line" : "yeah"
+	"NPC" : {
+		"Name" : "Sally",
+		"Dialogue" : [
+			{
+				"Status" : "Default",
+				"Status_is_Array" : false,
+				"Line" : "Shoe kid, I'm trying to dance here",
+				"Player_Response" : true,
+				"Next_Status" : "null",
+				"Response_Options" : ["No","Sure whatever","I'm trying to dance too"],
+				"End_Conversation" : true,
+				"Exit_Line" : "null"
+			},
+			{
+				"Status" : "Opener",
+				"Status_is_Array" : false,
+				"Line" : "hey. . . ",
+				"Player_Response" : true,
+				"Next_Status" : "null",
+				"Response_Options" : ["Hey"],   
+				"End_Conversation" : false,
+				"Exit_Line" : "null"
+			
+			}, 
+			{
+				"Status" : "Hey",
+				"Status_is_Array" : false,
+				"Line" : "Can you move? I'm trying to dance here.",
+				"Player_Response" : true,
+				"Next_Status" : "null",
+				"Response_Options" : ["No","Sure whatever","I'm trying to dance too"],
+				"End_Conversation" : false,
+				"Exit_Line" : "null"
+			},
+			{
+				"Status" : "No",
+				"Status_is_Array" : false,
+				"Line" : "Fuck you",
+				"Player_Response" : false,
+				"Next_Status" : "this bitch",
+				"Response_Options" : null,				
+				"End_Conversation" : false,
+				"Exit_Line" : "this bitch is in my way"
 
 			},
-			"Banter_Dialogue": {
-				"Banter_ID": "ID_Name",
-				"Player_Banter_Options": [
-					"Op_1",
-					"Op_2",
-					"Op_3"
-				],
-				"Op_1": "Response to Option 1",
-				"Op_2": "Response to Option 2",
-				"Op_3": "Response to Option 3",
-				"Scene_Transition": false,
-				"Completion_Line": "This is after banter is finished"
+			{
+				"Status" : "this bitch",
+				"Status_is_Array" : false,
+				"Line" : "Bitch I will stomp on you",
+				"Player_Response" : false,
+				"Next_Status" : "null",
+				"Response_Options" : null,				
+				"End_Conversation" : true,
+				"Exit_Line" : "this bitch is in my way"
+
+			},
+			{
+				"Status" : "Sure whatever",
+				"Status_is_Array" : false,
+				"Line" : "Thanks champ",
+				"Player_Response" : false,
+				"Next_Status" : "null",
+				"Response_Options" : null,				
+				"End_Conversation" : true,
+				"Exit_Line" : "but you're still standing there"
+
+			},
+			{
+				"Status" : "I'm trying to dance too",
+				"Status_is_Array" : false,
+				"Line" : "Well get better at it",
+				"Player_Response" : false,
+				"Next_Status" : "null",
+				"Response_Options" : null,
+				"End_Conversation" : true,
+				"Exit_Line" : "Ouch that's my foot"
+
 			}
-		}
+
+		]
 	}
 }

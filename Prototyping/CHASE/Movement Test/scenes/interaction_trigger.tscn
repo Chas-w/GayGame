@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://bfrtcqi3os4po"]
 
-[ext_resource type="Script" uid="uid://byo4pafatcltw" path="res://Prototyping/CHASE/Movement Test/scripts/interaction_manager.gd" id="1_iwsgo"]
+[ext_resource type="Script" uid="uid://byo4pafatcltw" path="res://Prototyping/CHASE/Movement Test/scripts/dialogue_instance.gd" id="1_iwsgo"]
 [ext_resource type="Script" uid="uid://csjccrhj5wnx7" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_3d.gd" id="2_suskh"]
 [ext_resource type="Script" uid="uid://8umksf8e80fw" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="3_6muxn"]
 
@@ -9,9 +9,8 @@
 [sub_resource type="Resource" id="Resource_6qh51"]
 script = ExtResource("3_6muxn")
 
-[node name="Interaction Trigger" type="Node3D" unique_id=101737479 node_paths=PackedStringArray("hover_label") groups=["Interaction"]]
+[node name="Interaction Trigger" type="Node3D" unique_id=101737479 groups=["Interaction"]]
 script = ExtResource("1_iwsgo")
-hover_label = NodePath("Label3D")
 
 [node name="Area3D" type="Area3D" parent="." unique_id=1905126529 groups=["Interaction"]]
 

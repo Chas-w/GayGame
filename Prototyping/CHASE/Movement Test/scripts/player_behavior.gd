@@ -58,8 +58,8 @@ func _process(delta):
 				cam.set_perspective(50,.05,4000)
 			pass
 		Move_State.CHATTING:
-			if (interaction_source.can_exit && Input.is_action_just_pressed("exit")):
-				interaction_source.trigger_exit = true
+			if (interaction_source.can_exit && (Input.is_action_just_pressed("exit") || interaction_source.database.exit_interaction_button.button_pressed)):
+				interaction_source._exit_dialogue()
 				_set_move_state(Move_State.POINT_AND_CLICK)
 			if (interaction_source.can_move_scene && Input.is_action_just_pressed("enter")):
 				interaction_source._next_scene()
@@ -128,7 +128,10 @@ func _set_move_state(next_move_state:int):
 			cam.set_perspective(45,.05,4000)
 			interaction_source.get_child(1).priority = 100
 			environment_cam.priority = 0
-			interaction_source._enter_interaction()
+			if(!interaction_source.entered):
+				interaction_source._enter_dialogue()
+			else:
+				interaction_source._progress_dialogue("Default")
 			pass
 		Move_State.INSPECTING:
 			pass
@@ -190,14 +193,8 @@ func _input(event):
 	#endregion
 
 	#region interact input
-	if(event.is_action_pressed("interact") && can_interact && move_state != Move_State.DIGICAM):
-		if(!interaction_source.entered):
-			if (interaction_source.is_dialogue):
-				_set_move_state(Move_State.CHATTING)
-			else:
-				_set_move_state(Move_State.INSPECTING)
-		elif(interaction_source.entered):
-			interaction_source._progress_interaction()
+	if(event.is_action_pressed("interact") && can_interact && move_state != Move_State.CHATTING && move_state != Move_State.DIGICAM):
+		_set_move_state(Move_State.CHATTING)
 	#endregion
 
 func _on_interaction_detector_area_entered(area):

@@ -22,7 +22,7 @@ func _ready():
 func _process(delta):
 	pass
 
-func _set_ui_state(next_state:int):
+func _set_ui_state(next_state:int):	
 	var prev_ui_state := ui_state
 	ui_state = next_state
 		

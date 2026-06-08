@@ -159,6 +159,17 @@ theme_override_font_sizes/font_size = 31
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="VBoxContainer" type="VBoxContainer" parent="dialogue_UI" unique_id=983202201]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.25
+anchor_bottom = 0.3
+offset_left = 656.0
+offset_top = 36.0
+offset_right = 656.368
+offset_bottom = 36.319977
+alignment = 1
+
 [node name="digicam_UI" type="Control" parent="." unique_id=1132395004]
 visible = false
 layout_mode = 3

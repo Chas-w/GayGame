@@ -9,7 +9,7 @@ var player_dict
 @export var UI : CanvasLayer
 @export var dialogue_ui : Control
 @export var dialogue_label : RichTextLabel
-@export var interaction_name_label : Label
+@export var speaker_name_label : Label
 @export var lets_go_button : Button
 @export var exit_interaction_button : Button
 
@@ -22,7 +22,7 @@ func _ready():
 		UI = game_obj
 	dialogue_ui = UI.dialogue_ui
 	dialogue_label = dialogue_ui.get_child(0).get_child(0)
-	interaction_name_label = dialogue_ui.get_child(1).get_child(0)
+	speaker_name_label = dialogue_ui.get_child(1).get_child(0)
 	exit_interaction_button = dialogue_ui.get_child(0).get_child(1)
 	lets_go_button = dialogue_ui.get_child(0).get_child(2)
 	#endregion
@@ -45,9 +45,9 @@ func _display_ui(ui_control : Control):
 func _hide_ui(ui_control : Control):
 	ui_control.visible = false
 
-func _clear_interaction_text():
+func _clear_dialogue_text():
 	dialogue_label.text = " "
-	interaction_name_label.text = " "
+	speaker_name_label.text = " "
 	pass
 
 func _go_to_scene(target_scene : String):

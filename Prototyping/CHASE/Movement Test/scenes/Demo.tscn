@@ -481,11 +481,11 @@ bones/39/rotation = Quaternion(0.5340214, 0.03238932, 0.022380738, 0.8445539)
 [node name="AnimationPlayer" parent="NPCs/Other/Pigeon Lady" index="1" unique_id=107515142]
 autoplay = &"Choppy Free Dance"
 
-[node name="Interaction Trigger" parent="NPCs/Other/Pigeon Lady" unique_id=101737479 instance=ExtResource("9_mxqci")]
+[node name="Interaction Trigger" parent="NPCs/Other/Pigeon Lady" unique_id=101737479 node_paths=PackedStringArray("hover_label") instance=ExtResource("9_mxqci")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.656613e-10, 1, 0.4319461)
-is_dialogue = true
-interaction_file_path = "res://Prototyping/CHASE/Movement Test/Data/Sally_Demo_Dialogue.json"
-display_buffer = 0.45
+hover_label = NodePath("Label3D")
+JSON_file_path = "res://Prototyping/CHASE/Movement Test/Data/Sally_Demo_Dialogue.json"
+display_buffer = 0.5
 
 [node name="Area3D" parent="NPCs/Other/Pigeon Lady/Interaction Trigger" index="0" unique_id=1905126529]
 transform = Transform3D(2.4359717, 0, 0, 0, 1, 0, 0, 0, 1.9000001, 0, 0, 0)
