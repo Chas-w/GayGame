@@ -143,6 +143,8 @@ func _enter_dialogue():
 
 func _exit_dialogue():
 	hover_label.visible = true
+	database.exit_interaction_button.visible = false
+	can_exit = false
 	database._clear_dialogue_text()
 	database._hide_ui(database.dialogue_ui)
 	hover_label.text = current_dialogue.Exit_Line

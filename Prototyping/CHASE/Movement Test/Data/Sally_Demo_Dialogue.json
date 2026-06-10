@@ -9,7 +9,7 @@
 				"Player_Response" : true,
 				"Next_Status" : "null",
 				"Response_Options" : ["No","Sure whatever","I'm trying to dance too"],
-				"End_Conversation" : true,
+				"End_Conversation" : false,
 				"Exit_Line" : "null"
 			},
 			{

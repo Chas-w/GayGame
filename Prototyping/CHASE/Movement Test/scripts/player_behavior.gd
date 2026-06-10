@@ -45,7 +45,6 @@ func _process(delta):
 						else:
 							_move_to_target(delta,move_speed) #otherwise, continuously move towards the target position at preset speed (move_speed)
 					else:
-						nav_agent.set_target_position(position) #stop the movement, reset the target position
 						temp_visualizer.position = position
 					#endregion
 		Move_State.DIGICAM:
@@ -125,6 +124,7 @@ func _set_move_state(next_move_state:int):
 			Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 			_set_PC_state(PC_State.PC_NULL)
 		Move_State.CHATTING:
+			nav_agent.set_target_position(position) #stop the movement, reset the target position
 			cam.set_perspective(45,.05,4000)
 			interaction_source.get_child(1).priority = 100
 			environment_cam.priority = 0
