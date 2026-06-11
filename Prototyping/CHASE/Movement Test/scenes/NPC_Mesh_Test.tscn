@@ -1,0 +1,74 @@
+[gd_scene format=3 uid="uid://bnxjgy6b6r2rs"]
+
+[ext_resource type="Script" uid="uid://4lf6tei1b2ws" path="res://Prototyping/CHASE/Movement Test/scripts/char_creator.gd" id="1_kw765"]
+[ext_resource type="PackedScene" uid="uid://3mm2va2jkss7" path="res://Prototyping/Imported Mesh/ARP_Template.fbx" id="1_sh0ku"]
+
+[node name="Node3D" type="Node3D" unique_id=29172294 node_paths=PackedStringArray("default_head", "head_options", "default_torso", "torso_options", "default_arms", "arm_options", "default_hands", "hand_options", "default_legs", "leg_options", "shoe_options")]
+script = ExtResource("1_kw765")
+default_head = NodePath("Camera3D/ARP_Template/root/Skeleton3D/Head2")
+head_options = [NodePath("Camera3D/ARP_Template/root/Skeleton3D/Deer Head"), NodePath("Camera3D/ARP_Template/root/Skeleton3D/Wolf Head"), NodePath("Camera3D/ARP_Template/root/Skeleton3D/Pigeon Head"), NodePath("Camera3D/ARP_Template/root/Skeleton3D/Head2")]
+default_torso = NodePath("Camera3D/ARP_Template/root/Skeleton3D/Torso")
+torso_options = [NodePath("Camera3D/ARP_Template/root/Skeleton3D/Torso")]
+default_arms = NodePath("Camera3D/ARP_Template/root/Skeleton3D/Arms")
+arm_options = [NodePath("Camera3D/ARP_Template/root/Skeleton3D/Arms")]
+default_hands = NodePath("Camera3D/ARP_Template/root/Skeleton3D/Hands")
+hand_options = [NodePath("Camera3D/ARP_Template/root/Skeleton3D/Hands")]
+default_legs = NodePath("Camera3D/ARP_Template/root/Skeleton3D/Legs")
+leg_options = [NodePath("Camera3D/ARP_Template/root/Skeleton3D/Legs")]
+shoe_options = [NodePath("Camera3D/ARP_Template/root/Skeleton3D/Shoes")]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=814720423]
+
+[node name="Camera3D" type="Camera3D" parent="." unique_id=1271725743]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.9155204)
+
+[node name="ARP_Template" parent="Camera3D" unique_id=2141152121 instance=ExtResource("1_sh0ku")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.4206347, -2.0299287)
+
+[node name="Skeleton3D" parent="Camera3D/ARP_Template/root" parent_id_path=PackedInt32Array(2141152121, 1108809481) index="0" unique_id=598058697]
+bones/2/rotation = Quaternion(0.6912737, 0.027997522, 0.72120535, -0.034925096)
+bones/2/scale = Vector3(1, 1, 0.9999998)
+bones/3/rotation = Quaternion(1.5015482e-08, -7.5544115e-08, 0.065805495, 0.9978325)
+bones/4/rotation = Quaternion(0.38408598, 0.55107445, -0.4269275, 0.60541546)
+bones/5/rotation = Quaternion(2.0381734e-07, 0.99508595, 0.099015266, -7.826118e-07)
+bones/6/rotation = Quaternion(-8.125788e-08, 2.1187593e-07, -5.70435e-08, 1)
+bones/7/rotation = Quaternion(-4.43833e-08, 1.6257394e-07, -5.576291e-08, 1)
+bones/8/rotation = Quaternion(-0.6912685, 0.027998442, 0.72121036, 0.03492403)
+bones/8/scale = Vector3(0.9999999, 1, 0.9999998)
+bones/9/rotation = Quaternion(5.743891e-10, -1.9045723e-09, -0.06580771, 0.99783236)
+bones/10/rotation = Quaternion(0.38408598, -0.5510744, 0.42692757, 0.6054154)
+bones/11/rotation = Quaternion(-1.8110862e-07, 0.99508595, 0.09901527, 6.510556e-07)
+bones/12/rotation = Quaternion(-1.3038516e-08, -1.2153762e-07, 2.6775531e-08, 1)
+bones/13/rotation = Quaternion(-6.0681455e-09, -4.394676e-08, 4.016326e-08, 1)
+bones/17/rotation = Quaternion(0.30200702, 0.0064120353, 0.0020313822, 0.95328206)
+bones/18/rotation = Quaternion(-0.27675512, -0.0064960807, -0.0018521133, 0.96091676)
+bones/19/rotation = Quaternion(-0.4871302, 0.48713025, 0.5125468, 0.5125467)
+bones/20/rotation = Quaternion(-0.6068751, -0.058149178, -0.07520152, 0.78909194)
+bones/21/rotation = Quaternion(4.5398217e-08, -1.3980506e-08, 0.24993287, 0.9682632)
+bones/22/rotation = Quaternion(-1.7856314e-07, -0.41902316, -1.7312662e-07, 0.90797555)
+bones/29/rotation = Quaternion(3.3978615e-08, -0.41902325, 2.9339544e-09, 0.90797555)
+bones/29/scale = Vector3(0.9999999, 1, 1)
+bones/30/rotation = Quaternion(-1.0830808e-08, 3.0891666e-08, -1.5366826e-08, 1)
+bones/30/scale = Vector3(0.9999998, 0.9999998, 0.9999998)
+bones/31/rotation = Quaternion(-0.4871302, -0.48713025, -0.5125468, 0.5125467)
+bones/32/rotation = Quaternion(-0.6068751, 0.058149245, 0.07520143, 0.78909194)
+bones/33/rotation = Quaternion(1.1315956e-07, -1.194424e-07, -0.24993291, 0.9682632)
+bones/34/rotation = Quaternion(-2.1826219e-07, 0.41902316, 1.4532881e-07, 0.90797555)
+bones/41/rotation = Quaternion(-1.9171715e-08, 0.41902328, -1.5843604e-09, 0.9079756)
+bones/41/scale = Vector3(1.0000002, 0.9999999, 0.9999999)
+bones/42/rotation = Quaternion(-5.983469e-08, 2.86659e-08, -8.195639e-08, 1)
+bones/42/scale = Vector3(0.9999999, 0.9999999, 0.99999976)
+
+[node name="Head2" parent="Camera3D/ARP_Template/root/Skeleton3D" index="2" unique_id=1844723218]
+visible = false
+
+[node name="Wolf Head" parent="Camera3D/ARP_Template/root/Skeleton3D" index="7" unique_id=813682286]
+visible = false
+
+[node name="Deer Head" parent="Camera3D/ARP_Template/root/Skeleton3D" index="8" unique_id=973759982]
+visible = false
+
+[node name="AnimationPlayer" parent="Camera3D/ARP_Template" index="1" unique_id=1095155341]
+autoplay = &"root|Test"
+
+[editable path="Camera3D/ARP_Template"]
