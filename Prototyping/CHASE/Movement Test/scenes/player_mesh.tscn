@@ -1,0 +1,57 @@
+[gd_scene format=3 uid="uid://8a2lreq165xu"]
+
+[ext_resource type="PackedScene" uid="uid://3mm2va2jkss7" path="res://Prototyping/Imported Mesh/ARP_Template.fbx" id="1_1m0wn"]
+
+[node name="Player Mesh" type="Node3D" unique_id=203708637]
+
+[node name="ARP_Template" parent="." unique_id=2121255609 instance=ExtResource("1_1m0wn")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.4206347, -2.0299287)
+
+[node name="Skeleton3D" parent="ARP_Template/root" parent_id_path=PackedInt32Array(2121255609, 28797768) index="0" unique_id=1181007843]
+bones/2/rotation = Quaternion(0.6912737, 0.027997522, 0.72120535, -0.034925096)
+bones/2/scale = Vector3(1, 1, 0.9999998)
+bones/3/rotation = Quaternion(1.5015482e-08, -7.5544115e-08, 0.065805495, 0.9978325)
+bones/4/rotation = Quaternion(0.38408598, 0.55107445, -0.4269275, 0.6054154)
+bones/5/rotation = Quaternion(2.0381734e-07, 0.99508595, 0.099015266, -7.826118e-07)
+bones/6/rotation = Quaternion(-5.5861072e-08, 0.00016368188, -5.0317823e-08, 1)
+bones/7/rotation = Quaternion(-1.8400996e-08, 0.00012752695, 1.7934929e-07, 1)
+bones/8/rotation = Quaternion(-0.045754574, 0.7819884, 0.12532647, -0.6088465)
+bones/8/scale = Vector3(0.9999999, 1, 0.9999998)
+bones/9/rotation = Quaternion(5.5816147e-09, 5.6889682e-08, -0.85197675, 0.52357984)
+bones/10/rotation = Quaternion(0.2108555, -0.6054851, 0.39435345, 0.6583413)
+bones/11/rotation = Quaternion(-2.4927456e-07, 0.995086, 0.09901525, 7.449675e-07)
+bones/12/rotation = Quaternion(-8.870598e-08, -0.033163846, -1.206082e-07, 0.99944997)
+bones/13/rotation = Quaternion(5.138842e-08, 0.037570328, 7.650756e-08, 0.999294)
+bones/14/position = Vector3(-3.6734513e-05, 0.0013767227, -7.322051e-05)
+bones/17/rotation = Quaternion(0.19177034, -0.19666597, 0.016838292, 0.9613861)
+bones/18/rotation = Quaternion(-0.27675512, -0.006496083, -0.0018521143, 0.96091676)
+bones/19/rotation = Quaternion(-0.44483495, 0.5263633, 0.47232836, 0.5495175)
+bones/20/rotation = Quaternion(-0.41382033, 0.2000086, -0.17360684, 0.8709823)
+bones/21/rotation = Quaternion(2.0336267e-07, -1.261809e-07, 0.22849095, 0.973546)
+bones/22/rotation = Quaternion(-0.010175864, -0.6171538, 0.017758757, 0.7865763)
+bones/29/rotation = Quaternion(-4.02686e-08, -0.5217137, 7.114556e-09, 0.8531207)
+bones/29/scale = Vector3(0.9999999, 1, 1)
+bones/30/rotation = Quaternion(1.8405804e-07, -0.14168544, -6.352648e-08, 0.98991174)
+bones/30/scale = Vector3(0.9999998, 0.9999998, 0.9999998)
+bones/31/rotation = Quaternion(-0.4249501, -0.5428865, -0.45331433, 0.56497604)
+bones/32/rotation = Quaternion(-0.3798443, -0.2723749, 0.08440664, 0.8800033)
+bones/33/rotation = Quaternion(-3.35639e-07, -1.3319804e-07, -0.0027199239, 0.99999636)
+bones/34/rotation = Quaternion(0.032450352, 0.63235873, -0.11177658, 0.76588225)
+bones/41/rotation = Quaternion(-7.5648686e-08, 0.5349593, 3.3276073e-08, 0.8448779)
+bones/41/scale = Vector3(1.0000002, 0.9999999, 0.9999999)
+bones/42/rotation = Quaternion(-7.4114105e-08, 0.1371893, -1.05482725e-08, 0.99054486)
+bones/42/scale = Vector3(0.9999999, 0.9999999, 0.99999976)
+
+[node name="Head2" parent="ARP_Template/root/Skeleton3D" index="2" unique_id=317385779]
+visible = false
+
+[node name="Wolf Head" parent="ARP_Template/root/Skeleton3D" index="7" unique_id=49425736]
+visible = false
+
+[node name="Deer Head" parent="ARP_Template/root/Skeleton3D" index="8" unique_id=1136793199]
+visible = false
+
+[node name="AnimationPlayer" parent="ARP_Template" index="1" unique_id=1786348633]
+autoplay = &"root|Test"
+
+[editable path="ARP_Template"]

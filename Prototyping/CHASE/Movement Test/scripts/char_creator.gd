@@ -1,6 +1,11 @@
 extends Node3D
 #will eventually use a JSON to sift through what is applicable
 #region Variables
+@export_category("Export Player")
+@export var export_char = preload("res://Prototyping/CHASE/Movement Test/scenes/player_mesh.tscn")
+# ^ prob won't use this prob will grab it directly from the player
+@export var editable_char : Node3D
+var player
 @export_category("Heads")
 @export var default_head : MeshInstance3D
 @export var head_options : Array[MeshInstance3D]
@@ -24,6 +29,8 @@ extends Node3D
 
 
 func _ready():
+	#hide the player instance
+	
 	pass
 	
 func _process(delta):
