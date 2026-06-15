@@ -4,6 +4,7 @@ extends CanvasLayer
 @export var main_ui : Control
 @export var dialogue_ui : Control
 @export var digicam_ui : Control
+@export var char_creator_ui : Control
 
 @export_category("States")
 enum UI_State{OVERWORLD, DIALOGUE, DIGICAM, MINIGAME}

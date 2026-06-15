@@ -12,11 +12,12 @@ shader = ExtResource("5_vjshv")
 shader_parameter/limit = 0.3170000150575
 shader_parameter/blur = 0.222000010545
 
-[node name="User Interface" type="CanvasLayer" unique_id=2020881195 node_paths=PackedStringArray("main_ui", "dialogue_ui", "digicam_ui", "page", "pictures", "focus_photo") groups=["UI"]]
+[node name="User Interface" type="CanvasLayer" unique_id=2020881195 node_paths=PackedStringArray("main_ui", "dialogue_ui", "digicam_ui", "char_creator_ui", "page", "pictures", "focus_photo") groups=["UI"]]
 script = ExtResource("1_y11tf")
 main_ui = NodePath("main_UI")
 dialogue_ui = NodePath("dialogue_UI")
 digicam_ui = NodePath("digicam_UI")
+char_creator_ui = NodePath("char_creator_UI")
 page = NodePath("digicam_UI/Photobook/List of Photos/Page")
 pictures = [NodePath("digicam_UI/Photobook/List of Photos/Page/TextureRect"), NodePath("digicam_UI/Photobook/List of Photos/Page/TextureRect2"), NodePath("digicam_UI/Photobook/List of Photos/Page/TextureRect3"), NodePath("digicam_UI/Photobook/List of Photos/Page/TextureRect4"), NodePath("digicam_UI/Photobook/List of Photos/Page/TextureRect5"), NodePath("digicam_UI/Photobook/List of Photos/Page/TextureRect6"), NodePath("digicam_UI/Photobook/List of Photos/Page/TextureRect7"), NodePath("digicam_UI/Photobook/List of Photos/Page/TextureRect8"), NodePath("digicam_UI/Photobook/List of Photos/Page/TextureRect9")]
 focus_photo = NodePath("digicam_UI/Photobook/Focused Photo/TextureRect")
@@ -256,3 +257,30 @@ grow_vertical = 2
 
 [node name="TextureRect" type="TextureRect" parent="digicam_UI/Photobook/Focused Photo" unique_id=1714812152]
 layout_mode = 2
+
+[node name="char_creator_UI" type="Control" parent="." unique_id=911123896]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="buttons" type="Control" parent="char_creator_UI" unique_id=703527387]
+anchors_preset = 0
+offset_left = 565.0
+offset_top = 226.0
+offset_right = 605.0
+offset_bottom = 266.0
+
+[node name="Next" type="Button" parent="char_creator_UI/buttons" unique_id=1392946683]
+layout_mode = 0
+offset_left = 187.0
+offset_right = 232.0
+offset_bottom = 31.0
+text = "Next"
+
+[node name="Previous" type="Button" parent="char_creator_UI/buttons" unique_id=2081009887]
+layout_mode = 0
+offset_left = -193.0
+offset_right = -118.0
+offset_bottom = 31.0
+text = "Previous"

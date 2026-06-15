@@ -12,6 +12,7 @@ var player_dict
 @export var speaker_name_label : Label
 @export var lets_go_button : Button
 @export var exit_interaction_button : Button
+@export var char_creator_ui : Control
 
 
 
