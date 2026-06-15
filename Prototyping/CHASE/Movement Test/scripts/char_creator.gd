@@ -82,19 +82,19 @@ func _process(delta):
 				buffer = buffer_max
 				if (place_in_array < head_options.size() - 1):
 					place_in_array += 1
-					print(head_options[place_in_array])
+					print("[CURRENT HEAD: " + head_options[place_in_array].name + "]")
 				else:
 					place_in_array = 0
-					print(head_options[place_in_array])
+					print("[CURRENT HEAD: " + head_options[place_in_array].name + "]")
 			if (prev_button.button_pressed && !press):
 				press = true
 				buffer = buffer_max
 				if (place_in_array > 0):
 					place_in_array -= 1
-					print(head_options[place_in_array])
+					print("[CURRENT HEAD: " + head_options[place_in_array].name + "]")
 				else:
 					place_in_array = head_options.size() - 1
-					print(head_options[place_in_array])
+					print("[CURRENT HEAD: " + head_options[place_in_array].name + "]")
 
 
 			pass
