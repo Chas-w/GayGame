@@ -56,8 +56,9 @@ func _ready():
 	buffer = buffer_max
 	for game_obj in get_tree().get_nodes_in_group("UI"): #assign database
 		UI = game_obj
-	next_button = UI.get_child(3).get_child(0).get_child(0)
-	prev_button = UI.get_child(3).get_child(0).get_child(1)
+	next_button = UI.char_creator_ui.get_child(0).get_child(0)
+	prev_button = UI.char_creator_ui.get_child(0).get_child(1)
+	UI.char_creator_ui.visible = true
 	_set_modify_body(Body.HEAD)
 
 func _process(delta):

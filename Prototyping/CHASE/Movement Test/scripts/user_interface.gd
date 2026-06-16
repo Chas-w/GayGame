@@ -5,6 +5,10 @@ extends CanvasLayer
 @export var dialogue_ui : Control
 @export var digicam_ui : Control
 @export var char_creator_ui : Control
+@export var bracelet_button : Button
+@export var bracelet_anim :AnimationPlayer
+var hover_bracelet
+
 
 @export_category("States")
 enum UI_State{OVERWORLD, DIALOGUE, DIGICAM, MINIGAME}
@@ -21,6 +25,14 @@ func _ready():
 	_set_ui_state(UI_State.OVERWORLD)
 
 func _process(delta):
+	if (bracelet_button.is_hovered() && !hover_bracelet):
+		hover_bracelet = true
+		bracelet_anim.play("hover_bracelet")
+	
+	elif(!bracelet_button.is_hovered() && hover_bracelet):
+		bracelet_anim.play("return_bracelet")
+		hover_bracelet = false
+
 	pass
 
 func _set_ui_state(next_state:int):	
