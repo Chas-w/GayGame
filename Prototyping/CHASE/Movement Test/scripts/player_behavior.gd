@@ -150,7 +150,6 @@ func _set_PC_state(next_PC_state:int):
 
 func _input(event):
 	#region digicam input
-	
 	if(Input.is_action_just_pressed("digi_view") && move_state != Move_State.CHATTING && move_state != Move_State.INSPECTING):
 		digi_manager.toggle_digi = !digi_manager.toggle_digi
 		if(digi_manager.toggle_digi):
