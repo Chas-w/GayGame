@@ -357,3 +357,11 @@ texture = ExtResource("4_s2w0g")
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Bracelet/Bracelet Sprite" unique_id=14839925]
 root_node = NodePath("../../..")
 libraries/ = SubResource("AnimationLibrary_s2w0g")
+
+[node name="Pump It" type="Button" parent="." unique_id=1314298741]
+z_index = 1
+offset_left = 90.0
+offset_top = 554.0
+offset_right = 163.0
+offset_bottom = 585.0
+text = "PUMP IT"

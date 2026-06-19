@@ -1,0 +1,12 @@
+[gd_scene format=3 uid="uid://b8ymay6ycejea"]
+
+[ext_resource type="PackedScene" uid="uid://xl4oitvtagof" path="res://Prototyping/Imported Mesh/lungtest.fbx" id="1_p08ft"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jdqa4"]
+shading_mode = 0
+albedo_color = Color(0.53410214, 0.07932896, 1.540184e-06, 1)
+
+[node name="lungtest" unique_id=62221023 instance=ExtResource("1_p08ft")]
+
+[node name="Lungs" parent="." index="0" unique_id=306330356]
+surface_material_override/0 = SubResource("StandardMaterial3D_jdqa4")
