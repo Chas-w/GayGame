@@ -1,17 +1,23 @@
-[gd_scene format=3 uid="uid://8pnwvrthy2e3"]
+[gd_scene format=3 uid="uid://dq55q4b81f04d"]
 
 [ext_resource type="Texture2D" uid="uid://do5en27e44lhk" path="res://Prototyping/VICTOR/PrototypeSprites/statue-2.png" id="1_2cmmp"]
 [ext_resource type="Texture2D" uid="uid://cuj77fcx1xk4s" path="res://Prototyping/VICTOR/PrototypeSprites/main-image (1).jpg" id="1_xhqit"]
 [ext_resource type="Texture2D" uid="uid://cl47su2ov88xe" path="res://Prototyping/VICTOR/PrototypeSprites/coin.png" id="2_2kc6f"]
-[ext_resource type="Script" uid="uid://c46t04ohn3iao" path="res://Prototyping/VICTOR/Scripts/coin_thrower.gd" id="2_gi7qj"]
+[ext_resource type="Script" path="res://Prototyping/VICTOR/Scripts/coin_thrower.gd" id="2_gi7qj"]
 [ext_resource type="Texture2D" uid="uid://b687kgnaut63r" path="res://Prototyping/VICTOR/PrototypeSprites/vase.png" id="3_2kc6f"]
 [ext_resource type="Texture2D" uid="uid://cwsoqeuqtygxi" path="res://Prototyping/VICTOR/PrototypeSprites/main-image.jpg" id="6_brqsv"]
+[ext_resource type="Shader" uid="uid://dvf4eh73kedkc" path="res://Prototyping/VICTOR/Scenes/2DPixel.gdshader" id="7_qncrr"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_brqsv"]
 radius = 15.033297
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_brqsv"]
 size = Vector2(470, 147)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_rj1kr"]
+shader = ExtResource("7_qncrr")
+shader_parameter/pixelation = 0.002000000095
+shader_parameter/opacity = 1.0
 
 [node name="AngryPongTest" type="Node2D" unique_id=885247193]
 
@@ -98,3 +104,13 @@ texture = ExtResource("3_2kc6f")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Vase3" unique_id=1367535610]
 polygon = PackedVector2Array(-27, -40, -18, -23, -17, -1, -11, 16, -1, 23, 10, 19, 15, 3, 16, -19, 23, -40, 21, -27, 24, -17, 26, 1, 22, 14, 12, 27, 15, 36, -3, 40, -15, 37, -10, 30, -18, 23, -27, 9, -31, -8, -29, -19, -24, -22, -25, -30, -27, -40)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=649028656]
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer" unique_id=1871274019]
+material = SubResource("ShaderMaterial_rj1kr")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
