@@ -1,0 +1,100 @@
+[gd_scene format=3 uid="uid://8pnwvrthy2e3"]
+
+[ext_resource type="Texture2D" uid="uid://do5en27e44lhk" path="res://Prototyping/VICTOR/PrototypeSprites/statue-2.png" id="1_2cmmp"]
+[ext_resource type="Texture2D" uid="uid://cuj77fcx1xk4s" path="res://Prototyping/VICTOR/PrototypeSprites/main-image (1).jpg" id="1_xhqit"]
+[ext_resource type="Texture2D" uid="uid://cl47su2ov88xe" path="res://Prototyping/VICTOR/PrototypeSprites/coin.png" id="2_2kc6f"]
+[ext_resource type="Script" uid="uid://c46t04ohn3iao" path="res://Prototyping/VICTOR/Scripts/coin_thrower.gd" id="2_gi7qj"]
+[ext_resource type="Texture2D" uid="uid://b687kgnaut63r" path="res://Prototyping/VICTOR/PrototypeSprites/vase.png" id="3_2kc6f"]
+[ext_resource type="Texture2D" uid="uid://cwsoqeuqtygxi" path="res://Prototyping/VICTOR/PrototypeSprites/main-image.jpg" id="6_brqsv"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_brqsv"]
+radius = 15.033297
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_brqsv"]
+size = Vector2(470, 147)
+
+[node name="AngryPongTest" type="Node2D" unique_id=885247193]
+
+[node name="Background" type="Sprite2D" parent="." unique_id=742310463]
+texture_filter = 1
+position = Vector2(581, 674.00006)
+scale = Vector2(1.2745125, 1.2745125)
+texture = ExtResource("6_brqsv")
+
+[node name="CoinThrower" type="Sprite2D" parent="." unique_id=1224639842 node_paths=PackedStringArray("start_location", "coin")]
+position = Vector2(255.8125, 483.05038)
+scale = Vector2(0.3824927, 0.38249278)
+texture = ExtResource("1_2cmmp")
+script = ExtResource("2_gi7qj")
+start_location = NodePath("Starting Location")
+coin = NodePath("../Coin")
+
+[node name="Starting Location" type="Node2D" parent="CoinThrower" unique_id=1513797519]
+position = Vector2(-7.353082, -368.76614)
+
+[node name="Coin" type="RigidBody2D" parent="." unique_id=278929075]
+position = Vector2(254, 344)
+can_sleep = false
+freeze = true
+freeze_mode = 1
+
+[node name="CoinSprite" type="Sprite2D" parent="Coin" unique_id=652525789]
+position = Vector2(0.8125, 0.050354004)
+scale = Vector2(0.015107618, 0.015107618)
+texture = ExtResource("2_2kc6f")
+
+[node name="CoinCollider" type="CollisionShape2D" parent="Coin" unique_id=879601388]
+position = Vector2(-1, 0)
+shape = SubResource("CircleShape2D_brqsv")
+
+[node name="Table" type="StaticBody2D" parent="." unique_id=1195660560]
+position = Vector2(757, 574)
+
+[node name="MainImage(1)2" type="Sprite2D" parent="Table" unique_id=474348849]
+texture_filter = 1
+position = Vector2(-116.50986, 3.624939)
+scale = Vector2(0.19581692, 0.1958169)
+texture = ExtResource("1_xhqit")
+
+[node name="MainImage(1)3" type="Sprite2D" parent="Table" unique_id=195822075]
+texture_filter = 1
+position = Vector2(118, 3.3125)
+scale = Vector2(0.19581692, 0.1958169)
+texture = ExtResource("1_xhqit")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Table" unique_id=329082228]
+position = Vector2(0, 3.5)
+shape = SubResource("RectangleShape2D_brqsv")
+
+[node name="Vase" type="StaticBody2D" parent="." unique_id=1600212202]
+position = Vector2(945, 468)
+
+[node name="Vase" type="Sprite2D" parent="Vase" unique_id=1443446826]
+position = Vector2(-1.999939, -7.0000305)
+scale = Vector2(0.028357236, 0.02835723)
+texture = ExtResource("3_2kc6f")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Vase" unique_id=1031704217]
+polygon = PackedVector2Array(-27, -40, -18, -23, -17, -1, -11, 16, -1, 23, 10, 19, 15, 3, 16, -19, 23, -40, 21, -27, 24, -17, 26, 1, 22, 14, 12, 27, 15, 36, -3, 40, -15, 37, -10, 30, -18, 23, -27, 9, -31, -8, -29, -19, -24, -22, -25, -30, -27, -40)
+
+[node name="Vase2" type="StaticBody2D" parent="." unique_id=592785332]
+position = Vector2(867, 469)
+
+[node name="Vase" type="Sprite2D" parent="Vase2" unique_id=1683764263]
+position = Vector2(-1.999939, -7.0000305)
+scale = Vector2(0.028357236, 0.02835723)
+texture = ExtResource("3_2kc6f")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Vase2" unique_id=1964017453]
+polygon = PackedVector2Array(-27, -40, -18, -23, -17, -1, -11, 16, -1, 23, 10, 19, 15, 3, 16, -19, 23, -40, 21, -27, 24, -17, 26, 1, 22, 14, 12, 27, 15, 36, -3, 40, -15, 37, -10, 30, -18, 23, -27, 9, -31, -8, -29, -19, -24, -22, -25, -30, -27, -40)
+
+[node name="Vase3" type="StaticBody2D" parent="." unique_id=1015707290]
+position = Vector2(903, 380)
+
+[node name="Vase" type="Sprite2D" parent="Vase3" unique_id=897167280]
+position = Vector2(-1.999939, -7.0000305)
+scale = Vector2(0.028357236, 0.02835723)
+texture = ExtResource("3_2kc6f")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Vase3" unique_id=1367535610]
+polygon = PackedVector2Array(-27, -40, -18, -23, -17, -1, -11, 16, -1, 23, 10, 19, 15, 3, 16, -19, 23, -40, 21, -27, 24, -17, 26, 1, 22, 14, 12, 27, 15, 36, -3, 40, -15, 37, -10, 30, -18, 23, -27, 9, -31, -8, -29, -19, -24, -22, -25, -30, -27, -40)
