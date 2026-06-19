@@ -1,9 +1,17 @@
 extends Node3D
 
+@export_category("Attributes")
+@export var base_force : float
+
 @export_category("Game States")
 enum Game_State{Setup, Exit, Opponent, Strategy, Throw}
 @export var game_state : Game_State = Game_State.Setup
 
+@export_category("Ball References")
+@export var pong_ball : RigidBody3D
+@export var ball_start : Node3D
+
+@export_category("UI References")
 @export var head_scroll : VScrollBar
 @export var teeth_scroll : HScrollBar
 var UI
@@ -20,6 +28,7 @@ func _ready():
 		UI = game_obj
 	pumpit_button = UI.get_child(5)
 	blendshape = lungs.get_blend_shape_value(0)
+
 func _process(delta):
 	#lungs pump
 	if(pumpit_button.button_pressed):
@@ -31,3 +40,23 @@ func _process(delta):
 	#teeth rotation
 	top_teeth.position.x = teeth_scroll.value
 	bottom_teeth.position.x = 1600 - teeth_scroll.value
+
+func _physics_process(delta: float) -> void:
+	if Input.is_action_just_pressed("rightclick"):
+		print(blendshape)
+		var x_ratio = teeth_scroll.value / teeth_scroll.max_value
+		print(x_ratio)
+		var y_ratio = -head_scroll.value / head_scroll.max_value
+		print(y_ratio)
+		var z_ratio = 1
+		var impulse_direction = Vector3(x_ratio, y_ratio * 2, z_ratio * 1.5)
+		throw_ball(blendshape, impulse_direction)
+
+func throw_ball(impulse_multipler : float, impulse_direction : Vector3) -> void:
+	pong_ball.freeze = false
+	pong_ball.apply_impulse(impulse_direction.normalized() * impulse_multipler * base_force)
+
+func reset_ball() -> void:
+	pong_ball.freeze = true
+	pong_ball.position = ball_start.position
+	pong_ball.rotation = ball_start.rotation

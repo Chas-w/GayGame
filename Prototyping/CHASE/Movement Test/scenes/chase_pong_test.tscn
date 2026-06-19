@@ -1,6 +1,6 @@
-[gd_scene format=4 uid="uid://ctp8pnnrm821e"]
+[gd_scene format=4 uid="uid://b7kwts4hs8hry"]
 
-[ext_resource type="PackedScene" uid="uid://b8ymay6ycejea" path="res://Prototyping/CHASE/Movement Test/scenes/lungtest.tscn" id="1_6o734"]
+[ext_resource type="PackedScene" path="res://Prototyping/CHASE/Movement Test/scenes/lungtest.tscn" id="1_6o734"]
 [ext_resource type="Script" uid="uid://bu833ldbary56" path="res://Prototyping/CHASE/Movement Test/scripts/chase_pong_test.gd" id="1_rs4b2"]
 [ext_resource type="Texture2D" uid="uid://ds4f7v43kufma" path="res://Prototyping/Imported Mesh/ARP_Template_3.png" id="2_52bn5"]
 [ext_resource type="Texture2D" uid="uid://dhvrla0xutua0" path="res://Prototyping/Imported Mesh/ARP_Template_4.png" id="3_rs4b2"]
@@ -450,8 +450,23 @@ shading_mode = 0
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_h0h53"]
 
-[node name="chase pong test" type="Node3D" unique_id=1354617134 node_paths=PackedStringArray("head_scroll", "teeth_scroll", "lungs", "head", "top_teeth", "bottom_teeth")]
+[sub_resource type="BoxMesh" id="BoxMesh_rs4b2"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_h0h53"]
+albedo_color = Color(0.9647059, 0.2901961, 0.33333334, 1)
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_c6sw6"]
+data = PackedVector3Array(-0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, -0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, -0.5, 0.5, 0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, -0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, -0.5, -0.5)
+
+[sub_resource type="SphereMesh" id="SphereMesh_rs4b2"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_rs4b2"]
+
+[node name="chase pong test" type="Node3D" unique_id=1354617134 node_paths=PackedStringArray("pong_ball", "ball_start", "head_scroll", "teeth_scroll", "lungs", "head", "top_teeth", "bottom_teeth")]
 script = ExtResource("1_rs4b2")
+base_force = 5.0
+pong_ball = NodePath("PongBall")
+ball_start = NodePath("BallStart")
 head_scroll = NodePath("2D/VScrollBar")
 teeth_scroll = NodePath("2D/HScrollBar")
 lungs = NodePath("2D/Lungs/SubViewport/Camera3D/lungtest/Lungs")
@@ -491,7 +506,7 @@ size = Vector2i(682, 410)
 render_target_update_mode = 4
 
 [node name="Camera3D" type="Camera3D" parent="2D/Main/SubViewport" unique_id=1436792431]
-transform = Transform3D(-0.9659258, 0, 0.25881913, 0, 1, 0, -0.25881913, 0, -0.9659258, 0, 0, 11.485722)
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, 11.485722)
 
 [node name="Lungs" type="SubViewportContainer" parent="2D" unique_id=709475731]
 layout_mode = 1
@@ -955,5 +970,32 @@ surface_material_override/0 = SubResource("StandardMaterial3D_rs4b2")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Table" unique_id=1051305652]
 shape = SubResource("BoxShape3D_h0h53")
+
+[node name="Table2" type="MeshInstance3D" parent="." unique_id=86518784]
+transform = Transform3D(1.9046423, 0, 0, 0, 0.09820628, 0, 0, 0, 4.3922935, 0, -2.097084, 14.320728)
+mesh = SubResource("BoxMesh_rs4b2")
+surface_material_override/0 = SubResource("StandardMaterial3D_h0h53")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Table2" unique_id=842358546]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Table2/StaticBody3D" unique_id=617980450]
+transform = Transform3D(0.99999994, 0, 0, 0, 0.9999999, 0, 0, 0, 0.9999998, -0.0014017388, 0.06468935, 0.002029899)
+shape = SubResource("ConcavePolygonShape3D_c6sw6")
+
+[node name="PongBall" type="RigidBody3D" parent="." unique_id=1950618921]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.4295079, 12.324165)
+freeze = true
+freeze_mode = 1
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="PongBall" unique_id=1598426581]
+transform = Transform3D(0.14, 0, 0, 0, 0.14, 0, 0, 0, 0.14, 0, 0, 0)
+mesh = SubResource("SphereMesh_rs4b2")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="PongBall" unique_id=769126694]
+transform = Transform3D(0.14, 0, 0, 0, 0.14, 0, 0, 0, 0.14, 0, 0, 0)
+shape = SubResource("SphereShape3D_rs4b2")
+
+[node name="BallStart" type="Node3D" parent="." unique_id=522575645]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.4295079, 12.324165)
 
 [editable path="2D/Lungs/SubViewport/Camera3D/lungtest"]
