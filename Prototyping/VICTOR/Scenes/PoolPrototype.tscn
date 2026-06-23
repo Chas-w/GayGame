@@ -1,0 +1,132 @@
+[gd_scene format=3 uid="uid://db7ssmqmgpilo"]
+
+[ext_resource type="Script" uid="uid://g7wammwcdvau" path="res://Prototyping/VICTOR/Scripts/pool_manager.gd" id="1_njykq"]
+[ext_resource type="Script" uid="uid://cr4s0f1wwviyn" path="res://Prototyping/VICTOR/Scripts/cue_ball.gd" id="2_odxbl"]
+[ext_resource type="Script" uid="uid://cve8q2d1r7ufb" path="res://Prototyping/VICTOR/Scripts/pool_canvas.gd" id="3_slevu"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_muv5j"]
+sky_top_color = Color(0.6128374, 0.17575681, 0.8644528, 1)
+sky_horizon_color = Color(0.5914699, 0.5100657, 0.70445764, 1)
+ground_bottom_color = Color(0.087211765, 0.19867581, 0.28754753, 1)
+ground_horizon_color = Color(0.5914699, 0.5100657, 0.70445764, 1)
+
+[sub_resource type="Sky" id="Sky_njykq"]
+sky_material = SubResource("ProceduralSkyMaterial_muv5j")
+
+[sub_resource type="Environment" id="Environment_odxbl"]
+background_mode = 2
+sky = SubResource("Sky_njykq")
+tonemap_mode = 2
+glow_enabled = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_muv5j"]
+albedo_color = Color(0, 0.43919948, 0.16578674, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_muv5j"]
+material = SubResource("StandardMaterial3D_muv5j")
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_njykq"]
+data = PackedVector3Array(-0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, -0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, -0.5, 0.5, 0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, -0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, -0.5, -0.5)
+
+[sub_resource type="SphereMesh" id="SphereMesh_muv5j"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_njykq"]
+
+[node name="PoolPrototype" type="Node3D" unique_id=1452555117]
+script = ExtResource("1_njykq")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=637047807]
+transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 0, 0, 0)
+light_color = Color(0.78039217, 0.7882353, 0.9137255, 1)
+shadow_enabled = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=534977521]
+environment = SubResource("Environment_odxbl")
+
+[node name="PoolTable" type="MeshInstance3D" parent="." unique_id=979063973]
+transform = Transform3D(5.069348, 0, 0, 0, 0.107572384, 0, 0, 0, 2.79307, 0, 0, 0)
+mesh = SubResource("BoxMesh_muv5j")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="PoolTable" unique_id=55323580]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="PoolTable/StaticBody3D" unique_id=3929847]
+shape = SubResource("ConcavePolygonShape3D_njykq")
+
+[node name="CueBall" type="RigidBody3D" parent="." unique_id=1180700954]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.4363532, 0.61131126, 0)
+script = ExtResource("2_odxbl")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="CueBall" unique_id=198120025]
+transform = Transform3D(0.195, 0, 0, 0, 0.195, 0, 0, 0, 0.195, 0, 0, 0)
+mesh = SubResource("SphereMesh_muv5j")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="CueBall" unique_id=996040239]
+transform = Transform3D(0.195, 0, 0, 0, 0.195, 0, 0, 0, 0.195, 0, 0, 0)
+shape = SubResource("SphereShape3D_njykq")
+
+[node name="Camera3D" type="Camera3D" parent="." unique_id=1872830727]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 2.282888, 0)
+
+[node name="PoolBall" type="RigidBody3D" parent="." unique_id=883979818]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.3596332, 0.18199545, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="PoolBall" unique_id=1234026351]
+transform = Transform3D(0.195, 0, 0, 0, 0.195, 0, 0, 0, 0.195, 0, 0, 0)
+mesh = SubResource("SphereMesh_muv5j")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="PoolBall" unique_id=2016643561]
+transform = Transform3D(0.195, 0, 0, 0, 0.195, 0, 0, 0, 0.195, 0, 0, 0)
+shape = SubResource("SphereShape3D_njykq")
+
+[node name="PoolBall2" type="RigidBody3D" parent="." unique_id=1217490698]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.6732128, 0.18199545, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="PoolBall2" unique_id=715531240]
+transform = Transform3D(0.195, 0, 0, 0, 0.195, 0, 0, 0, 0.195, 0, 0, 0)
+mesh = SubResource("SphereMesh_muv5j")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="PoolBall2" unique_id=1980939202]
+transform = Transform3D(0.195, 0, 0, 0, 0.195, 0, 0, 0, 0.195, 0, 0, 0)
+shape = SubResource("SphereShape3D_njykq")
+
+[node name="PoolBall3" type="RigidBody3D" parent="." unique_id=1642881380]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.6690547, 0.18199545, 0.34806544)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="PoolBall3" unique_id=708382422]
+transform = Transform3D(0.195, 0, 0, 0, 0.195, 0, 0, 0, 0.195, 0, 0, 0)
+mesh = SubResource("SphereMesh_muv5j")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="PoolBall3" unique_id=1802158546]
+transform = Transform3D(0.195, 0, 0, 0, 0.195, 0, 0, 0, 0.195, 0, 0, 0)
+shape = SubResource("SphereShape3D_njykq")
+
+[node name="PoolBall4" type="RigidBody3D" parent="." unique_id=1193164250]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.6698738, 0.18199545, -0.36103708)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="PoolBall4" unique_id=615725647]
+transform = Transform3D(0.195, 0, 0, 0, 0.195, 0, 0, 0, 0.195, 0, 0, 0)
+mesh = SubResource("SphereMesh_muv5j")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="PoolBall4" unique_id=2041656192]
+transform = Transform3D(0.195, 0, 0, 0, 0.195, 0, 0, 0, 0.195, 0, 0, 0)
+shape = SubResource("SphereShape3D_njykq")
+
+[node name="Control" type="Control" parent="." unique_id=1564556037]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("3_slevu")
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="Control" unique_id=1103033657]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="SubViewport" type="SubViewport" parent="Control/SubViewportContainer" unique_id=682396990]
+handle_input_locally = false
+size = Vector2i(256, 256)
+render_target_update_mode = 4
+
+[node name="Camera3D" type="Camera3D" parent="Control/SubViewportContainer/SubViewport" unique_id=560274171]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -1.8024385, 0.30686247, 0)
