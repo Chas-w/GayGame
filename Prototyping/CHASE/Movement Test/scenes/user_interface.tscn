@@ -359,6 +359,7 @@ root_node = NodePath("../../..")
 libraries/ = SubResource("AnimationLibrary_s2w0g")
 
 [node name="Pump It" type="Button" parent="." unique_id=1314298741]
+visible = false
 z_index = 1
 offset_left = 90.0
 offset_top = 554.0
