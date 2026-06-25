@@ -48,9 +48,22 @@ bounce = 0.22
 friction = 0.2
 bounce = 0.66
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ge4b8"]
+albedo_color = Color(4.3317677e-06, 0.6768968, 0.71594197, 1)
+
 [sub_resource type="SphereMesh" id="SphereMesh_muv5j"]
+material = SubResource("StandardMaterial3D_ge4b8")
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_njykq"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_8e4yu"]
+material = SubResource("StandardMaterial3D_ge4b8")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0pgpf"]
+albedo_color = Color(0.99999994, 0.19114959, 0.34648684, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_rjey3"]
+material = SubResource("StandardMaterial3D_0pgpf")
 
 [sub_resource type="LabelSettings" id="LabelSettings_ge4b8"]
 font = ExtResource("4_qq5vk")
@@ -152,19 +165,18 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.1469195, 0.18199545, -0.987
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Environment/PoolBall" unique_id=1234026351]
 transform = Transform3D(0.195, 0, 0, 0, 0.195, 0, 0, 0, 0.195, 0, 0, 0)
-mesh = SubResource("SphereMesh_muv5j")
+mesh = SubResource("SphereMesh_8e4yu")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/PoolBall" unique_id=2016643561]
 transform = Transform3D(0.195, 0, 0, 0, 0.195, 0, 0, 0, 0.195, 0, 0, 0)
 shape = SubResource("SphereShape3D_njykq")
 
 [node name="PoolBall2" type="RigidBody3D" parent="Environment" unique_id=1217490698]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.6732128, 0.18199545, 0)
-visible = false
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.2058966, 0.18199545, 1.1855142)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Environment/PoolBall2" unique_id=715531240]
 transform = Transform3D(0.195, 0, 0, 0, 0.195, 0, 0, 0, 0.195, 0, 0, 0)
-mesh = SubResource("SphereMesh_muv5j")
+mesh = SubResource("SphereMesh_rjey3")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/PoolBall2" unique_id=1980939202]
 transform = Transform3D(0.195, 0, 0, 0, 0.195, 0, 0, 0, 0.195, 0, 0, 0)
