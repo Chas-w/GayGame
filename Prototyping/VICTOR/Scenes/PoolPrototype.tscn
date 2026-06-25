@@ -3,6 +3,8 @@
 [ext_resource type="Script" uid="uid://g7wammwcdvau" path="res://Prototyping/VICTOR/Scripts/pool_manager.gd" id="1_njykq"]
 [ext_resource type="Script" uid="uid://cr4s0f1wwviyn" path="res://Prototyping/VICTOR/Scripts/cue_ball.gd" id="2_odxbl"]
 [ext_resource type="Script" uid="uid://cve8q2d1r7ufb" path="res://Prototyping/VICTOR/Scripts/pool_canvas.gd" id="3_slevu"]
+[ext_resource type="FontFile" uid="uid://bmimebg5qcne7" path="res://Prototyping/VICTOR/Fonts/Oswald-VariableFont_wght.ttf" id="4_qq5vk"]
+[ext_resource type="Texture2D" uid="uid://1d386t4v4r0e" path="res://Prototyping/VICTOR/PrototypeSprites/poolcue.png" id="5_ge4b8"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_muv5j"]
 sky_top_color = Color(0.6128374, 0.17575681, 0.8644528, 1)
@@ -26,7 +28,8 @@ albedo_color = Color(0.16477215, 0.39515442, 0.17806807, 1)
 material = SubResource("StandardMaterial3D_slevu")
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_qq5vk"]
-friction = 0.14
+friction = 0.7
+rough = true
 
 [sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_njykq"]
 data = PackedVector3Array(-0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, -0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, -0.5, 0.5, 0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, -0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, -0.5, -0.5)
@@ -42,16 +45,21 @@ friction = 0.0
 bounce = 0.22
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_slevu"]
-friction = 0.0
-bounce = 0.44
+friction = 0.2
+bounce = 0.66
 
 [sub_resource type="SphereMesh" id="SphereMesh_muv5j"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_njykq"]
 
+[sub_resource type="LabelSettings" id="LabelSettings_ge4b8"]
+font = ExtResource("4_qq5vk")
+font_size = 28
+
 [node name="PoolPrototype" type="Node3D" unique_id=1452555117 node_paths=PackedStringArray("pool_canvas", "cue_ball")]
 script = ExtResource("1_njykq")
 base_impulse = 0.01
+max_moves = 5
 pool_canvas = NodePath("Pool UI")
 cue_ball = NodePath("Environment/CueBall")
 
@@ -96,7 +104,7 @@ physics_material_override = SubResource("PhysicsMaterial_ge4b8")
 shape = SubResource("ConcavePolygonShape3D_njykq")
 
 [node name="PoolTable4" type="MeshInstance3D" parent="Environment/PoolTable" unique_id=1517577745]
-transform = Transform3D(-2.6270513e-08, 0, -0.024980975, 0, 3.0616243, 0, 1.0907975, 0, -1.9818656e-09, 0.51262105, 1.0854975, 0.002930904)
+transform = Transform3D(-1.9398703e-08, 0, -0.024980975, 0, 3.0616243, 0, 0.805468, 0, -1.9818653e-09, 0.51262105, 1.0854975, 0.0029309038)
 mesh = SubResource("BoxMesh_ge4b8")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Environment/PoolTable/PoolTable4" unique_id=206939816]
@@ -115,8 +123,18 @@ physics_material_override = SubResource("PhysicsMaterial_ge4b8")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/PoolTable/PoolTable5/StaticBody3D" unique_id=760998980]
 shape = SubResource("ConcavePolygonShape3D_njykq")
 
+[node name="PoolTable6" type="MeshInstance3D" parent="Environment/PoolTable" unique_id=151352681]
+transform = Transform3D(-1.1075349e-08, 0, -0.024980975, 0, 3.0616243, 0, 0.45986784, 0, -1.9818653e-09, 0.18129362, 1.0854975, 0.0029309036)
+mesh = SubResource("BoxMesh_ge4b8")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Environment/PoolTable/PoolTable6" unique_id=355102362]
+physics_material_override = SubResource("PhysicsMaterial_ge4b8")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/PoolTable/PoolTable6/StaticBody3D" unique_id=1843803195]
+shape = SubResource("ConcavePolygonShape3D_njykq")
+
 [node name="CueBall" type="RigidBody3D" parent="Environment" unique_id=1180700954 node_paths=PackedStringArray("action_cam")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.4363532, 0.61131126, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.443642, 0.61131126, 0)
 physics_material_override = SubResource("PhysicsMaterial_slevu")
 script = ExtResource("2_odxbl")
 action_cam = NodePath("../../Camera3D")
@@ -130,7 +148,7 @@ transform = Transform3D(0.195, 0, 0, 0, 0.195, 0, 0, 0, 0.195, 0, 0, 0)
 shape = SubResource("SphereShape3D_njykq")
 
 [node name="PoolBall" type="RigidBody3D" parent="Environment" unique_id=883979818]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.3596332, 0.18199545, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.1469195, 0.18199545, -0.9875282)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Environment/PoolBall" unique_id=1234026351]
 transform = Transform3D(0.195, 0, 0, 0, 0.195, 0, 0, 0, 0.195, 0, 0, 0)
@@ -142,6 +160,7 @@ shape = SubResource("SphereShape3D_njykq")
 
 [node name="PoolBall2" type="RigidBody3D" parent="Environment" unique_id=1217490698]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.6732128, 0.18199545, 0)
+visible = false
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Environment/PoolBall2" unique_id=715531240]
 transform = Transform3D(0.195, 0, 0, 0, 0.195, 0, 0, 0, 0.195, 0, 0, 0)
@@ -153,6 +172,7 @@ shape = SubResource("SphereShape3D_njykq")
 
 [node name="PoolBall3" type="RigidBody3D" parent="Environment" unique_id=1642881380]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.6690547, 0.18199545, 0.34806544)
+visible = false
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Environment/PoolBall3" unique_id=708382422]
 transform = Transform3D(0.195, 0, 0, 0, 0.195, 0, 0, 0, 0.195, 0, 0, 0)
@@ -164,6 +184,7 @@ shape = SubResource("SphereShape3D_njykq")
 
 [node name="PoolBall4" type="RigidBody3D" parent="Environment" unique_id=1193164250]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.6698738, 0.18199545, -0.36103708)
+visible = false
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Environment/PoolBall4" unique_id=615725647]
 transform = Transform3D(0.195, 0, 0, 0, 0.195, 0, 0, 0, 0.195, 0, 0, 0)
@@ -173,7 +194,7 @@ mesh = SubResource("SphereMesh_muv5j")
 transform = Transform3D(0.195, 0, 0, 0, 0.195, 0, 0, 0, 0.195, 0, 0, 0)
 shape = SubResource("SphereShape3D_njykq")
 
-[node name="Pool UI" type="Control" parent="." unique_id=1564556037]
+[node name="Pool UI" type="Control" parent="." unique_id=1564556037 node_paths=PackedStringArray("moves_remaining_display", "pool_cue")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -181,6 +202,23 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("3_slevu")
+moves_remaining_display = NodePath("MovesRemainignDisplay")
+pool_cue = NodePath("PoolCue")
+
+[node name="MovesRemainignDisplay" type="Label" parent="Pool UI" unique_id=1719126075]
+layout_mode = 0
+offset_left = 24.0
+offset_top = 511.0
+offset_right = 298.0
+offset_bottom = 631.0
+text = "Moves Remaining:"
+label_settings = SubResource("LabelSettings_ge4b8")
+vertical_alignment = 2
+
+[node name="PoolCue" type="Sprite2D" parent="Pool UI" unique_id=1317762075]
+position = Vector2(310, 368)
+scale = Vector2(0.4775, 0.4775)
+texture = ExtResource("5_ge4b8")
 
 [node name="Camera3D" type="Camera3D" parent="." unique_id=477434706]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, -0.026246786, 2.7289162, 0.05824566)

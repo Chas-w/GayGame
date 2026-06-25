@@ -9,6 +9,7 @@ func _ready() -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	#action_cam.global_position.x = global_position.x - .25
+	print(abs(Vector3(0,0,0).distance_to(linear_velocity)))
 	pass
 
 func _physics_process(delta: float) -> void:

@@ -1,13 +1,18 @@
 extends Control
 
-var retract_line : bool
+@export_category("UI Elements")
+@export var moves_remaining_display : Control
+@export var pool_cue : Sprite2D
 
+#Line Variables
 var start_point : Vector2
 var end_point : Vector2
 
+var retract_line : bool
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass # Replace with function body.
+	pool_cue.visible = false
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
@@ -24,11 +29,18 @@ func _draw() -> void:
 	if start_point != end_point:
 		draw_line(start_point, end_point, Color.WHITE, 5)
 
+func update_move_display(move_num : int) -> void:
+	moves_remaining_display.text = "Moves Remaining: " + str(move_num)
+
+#region line functions
 func update_start_point() -> void:
 	start_point = get_local_mouse_position()
+	pool_cue.position = get_local_mouse_position()
+	pool_cue.visible = true
 
 func update_end_point() -> void:
 	end_point = get_local_mouse_position()
+	pool_cue.position = get_local_mouse_position()
 
 func get_aim_distance() -> float:
 	return abs(start_point.distance_to(end_point))
@@ -38,3 +50,5 @@ func get_aim_vector() -> Vector2:
 
 func release_line() -> void:
 	retract_line = true
+	pool_cue.visible = false
+#endregion
