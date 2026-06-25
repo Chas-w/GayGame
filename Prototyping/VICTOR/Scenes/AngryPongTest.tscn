@@ -3,10 +3,10 @@
 [ext_resource type="Texture2D" uid="uid://do5en27e44lhk" path="res://Prototyping/VICTOR/PrototypeSprites/statue-2.png" id="1_2cmmp"]
 [ext_resource type="Texture2D" uid="uid://cuj77fcx1xk4s" path="res://Prototyping/VICTOR/PrototypeSprites/main-image (1).jpg" id="1_xhqit"]
 [ext_resource type="Texture2D" uid="uid://cl47su2ov88xe" path="res://Prototyping/VICTOR/PrototypeSprites/coin.png" id="2_2kc6f"]
-[ext_resource type="Script" path="res://Prototyping/VICTOR/Scripts/coin_thrower.gd" id="2_gi7qj"]
+[ext_resource type="Script" uid="uid://c46t04ohn3iao" path="res://Prototyping/VICTOR/Scripts/coin_thrower.gd" id="2_gi7qj"]
 [ext_resource type="Texture2D" uid="uid://b687kgnaut63r" path="res://Prototyping/VICTOR/PrototypeSprites/vase.png" id="3_2kc6f"]
 [ext_resource type="Texture2D" uid="uid://cwsoqeuqtygxi" path="res://Prototyping/VICTOR/PrototypeSprites/main-image.jpg" id="6_brqsv"]
-[ext_resource type="Shader" uid="uid://dvf4eh73kedkc" path="res://Prototyping/VICTOR/Scenes/2DPixel.gdshader" id="7_qncrr"]
+[ext_resource type="Shader" uid="uid://dvf4eh73kedkc" path="res://Prototyping/VICTOR/Shaders/2DPixel.gdshader" id="7_qncrr"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_brqsv"]
 radius = 15.033297

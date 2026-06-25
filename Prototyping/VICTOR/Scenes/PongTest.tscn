@@ -18,7 +18,7 @@
 [ext_resource type="Texture2D" uid="uid://duk2cin3phjft" path="res://Prototyping/OLD/Sprites/Test Limbs/test_right_hand.png" id="7_b14a7"]
 [ext_resource type="Texture2D" uid="uid://xlh5c78igpdp" path="res://Prototyping/VICTOR/UI SPRITES/bracelet-ui.png" id="7_wnkvk"]
 [ext_resource type="Texture2D" uid="uid://c2yoctxl8xjo6" path="res://Prototyping/OLD/Sprites/Test Limbs/test_right_lower_arm.png" id="8_b14a7"]
-[ext_resource type="Material" uid="uid://d4k7ivvrbgjfa" path="res://Prototyping/VICTOR/green-outline.tres" id="8_fs4rc"]
+[ext_resource type="Material" uid="uid://d4k7ivvrbgjfa" path="res://Prototyping/VICTOR/Shaders/green-outline.tres" id="8_fs4rc"]
 [ext_resource type="Texture2D" uid="uid://cr2kl346y860v" path="res://Prototyping/VICTOR/UI SPRITES/ui-ball.png" id="8_tdt7h"]
 [ext_resource type="Texture2D" uid="uid://bcc5b782y6v7g" path="res://Prototyping/OLD/Sprites/Test Limbs/test_right_upper_arm.png" id="9_ti3ej"]
 [ext_resource type="Texture2D" uid="uid://m66qde282cjn" path="res://Prototyping/OLD/Sprites/Baby Karl Head.png" id="10_yel1t"]
