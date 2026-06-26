@@ -24,6 +24,10 @@ func _process(delta: float) -> void:
 		else:
 			end_point = start_point
 			retract_line = false
+	#Rotate pool cue
+	if start_point != end_point:
+		pool_cue.look_at(start_point)
+		pool_cue.rotate(PI/2)
 
 func _draw() -> void:
 	if start_point != end_point:

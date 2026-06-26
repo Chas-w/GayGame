@@ -28,7 +28,7 @@ albedo_color = Color(0.16477215, 0.39515442, 0.17806807, 1)
 material = SubResource("StandardMaterial3D_slevu")
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_qq5vk"]
-friction = 0.7
+friction = 0.85
 rough = true
 
 [sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_njykq"]
@@ -41,11 +41,11 @@ albedo_color = Color(0.22280365, 0.15198272, 0.043021962, 1)
 material = SubResource("StandardMaterial3D_qq5vk")
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_ge4b8"]
-friction = 0.0
+friction = 0.65
 bounce = 0.22
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_slevu"]
-friction = 0.2
+friction = 0.35
 bounce = 0.66
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ge4b8"]
@@ -149,6 +149,7 @@ shape = SubResource("ConcavePolygonShape3D_njykq")
 [node name="CueBall" type="RigidBody3D" parent="Environment" unique_id=1180700954 node_paths=PackedStringArray("action_cam")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.443642, 0.61131126, 0)
 physics_material_override = SubResource("PhysicsMaterial_slevu")
+linear_damp = 0.7
 script = ExtResource("2_odxbl")
 action_cam = NodePath("../../Camera3D")
 
@@ -162,6 +163,7 @@ shape = SubResource("SphereShape3D_njykq")
 
 [node name="PoolBall" type="RigidBody3D" parent="Environment" unique_id=883979818]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.1469195, 0.18199545, -0.9875282)
+linear_damp = 0.7
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Environment/PoolBall" unique_id=1234026351]
 transform = Transform3D(0.195, 0, 0, 0, 0.195, 0, 0, 0, 0.195, 0, 0, 0)
@@ -173,6 +175,7 @@ shape = SubResource("SphereShape3D_njykq")
 
 [node name="PoolBall2" type="RigidBody3D" parent="Environment" unique_id=1217490698]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.2058966, 0.18199545, 1.1855142)
+linear_damp = 0.7
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Environment/PoolBall2" unique_id=715531240]
 transform = Transform3D(0.195, 0, 0, 0, 0.195, 0, 0, 0, 0.195, 0, 0, 0)
@@ -185,6 +188,7 @@ shape = SubResource("SphereShape3D_njykq")
 [node name="PoolBall3" type="RigidBody3D" parent="Environment" unique_id=1642881380]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.6690547, 0.18199545, 0.34806544)
 visible = false
+linear_damp = 0.7
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Environment/PoolBall3" unique_id=708382422]
 transform = Transform3D(0.195, 0, 0, 0, 0.195, 0, 0, 0, 0.195, 0, 0, 0)
@@ -197,6 +201,7 @@ shape = SubResource("SphereShape3D_njykq")
 [node name="PoolBall4" type="RigidBody3D" parent="Environment" unique_id=1193164250]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.6698738, 0.18199545, -0.36103708)
 visible = false
+linear_damp = 0.7
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Environment/PoolBall4" unique_id=615725647]
 transform = Transform3D(0.195, 0, 0, 0, 0.195, 0, 0, 0, 0.195, 0, 0, 0)
