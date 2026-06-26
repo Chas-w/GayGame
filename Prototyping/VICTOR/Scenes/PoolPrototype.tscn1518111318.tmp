@@ -1,12 +1,10 @@
 [gd_scene format=3 uid="uid://db7ssmqmgpilo"]
 
 [ext_resource type="Script" uid="uid://g7wammwcdvau" path="res://Prototyping/VICTOR/Scripts/pool_manager.gd" id="1_njykq"]
-[ext_resource type="Script" uid="uid://br1mcntvmlb0j" path="res://Prototyping/VICTOR/Scripts/spinning_obstacle.gd" id="2_0pgpf"]
 [ext_resource type="Script" uid="uid://cr4s0f1wwviyn" path="res://Prototyping/VICTOR/Scripts/cue_ball.gd" id="2_odxbl"]
 [ext_resource type="Script" uid="uid://cve8q2d1r7ufb" path="res://Prototyping/VICTOR/Scripts/pool_canvas.gd" id="3_slevu"]
 [ext_resource type="FontFile" uid="uid://bmimebg5qcne7" path="res://Prototyping/VICTOR/Fonts/Oswald-VariableFont_wght.ttf" id="4_qq5vk"]
 [ext_resource type="Texture2D" uid="uid://1d386t4v4r0e" path="res://Prototyping/VICTOR/PrototypeSprites/poolcue.png" id="5_ge4b8"]
-[ext_resource type="Script" uid="uid://bppwvywojt0na" path="res://Prototyping/VICTOR/Scripts/mouse_detection.gd" id="6_8e4yu"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_muv5j"]
 sky_top_color = Color(0.6128374, 0.17575681, 0.8644528, 1)
@@ -23,19 +21,6 @@ sky = SubResource("Sky_njykq")
 tonemap_mode = 2
 glow_enabled = true
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qq5vk"]
-albedo_color = Color(0.22280365, 0.15198272, 0.043021962, 1)
-
-[sub_resource type="BoxMesh" id="BoxMesh_ge4b8"]
-material = SubResource("StandardMaterial3D_qq5vk")
-
-[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_ge4b8"]
-friction = 0.65
-bounce = 0.22
-
-[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_njykq"]
-data = PackedVector3Array(-0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, -0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, -0.5, 0.5, 0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, -0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, -0.5, -0.5)
-
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_slevu"]
 albedo_color = Color(0.16477215, 0.39515442, 0.17806807, 1)
 
@@ -46,9 +31,22 @@ material = SubResource("StandardMaterial3D_slevu")
 friction = 0.85
 rough = true
 
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_njykq"]
+data = PackedVector3Array(-0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, -0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, -0.5, 0.5, 0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, -0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, -0.5, -0.5)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qq5vk"]
+albedo_color = Color(0.22280365, 0.15198272, 0.043021962, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_ge4b8"]
+material = SubResource("StandardMaterial3D_qq5vk")
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_ge4b8"]
+friction = 0.65
+bounce = 0.22
+
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_slevu"]
 friction = 0.35
-bounce = 0.8
+bounce = 0.66
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ge4b8"]
 albedo_color = Color(4.3317677e-06, 0.6768968, 0.71594197, 1)
@@ -71,13 +69,12 @@ material = SubResource("StandardMaterial3D_0pgpf")
 font = ExtResource("4_qq5vk")
 font_size = 28
 
-[node name="PoolPrototype" type="Node3D" unique_id=1452555117 node_paths=PackedStringArray("pool_canvas", "cue_ball", "camera")]
+[node name="PoolPrototype" type="Node3D" unique_id=1452555117 node_paths=PackedStringArray("pool_canvas", "cue_ball")]
 script = ExtResource("1_njykq")
 base_impulse = 0.01
 max_moves = 5
 pool_canvas = NodePath("Pool UI")
 cue_ball = NodePath("Environment/CueBall")
-camera = NodePath("Camera3D")
 
 [node name="Environment" type="Node3D" parent="." unique_id=1582424421]
 
@@ -88,18 +85,6 @@ shadow_enabled = true
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="Environment" unique_id=534977521]
 environment = SubResource("Environment_odxbl")
-
-[node name="SpinningObstacle" type="MeshInstance3D" parent="Environment" unique_id=151352681]
-transform = Transform3D(-5.6144795e-08, 0, -0.12663725, 0, 0.3293462, 0, 1.2844431, 0, -5.535489e-09, 0.020476818, 0.11676955, 0.008186219)
-mesh = SubResource("BoxMesh_ge4b8")
-script = ExtResource("2_0pgpf")
-rotation_speed = 1.0
-
-[node name="StaticBody3D" type="StaticBody3D" parent="Environment/SpinningObstacle" unique_id=355102362]
-physics_material_override = SubResource("PhysicsMaterial_ge4b8")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/SpinningObstacle/StaticBody3D" unique_id=1843803195]
-shape = SubResource("ConcavePolygonShape3D_njykq")
 
 [node name="PoolTable" type="MeshInstance3D" parent="Environment" unique_id=979063973]
 transform = Transform3D(5.069348, 0, 0, 0, 0.107572384, 0, 0, 0, 2.79307, 0, 0, 0)
@@ -112,7 +97,7 @@ physics_material_override = SubResource("PhysicsMaterial_qq5vk")
 shape = SubResource("ConcavePolygonShape3D_njykq")
 
 [node name="PoolTable2" type="MeshInstance3D" parent="Environment/PoolTable" unique_id=446711055]
-transform = Transform3D(0.42000568, 0, 0, 0, 3.0616243, 0, 0, 0, 0.045339797, 0.25324914, 1.0854975, -0.52114654)
+transform = Transform3D(1, 0, 0, 0, 3.0616243, 0, 0, 0, 0.0453398, 0, 1.0854975, -0.52114654)
 mesh = SubResource("BoxMesh_ge4b8")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Environment/PoolTable/PoolTable2" unique_id=2090067780]
@@ -121,18 +106,18 @@ physics_material_override = SubResource("PhysicsMaterial_ge4b8")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/PoolTable/PoolTable2/StaticBody3D" unique_id=415813446]
 shape = SubResource("ConcavePolygonShape3D_njykq")
 
-[node name="PoolTable7" type="MeshInstance3D" parent="Environment/PoolTable" unique_id=1051407440]
-transform = Transform3D(0.42000568, 0, 0, 0, 3.0616243, 0, 0, 0, 0.045339797, -0.2368855, 1.0854975, -0.52114654)
+[node name="PoolTable3" type="MeshInstance3D" parent="Environment/PoolTable" unique_id=506442964]
+transform = Transform3D(1, 0, 0, 0, 3.0616243, 0, 0, 0, 0.0453398, 0, 1.0854975, 0.5190285)
 mesh = SubResource("BoxMesh_ge4b8")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="Environment/PoolTable/PoolTable7" unique_id=701320895]
+[node name="StaticBody3D" type="StaticBody3D" parent="Environment/PoolTable/PoolTable3" unique_id=1210363038]
 physics_material_override = SubResource("PhysicsMaterial_ge4b8")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/PoolTable/PoolTable7/StaticBody3D" unique_id=403396987]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/PoolTable/PoolTable3/StaticBody3D" unique_id=1995702467]
 shape = SubResource("ConcavePolygonShape3D_njykq")
 
 [node name="PoolTable4" type="MeshInstance3D" parent="Environment/PoolTable" unique_id=1517577745]
-transform = Transform3D(-2.0625494e-08, 0, -0.024980975, 0, 3.0616243, 0, 0.8564065, 0, -1.9818653e-09, 0.5126211, 1.0854975, 0.0029309036)
+transform = Transform3D(-1.9398703e-08, 0, -0.024980975, 0, 3.0616243, 0, 0.805468, 0, -1.9818653e-09, 0.51262105, 1.0854975, 0.0029309038)
 mesh = SubResource("BoxMesh_ge4b8")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Environment/PoolTable/PoolTable4" unique_id=206939816]
@@ -141,40 +126,30 @@ physics_material_override = SubResource("PhysicsMaterial_ge4b8")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/PoolTable/PoolTable4/StaticBody3D" unique_id=1156571427]
 shape = SubResource("ConcavePolygonShape3D_njykq")
 
-[node name="PoolTable5" type="MeshInstance3D" parent="Environment/PoolTable" unique_id=780427512]
-transform = Transform3D(-2.0625494e-08, 0, -0.024980975, 0, 3.0616243, 0, 0.8564065, 0, -1.9818653e-09, -0.5127509, 1.0854975, 0.0029309036)
+[node name="PoolTable5" type="MeshInstance3D" parent="Environment/PoolTable" unique_id=263469344]
+transform = Transform3D(-2.6270513e-08, 0, -0.024980975, 0, 3.0616243, 0, 1.0907975, 0, -1.9818656e-09, -0.5140365, 1.0854975, 0.002930904)
 mesh = SubResource("BoxMesh_ge4b8")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="Environment/PoolTable/PoolTable5" unique_id=315284817]
+[node name="StaticBody3D" type="StaticBody3D" parent="Environment/PoolTable/PoolTable5" unique_id=73112161]
 physics_material_override = SubResource("PhysicsMaterial_ge4b8")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/PoolTable/PoolTable5/StaticBody3D" unique_id=1656110606]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/PoolTable/PoolTable5/StaticBody3D" unique_id=760998980]
 shape = SubResource("ConcavePolygonShape3D_njykq")
 
-[node name="PoolTable3" type="MeshInstance3D" parent="Environment/PoolTable" unique_id=160109607]
-transform = Transform3D(0.42000568, 0, 0, 0, 3.0616243, 0, 0, 0, 0.045339797, 0.25324914, 1.0854975, 0.5232227)
+[node name="PoolTable6" type="MeshInstance3D" parent="Environment/PoolTable" unique_id=151352681]
+transform = Transform3D(-1.1075349e-08, 0, -0.024980975, 0, 3.0616243, 0, 0.45986784, 0, -1.9818653e-09, 0.18129362, 1.0854975, 0.0029309036)
 mesh = SubResource("BoxMesh_ge4b8")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="Environment/PoolTable/PoolTable3" unique_id=1692387251]
+[node name="StaticBody3D" type="StaticBody3D" parent="Environment/PoolTable/PoolTable6" unique_id=355102362]
 physics_material_override = SubResource("PhysicsMaterial_ge4b8")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/PoolTable/PoolTable3/StaticBody3D" unique_id=2109018868]
-shape = SubResource("ConcavePolygonShape3D_njykq")
-
-[node name="PoolTable8" type="MeshInstance3D" parent="Environment/PoolTable" unique_id=578077025]
-transform = Transform3D(0.42000568, 0, 0, 0, 3.0616243, 0, 0, 0, 0.045339797, -0.2368855, 1.0854975, 0.5232227)
-mesh = SubResource("BoxMesh_ge4b8")
-
-[node name="StaticBody3D" type="StaticBody3D" parent="Environment/PoolTable/PoolTable8" unique_id=1532980395]
-physics_material_override = SubResource("PhysicsMaterial_ge4b8")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/PoolTable/PoolTable8/StaticBody3D" unique_id=1481988352]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/PoolTable/PoolTable6/StaticBody3D" unique_id=1843803195]
 shape = SubResource("ConcavePolygonShape3D_njykq")
 
 [node name="CueBall" type="RigidBody3D" parent="Environment" unique_id=1180700954 node_paths=PackedStringArray("action_cam")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.443642, 0.61131126, 0)
 physics_material_override = SubResource("PhysicsMaterial_slevu")
-linear_damp = 0.8
+linear_damp = 0.7
 script = ExtResource("2_odxbl")
 action_cam = NodePath("../../Camera3D")
 
@@ -188,7 +163,7 @@ shape = SubResource("SphereShape3D_njykq")
 
 [node name="PoolBall" type="RigidBody3D" parent="Environment" unique_id=883979818]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.1469195, 0.18199545, -0.9875282)
-linear_damp = 0.8
+linear_damp = 0.7
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Environment/PoolBall" unique_id=1234026351]
 transform = Transform3D(0.195, 0, 0, 0, 0.195, 0, 0, 0, 0.195, 0, 0, 0)
@@ -199,8 +174,8 @@ transform = Transform3D(0.195, 0, 0, 0, 0.195, 0, 0, 0, 0.195, 0, 0, 0)
 shape = SubResource("SphereShape3D_njykq")
 
 [node name="PoolBall2" type="RigidBody3D" parent="Environment" unique_id=1217490698]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.432785, 0.18199545, -0.699824)
-linear_damp = 0.8
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.2058966, 0.18199545, 1.1855142)
+linear_damp = 0.7
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Environment/PoolBall2" unique_id=715531240]
 transform = Transform3D(0.195, 0, 0, 0, 0.195, 0, 0, 0, 0.195, 0, 0, 0)
@@ -210,15 +185,29 @@ mesh = SubResource("SphereMesh_rjey3")
 transform = Transform3D(0.195, 0, 0, 0, 0.195, 0, 0, 0, 0.195, 0, 0, 0)
 shape = SubResource("SphereShape3D_njykq")
 
-[node name="PoolBall3" type="RigidBody3D" parent="Environment" unique_id=852971699]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.06849098, 0.18199545, 1.1708263)
-linear_damp = 0.8
+[node name="PoolBall3" type="RigidBody3D" parent="Environment" unique_id=1642881380]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.6690547, 0.18199545, 0.34806544)
+visible = false
+linear_damp = 0.7
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Environment/PoolBall3" unique_id=2052571159]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Environment/PoolBall3" unique_id=708382422]
 transform = Transform3D(0.195, 0, 0, 0, 0.195, 0, 0, 0, 0.195, 0, 0, 0)
-mesh = SubResource("SphereMesh_rjey3")
+mesh = SubResource("SphereMesh_muv5j")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/PoolBall3" unique_id=751054571]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/PoolBall3" unique_id=1802158546]
+transform = Transform3D(0.195, 0, 0, 0, 0.195, 0, 0, 0, 0.195, 0, 0, 0)
+shape = SubResource("SphereShape3D_njykq")
+
+[node name="PoolBall4" type="RigidBody3D" parent="Environment" unique_id=1193164250]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.6698738, 0.18199545, -0.36103708)
+visible = false
+linear_damp = 0.7
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Environment/PoolBall4" unique_id=615725647]
+transform = Transform3D(0.195, 0, 0, 0, 0.195, 0, 0, 0, 0.195, 0, 0, 0)
+mesh = SubResource("SphereMesh_muv5j")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/PoolBall4" unique_id=2041656192]
 transform = Transform3D(0.195, 0, 0, 0, 0.195, 0, 0, 0, 0.195, 0, 0, 0)
 shape = SubResource("SphereShape3D_njykq")
 
@@ -253,6 +242,5 @@ scale = Vector2(0.4775, 0.4775)
 texture = ExtResource("5_ge4b8")
 
 [node name="Camera3D" type="Camera3D" parent="." unique_id=477434706]
-transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, -0.026246786, 3.5914946, 0.05824566)
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, -0.026246786, 2.7289162, 0.05824566)
 size = 3.586
-script = ExtResource("6_8e4yu")
