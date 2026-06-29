@@ -11,7 +11,7 @@ var hover_bracelet
 
 
 @export_category("States")
-enum UI_State{OVERWORLD, DIALOGUE, DIGICAM, MINIGAME}
+enum UI_State{OVERWORLD, DIALOGUE, GAME}
 @export var ui_state : UI_State = UI_State.OVERWORLD
 
 @export_category("Digicam Vars")
@@ -45,8 +45,6 @@ func _set_ui_state(next_state:int):
 			main_ui.visible = false
 		UI_State.DIALOGUE:
 			dialogue_ui.visible = false
-		UI_State.DIGICAM:
-			digicam_ui.visible = false
 		pass	
 	#setup next state
 	match(next_state):
@@ -54,18 +52,4 @@ func _set_ui_state(next_state:int):
 			main_ui.visible = true
 		UI_State.DIALOGUE:
 			dialogue_ui.visible = true
-		UI_State.DIGICAM:
-			digicam_ui.visible = true
 		pass
-
-func _setup_digi_menu():
-	pass
-func _focus_photo(photo_path : String):
-	pass
-
-#func _take_photo():
-	#var img = get_viewport().get_texture().get_image()
-	#var tex = ImageTexture.new()
-	#tex.create_from_image(img)
-	#focus_photo.texture = tex
-	#print(img)

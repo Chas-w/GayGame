@@ -15,7 +15,7 @@ run/main_scene="uid://b76vij71sl6tt"
 config/use_custom_user_dir=true
 config/custom_user_dir_name="GameDirectory"
 config/features=PackedStringArray("4.6", "Forward Plus")
-config/icon="res://Prototyping/OLD/Sprites/icon.svg"
+config/icon="res://Prototyping/To be deleted/Sprites/icon.svg"
 
 [autoload]
 
@@ -51,7 +51,7 @@ folder_colors={
 "res://Prototyping/Imported Mesh/": "gray",
 "res://Prototyping/Imported Textures/": "gray",
 "res://Prototyping/Materials/": "purple",
-"res://Prototyping/OLD/": "red",
+"res://Prototyping/To be deleted/": "red",
 "res://Prototyping/VICTOR/": "purple",
 "res://Scenes/Entities/": "green"
 }
