@@ -7,6 +7,7 @@
 [ext_resource type="FontFile" uid="uid://bmimebg5qcne7" path="res://Prototyping/VICTOR/Fonts/Oswald-VariableFont_wght.ttf" id="4_qq5vk"]
 [ext_resource type="Texture2D" uid="uid://1d386t4v4r0e" path="res://Prototyping/VICTOR/PrototypeSprites/poolcue.png" id="5_ge4b8"]
 [ext_resource type="Script" uid="uid://bppwvywojt0na" path="res://Prototyping/VICTOR/Scripts/mouse_detection.gd" id="6_8e4yu"]
+[ext_resource type="PackedScene" uid="uid://sm7arfwfiy6n" path="res://Prototyping/VICTOR/Models/pool_table.tscn" id="8_rjey3"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_muv5j"]
 sky_top_color = Color(0.6128374, 0.17575681, 0.8644528, 1)
@@ -50,13 +51,15 @@ rough = true
 friction = 0.35
 bounce = 0.8
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ge4b8"]
-albedo_color = Color(4.3317677e-06, 0.6768968, 0.71594197, 1)
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rjey3"]
 
 [sub_resource type="SphereMesh" id="SphereMesh_muv5j"]
-material = SubResource("StandardMaterial3D_ge4b8")
+material = SubResource("StandardMaterial3D_rjey3")
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_njykq"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ge4b8"]
+albedo_color = Color(4.3317677e-06, 0.6768968, 0.71594197, 1)
 
 [sub_resource type="SphereMesh" id="SphereMesh_8e4yu"]
 material = SubResource("StandardMaterial3D_ge4b8")
@@ -73,7 +76,7 @@ font_size = 28
 
 [node name="PoolPrototype" type="Node3D" unique_id=1452555117 node_paths=PackedStringArray("pool_canvas", "cue_ball", "camera")]
 script = ExtResource("1_njykq")
-base_impulse = 0.01
+base_impulse = 0.015
 max_moves = 5
 pool_canvas = NodePath("Pool UI")
 cue_ball = NodePath("Environment/CueBall")
@@ -90,7 +93,7 @@ shadow_enabled = true
 environment = SubResource("Environment_odxbl")
 
 [node name="SpinningObstacle" type="MeshInstance3D" parent="Environment" unique_id=151352681]
-transform = Transform3D(-5.6144795e-08, 0, -0.12663725, 0, 0.3293462, 0, 1.2844431, 0, -5.535489e-09, 0.020476818, 0.11676955, 0.008186219)
+transform = Transform3D(-5.6144795e-08, 0, -0.12663725, 0, 0.3293462, 0, 1.2844431, 0, -5.535489e-09, 0, 0.364, 0)
 mesh = SubResource("BoxMesh_ge4b8")
 script = ExtResource("2_0pgpf")
 rotation_speed = 1.0
@@ -102,7 +105,8 @@ physics_material_override = SubResource("PhysicsMaterial_ge4b8")
 shape = SubResource("ConcavePolygonShape3D_njykq")
 
 [node name="PoolTable" type="MeshInstance3D" parent="Environment" unique_id=979063973]
-transform = Transform3D(5.069348, 0, 0, 0, 0.107572384, 0, 0, 0, 2.79307, 0, 0, 0)
+transform = Transform3D(5.069348, 0, 0, 0, 0.107572384, 0, 0, 0, 2.79307, 0, -1.1600889, 0)
+visible = false
 mesh = SubResource("BoxMesh_muv5j")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Environment/PoolTable" unique_id=55323580]
@@ -172,7 +176,7 @@ physics_material_override = SubResource("PhysicsMaterial_ge4b8")
 shape = SubResource("ConcavePolygonShape3D_njykq")
 
 [node name="CueBall" type="RigidBody3D" parent="Environment" unique_id=1180700954 node_paths=PackedStringArray("action_cam")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.443642, 0.61131126, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.443642, 0.48240697, 0)
 physics_material_override = SubResource("PhysicsMaterial_slevu")
 linear_damp = 0.8
 script = ExtResource("2_odxbl")
@@ -180,6 +184,7 @@ action_cam = NodePath("../../Camera3D")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Environment/CueBall" unique_id=198120025]
 transform = Transform3D(0.195, 0, 0, 0, 0.195, 0, 0, 0, 0.195, 0, 0, 0)
+layers = 2
 mesh = SubResource("SphereMesh_muv5j")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/CueBall" unique_id=996040239]
@@ -187,7 +192,7 @@ transform = Transform3D(0.195, 0, 0, 0, 0.195, 0, 0, 0, 0.195, 0, 0, 0)
 shape = SubResource("SphereShape3D_njykq")
 
 [node name="PoolBall" type="RigidBody3D" parent="Environment" unique_id=883979818]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.1469195, 0.18199545, -0.9875282)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.1469195, 0.35140818, -0.9875282)
 linear_damp = 0.8
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Environment/PoolBall" unique_id=1234026351]
@@ -199,7 +204,7 @@ transform = Transform3D(0.195, 0, 0, 0, 0.195, 0, 0, 0, 0.195, 0, 0, 0)
 shape = SubResource("SphereShape3D_njykq")
 
 [node name="PoolBall2" type="RigidBody3D" parent="Environment" unique_id=1217490698]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.432785, 0.18199545, -0.699824)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.432785, 0.35140818, -0.699824)
 linear_damp = 0.8
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Environment/PoolBall2" unique_id=715531240]
@@ -211,7 +216,7 @@ transform = Transform3D(0.195, 0, 0, 0, 0.195, 0, 0, 0, 0.195, 0, 0, 0)
 shape = SubResource("SphereShape3D_njykq")
 
 [node name="PoolBall3" type="RigidBody3D" parent="Environment" unique_id=852971699]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.06849098, 0.18199545, 1.1708263)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.06849098, 0.35140818, 1.1708263)
 linear_damp = 0.8
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Environment/PoolBall3" unique_id=2052571159]
@@ -233,6 +238,23 @@ script = ExtResource("3_slevu")
 moves_remaining_display = NodePath("MovesRemainignDisplay")
 pool_cue = NodePath("PoolPivot/PoolCue")
 pool_pivot = NodePath("PoolPivot")
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="Pool UI" unique_id=1899359699]
+layout_mode = 0
+offset_right = 1152.0
+offset_bottom = 648.0
+
+[node name="SubViewport" type="SubViewport" parent="Pool UI/SubViewportContainer" unique_id=1071221364]
+transparent_bg = true
+handle_input_locally = false
+size = Vector2i(1152, 648)
+render_target_update_mode = 4
+
+[node name="Camera3D" type="Camera3D" parent="Pool UI/SubViewportContainer/SubViewport" unique_id=1995169021]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, -0.026246786, 3.5914946, 0.05824566)
+cull_mask = 2
+size = 3.586
+script = ExtResource("6_8e4yu")
 
 [node name="MovesRemainignDisplay" type="Label" parent="Pool UI" unique_id=1719126075]
 layout_mode = 0
@@ -256,3 +278,6 @@ texture = ExtResource("5_ge4b8")
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, -0.026246786, 3.5914946, 0.05824566)
 size = 3.586
 script = ExtResource("6_8e4yu")
+
+[node name="Pool_Table" parent="." unique_id=668805907 instance=ExtResource("8_rjey3")]
+transform = Transform3D(0.35, 0, 0, 0, 0.35, 0, 0, 0, 0.35, 0, 0, 0)

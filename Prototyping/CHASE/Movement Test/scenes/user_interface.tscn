@@ -318,6 +318,7 @@ offset_bottom = 31.0
 text = "Previous"
 
 [node name="Bracelet" type="Button" parent="." unique_id=381598157]
+visible = false
 offset_left = 963.0001
 offset_top = -36.0
 offset_right = 1038.0001
