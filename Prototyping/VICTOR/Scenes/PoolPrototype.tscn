@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://1d386t4v4r0e" path="res://Prototyping/VICTOR/PrototypeSprites/poolcue.png" id="5_ge4b8"]
 [ext_resource type="Script" uid="uid://bppwvywojt0na" path="res://Prototyping/VICTOR/Scripts/mouse_detection.gd" id="6_8e4yu"]
 [ext_resource type="PackedScene" uid="uid://sm7arfwfiy6n" path="res://Prototyping/VICTOR/Models/pool_table.tscn" id="8_rjey3"]
+[ext_resource type="Shader" uid="uid://b1mekbqb4yaaw" path="res://Prototyping/VICTOR/Scripts/portal_background.gdshader" id="9_7gh1m"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_muv5j"]
 sky_top_color = Color(0.6128374, 0.17575681, 0.8644528, 1)
@@ -70,9 +71,29 @@ albedo_color = Color(0.99999994, 0.19114959, 0.34648684, 1)
 [sub_resource type="SphereMesh" id="SphereMesh_rjey3"]
 material = SubResource("StandardMaterial3D_0pgpf")
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_wygev"]
+shader = ExtResource("9_7gh1m")
+shader_parameter/speed = 0.1
+shader_parameter/pixelation = 8.0
+shader_parameter/zoom = 2.0
+shader_parameter/gradient_pixelation = 0.2
+shader_parameter/background_threshold = 0.0
+shader_parameter/color_low_threshold = 0.24
+shader_parameter/color_mid_threshold = 0.48
+shader_parameter/color_low = Color(0.01, 0.41, 0.51, 1)
+shader_parameter/color_mid = Color(0.5, 0.1, 0.3, 1)
+shader_parameter/color_high = Color(1, 1, 1, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_7gh1m"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_ioos7"]
+noise = SubResource("FastNoiseLite_7gh1m")
+
 [sub_resource type="LabelSettings" id="LabelSettings_ge4b8"]
 font = ExtResource("4_qq5vk")
 font_size = 28
+
+[sub_resource type="Environment" id="Environment_wygev"]
 
 [node name="PoolPrototype" type="Node3D" unique_id=1452555117 node_paths=PackedStringArray("pool_canvas", "cue_ball", "camera")]
 script = ExtResource("1_njykq")
@@ -93,7 +114,7 @@ shadow_enabled = true
 environment = SubResource("Environment_odxbl")
 
 [node name="SpinningObstacle" type="MeshInstance3D" parent="Environment" unique_id=151352681]
-transform = Transform3D(-5.6144795e-08, 0, -0.12663725, 0, 0.3293462, 0, 1.2844431, 0, -5.535489e-09, 0, 0.364, 0)
+transform = Transform3D(-6.595579e-08, 0, -0.12663725, 0, 0.3293462, 0, 1.5088925, 0, -5.535489e-09, 0, 0.364, 0)
 mesh = SubResource("BoxMesh_ge4b8")
 script = ExtResource("2_0pgpf")
 rotation_speed = 1.0
@@ -178,6 +199,7 @@ shape = SubResource("ConcavePolygonShape3D_njykq")
 [node name="CueBall" type="RigidBody3D" parent="Environment" unique_id=1180700954 node_paths=PackedStringArray("action_cam")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.443642, 0.48240697, 0)
 physics_material_override = SubResource("PhysicsMaterial_slevu")
+continuous_cd = true
 linear_damp = 0.8
 script = ExtResource("2_odxbl")
 action_cam = NodePath("../../Camera3D")
@@ -193,6 +215,7 @@ shape = SubResource("SphereShape3D_njykq")
 
 [node name="PoolBall" type="RigidBody3D" parent="Environment" unique_id=883979818]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.1469195, 0.35140818, -0.9875282)
+continuous_cd = true
 linear_damp = 0.8
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Environment/PoolBall" unique_id=1234026351]
@@ -205,6 +228,7 @@ shape = SubResource("SphereShape3D_njykq")
 
 [node name="PoolBall2" type="RigidBody3D" parent="Environment" unique_id=1217490698]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.432785, 0.35140818, -0.699824)
+continuous_cd = true
 linear_damp = 0.8
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Environment/PoolBall2" unique_id=715531240]
@@ -217,6 +241,7 @@ shape = SubResource("SphereShape3D_njykq")
 
 [node name="PoolBall3" type="RigidBody3D" parent="Environment" unique_id=852971699]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.06849098, 0.35140818, 1.1708263)
+continuous_cd = true
 linear_damp = 0.8
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Environment/PoolBall3" unique_id=2052571159]
@@ -238,6 +263,29 @@ script = ExtResource("3_slevu")
 moves_remaining_display = NodePath("MovesRemainignDisplay")
 pool_cue = NodePath("PoolPivot/PoolCue")
 pool_pivot = NodePath("PoolPivot")
+
+[node name="Sprite2D" type="Sprite2D" parent="Pool UI" unique_id=443397417]
+material = SubResource("ShaderMaterial_wygev")
+position = Vector2(577, 328.5)
+scale = Vector2(2.3632815, 1.3652343)
+texture = SubResource("NoiseTexture2D_ioos7")
+
+[node name="SubViewportContainer2" type="SubViewportContainer" parent="Pool UI" unique_id=1446063498]
+layout_mode = 0
+offset_right = 1152.0
+offset_bottom = 648.0
+
+[node name="SubViewport" type="SubViewport" parent="Pool UI/SubViewportContainer2" unique_id=1261286420]
+transparent_bg = true
+handle_input_locally = false
+size = Vector2i(1152, 648)
+render_target_update_mode = 4
+
+[node name="Camera3D" type="Camera3D" parent="Pool UI/SubViewportContainer2/SubViewport" unique_id=245537748]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, -0.026246786, 3.5914946, 0.05824566)
+cull_mask = 1
+size = 3.586
+script = ExtResource("6_8e4yu")
 
 [node name="SubViewportContainer" type="SubViewportContainer" parent="Pool UI" unique_id=1899359699]
 layout_mode = 0
@@ -276,6 +324,7 @@ texture = ExtResource("5_ge4b8")
 
 [node name="Camera3D" type="Camera3D" parent="." unique_id=477434706]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, -0.026246786, 3.5914946, 0.05824566)
+environment = SubResource("Environment_wygev")
 size = 3.586
 script = ExtResource("6_8e4yu")
 

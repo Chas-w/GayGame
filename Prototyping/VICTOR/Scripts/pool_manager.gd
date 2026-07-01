@@ -29,9 +29,10 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	match(current_state):
 		STATE.Ready:
-			var ball_is_ready = camera.is_over_ball and cue_ball.get_velocity() == 0
+			var ball_is_ready = camera.is_over_ball and cue_ball.get_velocity() < 0.02
 			if Input.is_action_just_pressed("click") and ball_is_ready:
 				pool_canvas.update_start_point()
+				cue_ball.reset_velocity()
 				setup_state(STATE.Aim)
 		STATE.Aim:
 			pool_canvas.update_end_point()
@@ -49,8 +50,6 @@ func _physics_process(delta: float) -> void:
 				aim_distance = pool_canvas.get_aim_distance()
 				setup_state(STATE.Wait)
 		STATE.Shoot:
-			#var aim_direction = Vector3(pool_canvas.get_aim_vector().x, 0, pool_canvas.get_aim_vector().y)
-			#var aim_distance = pool_canvas.get_aim_distance()
 			cue_ball.apply_impulse(aim_distance * base_impulse * aim_direction)
 			setup_state(STATE.Ready)
 

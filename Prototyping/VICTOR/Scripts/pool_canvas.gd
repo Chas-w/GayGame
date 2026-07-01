@@ -34,14 +34,18 @@ func _process(delta: float) -> void:
 			pool_manager.hit_ball()
 	#Rotate pool cue
 	if start_point != end_point:
-		#pool_cue.look_at(start_point)
-		#pool_cue.rotate(PI/2)
 		pool_pivot.look_at(start_point)
 		pool_pivot.rotate(PI/2)
 
 func _draw() -> void:
 	if start_point != end_point:
 		draw_line(start_point, end_point, Color.WHITE, 5)
+		
+		#var target_direction = (end_point - start_point).normalized()
+		#var target_distance = end_point.distance_to(start_point)
+		#draw_line(end_point, end_point - target_direction * 5, Color.WHITE, 2)
+		#print(end_point)
+		#print(end_point + target_direction * 6)
 
 func update_move_display(move_num : int) -> void:
 	moves_remaining_display.text = "Moves Remaining: " + str(move_num)
@@ -49,14 +53,11 @@ func update_move_display(move_num : int) -> void:
 #region line functions
 func update_start_point() -> void:
 	start_point = get_local_mouse_position()
-	#pool_cue.position = get_local_mouse_position()
-	#pool_cue.visible = true
 	pool_pivot.position = get_local_mouse_position()
 	pool_pivot.visible = true
 
 func update_end_point() -> void:
 	end_point = get_local_mouse_position()
-	#pool_cue.position = get_local_mouse_position()
 	pool_pivot.position = get_local_mouse_position()
 
 func get_aim_distance() -> float:
@@ -67,6 +68,4 @@ func get_aim_vector() -> Vector2:
 
 func release_line() -> void:
 	retract_line = true
-	#pool_cue.visible = false
-	#pool_pivot.visible = true
 #endregion
