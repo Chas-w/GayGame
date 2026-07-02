@@ -1,3 +1,133 @@
 [gd_scene format=3 uid="uid://bgnqy2s3pyr4c"]
 
-[node name="Camera System Prototype" type="Node3D" unique_id=121240544]
+[ext_resource type="Script" uid="uid://bd046eokvcnu2" path="res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" id="1_k1ojy"]
+[ext_resource type="Script" uid="uid://df4xpyfy1fpxg" path="res://Prototyping/CHASE/Movement Test/scripts/camera_system.gd" id="1_s7w5y"]
+[ext_resource type="Script" uid="uid://csjccrhj5wnx7" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_3d.gd" id="2_pqr7v"]
+[ext_resource type="Script" uid="uid://8umksf8e80fw" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="3_jrv8i"]
+[ext_resource type="PackedScene" uid="uid://opuyvjyc470g" path="res://BLENDS/Pool_Table.fbx" id="5_rsru6"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_s7w5y"]
+sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+ground_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+
+[sub_resource type="Sky" id="Sky_rsru6"]
+sky_material = SubResource("ProceduralSkyMaterial_s7w5y")
+
+[sub_resource type="Environment" id="Environment_wie4r"]
+background_mode = 2
+sky = SubResource("Sky_rsru6")
+tonemap_mode = 2
+glow_enabled = true
+
+[sub_resource type="Resource" id="Resource_s7w5y"]
+script = ExtResource("3_jrv8i")
+transition = 10
+
+[sub_resource type="Animation" id="Animation_wie4r"]
+resource_name = "Enter Temp"
+step = 0.0333333
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 1.028, 9.507416), Vector3(0, 1.028, 3.5)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.36666667, 0.73333335, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0.1308997, 0, 0), Vector3(-0.19198622, 0, 0), Vector3(0.1308997, 0, 0), Vector3(-0.19198622, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_k1utg"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 1.028, 9.507416)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-0.09599311, 0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_wc45h"]
+_data = {
+&"Enter Temp": SubResource("Animation_wie4r"),
+&"RESET": SubResource("Animation_k1utg")
+}
+
+[node name="Camera System Prototype" type="Node3D" unique_id=121240544 node_paths=PackedStringArray("pool_cam", "opponent_cam", "enter_scene_cam", "enter_animator")]
+script = ExtResource("1_s7w5y")
+pool_cam = NodePath("Pool Game View")
+opponent_cam = NodePath("Watch Opponent View")
+enter_scene_cam = NodePath("Enter Scene")
+enter_animator = NodePath("Enter Scene/AnimationPlayer")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=892453101]
+environment = SubResource("Environment_wie4r")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=726490418]
+transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 0, 0, 0)
+shadow_enabled = true
+
+[node name="Camera3D" type="Camera3D" parent="." unique_id=1952163773]
+transform = Transform3D(1, 0, 0, 0, 0.98162717, 0.190809, 0, -0.190809, 0.98162717, 0, 1.028, 3.5)
+top_level = true
+
+[node name="PhantomCameraHost" type="Node" parent="Camera3D" unique_id=897976144]
+process_priority = 300
+process_physics_priority = 300
+script = ExtResource("1_k1ojy")
+metadata/_custom_type_script = "uid://bd046eokvcnu2"
+
+[node name="Pool Game View" type="Node3D" parent="." unique_id=1094975953]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 2, -8.742278e-08)
+script = ExtResource("2_pqr7v")
+tween_resource = SubResource("Resource_s7w5y")
+metadata/_custom_type_script = "uid://csjccrhj5wnx7"
+
+[node name="Watch Opponent View" type="Node3D" parent="." unique_id=890710095]
+transform = Transform3D(1, 0, 0, 0, 0.9953962, 0.09584575, 0, -0.09584575, 0.9953962, 0, 1.028, 2.521)
+script = ExtResource("2_pqr7v")
+tween_resource = SubResource("Resource_s7w5y")
+metadata/_custom_type_script = "uid://csjccrhj5wnx7"
+
+[node name="Enter Scene" type="Node3D" parent="." unique_id=1194113952]
+transform = Transform3D(1, 0, 0, 0, 0.9953962, 0.09584575, 0, -0.09584575, 0.9953962, 0, 1.028, 9.507416)
+script = ExtResource("2_pqr7v")
+tween_resource = SubResource("Resource_s7w5y")
+metadata/_custom_type_script = "uid://csjccrhj5wnx7"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Enter Scene" unique_id=1145051166]
+libraries/ = SubResource("AnimationLibrary_wc45h")
+
+[node name="Pool_Table" parent="." unique_id=7511507 instance=ExtResource("5_rsru6")]
+transform = Transform3D(0.23, 0, 0, 0, 0.23, 0, 0, 0, 0.23, 0, 0, 0)
