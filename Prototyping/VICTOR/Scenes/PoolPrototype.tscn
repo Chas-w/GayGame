@@ -97,7 +97,7 @@ font_size = 28
 
 [node name="PoolPrototype" type="Node3D" unique_id=1452555117 node_paths=PackedStringArray("pool_canvas", "cue_ball", "camera")]
 script = ExtResource("1_njykq")
-base_impulse = 0.015
+base_impulse = 0.01
 max_moves = 5
 pool_canvas = NodePath("Pool UI")
 cue_ball = NodePath("Environment/CueBall")
@@ -265,15 +265,18 @@ pool_cue = NodePath("PoolPivot/PoolCue")
 pool_pivot = NodePath("PoolPivot")
 
 [node name="Sprite2D" type="Sprite2D" parent="Pool UI" unique_id=443397417]
+z_index = -4
 material = SubResource("ShaderMaterial_wygev")
 position = Vector2(577, 328.5)
 scale = Vector2(2.3632815, 1.3652343)
 texture = SubResource("NoiseTexture2D_ioos7")
 
 [node name="SubViewportContainer2" type="SubViewportContainer" parent="Pool UI" unique_id=1446063498]
-layout_mode = 0
-offset_right = 1152.0
-offset_bottom = 648.0
+z_index = -2
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
 
 [node name="SubViewport" type="SubViewport" parent="Pool UI/SubViewportContainer2" unique_id=1261286420]
 transparent_bg = true
@@ -288,9 +291,11 @@ size = 3.586
 script = ExtResource("6_8e4yu")
 
 [node name="SubViewportContainer" type="SubViewportContainer" parent="Pool UI" unique_id=1899359699]
-layout_mode = 0
-offset_right = 1152.0
-offset_bottom = 648.0
+z_index = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
 
 [node name="SubViewport" type="SubViewport" parent="Pool UI/SubViewportContainer" unique_id=1071221364]
 transparent_bg = true
