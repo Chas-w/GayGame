@@ -68,3 +68,12 @@ func setup_state(next_state:STATE) -> void:
 
 func hit_ball() -> void:
 	setup_state(STATE.Shoot)
+
+func restart_level() -> void:
+	pass
+
+
+func _on_floor_trigger_enter(body: Node3D) -> void:
+	if body is RigidBody3D:
+		var current_body : RigidBody3D = body
+		current_body.freeze = true

@@ -38,16 +38,6 @@ bounce = 0.22
 [sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_njykq"]
 data = PackedVector3Array(-0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, -0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, -0.5, 0.5, 0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, -0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, -0.5, -0.5)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_slevu"]
-albedo_color = Color(0.16477215, 0.39515442, 0.17806807, 1)
-
-[sub_resource type="BoxMesh" id="BoxMesh_muv5j"]
-material = SubResource("StandardMaterial3D_slevu")
-
-[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_qq5vk"]
-friction = 0.85
-rough = true
-
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_slevu"]
 friction = 0.35
 bounce = 0.8
@@ -95,9 +85,12 @@ font_size = 28
 
 [sub_resource type="Environment" id="Environment_wygev"]
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_wygev"]
+size = Vector3(8.566101, 1, 6.005707)
+
 [node name="PoolPrototype" type="Node3D" unique_id=1452555117 node_paths=PackedStringArray("pool_canvas", "cue_ball", "camera")]
 script = ExtResource("1_njykq")
-base_impulse = 0.01
+base_impulse = 0.015
 max_moves = 5
 pool_canvas = NodePath("Pool UI")
 cue_ball = NodePath("Environment/CueBall")
@@ -123,77 +116,6 @@ rotation_speed = 1.0
 physics_material_override = SubResource("PhysicsMaterial_ge4b8")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/SpinningObstacle/StaticBody3D" unique_id=1843803195]
-shape = SubResource("ConcavePolygonShape3D_njykq")
-
-[node name="PoolTable" type="MeshInstance3D" parent="Environment" unique_id=979063973]
-transform = Transform3D(5.069348, 0, 0, 0, 0.107572384, 0, 0, 0, 2.79307, 0, -1.1600889, 0)
-visible = false
-mesh = SubResource("BoxMesh_muv5j")
-
-[node name="StaticBody3D" type="StaticBody3D" parent="Environment/PoolTable" unique_id=55323580]
-physics_material_override = SubResource("PhysicsMaterial_qq5vk")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/PoolTable/StaticBody3D" unique_id=3929847]
-shape = SubResource("ConcavePolygonShape3D_njykq")
-
-[node name="PoolTable2" type="MeshInstance3D" parent="Environment/PoolTable" unique_id=446711055]
-transform = Transform3D(0.42000568, 0, 0, 0, 3.0616243, 0, 0, 0, 0.045339797, 0.25324914, 1.0854975, -0.52114654)
-mesh = SubResource("BoxMesh_ge4b8")
-
-[node name="StaticBody3D" type="StaticBody3D" parent="Environment/PoolTable/PoolTable2" unique_id=2090067780]
-physics_material_override = SubResource("PhysicsMaterial_ge4b8")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/PoolTable/PoolTable2/StaticBody3D" unique_id=415813446]
-shape = SubResource("ConcavePolygonShape3D_njykq")
-
-[node name="PoolTable7" type="MeshInstance3D" parent="Environment/PoolTable" unique_id=1051407440]
-transform = Transform3D(0.42000568, 0, 0, 0, 3.0616243, 0, 0, 0, 0.045339797, -0.2368855, 1.0854975, -0.52114654)
-mesh = SubResource("BoxMesh_ge4b8")
-
-[node name="StaticBody3D" type="StaticBody3D" parent="Environment/PoolTable/PoolTable7" unique_id=701320895]
-physics_material_override = SubResource("PhysicsMaterial_ge4b8")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/PoolTable/PoolTable7/StaticBody3D" unique_id=403396987]
-shape = SubResource("ConcavePolygonShape3D_njykq")
-
-[node name="PoolTable4" type="MeshInstance3D" parent="Environment/PoolTable" unique_id=1517577745]
-transform = Transform3D(-2.0625494e-08, 0, -0.024980975, 0, 3.0616243, 0, 0.8564065, 0, -1.9818653e-09, 0.5126211, 1.0854975, 0.0029309036)
-mesh = SubResource("BoxMesh_ge4b8")
-
-[node name="StaticBody3D" type="StaticBody3D" parent="Environment/PoolTable/PoolTable4" unique_id=206939816]
-physics_material_override = SubResource("PhysicsMaterial_ge4b8")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/PoolTable/PoolTable4/StaticBody3D" unique_id=1156571427]
-shape = SubResource("ConcavePolygonShape3D_njykq")
-
-[node name="PoolTable5" type="MeshInstance3D" parent="Environment/PoolTable" unique_id=780427512]
-transform = Transform3D(-2.0625494e-08, 0, -0.024980975, 0, 3.0616243, 0, 0.8564065, 0, -1.9818653e-09, -0.5127509, 1.0854975, 0.0029309036)
-mesh = SubResource("BoxMesh_ge4b8")
-
-[node name="StaticBody3D" type="StaticBody3D" parent="Environment/PoolTable/PoolTable5" unique_id=315284817]
-physics_material_override = SubResource("PhysicsMaterial_ge4b8")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/PoolTable/PoolTable5/StaticBody3D" unique_id=1656110606]
-shape = SubResource("ConcavePolygonShape3D_njykq")
-
-[node name="PoolTable3" type="MeshInstance3D" parent="Environment/PoolTable" unique_id=160109607]
-transform = Transform3D(0.42000568, 0, 0, 0, 3.0616243, 0, 0, 0, 0.045339797, 0.25324914, 1.0854975, 0.5232227)
-mesh = SubResource("BoxMesh_ge4b8")
-
-[node name="StaticBody3D" type="StaticBody3D" parent="Environment/PoolTable/PoolTable3" unique_id=1692387251]
-physics_material_override = SubResource("PhysicsMaterial_ge4b8")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/PoolTable/PoolTable3/StaticBody3D" unique_id=2109018868]
-shape = SubResource("ConcavePolygonShape3D_njykq")
-
-[node name="PoolTable8" type="MeshInstance3D" parent="Environment/PoolTable" unique_id=578077025]
-transform = Transform3D(0.42000568, 0, 0, 0, 3.0616243, 0, 0, 0, 0.045339797, -0.2368855, 1.0854975, 0.5232227)
-mesh = SubResource("BoxMesh_ge4b8")
-
-[node name="StaticBody3D" type="StaticBody3D" parent="Environment/PoolTable/PoolTable8" unique_id=1532980395]
-physics_material_override = SubResource("PhysicsMaterial_ge4b8")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/PoolTable/PoolTable8/StaticBody3D" unique_id=1481988352]
 shape = SubResource("ConcavePolygonShape3D_njykq")
 
 [node name="CueBall" type="RigidBody3D" parent="Environment" unique_id=1180700954 node_paths=PackedStringArray("action_cam")]
@@ -264,46 +186,50 @@ moves_remaining_display = NodePath("MovesRemainignDisplay")
 pool_cue = NodePath("PoolPivot/PoolCue")
 pool_pivot = NodePath("PoolPivot")
 
-[node name="Sprite2D" type="Sprite2D" parent="Pool UI" unique_id=443397417]
+[node name="FunkyBackground" type="Sprite2D" parent="Pool UI" unique_id=443397417]
 z_index = -4
 material = SubResource("ShaderMaterial_wygev")
 position = Vector2(577, 328.5)
 scale = Vector2(2.3632815, 1.3652343)
 texture = SubResource("NoiseTexture2D_ioos7")
 
-[node name="SubViewportContainer2" type="SubViewportContainer" parent="Pool UI" unique_id=1446063498]
+[node name="TableView" type="SubViewportContainer" parent="Pool UI" unique_id=1446063498]
 z_index = -2
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
-[node name="SubViewport" type="SubViewport" parent="Pool UI/SubViewportContainer2" unique_id=1261286420]
+[node name="SubViewport" type="SubViewport" parent="Pool UI/TableView" unique_id=1261286420]
 transparent_bg = true
 handle_input_locally = false
 size = Vector2i(1152, 648)
 render_target_update_mode = 4
 
-[node name="Camera3D" type="Camera3D" parent="Pool UI/SubViewportContainer2/SubViewport" unique_id=245537748]
+[node name="Camera3D" type="Camera3D" parent="Pool UI/TableView/SubViewport" unique_id=245537748]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, -0.026246786, 3.5914946, 0.05824566)
 cull_mask = 1
 size = 3.586
 script = ExtResource("6_8e4yu")
 
-[node name="SubViewportContainer" type="SubViewportContainer" parent="Pool UI" unique_id=1899359699]
+[node name="CueBallView" type="SubViewportContainer" parent="Pool UI" unique_id=1899359699]
 z_index = 1
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
-[node name="SubViewport" type="SubViewport" parent="Pool UI/SubViewportContainer" unique_id=1071221364]
+[node name="SubViewport" type="SubViewport" parent="Pool UI/CueBallView" unique_id=1071221364]
 transparent_bg = true
 handle_input_locally = false
 size = Vector2i(1152, 648)
 render_target_update_mode = 4
 
-[node name="Camera3D" type="Camera3D" parent="Pool UI/SubViewportContainer/SubViewport" unique_id=1995169021]
+[node name="Camera3D" type="Camera3D" parent="Pool UI/CueBallView/SubViewport" unique_id=1995169021]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, -0.026246786, 3.5914946, 0.05824566)
 cull_mask = 2
 size = 3.586
@@ -335,3 +261,12 @@ script = ExtResource("6_8e4yu")
 
 [node name="Pool_Table" parent="." unique_id=668805907 instance=ExtResource("8_rjey3")]
 transform = Transform3D(0.35, 0, 0, 0, 0.35, 0, 0, 0, 0.35, 0, 0, 0)
+
+[node name="Area3D" type="Area3D" parent="." unique_id=476755051]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.1160796, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" unique_id=1340141352]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.08206177, 0, 0.013442993)
+shape = SubResource("BoxShape3D_wygev")
+
+[connection signal="body_entered" from="Area3D" to="." method="_on_floor_trigger_enter"]
