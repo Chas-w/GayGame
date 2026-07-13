@@ -91,6 +91,7 @@ size = Vector3(8.566101, 1, 6.005707)
 [node name="PoolPrototype" type="Node3D" unique_id=1452555117 node_paths=PackedStringArray("pool_canvas", "cue_ball", "camera")]
 script = ExtResource("1_njykq")
 base_impulse = 0.015
+max_impulse = 4.0
 max_moves = 5
 pool_canvas = NodePath("Pool UI")
 cue_ball = NodePath("Environment/CueBall")

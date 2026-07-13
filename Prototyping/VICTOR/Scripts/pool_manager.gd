@@ -2,6 +2,7 @@ extends Node3D
 
 @export_category("Attributes")
 @export var base_impulse : float
+@export var max_impulse : float
 @export var max_moves : int
 
 @export_category("References")
@@ -50,6 +51,9 @@ func _physics_process(delta: float) -> void:
 				aim_distance = pool_canvas.get_aim_distance()
 				setup_state(STATE.Wait)
 		STATE.Shoot:
+			var shoot_power = aim_distance * base_impulse
+			if shoot_power > max_impulse:
+				shoot_power = max_impulse
 			cue_ball.apply_impulse(aim_distance * base_impulse * aim_direction)
 			setup_state(STATE.Ready)
 
@@ -70,10 +74,10 @@ func hit_ball() -> void:
 	setup_state(STATE.Shoot)
 
 func restart_level() -> void:
-	pass
-
+	get_tree().reload_current_scene()
 
 func _on_floor_trigger_enter(body: Node3D) -> void:
 	if body is RigidBody3D:
 		var current_body : RigidBody3D = body
 		current_body.freeze = true
+		print(body.name)
