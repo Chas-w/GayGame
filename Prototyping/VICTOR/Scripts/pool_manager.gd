@@ -77,7 +77,19 @@ func restart_level() -> void:
 	get_tree().reload_current_scene()
 
 func _on_floor_trigger_enter(body: Node3D) -> void:
-	if body is RigidBody3D:
-		var current_body : RigidBody3D = body
-		current_body.freeze = true
-		print(body.name)
+	if body is not RigidBody3D:
+		return
+	var current_body : RigidBody3D = body
+	current_body.freeze = true
+	process_ball_sink(body.identity)
+
+func process_ball_sink(identity:int):
+	match(identity):
+		0: #Cue
+			print("Sunk Cue Ball")
+			restart_level()
+		1: #Player
+			print("Sunk Player Ball")
+		2: #Enemy
+			print("Sunk Enemy Ball")
+			moves_left = moves_left - 1

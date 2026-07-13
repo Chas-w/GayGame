@@ -2,8 +2,8 @@
 
 [ext_resource type="Script" uid="uid://g7wammwcdvau" path="res://Prototyping/VICTOR/Scripts/pool_manager.gd" id="1_njykq"]
 [ext_resource type="Script" uid="uid://br1mcntvmlb0j" path="res://Prototyping/VICTOR/Scripts/spinning_obstacle.gd" id="2_0pgpf"]
-[ext_resource type="Script" uid="uid://cr4s0f1wwviyn" path="res://Prototyping/VICTOR/Scripts/cue_ball.gd" id="2_odxbl"]
 [ext_resource type="Script" uid="uid://cve8q2d1r7ufb" path="res://Prototyping/VICTOR/Scripts/pool_canvas.gd" id="3_slevu"]
+[ext_resource type="Script" uid="uid://nhw1g8plbln5" path="res://Prototyping/VICTOR/Scripts/pool_ball.gd" id="4_7gh1m"]
 [ext_resource type="FontFile" uid="uid://bmimebg5qcne7" path="res://Prototyping/VICTOR/Fonts/Oswald-VariableFont_wght.ttf" id="4_qq5vk"]
 [ext_resource type="Texture2D" uid="uid://1d386t4v4r0e" path="res://Prototyping/VICTOR/PrototypeSprites/poolcue.png" id="5_ge4b8"]
 [ext_resource type="Script" uid="uid://bppwvywojt0na" path="res://Prototyping/VICTOR/Scripts/mouse_detection.gd" id="6_8e4yu"]
@@ -119,13 +119,12 @@ physics_material_override = SubResource("PhysicsMaterial_ge4b8")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/SpinningObstacle/StaticBody3D" unique_id=1843803195]
 shape = SubResource("ConcavePolygonShape3D_njykq")
 
-[node name="CueBall" type="RigidBody3D" parent="Environment" unique_id=1180700954 node_paths=PackedStringArray("action_cam")]
+[node name="CueBall" type="RigidBody3D" parent="Environment" unique_id=1180700954]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.443642, 0.48240697, 0)
 physics_material_override = SubResource("PhysicsMaterial_slevu")
 continuous_cd = true
 linear_damp = 0.8
-script = ExtResource("2_odxbl")
-action_cam = NodePath("../../Camera3D")
+script = ExtResource("4_7gh1m")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Environment/CueBall" unique_id=198120025]
 transform = Transform3D(0.195, 0, 0, 0, 0.195, 0, 0, 0, 0.195, 0, 0, 0)
@@ -136,29 +135,33 @@ mesh = SubResource("SphereMesh_muv5j")
 transform = Transform3D(0.195, 0, 0, 0, 0.195, 0, 0, 0, 0.195, 0, 0, 0)
 shape = SubResource("SphereShape3D_njykq")
 
-[node name="PoolBall" type="RigidBody3D" parent="Environment" unique_id=883979818]
+[node name="PlayerBall" type="RigidBody3D" parent="Environment" unique_id=883979818]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.1469195, 0.35140818, -0.9875282)
 continuous_cd = true
 linear_damp = 0.8
+script = ExtResource("4_7gh1m")
+identity = 1
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Environment/PoolBall" unique_id=1234026351]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Environment/PlayerBall" unique_id=1234026351]
 transform = Transform3D(0.195, 0, 0, 0, 0.195, 0, 0, 0, 0.195, 0, 0, 0)
 mesh = SubResource("SphereMesh_8e4yu")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/PoolBall" unique_id=2016643561]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/PlayerBall" unique_id=2016643561]
 transform = Transform3D(0.195, 0, 0, 0, 0.195, 0, 0, 0, 0.195, 0, 0, 0)
 shape = SubResource("SphereShape3D_njykq")
 
-[node name="PoolBall2" type="RigidBody3D" parent="Environment" unique_id=1217490698]
+[node name="EnemyBall" type="RigidBody3D" parent="Environment" unique_id=1217490698]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.432785, 0.35140818, -0.699824)
 continuous_cd = true
 linear_damp = 0.8
+script = ExtResource("4_7gh1m")
+identity = 2
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Environment/PoolBall2" unique_id=715531240]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Environment/EnemyBall" unique_id=715531240]
 transform = Transform3D(0.195, 0, 0, 0, 0.195, 0, 0, 0, 0.195, 0, 0, 0)
 mesh = SubResource("SphereMesh_rjey3")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/PoolBall2" unique_id=1980939202]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/EnemyBall" unique_id=1980939202]
 transform = Transform3D(0.195, 0, 0, 0, 0.195, 0, 0, 0, 0.195, 0, 0, 0)
 shape = SubResource("SphereShape3D_njykq")
 
@@ -166,6 +169,8 @@ shape = SubResource("SphereShape3D_njykq")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.06849098, 0.35140818, 1.1708263)
 continuous_cd = true
 linear_damp = 0.8
+script = ExtResource("4_7gh1m")
+identity = 2
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Environment/PoolBall3" unique_id=2052571159]
 transform = Transform3D(0.195, 0, 0, 0, 0.195, 0, 0, 0, 0.195, 0, 0, 0)
