@@ -1,13 +1,17 @@
 extends Node3D
 
 @export_category("Attributes")
-@export var base_impulse : float
-@export var max_impulse : float
-@export var max_moves : int
+@export var base_impulse : float = 0.015
+@export var max_impulse : float = 4
+@export var max_moves : int = 5
+
+@export_category("Ball References")
+@export var cue_ball : RigidBody3D
+@export var player_balls : Array[RigidBody3D]
+@export var enemy_balls : Array[RigidBody3D]
 
 @export_category("References")
 @export var pool_canvas : Control
-@export var cue_ball : RigidBody3D
 @export var camera : Camera3D
 
 #State Machine
@@ -28,8 +32,12 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
+	pool_canvas.update_action_cam(cue_ball)
 	match(current_state):
 		STATE.Ready:
+			if cue_ball.get_velocity() < 0.02:
+				#pool_canvas.toggle_action_cam(false)
+				pass
 			var ball_is_ready = camera.is_over_ball and cue_ball.get_velocity() < 0.02
 			if Input.is_action_just_pressed("click") and ball_is_ready:
 				pool_canvas.update_start_point()
@@ -37,6 +45,8 @@ func _process(delta: float) -> void:
 				setup_state(STATE.Aim)
 		STATE.Aim:
 			pool_canvas.update_end_point()
+		STATE.Shoot:
+			pass
 
 func _physics_process(delta: float) -> void:
 	match(current_state):
@@ -55,6 +65,7 @@ func _physics_process(delta: float) -> void:
 			if shoot_power > max_impulse:
 				shoot_power = max_impulse
 			cue_ball.apply_impulse(aim_distance * base_impulse * aim_direction)
+			#pool_canvas.toggle_action_cam(true)
 			setup_state(STATE.Ready)
 
 

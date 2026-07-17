@@ -9,34 +9,24 @@
 [ext_resource type="Script" uid="uid://bppwvywojt0na" path="res://Prototyping/VICTOR/Scripts/mouse_detection.gd" id="6_8e4yu"]
 [ext_resource type="PackedScene" uid="uid://sm7arfwfiy6n" path="res://Prototyping/VICTOR/Models/pool_table.tscn" id="8_rjey3"]
 [ext_resource type="Shader" uid="uid://b1mekbqb4yaaw" path="res://Prototyping/VICTOR/Scripts/portal_background.gdshader" id="9_7gh1m"]
+[ext_resource type="Shader" uid="uid://dawwlh5agjauc" path="res://Prototyping/VICTOR/Shaders/pixelation.gdshader" id="10_7gh1m"]
 
-[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_muv5j"]
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_7gh1m"]
 sky_top_color = Color(0.6128374, 0.17575681, 0.8644528, 1)
 sky_horizon_color = Color(0.5914699, 0.5100657, 0.70445764, 1)
 ground_bottom_color = Color(0.087211765, 0.19867581, 0.28754753, 1)
 ground_horizon_color = Color(0.5914699, 0.5100657, 0.70445764, 1)
 
-[sub_resource type="Sky" id="Sky_njykq"]
-sky_material = SubResource("ProceduralSkyMaterial_muv5j")
+[sub_resource type="Sky" id="Sky_ioos7"]
+sky_material = SubResource("ProceduralSkyMaterial_7gh1m")
 
-[sub_resource type="Environment" id="Environment_odxbl"]
+[sub_resource type="Environment" id="Environment_w20ks"]
 background_mode = 2
-sky = SubResource("Sky_njykq")
+sky = SubResource("Sky_ioos7")
 tonemap_mode = 2
-glow_enabled = true
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qq5vk"]
-albedo_color = Color(0.22280365, 0.15198272, 0.043021962, 1)
-
-[sub_resource type="BoxMesh" id="BoxMesh_ge4b8"]
-material = SubResource("StandardMaterial3D_qq5vk")
-
-[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_ge4b8"]
-friction = 0.65
-bounce = 0.22
-
-[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_njykq"]
-data = PackedVector3Array(-0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, -0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, -0.5, 0.5, 0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, -0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, -0.5, -0.5)
+[sub_resource type="BoxShape3D" id="BoxShape3D_wygev"]
+size = Vector3(8.566101, 1, 6.005707)
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_slevu"]
 friction = 0.35
@@ -61,6 +51,15 @@ albedo_color = Color(0.99999994, 0.19114959, 0.34648684, 1)
 [sub_resource type="SphereMesh" id="SphereMesh_rjey3"]
 material = SubResource("StandardMaterial3D_0pgpf")
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qq5vk"]
+albedo_color = Color(0.22280365, 0.15198272, 0.043021962, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_ge4b8"]
+material = SubResource("StandardMaterial3D_qq5vk")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_7gh1m"]
+size = Vector3(0.12643242, 0.3244629, 1.503418)
+
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_wygev"]
 shader = ExtResource("9_7gh1m")
 shader_parameter/speed = 0.1
@@ -79,45 +78,46 @@ shader_parameter/color_high = Color(1, 1, 1, 1)
 [sub_resource type="NoiseTexture2D" id="NoiseTexture2D_ioos7"]
 noise = SubResource("FastNoiseLite_7gh1m")
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ioos7"]
+shader = ExtResource("10_7gh1m")
+shader_parameter/pixelation = 0.0050000002375
+shader_parameter/opacity = 1.0
+
 [sub_resource type="LabelSettings" id="LabelSettings_ge4b8"]
 font = ExtResource("4_qq5vk")
 font_size = 28
 
-[sub_resource type="Environment" id="Environment_wygev"]
+[sub_resource type="PrismMesh" id="PrismMesh_7gh1m"]
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_wygev"]
-size = Vector3(8.566101, 1, 6.005707)
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_ioos7"]
+data = PackedVector3Array(0, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0, 0.5, -0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, 0, 0.5, 0.5, 0, 0.5, -0.5, 0.5, -0.5, 0.5, 0, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, -0.5, 0.5, 0, 0.5, -0.5, 0, 0.5, 0.5, -0.5, -0.5, -0.5, 0, 0.5, 0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, -0.5, -0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, -0.5, -0.5)
 
-[node name="PoolPrototype" type="Node3D" unique_id=1452555117 node_paths=PackedStringArray("pool_canvas", "cue_ball", "camera")]
+[node name="PoolPrototype" type="Node3D" unique_id=1452555117 node_paths=PackedStringArray("cue_ball", "pool_canvas", "camera")]
 script = ExtResource("1_njykq")
-base_impulse = 0.015
-max_impulse = 4.0
-max_moves = 5
-pool_canvas = NodePath("Pool UI")
 cue_ball = NodePath("Environment/CueBall")
+pool_canvas = NodePath("Pool UI")
 camera = NodePath("Camera3D")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1366252759]
+environment = SubResource("Environment_w20ks")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1355443557]
+transform = Transform3D(-0.35255665, -0.29770404, 0.8871733, 0.59457386, 0.660826, 0.45802945, -0.72262436, 0.6889714, -0.055971563, 0, 0, 0)
+light_color = Color(0.13746154, 0.8339976, 0.69175565, 1)
+light_energy = 15.0
+sky_mode = 1
 
 [node name="Environment" type="Node3D" parent="." unique_id=1582424421]
 
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Environment" unique_id=637047807]
-transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 0, 0, 0)
-light_color = Color(0.78039217, 0.7882353, 0.9137255, 1)
-shadow_enabled = true
+[node name="Pool_Table" parent="Environment" unique_id=668805907 instance=ExtResource("8_rjey3")]
+transform = Transform3D(0.35, 0, 0, 0, 0.35, 0, 0, 0, 0.35, 0, 0, 0)
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="Environment" unique_id=534977521]
-environment = SubResource("Environment_odxbl")
+[node name="BallSensor" type="Area3D" parent="Environment" unique_id=476755051]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.7888467, 0)
 
-[node name="SpinningObstacle" type="MeshInstance3D" parent="Environment" unique_id=151352681]
-transform = Transform3D(-6.595579e-08, 0, -0.12663725, 0, 0.3293462, 0, 1.5088925, 0, -5.535489e-09, 0, 0.364, 0)
-mesh = SubResource("BoxMesh_ge4b8")
-script = ExtResource("2_0pgpf")
-rotation_speed = 1.0
-
-[node name="StaticBody3D" type="StaticBody3D" parent="Environment/SpinningObstacle" unique_id=355102362]
-physics_material_override = SubResource("PhysicsMaterial_ge4b8")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/SpinningObstacle/StaticBody3D" unique_id=1843803195]
-shape = SubResource("ConcavePolygonShape3D_njykq")
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/BallSensor" unique_id=1340141352]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.08206177, 0, 0.013442993)
+shape = SubResource("BoxShape3D_wygev")
 
 [node name="CueBall" type="RigidBody3D" parent="Environment" unique_id=1180700954]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.443642, 0.48240697, 0)
@@ -166,7 +166,7 @@ transform = Transform3D(0.195, 0, 0, 0, 0.195, 0, 0, 0, 0.195, 0, 0, 0)
 shape = SubResource("SphereShape3D_njykq")
 
 [node name="PoolBall3" type="RigidBody3D" parent="Environment" unique_id=852971699]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.06849098, 0.35140818, 1.1708263)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.29534453, 0.35140818, 1.1708263)
 continuous_cd = true
 linear_damp = 0.8
 script = ExtResource("4_7gh1m")
@@ -180,7 +180,61 @@ mesh = SubResource("SphereMesh_rjey3")
 transform = Transform3D(0.195, 0, 0, 0, 0.195, 0, 0, 0, 0.195, 0, 0, 0)
 shape = SubResource("SphereShape3D_njykq")
 
-[node name="Pool UI" type="Control" parent="." unique_id=1564556037 node_paths=PackedStringArray("moves_remaining_display", "pool_cue", "pool_pivot")]
+[node name="SpinningObstacle2" type="Node3D" parent="Environment" unique_id=439334587 node_paths=PackedStringArray("spinning_part")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.38497725, 0)
+script = ExtResource("2_0pgpf")
+spin_obstacle = true
+rotation_speed = 1.0
+spinning_part = NodePath("SpinningObstaclePhysics")
+
+[node name="SpinningObstaclePhysics" type="RigidBody3D" parent="Environment/SpinningObstacle2" unique_id=2006729958]
+axis_lock_angular_x = true
+axis_lock_angular_z = true
+
+[node name="SpinningObstacle3" type="MeshInstance3D" parent="Environment/SpinningObstacle2/SpinningObstaclePhysics" unique_id=1183979750]
+transform = Transform3D(-6.595579e-08, 0, -0.12663725, 0, 0.3293462, 0, 1.5088925, 0, -5.535489e-09, -0.00034809113, 0.00010839105, -0.0017089844)
+mesh = SubResource("BoxMesh_ge4b8")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/SpinningObstacle2/SpinningObstaclePhysics" unique_id=654869136]
+shape = SubResource("BoxShape3D_7gh1m")
+
+[node name="PinJoint" type="PinJoint3D" parent="Environment/SpinningObstacle2" unique_id=1700034995]
+node_a = NodePath("../Pivot")
+node_b = NodePath("../SpinningObstaclePhysics")
+
+[node name="Pivot" type="RigidBody3D" parent="Environment/SpinningObstacle2" unique_id=1603478440]
+can_sleep = false
+freeze = true
+freeze_mode = 1
+
+[node name="SpinningObstacle3" type="Node3D" parent="Environment" unique_id=285301355 node_paths=PackedStringArray("spinning_part")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.9216151, 0.31396493, -0.60003316)
+script = ExtResource("2_0pgpf")
+spinning_part = NodePath("SpinningObstaclePhysics")
+
+[node name="SpinningObstaclePhysics" type="RigidBody3D" parent="Environment/SpinningObstacle3" unique_id=1836216994]
+axis_lock_angular_x = true
+axis_lock_angular_z = true
+mass = 0.1
+
+[node name="SpinningObstacle3" type="MeshInstance3D" parent="Environment/SpinningObstacle3/SpinningObstaclePhysics" unique_id=1125522789]
+transform = Transform3D(-4.8072927e-08, 0, -0.04133067, 0, 0.18181078, 0, 1.0997803, 0, -1.8066206e-09, -0.00023084879, 8.4131956e-05, -0.0014773011)
+mesh = SubResource("BoxMesh_ge4b8")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/SpinningObstacle3/SpinningObstaclePhysics" unique_id=770679057]
+transform = Transform3D(0.32637057, 0, 0, 0, 0.55203545, 0, 0, 0, 0.7288659, -0.000117242336, 2.4288893e-05, -0.00023168325)
+shape = SubResource("BoxShape3D_7gh1m")
+
+[node name="PinJoint" type="PinJoint3D" parent="Environment/SpinningObstacle3" unique_id=1360300079]
+node_a = NodePath("../Pivot")
+node_b = NodePath("../SpinningObstaclePhysics")
+
+[node name="Pivot" type="RigidBody3D" parent="Environment/SpinningObstacle3" unique_id=639161353]
+can_sleep = false
+freeze = true
+freeze_mode = 1
+
+[node name="Pool UI" type="Control" parent="." unique_id=1564556037 node_paths=PackedStringArray("moves_remaining_display", "pool_cue", "pool_pivot", "action_cam", "action_cam_view")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -191,8 +245,11 @@ script = ExtResource("3_slevu")
 moves_remaining_display = NodePath("MovesRemainignDisplay")
 pool_cue = NodePath("PoolPivot/PoolCue")
 pool_pivot = NodePath("PoolPivot")
+action_cam = NodePath("ActionCamView/SubViewport/ActionCam")
+action_cam_view = NodePath("ActionCamView")
 
 [node name="FunkyBackground" type="Sprite2D" parent="Pool UI" unique_id=443397417]
+visible = false
 z_index = -4
 material = SubResource("ShaderMaterial_wygev")
 position = Vector2(577, 328.5)
@@ -200,6 +257,7 @@ scale = Vector2(2.3632815, 1.3652343)
 texture = SubResource("NoiseTexture2D_ioos7")
 
 [node name="TableView" type="SubViewportContainer" parent="Pool UI" unique_id=1446063498]
+visible = false
 z_index = -2
 layout_mode = 1
 anchors_preset = 15
@@ -212,7 +270,7 @@ grow_vertical = 2
 transparent_bg = true
 handle_input_locally = false
 size = Vector2i(1152, 648)
-render_target_update_mode = 4
+render_target_update_mode = 0
 
 [node name="Camera3D" type="Camera3D" parent="Pool UI/TableView/SubViewport" unique_id=245537748]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, -0.026246786, 3.5914946, 0.05824566)
@@ -221,6 +279,7 @@ size = 3.586
 script = ExtResource("6_8e4yu")
 
 [node name="CueBallView" type="SubViewportContainer" parent="Pool UI" unique_id=1899359699]
+visible = false
 z_index = 1
 layout_mode = 1
 anchors_preset = 15
@@ -233,13 +292,40 @@ grow_vertical = 2
 transparent_bg = true
 handle_input_locally = false
 size = Vector2i(1152, 648)
-render_target_update_mode = 4
+render_target_update_mode = 0
 
 [node name="Camera3D" type="Camera3D" parent="Pool UI/CueBallView/SubViewport" unique_id=1995169021]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, -0.026246786, 3.5914946, 0.05824566)
+top_level = true
 cull_mask = 2
 size = 3.586
 script = ExtResource("6_8e4yu")
+
+[node name="ColorRect" type="ColorRect" parent="Pool UI" unique_id=2061207680]
+visible = false
+material = SubResource("ShaderMaterial_ioos7")
+layout_mode = 0
+offset_right = 1151.0
+offset_bottom = 664.0
+
+[node name="ActionCamView" type="SubViewportContainer" parent="Pool UI" unique_id=1870828445]
+visible = false
+z_index = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="SubViewport" type="SubViewport" parent="Pool UI/ActionCamView" unique_id=1956797922]
+handle_input_locally = false
+size = Vector2i(1152, 648)
+render_target_update_mode = 0
+
+[node name="ActionCam" type="Camera3D" parent="Pool UI/ActionCamView/SubViewport" unique_id=1231709313]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.4353662, 0.5530361, 0.5980127)
+size = 3.586
 
 [node name="MovesRemainignDisplay" type="Label" parent="Pool UI" unique_id=1719126075]
 layout_mode = 0
@@ -261,18 +347,16 @@ texture = ExtResource("5_ge4b8")
 
 [node name="Camera3D" type="Camera3D" parent="." unique_id=477434706]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, -0.026246786, 3.5914946, 0.05824566)
-environment = SubResource("Environment_wygev")
 size = 3.586
 script = ExtResource("6_8e4yu")
 
-[node name="Pool_Table" parent="." unique_id=668805907 instance=ExtResource("8_rjey3")]
-transform = Transform3D(0.35, 0, 0, 0, 0.35, 0, 0, 0, 0.35, 0, 0, 0)
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=157575444]
+transform = Transform3D(0.6298963, 0, 0, 0, 0.10821448, 0, 0, 0, 0.8432213, -2.3088918, 0.19964105, 0)
+mesh = SubResource("PrismMesh_7gh1m")
 
-[node name="Area3D" type="Area3D" parent="." unique_id=476755051]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.1160796, 0)
+[node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D" unique_id=1477021495]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" unique_id=1340141352]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.08206177, 0, 0.013442993)
-shape = SubResource("BoxShape3D_wygev")
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D/StaticBody3D" unique_id=1805200390]
+shape = SubResource("ConcavePolygonShape3D_ioos7")
 
-[connection signal="body_entered" from="Area3D" to="." method="_on_floor_trigger_enter"]
+[connection signal="body_entered" from="Environment/BallSensor" to="." method="_on_floor_trigger_enter"]

@@ -4,6 +4,8 @@ extends Control
 @export var moves_remaining_display : Control
 @export var pool_cue : Sprite2D
 @export var pool_pivot : Node2D
+@export var action_cam : Camera3D
+@export var action_cam_view : SubViewportContainer
 
 #Manager
 var pool_manager
@@ -16,6 +18,7 @@ var retract_line : bool
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	pool_pivot.visible = false
+	toggle_action_cam(false)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
@@ -69,3 +72,10 @@ func get_aim_vector() -> Vector2:
 func release_line() -> void:
 	retract_line = true
 #endregion
+
+func toggle_action_cam(toggle:bool):
+	action_cam_view.visible = toggle
+
+func update_action_cam(cue_ball:RigidBody3D):
+	action_cam.global_position.x = cue_ball.global_position.x - .25
+	#action_cam.basis.x = cue_ball.linear_velocity.normalized()

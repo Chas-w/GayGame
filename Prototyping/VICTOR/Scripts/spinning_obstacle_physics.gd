@@ -1,8 +1,6 @@
-extends Node3D
+extends RigidBody3D
 
-@export var spin_obstacle : bool
 @export var rotation_speed : float
-@export var spinning_part : RigidBody3D
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -11,9 +9,8 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	#rotate(Vector3.UP,rotation_speed * delta)
 	pass
 
 func _physics_process(delta: float) -> void:
-	if spin_obstacle:
-		spinning_part.angular_velocity = Vector3(0,1,0) * rotation_speed
+	#add_constant_torque(Vector3(0,1,0) * rotation_speed)
+	angular_velocity = Vector3(0,1,0) * rotation_speed
