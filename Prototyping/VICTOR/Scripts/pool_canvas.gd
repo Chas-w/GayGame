@@ -6,6 +6,7 @@ extends Control
 @export var pool_pivot : Node2D
 @export var action_cam : Camera3D
 @export var action_cam_view : SubViewportContainer
+@export var game_update : Label
 
 #Manager
 var pool_manager
@@ -15,9 +16,14 @@ var start_point : Vector2
 var end_point : Vector2
 var retract_line : bool
 
+#Player Message
+var message_timer : float
+var message_time : float
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	pool_pivot.visible = false
+	game_update.visible = false
 	toggle_action_cam(false)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -39,6 +45,13 @@ func _process(delta: float) -> void:
 	if start_point != end_point:
 		pool_pivot.look_at(start_point)
 		pool_pivot.rotate(PI/2)
+	
+	#Game Update Message
+	if game_update.visible:
+		message_timer = message_timer + delta
+		if message_timer > message_time:
+			game_update.visible = false
+			message_timer = 0
 
 func _draw() -> void:
 	if start_point != end_point:
@@ -79,3 +92,8 @@ func toggle_action_cam(toggle:bool):
 func update_action_cam(cue_ball:RigidBody3D):
 	action_cam.global_position.x = cue_ball.global_position.x - .25
 	#action_cam.basis.x = cue_ball.linear_velocity.normalized()
+
+func update_game_message(update:String):
+	game_update.text = update
+	game_update.visible = true
+	message_time = 2

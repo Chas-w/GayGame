@@ -15,10 +15,12 @@ extends Node3D
 @export var camera : Camera3D
 
 #State Machine
-enum STATE {Aim, Shoot, Wait, Ready}
+enum STATE {Aim, Shoot, Wait, Ready, End}
 var current_state : STATE = STATE.Ready
 
+#Track progress
 var moves_left : int
+var player_balls_sunk : int
 
 #Ball Hit
 var aim_direction
@@ -35,10 +37,17 @@ func _process(delta: float) -> void:
 	pool_canvas.update_action_cam(cue_ball)
 	match(current_state):
 		STATE.Ready:
-			if cue_ball.get_velocity() < 0.02:
+			#Check if ball is stationary
+			var ball_is_stationary = cue_ball.get_velocity() < 0.02
+			if ball_is_stationary:
+				#Turn off action camera
 				#pool_canvas.toggle_action_cam(false)
-				pass
-			var ball_is_ready = camera.is_over_ball and cue_ball.get_velocity() < 0.02
+				#Restart level if no moves left
+				if moves_left == 0 and Input.is_action_just_pressed("rightclick"):
+					restart_level()
+			
+			#Get the ball ready to be shot
+			var ball_is_ready = camera.is_over_ball and ball_is_stationary and moves_left > 0
 			if Input.is_action_just_pressed("click") and ball_is_ready:
 				pool_canvas.update_start_point()
 				cue_ball.reset_velocity()
@@ -79,6 +88,8 @@ func setup_state(next_state:STATE) -> void:
 			pass
 		STATE.Wait:
 			pass
+		STATE.End:
+			pool_canvas.update_game_message("GAME OVER")
 	current_state = next_state
 
 func hit_ball() -> void:
@@ -101,6 +112,12 @@ func process_ball_sink(identity:int):
 			restart_level()
 		1: #Player
 			print("Sunk Player Ball")
+			pool_canvas.update_game_message("SUNK PLAYER BALL")
+			player_balls_sunk = player_balls_sunk + 1
+			if player_balls_sunk == player_balls.size():
+				setup_state(STATE.End)
 		2: #Enemy
 			print("Sunk Enemy Ball")
+			pool_canvas.update_game_message("SUNK ENEMY BALL")
 			moves_left = moves_left - 1
+			pool_canvas.update_move_display(moves_left)
