@@ -1,0 +1,11 @@
+Model Information:
+* title:	low poly bus station
+* source:	https://sketchfab.com/3d-models/low-poly-bus-station-94a0954d9a09454692166a11d8d3c48e
+* author:	creosine (https://sketchfab.com/creosine)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "low poly bus station" (https://sketchfab.com/3d-models/low-poly-bus-station-94a0954d9a09454692166a11d8d3c48e) by creosine (https://sketchfab.com/creosine) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
