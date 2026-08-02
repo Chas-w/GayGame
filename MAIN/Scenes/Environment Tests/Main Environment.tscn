@@ -4,6 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://opuyvjyc470g" path="res://BLENDS/Pool_Table.fbx" id="2_cg7yw"]
 [ext_resource type="PackedScene" uid="uid://ctba5uvryw84m" path="res://MAIN/Scenes/player.tscn" id="3_4bjrt"]
 [ext_resource type="PackedScene" uid="uid://6opjw05pavxe" path="res://BLENDS/dj_room.fbx" id="4_2n117"]
+[ext_resource type="PackedScene" uid="uid://depww0yw72xae" path="res://Prototyping/Imported Mesh/bar_counter.tscn" id="5_cg7yw"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_8pj1j"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -41,7 +42,10 @@ shape = SubResource("BoxShape3D_dyyqa")
 
 [node name="main_room" parent="." unique_id=302062734 instance=ExtResource("1_ymyvb")]
 
-[node name="Temp Table" parent="main_room" index="9" unique_id=1009822262]
+[node name="Temp Bar" parent="main_room" index="7" unique_id=1146808332]
+visible = false
+
+[node name="Temp Table" parent="main_room" index="9" unique_id=1728868040]
 visible = false
 
 [node name="Pool_Table" parent="." unique_id=7511507 instance=ExtResource("2_cg7yw")]
@@ -51,8 +55,11 @@ transform = Transform3D(0.355, 0, 0, 0, 0.355, 0, 0, 0, 0.355, 10.955297, 0.1788
 
 [node name="dj_room" parent="." unique_id=946645099 instance=ExtResource("4_2n117")]
 
-[node name="Wall_005" parent="dj_room" index="7" unique_id=1387228686]
+[node name="Wall_005" parent="dj_room" index="7" unique_id=1648949999]
 surface_material_override/0 = SubResource("StandardMaterial3D_mf8jq")
+
+[node name="barCounter" parent="." unique_id=1106406040 instance=ExtResource("5_cg7yw")]
+transform = Transform3D(50.566406, 3.295194e-05, 5.5361407e-13, 1.7964796e-13, -5.203029e-05, 51.94283, 3.817657e-06, -436.46167, -6.1920687e-06, -1.8615113, 0.56115, 3.4598646)
 
 [editable path="main_room"]
 [editable path="dj_room"]
