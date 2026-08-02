@@ -14,7 +14,7 @@ config/name="Gay Game"
 run/main_scene="uid://b76vij71sl6tt"
 config/use_custom_user_dir=true
 config/custom_user_dir_name="GameDirectory"
-config/features=PackedStringArray("4.6", "Forward Plus")
+config/features=PackedStringArray("4.7", "Forward Plus")
 config/icon="res://Prototyping/To be deleted/Sprites/icon.svg"
 
 [autoload]
