@@ -38,7 +38,7 @@ shape = SubResource("BoxShape3D_dyyqa")
 
 [node name="main_room" parent="." unique_id=302062734 instance=ExtResource("1_fyoqx")]
 
-[node name="Temp Table" parent="main_room" index="9" unique_id=1295515418]
+[node name="Temp Table" parent="main_room" index="9" unique_id=58886096]
 visible = false
 
 [node name="Pool_Table" parent="." unique_id=7511507 instance=ExtResource("2_8pj1j")]
