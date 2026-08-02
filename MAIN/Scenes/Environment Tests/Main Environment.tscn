@@ -1,0 +1,58 @@
+[gd_scene format=3 uid="uid://kwg1sai6f3ln"]
+
+[ext_resource type="PackedScene" uid="uid://mvxyhs5xaoq1" path="res://BLENDS/main_room.fbx" id="1_ymyvb"]
+[ext_resource type="PackedScene" uid="uid://opuyvjyc470g" path="res://BLENDS/Pool_Table.fbx" id="2_cg7yw"]
+[ext_resource type="PackedScene" uid="uid://ctba5uvryw84m" path="res://MAIN/Scenes/player.tscn" id="3_4bjrt"]
+[ext_resource type="PackedScene" uid="uid://6opjw05pavxe" path="res://BLENDS/dj_room.fbx" id="4_2n117"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_8pj1j"]
+sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+ground_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+
+[sub_resource type="Sky" id="Sky_vlor8"]
+sky_material = SubResource("ProceduralSkyMaterial_8pj1j")
+
+[sub_resource type="Environment" id="Environment_mf8jq"]
+background_mode = 2
+sky = SubResource("Sky_vlor8")
+tonemap_mode = 2
+glow_enabled = true
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_dyyqa"]
+size = Vector3(26.750366, 26.250427, 0.7352295)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mf8jq"]
+
+[node name="MainRoom" type="Node3D" unique_id=1816949101]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1514257204]
+environment = SubResource("Environment_mf8jq")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=183770162]
+transform = Transform3D(-0.59649277, 0.36597183, 0.7143256, -0.38333765, -0.9118264, 0.14705434, 0.7051587, -0.186111, 0.68418854, 0, 8.476877, 0)
+shadow_enabled = true
+
+[node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=683507124]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 5.005632, -0.10581589, 4.341622)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" unique_id=809932022]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.29852295, 3.2922063, -0.13238531)
+shape = SubResource("BoxShape3D_dyyqa")
+
+[node name="main_room" parent="." unique_id=302062734 instance=ExtResource("1_ymyvb")]
+
+[node name="Temp Table" parent="main_room" index="9" unique_id=1009822262]
+visible = false
+
+[node name="Pool_Table" parent="." unique_id=7511507 instance=ExtResource("2_cg7yw")]
+transform = Transform3D(0.355, 0, 0, 0, 0.355, 0, 0, 0, 0.355, 10.955297, 0.17885709, 0.37329435)
+
+[node name="Player" parent="." unique_id=617722040 instance=ExtResource("3_4bjrt")]
+
+[node name="dj_room" parent="." unique_id=946645099 instance=ExtResource("4_2n117")]
+
+[node name="Wall_005" parent="dj_room" index="7" unique_id=1387228686]
+surface_material_override/0 = SubResource("StandardMaterial3D_mf8jq")
+
+[editable path="main_room"]
+[editable path="dj_room"]

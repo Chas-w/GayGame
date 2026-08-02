@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Gay Game"
-run/main_scene="uid://b76vij71sl6tt"
+run/main_scene="uid://kwg1sai6f3ln"
 config/use_custom_user_dir=true
 config/custom_user_dir_name="GameDirectory"
 config/features=PackedStringArray("4.7", "Forward Plus")
