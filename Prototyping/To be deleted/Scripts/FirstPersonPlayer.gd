@@ -3,7 +3,7 @@ extends CharacterBody3D
 #Attributes
 @export_range(0, 5) var speed : float
 @export_range(0, 0.015) var sensitivity : float
-@export var viewport_container: Control
+#@export var viewport_container: Control
 @export var player_body : Node3D
 
 #References
@@ -15,8 +15,8 @@ extends CharacterBody3D
 #Variables
 var is_posing : bool = false
 
-func _ready() -> void:
-	viewport_container.visible = false
+#func _ready() -> void:
+	#viewport_container.visible = false
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventMouseButton and !is_posing:
@@ -28,13 +28,13 @@ func _unhandled_input(event: InputEvent) -> void:
 		camera.rotate_x(-event.relative.y * sensitivity)
 		camera.rotation.x = clamp(camera.rotation.x, deg_to_rad(-30), deg_to_rad(60))
 
-func _process(delta: float) -> void:
-	if camera_cast.get_collider():
-		viewport_container.visible = true
-	elif !is_posing:
-		viewport_container.visible = false
-	if Input.is_action_just_pressed("pose"):
-		_toggle_posing()
+#func _process(delta: float) -> void:
+	#if camera_cast.get_collider():
+		#viewport_container.visible = true
+	#elif !is_posing:
+		#viewport_container.visible = false
+	#if Input.is_action_just_pressed("pose"):
+		#_toggle_posing()
 
 func _physics_process(delta: float) -> void:
 	if !is_posing:
@@ -47,7 +47,7 @@ func _physics_process(delta: float) -> void:
 func _toggle_posing():
 	is_posing = !is_posing
 	player_body.toggle_posing(is_posing)
-	viewport_container.visible = is_posing
+	#viewport_container.visible = is_posing
 	if is_posing:
 		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 	else:
